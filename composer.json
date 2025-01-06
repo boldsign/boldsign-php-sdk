@@ -1,6 +1,5 @@
 {
     "name": "boldsign/php-sdk",
-    "version": "1.0.0",
     "description": "Easily integrate BoldSign's e-signature features into your PHP applications. This SDK simplifies sending documents for signature, embedding signing ceremonies, tracking document status, downloading signed documents, and managing e-signature workflows.",
     "keywords": [
         "openapitools",

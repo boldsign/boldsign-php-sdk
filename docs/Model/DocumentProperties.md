@@ -1,0 +1,46 @@
+# # DocumentProperties
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**document_id** | **string** |  | [optional]
+**brand_id** | **string** |  | [optional]
+**message_title** | **string** |  | [optional]
+**document_description** | **string** |  | [optional]
+**status** | **string** |  | [optional]
+**files** | [**\BoldSign\Model\DocumentFiles[]**](DocumentFiles.md) |  | [optional]
+**sender_detail** | [**\BoldSign\Model\DocumentSenderDetail**](DocumentSenderDetail.md) |  | [optional]
+**signer_details** | [**\BoldSign\Model\DocumentSignerDetails[]**](DocumentSignerDetails.md) |  | [optional]
+**form_groups** | [**\BoldSign\Model\FormGroup[]**](FormGroup.md) |  | [optional]
+**common_fields** | [**\BoldSign\Model\DocumentFormFields[]**](DocumentFormFields.md) |  | [optional]
+**behalf_of** | [**\BoldSign\Model\BehalfOf**](BehalfOf.md) |  | [optional]
+**cc_details** | [**\BoldSign\Model\DocumentCcDetails[]**](DocumentCcDetails.md) |  | [optional]
+**reminder_settings** | [**\BoldSign\Model\ReminderSettings**](ReminderSettings.md) |  | [optional]
+**reassign** | [**\BoldSign\Model\DocumentReassign[]**](DocumentReassign.md) |  | [optional]
+**document_history** | [**\BoldSign\Model\AuditTrail[]**](AuditTrail.md) |  | [optional]
+**activity_by** | **string** |  | [optional]
+**activity_date** | **int** |  | [optional]
+**activity_action** | **string** |  | [optional]
+**created_date** | **int** |  | [optional]
+**expiry_days** | **int** |  | [optional]
+**expiry_date** | **int** |  | [optional]
+**enable_signing_order** | **bool** |  | [optional]
+**is_deleted** | **bool** |  | [optional]
+**revoke_message** | **string** |  | [optional]
+**decline_message** | **string** |  | [optional]
+**application_id** | **string** |  | [optional]
+**labels** | **string[]** |  | [optional]
+**disable_emails** | **bool** |  | [optional]
+**enable_print_and_sign** | **bool** |  | [optional]
+**enable_reassign** | **bool** |  | [optional]
+**disable_expiry_alert** | **bool** |  | [optional]
+**hide_document_id** | **bool** |  | [optional]
+**expiry_date_type** | **string** |  | [optional]
+**expiry_value** | **int** |  | [optional]
+**document_download_option** | **string** |  | [optional]
+**meta_data** | **array<string,string>** |  | [optional]
+**enable_audit_trail_localization** | **bool** |  | [optional]
+**download_file_name** | **string** |  | [optional]
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

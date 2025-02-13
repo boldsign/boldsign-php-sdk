@@ -82,7 +82,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'labels' => 'string[]',
         'template_labels' => 'string[]',
         'behalf_of' => '\BoldSign\Model\BehalfOf',
-        'document_download_option' => 'string'
+        'document_download_option' => 'string',
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings'
     ];
 
     /**
@@ -118,7 +119,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'labels' => null,
         'template_labels' => null,
         'behalf_of' => null,
-        'document_download_option' => null
+        'document_download_option' => null,
+        'recipient_notification_settings' => null
     ];
 
     /**
@@ -152,7 +154,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'labels' => true,
         'template_labels' => true,
         'behalf_of' => false,
-        'document_download_option' => false
+        'document_download_option' => false,
+        'recipient_notification_settings' => false
     ];
 
     /**
@@ -266,7 +269,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'labels' => 'labels',
         'template_labels' => 'templateLabels',
         'behalf_of' => 'behalfOf',
-        'document_download_option' => 'documentDownloadOption'
+        'document_download_option' => 'documentDownloadOption',
+        'recipient_notification_settings' => 'recipientNotificationSettings'
     ];
 
     /**
@@ -300,7 +304,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'labels' => 'setLabels',
         'template_labels' => 'setTemplateLabels',
         'behalf_of' => 'setBehalfOf',
-        'document_download_option' => 'setDocumentDownloadOption'
+        'document_download_option' => 'setDocumentDownloadOption',
+        'recipient_notification_settings' => 'setRecipientNotificationSettings'
     ];
 
     /**
@@ -334,7 +339,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'labels' => 'getLabels',
         'template_labels' => 'getTemplateLabels',
         'behalf_of' => 'getBehalfOf',
-        'document_download_option' => 'getDocumentDownloadOption'
+        'document_download_option' => 'getDocumentDownloadOption',
+        'recipient_notification_settings' => 'getRecipientNotificationSettings'
     ];
 
     /**
@@ -435,6 +441,7 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('template_labels', $data ?? [], null);
         $this->setIfExists('behalf_of', $data ?? [], null);
         $this->setIfExists('document_download_option', $data ?? [], null);
+        $this->setIfExists('recipient_notification_settings', $data ?? [], null);
     }
 
     /**
@@ -1301,6 +1308,33 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
             );
         }
         $this->container['document_download_option'] = $document_download_option;
+
+        return $this;
+    }
+
+    /**
+     * Gets recipient_notification_settings
+     *
+     * @return \BoldSign\Model\RecipientNotificationSettings|null
+     */
+    public function getRecipientNotificationSettings()
+    {
+        return $this->container['recipient_notification_settings'];
+    }
+
+    /**
+     * Sets recipient_notification_settings
+     *
+     * @param \BoldSign\Model\RecipientNotificationSettings|null $recipient_notification_settings recipient_notification_settings
+     *
+     * @return self
+     */
+    public function setRecipientNotificationSettings($recipient_notification_settings)
+    {
+        if (is_null($recipient_notification_settings)) {
+            throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
+        }
+        $this->container['recipient_notification_settings'] = $recipient_notification_settings;
 
         return $this;
     }

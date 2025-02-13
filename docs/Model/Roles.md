@@ -25,5 +25,6 @@ Name | Type | Description | Notes
 **form_fields** | [**\BoldSign\Model\TemplateFormFields[]**](TemplateFormFields.md) |  | [optional]
 **enable_edit_recipients** | **bool** |  | [optional]
 **enable_delete_recipients** | **bool** |  | [optional]
+**recipient_notification_settings** | [**\BoldSign\Model\RecipientNotificationSettings**](RecipientNotificationSettings.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -75,6 +75,7 @@ docs/Model/FileInfo.md
 docs/Model/Font.md
 docs/Model/FormField.md
 docs/Model/FormGroup.md
+docs/Model/FormulaFieldSettings.md
 docs/Model/IdVerification.md
 docs/Model/IdentityVerificationSettings.md
 docs/Model/ImageInfo.md
@@ -205,6 +206,7 @@ src/Model/FileInfo.php
 src/Model/Font.php
 src/Model/FormField.php
 src/Model/FormGroup.php
+src/Model/FormulaFieldSettings.php
 src/Model/IdVerification.php
 src/Model/IdentityVerificationSettings.php
 src/Model/ImageInfo.php

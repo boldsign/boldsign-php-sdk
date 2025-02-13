@@ -92,7 +92,8 @@ class TemplateFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'character_limit' => 'int',
         'hyperlink_text' => 'string',
         'background_hex_color' => 'string',
-        'tab_index' => 'int'
+        'tab_index' => 'int',
+        'formula_field_settings' => '\BoldSign\Model\FormulaFieldSettings'
     ];
 
     /**
@@ -138,7 +139,8 @@ class TemplateFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'character_limit' => 'int32',
         'hyperlink_text' => null,
         'background_hex_color' => null,
-        'tab_index' => 'int32'
+        'tab_index' => 'int32',
+        'formula_field_settings' => null
     ];
 
     /**
@@ -182,7 +184,8 @@ class TemplateFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'character_limit' => false,
         'hyperlink_text' => true,
         'background_hex_color' => true,
-        'tab_index' => false
+        'tab_index' => false,
+        'formula_field_settings' => false
     ];
 
     /**
@@ -306,7 +309,8 @@ class TemplateFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'character_limit' => 'characterLimit',
         'hyperlink_text' => 'hyperlinkText',
         'background_hex_color' => 'backgroundHexColor',
-        'tab_index' => 'tabIndex'
+        'tab_index' => 'tabIndex',
+        'formula_field_settings' => 'formulaFieldSettings'
     ];
 
     /**
@@ -350,7 +354,8 @@ class TemplateFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'character_limit' => 'setCharacterLimit',
         'hyperlink_text' => 'setHyperlinkText',
         'background_hex_color' => 'setBackgroundHexColor',
-        'tab_index' => 'setTabIndex'
+        'tab_index' => 'setTabIndex',
+        'formula_field_settings' => 'setFormulaFieldSettings'
     ];
 
     /**
@@ -394,7 +399,8 @@ class TemplateFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'character_limit' => 'getCharacterLimit',
         'hyperlink_text' => 'getHyperlinkText',
         'background_hex_color' => 'getBackgroundHexColor',
-        'tab_index' => 'getTabIndex'
+        'tab_index' => 'getTabIndex',
+        'formula_field_settings' => 'getFormulaFieldSettings'
     ];
 
     /**
@@ -543,6 +549,7 @@ class TemplateFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('hyperlink_text', $data ?? [], null);
         $this->setIfExists('background_hex_color', $data ?? [], null);
         $this->setIfExists('tab_index', $data ?? [], null);
+        $this->setIfExists('formula_field_settings', $data ?? [], null);
     }
 
     /**
@@ -1738,6 +1745,33 @@ class TemplateFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable tab_index cannot be null');
         }
         $this->container['tab_index'] = $tab_index;
+
+        return $this;
+    }
+
+    /**
+     * Gets formula_field_settings
+     *
+     * @return \BoldSign\Model\FormulaFieldSettings|null
+     */
+    public function getFormulaFieldSettings()
+    {
+        return $this->container['formula_field_settings'];
+    }
+
+    /**
+     * Sets formula_field_settings
+     *
+     * @param \BoldSign\Model\FormulaFieldSettings|null $formula_field_settings formula_field_settings
+     *
+     * @return self
+     */
+    public function setFormulaFieldSettings($formula_field_settings)
+    {
+        if (is_null($formula_field_settings)) {
+            throw new \InvalidArgumentException('non-nullable formula_field_settings cannot be null');
+        }
+        $this->container['formula_field_settings'] = $formula_field_settings;
 
         return $this;
     }

@@ -27,5 +27,6 @@ Name | Type | Description | Notes
 **offset** | [**\BoldSign\Model\TextTagOffset**](TextTagOffset.md) |  | [optional]
 **label** | **string** |  | [optional]
 **tab_index** | **int** |  | [optional]
+**formula_field_settings** | [**\BoldSign\Model\FormulaFieldSettings**](FormulaFieldSettings.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

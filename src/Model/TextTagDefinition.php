@@ -79,7 +79,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'is_read_only' => 'bool',
         'offset' => '\BoldSign\Model\TextTagOffset',
         'label' => 'string',
-        'tab_index' => 'int'
+        'tab_index' => 'int',
+        'formula_field_settings' => '\BoldSign\Model\FormulaFieldSettings'
     ];
 
     /**
@@ -112,7 +113,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'is_read_only' => null,
         'offset' => null,
         'label' => null,
-        'tab_index' => 'int32'
+        'tab_index' => 'int32',
+        'formula_field_settings' => null
     ];
 
     /**
@@ -143,7 +145,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'is_read_only' => false,
         'offset' => false,
         'label' => true,
-        'tab_index' => true
+        'tab_index' => true,
+        'formula_field_settings' => false
     ];
 
     /**
@@ -254,7 +257,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'is_read_only' => 'isReadOnly',
         'offset' => 'offset',
         'label' => 'label',
-        'tab_index' => 'tabIndex'
+        'tab_index' => 'tabIndex',
+        'formula_field_settings' => 'formulaFieldSettings'
     ];
 
     /**
@@ -285,7 +289,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'is_read_only' => 'setIsReadOnly',
         'offset' => 'setOffset',
         'label' => 'setLabel',
-        'tab_index' => 'setTabIndex'
+        'tab_index' => 'setTabIndex',
+        'formula_field_settings' => 'setFormulaFieldSettings'
     ];
 
     /**
@@ -316,7 +321,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'is_read_only' => 'getIsReadOnly',
         'offset' => 'getOffset',
         'label' => 'getLabel',
-        'tab_index' => 'getTabIndex'
+        'tab_index' => 'getTabIndex',
+        'formula_field_settings' => 'getFormulaFieldSettings'
     ];
 
     /**
@@ -374,6 +380,7 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const TYPE_DROPDOWN = 'Dropdown';
     public const TYPE_TITLE = 'Title';
     public const TYPE_COMPANY = 'Company';
+    public const TYPE_FORMULA = 'Formula';
 
     /**
      * Gets allowable values of the enum
@@ -397,6 +404,7 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::TYPE_DROPDOWN,
             self::TYPE_TITLE,
             self::TYPE_COMPANY,
+            self::TYPE_FORMULA,
         ];
     }
 
@@ -438,6 +446,7 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('offset', $data ?? [], null);
         $this->setIfExists('label', $data ?? [], null);
         $this->setIfExists('tab_index', $data ?? [], null);
+        $this->setIfExists('formula_field_settings', $data ?? [], null);
     }
 
     /**
@@ -1252,6 +1261,33 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         }
 
         $this->container['tab_index'] = $tab_index;
+
+        return $this;
+    }
+
+    /**
+     * Gets formula_field_settings
+     *
+     * @return \BoldSign\Model\FormulaFieldSettings|null
+     */
+    public function getFormulaFieldSettings()
+    {
+        return $this->container['formula_field_settings'];
+    }
+
+    /**
+     * Sets formula_field_settings
+     *
+     * @param \BoldSign\Model\FormulaFieldSettings|null $formula_field_settings formula_field_settings
+     *
+     * @return self
+     */
+    public function setFormulaFieldSettings($formula_field_settings)
+    {
+        if (is_null($formula_field_settings)) {
+            throw new \InvalidArgumentException('non-nullable formula_field_settings cannot be null');
+        }
+        $this->container['formula_field_settings'] = $formula_field_settings;
 
         return $this;
     }

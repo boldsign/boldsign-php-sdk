@@ -94,7 +94,8 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'document_download_option' => 'string',
         'meta_data' => 'array<string,string>',
         'enable_audit_trail_localization' => 'bool',
-        'download_file_name' => 'string'
+        'download_file_name' => 'string',
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings'
     ];
 
     /**
@@ -142,7 +143,8 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'document_download_option' => null,
         'meta_data' => null,
         'enable_audit_trail_localization' => null,
-        'download_file_name' => null
+        'download_file_name' => null,
+        'recipient_notification_settings' => null
     ];
 
     /**
@@ -188,7 +190,8 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'document_download_option' => false,
         'meta_data' => true,
         'enable_audit_trail_localization' => false,
-        'download_file_name' => true
+        'download_file_name' => true,
+        'recipient_notification_settings' => false
     ];
 
     /**
@@ -314,7 +317,8 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'document_download_option' => 'documentDownloadOption',
         'meta_data' => 'metaData',
         'enable_audit_trail_localization' => 'enableAuditTrailLocalization',
-        'download_file_name' => 'downloadFileName'
+        'download_file_name' => 'downloadFileName',
+        'recipient_notification_settings' => 'recipientNotificationSettings'
     ];
 
     /**
@@ -360,7 +364,8 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'document_download_option' => 'setDocumentDownloadOption',
         'meta_data' => 'setMetaData',
         'enable_audit_trail_localization' => 'setEnableAuditTrailLocalization',
-        'download_file_name' => 'setDownloadFileName'
+        'download_file_name' => 'setDownloadFileName',
+        'recipient_notification_settings' => 'setRecipientNotificationSettings'
     ];
 
     /**
@@ -406,7 +411,8 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'document_download_option' => 'getDocumentDownloadOption',
         'meta_data' => 'getMetaData',
         'enable_audit_trail_localization' => 'getEnableAuditTrailLocalization',
-        'download_file_name' => 'getDownloadFileName'
+        'download_file_name' => 'getDownloadFileName',
+        'recipient_notification_settings' => 'getRecipientNotificationSettings'
     ];
 
     /**
@@ -604,6 +610,7 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('meta_data', $data ?? [], null);
         $this->setIfExists('enable_audit_trail_localization', $data ?? [], null);
         $this->setIfExists('download_file_name', $data ?? [], null);
+        $this->setIfExists('recipient_notification_settings', $data ?? [], null);
     }
 
     /**
@@ -1879,6 +1886,33 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
             }
         }
         $this->container['download_file_name'] = $download_file_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets recipient_notification_settings
+     *
+     * @return \BoldSign\Model\RecipientNotificationSettings|null
+     */
+    public function getRecipientNotificationSettings()
+    {
+        return $this->container['recipient_notification_settings'];
+    }
+
+    /**
+     * Sets recipient_notification_settings
+     *
+     * @param \BoldSign\Model\RecipientNotificationSettings|null $recipient_notification_settings recipient_notification_settings
+     *
+     * @return self
+     */
+    public function setRecipientNotificationSettings($recipient_notification_settings)
+    {
+        if (is_null($recipient_notification_settings)) {
+            throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
+        }
+        $this->container['recipient_notification_settings'] = $recipient_notification_settings;
 
         return $this;
     }

@@ -77,7 +77,8 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
         'allow_field_configuration' => 'bool',
         'form_fields' => '\BoldSign\Model\TemplateFormFields[]',
         'enable_edit_recipients' => 'bool',
-        'enable_delete_recipients' => 'bool'
+        'enable_delete_recipients' => 'bool',
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings'
     ];
 
     /**
@@ -108,7 +109,8 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
         'allow_field_configuration' => null,
         'form_fields' => null,
         'enable_edit_recipients' => null,
-        'enable_delete_recipients' => null
+        'enable_delete_recipients' => null,
+        'recipient_notification_settings' => null
     ];
 
     /**
@@ -137,7 +139,8 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
         'allow_field_configuration' => false,
         'form_fields' => true,
         'enable_edit_recipients' => false,
-        'enable_delete_recipients' => false
+        'enable_delete_recipients' => false,
+        'recipient_notification_settings' => false
     ];
 
     /**
@@ -246,7 +249,8 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
         'allow_field_configuration' => 'allowFieldConfiguration',
         'form_fields' => 'formFields',
         'enable_edit_recipients' => 'enableEditRecipients',
-        'enable_delete_recipients' => 'enableDeleteRecipients'
+        'enable_delete_recipients' => 'enableDeleteRecipients',
+        'recipient_notification_settings' => 'recipientNotificationSettings'
     ];
 
     /**
@@ -275,7 +279,8 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
         'allow_field_configuration' => 'setAllowFieldConfiguration',
         'form_fields' => 'setFormFields',
         'enable_edit_recipients' => 'setEnableEditRecipients',
-        'enable_delete_recipients' => 'setEnableDeleteRecipients'
+        'enable_delete_recipients' => 'setEnableDeleteRecipients',
+        'recipient_notification_settings' => 'setRecipientNotificationSettings'
     ];
 
     /**
@@ -304,7 +309,8 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
         'allow_field_configuration' => 'getAllowFieldConfiguration',
         'form_fields' => 'getFormFields',
         'enable_edit_recipients' => 'getEnableEditRecipients',
-        'enable_delete_recipients' => 'getEnableDeleteRecipients'
+        'enable_delete_recipients' => 'getEnableDeleteRecipients',
+        'recipient_notification_settings' => 'getRecipientNotificationSettings'
     ];
 
     /**
@@ -526,6 +532,7 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('form_fields', $data ?? [], null);
         $this->setIfExists('enable_edit_recipients', $data ?? [], null);
         $this->setIfExists('enable_delete_recipients', $data ?? [], null);
+        $this->setIfExists('recipient_notification_settings', $data ?? [], null);
     }
 
     /**
@@ -1270,6 +1277,33 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable enable_delete_recipients cannot be null');
         }
         $this->container['enable_delete_recipients'] = $enable_delete_recipients;
+
+        return $this;
+    }
+
+    /**
+     * Gets recipient_notification_settings
+     *
+     * @return \BoldSign\Model\RecipientNotificationSettings|null
+     */
+    public function getRecipientNotificationSettings()
+    {
+        return $this->container['recipient_notification_settings'];
+    }
+
+    /**
+     * Sets recipient_notification_settings
+     *
+     * @param \BoldSign\Model\RecipientNotificationSettings|null $recipient_notification_settings recipient_notification_settings
+     *
+     * @return self
+     */
+    public function setRecipientNotificationSettings($recipient_notification_settings)
+    {
+        if (is_null($recipient_notification_settings)) {
+            throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
+        }
+        $this->container['recipient_notification_settings'] = $recipient_notification_settings;
 
         return $this;
     }

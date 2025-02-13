@@ -92,7 +92,8 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'text_direction' => 'string',
         'character_spacing' => 'float',
         'background_hex_color' => 'string',
-        'tab_index' => 'int'
+        'tab_index' => 'int',
+        'formula_field_settings' => '\BoldSign\Model\FormulaFieldSettings'
     ];
 
     /**
@@ -138,7 +139,8 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'text_direction' => null,
         'character_spacing' => 'float',
         'background_hex_color' => null,
-        'tab_index' => 'int32'
+        'tab_index' => 'int32',
+        'formula_field_settings' => null
     ];
 
     /**
@@ -182,7 +184,8 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'text_direction' => false,
         'character_spacing' => false,
         'background_hex_color' => true,
-        'tab_index' => true
+        'tab_index' => true,
+        'formula_field_settings' => false
     ];
 
     /**
@@ -306,7 +309,8 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'text_direction' => 'textDirection',
         'character_spacing' => 'characterSpacing',
         'background_hex_color' => 'backgroundHexColor',
-        'tab_index' => 'tabIndex'
+        'tab_index' => 'tabIndex',
+        'formula_field_settings' => 'formulaFieldSettings'
     ];
 
     /**
@@ -350,7 +354,8 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'text_direction' => 'setTextDirection',
         'character_spacing' => 'setCharacterSpacing',
         'background_hex_color' => 'setBackgroundHexColor',
-        'tab_index' => 'setTabIndex'
+        'tab_index' => 'setTabIndex',
+        'formula_field_settings' => 'setFormulaFieldSettings'
     ];
 
     /**
@@ -394,7 +399,8 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'text_direction' => 'getTextDirection',
         'character_spacing' => 'getCharacterSpacing',
         'background_hex_color' => 'getBackgroundHexColor',
-        'tab_index' => 'getTabIndex'
+        'tab_index' => 'getTabIndex',
+        'formula_field_settings' => 'getFormulaFieldSettings'
     ];
 
     /**
@@ -452,6 +458,7 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
     public const FIELD_TYPE_DROPDOWN = 'Dropdown';
     public const FIELD_TYPE_TITLE = 'Title';
     public const FIELD_TYPE_COMPANY = 'Company';
+    public const FIELD_TYPE_FORMULA = 'Formula';
     public const FONT_HELVETICA = 'Helvetica';
     public const FONT_COURIER = 'Courier';
     public const FONT_TIMES_ROMAN = 'TimesRoman';
@@ -489,6 +496,7 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
             self::FIELD_TYPE_DROPDOWN,
             self::FIELD_TYPE_TITLE,
             self::FIELD_TYPE_COMPANY,
+            self::FIELD_TYPE_FORMULA,
         ];
     }
 
@@ -601,6 +609,7 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('character_spacing', $data ?? [], null);
         $this->setIfExists('background_hex_color', $data ?? [], null);
         $this->setIfExists('tab_index', $data ?? [], null);
+        $this->setIfExists('formula_field_settings', $data ?? [], null);
     }
 
     /**
@@ -1893,6 +1902,33 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['tab_index'] = $tab_index;
+
+        return $this;
+    }
+
+    /**
+     * Gets formula_field_settings
+     *
+     * @return \BoldSign\Model\FormulaFieldSettings|null
+     */
+    public function getFormulaFieldSettings()
+    {
+        return $this->container['formula_field_settings'];
+    }
+
+    /**
+     * Sets formula_field_settings
+     *
+     * @param \BoldSign\Model\FormulaFieldSettings|null $formula_field_settings formula_field_settings
+     *
+     * @return self
+     */
+    public function setFormulaFieldSettings($formula_field_settings)
+    {
+        if (is_null($formula_field_settings)) {
+            throw new \InvalidArgumentException('non-nullable formula_field_settings cannot be null');
+        }
+        $this->container['formula_field_settings'] = $formula_field_settings;
 
         return $this;
     }

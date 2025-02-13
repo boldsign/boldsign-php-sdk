@@ -42,5 +42,6 @@ Name | Type | Description | Notes
 **meta_data** | **array<string,string>** |  | [optional]
 **enable_audit_trail_localization** | **bool** |  | [optional]
 **download_file_name** | **string** |  | [optional]
+**recipient_notification_settings** | [**\BoldSign\Model\RecipientNotificationSettings**](RecipientNotificationSettings.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

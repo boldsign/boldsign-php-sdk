@@ -39,5 +39,6 @@ Name | Type | Description | Notes
 **character_spacing** | **float** |  | [optional]
 **background_hex_color** | **string** |  | [optional]
 **tab_index** | **int** |  | [optional]
+**formula_field_settings** | [**\BoldSign\Model\FormulaFieldSettings**](FormulaFieldSettings.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

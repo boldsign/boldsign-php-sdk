@@ -9,7 +9,7 @@ $apiInstance = new BoldSign\Api\DocumentApi($config);
 
 // Create a request object for the embedded signing link
 $embedded_sign_request = new \BoldSign\Model\EmbeddedSigningLink();
-$document_id = "YOUR_TEMPLATE_ID";
+$document_id = "YOUR_DOCUMENT_ID";
 $signing_email = "hankyWhites@cubeflakes.com";
 $url= "https://www.syncfusion.com/";
 

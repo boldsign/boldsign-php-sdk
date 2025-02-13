@@ -1,4 +1,4 @@
-# boldsign/php-sdk
+# boldsign/php
 
 Easily integrate BoldSign's e-signature features into your PHP applications. This SDK simplifies sending documents for signature, embedding signing ceremonies, tracking document status, downloading signed documents, and managing e-signature workflows.
 
@@ -16,7 +16,7 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 ```json
 {
     "require": {
-        "boldsign/php-sdk": "1.0.0"
+        "boldsign/php": "1.0.0"
     },
     "minimum-stability": "dev"
 }
@@ -27,7 +27,7 @@ Then run `composer install`
 Alternatively, install directly with
 
 ```
-composer require boldsign/php-sdk:1.0.0
+composer require boldsign/php:1.0.0
 ```
 
 ## Getting Started
@@ -207,6 +207,7 @@ All URIs are relative to *https://api.boldsign.com*
 - [Font](docs/Model/Font.md)
 - [FormField](docs/Model/FormField.md)
 - [FormGroup](docs/Model/FormGroup.md)
+- [FormulaFieldSettings](docs/Model/FormulaFieldSettings.md)
 - [IdVerification](docs/Model/IdVerification.md)
 - [IdentityVerificationSettings](docs/Model/IdentityVerificationSettings.md)
 - [ImageInfo](docs/Model/ImageInfo.md)

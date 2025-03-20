@@ -33,24 +33,10 @@ Add the Tags in Templates.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\TemplateApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\TemplateApi($config);
 $template_tag = new \BoldSign\Model\TemplateTag(); // \BoldSign\Model\TemplateTag | ContainsTemplateId and Label Names for AddingTags.
 
 try {
@@ -97,24 +83,10 @@ Generates a send URL using a template which embeds document sending process into
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\TemplateApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\TemplateApi($config);
 $template_id = 'template_id_example'; // string | The template id.
 $embedded_send_template_form_request = new \BoldSign\Model\EmbeddedSendTemplateFormRequest(); // \BoldSign\Model\EmbeddedSendTemplateFormRequest | Embedded send template json request.
 
@@ -164,24 +136,10 @@ Generates a create URL to embeds template create process into your application.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\TemplateApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\TemplateApi($config);
 $embedded_create_template_request = new \BoldSign\Model\EmbeddedCreateTemplateRequest(); // \BoldSign\Model\EmbeddedCreateTemplateRequest | The create embedded template request body.
 
 try {
@@ -229,24 +187,10 @@ Creates a new template.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\TemplateApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\TemplateApi($config);
 $create_template_request = new \BoldSign\Model\CreateTemplateRequest(); // \BoldSign\Model\CreateTemplateRequest | The create template request body.
 
 try {
@@ -294,24 +238,10 @@ Delete the Tags in Templates.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\TemplateApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\TemplateApi($config);
 $template_tag = new \BoldSign\Model\TemplateTag(); // \BoldSign\Model\TemplateTag | Contains TemplateId and LabelNames for Adding Tags.
 
 try {
@@ -358,24 +288,10 @@ Deletes a template.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\TemplateApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\TemplateApi($config);
 $template_id = 'template_id_example'; // string | The template id.
 $on_behalf_of = 'on_behalf_of_example'; // string | The on behalfof email address.
 
@@ -424,24 +340,10 @@ Download the template.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\TemplateApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\TemplateApi($config);
 $template_id = 'template_id_example'; // string | Template Id.
 $on_behalf_of = 'on_behalf_of_example'; // string | The on behalfof email address.
 
@@ -491,24 +393,10 @@ Edit and updates an existing template.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\TemplateApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\TemplateApi($config);
 $template_id = 'template_id_example'; // string | The template id.
 $edit_template_request = new \BoldSign\Model\EditTemplateRequest(); // \BoldSign\Model\EditTemplateRequest | The edit template request body.
 
@@ -557,24 +445,10 @@ Generates a edit URL to embeds template edit process into your application.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\TemplateApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\TemplateApi($config);
 $template_id = 'template_id_example'; // string | The template id.
 $embedded_template_edit_request = new \BoldSign\Model\EmbeddedTemplateEditRequest(); // \BoldSign\Model\EmbeddedTemplateEditRequest | The embedded edit template request body.
 
@@ -624,24 +498,10 @@ Get summary of the template.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\TemplateApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\TemplateApi($config);
 $template_id = 'template_id_example'; // string | Template Id.
 
 try {
@@ -689,24 +549,10 @@ List all the templates.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\TemplateApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\TemplateApi($config);
 $page = 1; // int
 $template_type = 'template_type_example'; // string
 $page_size = 10; // int
@@ -772,24 +618,10 @@ Send the document by merging multiple templates.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\TemplateApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\TemplateApi($config);
 $merge_and_send_for_sign_form = new \BoldSign\Model\MergeAndSendForSignForm(); // \BoldSign\Model\MergeAndSendForSignForm | The merge and send details as JSON.
 
 try {
@@ -836,24 +668,10 @@ Send a document for signature using a Template.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\TemplateApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\TemplateApi($config);
 $template_id = 'template_id_example'; // string | The template id.
 $send_for_sign_from_template_form = new \BoldSign\Model\SendForSignFromTemplateForm(); // \BoldSign\Model\SendForSignFromTemplateForm | The send template details as JSON.
 

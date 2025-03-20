@@ -21,24 +21,10 @@ Gets the Api credits details.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\PlanApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\PlanApi($config);
 
 try {
     $result = $apiInstance->apiCreditsCount();

@@ -14,8 +14,8 @@ use BoldSign\Model\BrandingMessage;
 use BoldSign\Model\CustomFormField;
 use PHPUnit\Framework\TestCase;
 
-define('API_KEY', getenv('BoldSignAPIKey'));
-define('Host', getenv('BoldSignURL'));
+define('APIKEY', getenv('API_KEY'));
+define('Host', getenv('HOST_URL'));
 
 class TestCustomFieldApi  extends TestCase
 {
@@ -37,7 +37,7 @@ class TestCustomFieldApi  extends TestCase
     {     
         //Configure API key authorization: X-API-KEY
         $config = new Configuration();
-        $config->setApiKey(API_KEY);
+        $config->setApiKey(APIKEY);
         $config->setHost(Host);
         $this->branding_api = new BrandingApi($config);
         $this->customField_api = new CustomFieldApi($config);

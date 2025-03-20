@@ -17,8 +17,8 @@ use BoldSign\Model\FormField;
 use BoldSign\Model\Rectangle;
 use PHPUnit\Framework\TestCase;
 
-define('API_KEY', getenv('BoldSignAPIKey'));
-define('Host', getenv('BoldSignURL'));
+define('APIKEY', getenv('API_KEY'));
+define('Host', getenv('HOST_URL'));
 
 class TestTemplateApi  extends TestCase
 {
@@ -33,7 +33,7 @@ class TestTemplateApi  extends TestCase
     {     
         //Configure API key authorization: X-API-KEY
         $config = new Configuration();
-        $config->setApiKey(API_KEY);
+        $config->setApiKey(APIKEY);
         $config->setHost(Host);
         $this->template_api = new TemplateApi($config);
     }
@@ -101,7 +101,7 @@ class TestTemplateApi  extends TestCase
         $createTemplateRequest->setDocumentTitle("PHP Template Test case");
         $createTemplateRequest->setDocumentMessage("PHP Template Test case");
         $createTemplateRequest->setDescription("This is a new template description");
-        $createTemplateRequest->setFiles(["tests\documents\input\doc_1.pdf"]);
+        $createTemplateRequest->setFiles(["tests\data\doc-1.pdf"]);
         $createTemplateRequest->setRoles([$templateRole]);
 
         try {
@@ -146,7 +146,7 @@ class TestTemplateApi  extends TestCase
         $createTemplateRequest->setDocumentTitle("PHP Template Test case");
         $createTemplateRequest->setDocumentMessage("PHP Template Test case");
         $createTemplateRequest->setDescription("This is a new template description");
-        $createTemplateRequest->setFiles(["tests\documents\input\doc_1.pdf"]);
+        $createTemplateRequest->setFiles(["tests\data\doc-1.pdf"]);
         $createTemplateRequest->setRoles([$templateRole]);
 
         try {

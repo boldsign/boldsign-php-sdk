@@ -25,24 +25,10 @@ Create the custom field.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\CustomFieldApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\CustomFieldApi($config);
 $brand_custom_field_details = new \BoldSign\Model\BrandCustomFieldDetails(); // \BoldSign\Model\BrandCustomFieldDetails | The custom field details.
 
 try {
@@ -90,24 +76,10 @@ List the custom fields respective to the brand id.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\CustomFieldApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\CustomFieldApi($config);
 $brand_id = 'brand_id_example'; // string | The brand id.
 
 try {
@@ -155,24 +127,10 @@ Delete the custom field.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\CustomFieldApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\CustomFieldApi($config);
 $custom_field_id = 'custom_field_id_example'; // string | The custom field id.
 
 try {
@@ -220,24 +178,10 @@ Edit the custom field.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\CustomFieldApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\CustomFieldApi($config);
 $custom_field_id = 'custom_field_id_example'; // string | The custom field id.
 $brand_custom_field_details = new \BoldSign\Model\BrandCustomFieldDetails(); // \BoldSign\Model\BrandCustomFieldDetails | The custom field details.
 
@@ -287,24 +231,10 @@ Generates a URL for creating or modifying custom fields within your application'
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\CustomFieldApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\CustomFieldApi($config);
 $brand_id = 'brand_id_example'; // string | The Brand ID for custom fields must be configured
 $link_valid_till = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | This property is used to set the validity of the generated URL. Its maximum validity is 30 days
 

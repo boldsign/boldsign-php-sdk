@@ -26,24 +26,10 @@ Cancel the users invitation.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\UserApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\UserApi($config);
 $user_id = 'user_id_example'; // string
 
 try {
@@ -90,24 +76,10 @@ Create the user.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\UserApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\UserApi($config);
 $create_user = array(new \BoldSign\Model\CreateUser()); // \BoldSign\Model\CreateUser[] | The create user.
 
 try {
@@ -154,24 +126,10 @@ Get summary of the user.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\UserApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\UserApi($config);
 $user_id = 'user_id_example'; // string | User Id.
 
 try {
@@ -219,24 +177,10 @@ List user documents.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\UserApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\UserApi($config);
 $page = 1; // int | Page index specified in get user list request.
 $page_size = 10; // int | Page size specified in get user list request.
 $search = 'search_example'; // string | Users can be listed by the search  based on the user ID
@@ -288,24 +232,10 @@ Resend the users invitation.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\UserApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\UserApi($config);
 $user_id = 'user_id_example'; // string
 
 try {
@@ -352,24 +282,10 @@ Update new User role.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
 
-// Configure API key authorization: X-API-KEY
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
-// Configure API key authorization: Bearer
-$config = BoldSign\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = BoldSign\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new BoldSign\Api\UserApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = new BoldSign\Api\UserApi($config);
 $update_user = new \BoldSign\Model\UpdateUser(); // \BoldSign\Model\UpdateUser | update query.
 
 try {

@@ -10,8 +10,8 @@ use BoldSign\Model\BrandCreated;
 use BoldSign\Model\BrandingMessage;
 use PHPUnit\Framework\TestCase;
 
-define('API_KEY', getenv('BoldSignAPIKey'));
-define('Host', getenv('BoldSignURL'));
+define('APIKEY', getenv('API_KEY'));
+define('Host', getenv('HOST_URL'));
 
 class TestBrandingApi  extends TestCase
 {
@@ -24,7 +24,7 @@ class TestBrandingApi  extends TestCase
     {     
         //Configure API key authorization: X-API-KEY
         $config = new Configuration();
-        $config->setApiKey(API_KEY);
+        $config->setApiKey(APIKEY);
         $config->setHost(Host);
         $this->branding_api = new BrandingApi($config);
     }

@@ -8,8 +8,8 @@ use BoldSign\Model\BillingViewModel;
 use BoldSign\ApiException;
 use PHPUnit\Framework\TestCase;
 
-define('API_KEY', getenv('BoldSignAPIKey'));
-define('Host', getenv('BoldSignURL'));
+define('APIKEY', getenv('API_KEY'));
+define('Host', getenv('HOST_URL'));
 
 class TestPlanApi  extends TestCase
 {
@@ -21,7 +21,7 @@ class TestPlanApi  extends TestCase
     {     
         //Configure API key authorization: X-API-KEY
         $config = new Configuration();
-        $config->setApiKey(API_KEY);
+        $config->setApiKey(APIKEY);
         $config->setHost(Host);
         $this->plan_api = new PlanApi($config);
     }

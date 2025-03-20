@@ -10,8 +10,8 @@ use BoldSign\Model\SenderIdentityList;
 use BoldSign\ApiException;
 use PHPUnit\Framework\TestCase;
 
-define('API_KEY', getenv('BoldSignAPIKey'));
-define('Host', getenv('BoldSignURL'));
+define('APIKEY', getenv('API_KEY'));
+define('Host', getenv('HOST_URL'));
 
 class TestSenderIdentitiesApi  extends TestCase
 {
@@ -31,7 +31,7 @@ class TestSenderIdentitiesApi  extends TestCase
     {     
         //Configure API key authorization: X-API-KEY
         $config = new Configuration();
-        $config->setApiKey(API_KEY);
+        $config->setApiKey(APIKEY);
         $config->setHost(Host);
         $this->senderidentities_api = new SenderIdentitiesApi($config);
         $srting_value = $this->randomNumbers();

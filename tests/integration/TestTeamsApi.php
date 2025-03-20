@@ -13,8 +13,8 @@ use BoldSign\Model\TeamCreated;
 use BoldSign\Model\TeamUpdateRequest;
 use PHPUnit\Framework\TestCase;
 
-define('API_KEY', getenv('BoldSignAPIKey'));
-define('Host', getenv('BoldSignURL'));
+define('APIKEY', getenv('API_KEY'));
+define('Host', getenv('HOST_URL'));
 
 class TestTeamsApi  extends TestCase
 {
@@ -35,7 +35,7 @@ class TestTeamsApi  extends TestCase
     {     
         //Configure API key authorization: X-API-KEY
         $config = new Configuration();
-        $config->setApiKey(API_KEY);
+        $config->setApiKey(APIKEY);
         $config->setHost(Host);
         $this->teams_api = new TeamsApi($config);
         $srting_value = $this->randomNumbers();

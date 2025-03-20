@@ -10,8 +10,8 @@ use BoldSign\Model\CreateContactResponse;
 use BoldSign\Model\ContactsList;
 use PHPUnit\Framework\TestCase;
 
-define('API_KEY', getenv('BoldSignAPIKey'));
-define('Host', getenv('BoldSignURL'));
+define('APIKEY', getenv('API_KEY'));
+define('Host', getenv('HOST_URL'));
 
 class TestContactsApi  extends TestCase
 {
@@ -31,7 +31,7 @@ class TestContactsApi  extends TestCase
     {     
         //Configure API key authorization: X-API-KEY
         $config = new Configuration();
-        $config->setApiKey(API_KEY);
+        $config->setApiKey(APIKEY);
         $config->setHost(Host);
         $this->contacts_api = new ContactsApi($config);
         $srting_value = $this->randomNumbers();

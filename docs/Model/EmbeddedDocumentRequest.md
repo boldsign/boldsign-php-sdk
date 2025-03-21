@@ -41,6 +41,7 @@ Name | Type | Description | Notes
 **on_behalf_of** | **string** |  | [optional]
 **auto_detect_fields** | **bool** |  | [optional] [default to false]
 **document_download_option** | **string** |  | [optional]
+**is_sandbox** | **bool** |  | [optional]
 **meta_data** | **array<string,string>** |  | [optional]
 **form_groups** | [**\BoldSign\Model\FormGroup[]**](FormGroup.md) |  | [optional]
 **enable_audit_trail_localization** | **bool** |  | [optional]

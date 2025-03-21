@@ -15,5 +15,6 @@ Name | Type | Description | Notes
 **expired** | **bool** |  | [optional] [default to true]
 **authentication_failed** | **bool** |  | [optional] [default to true]
 **reminders** | **bool** |  | [optional] [default to true]
+**attach_signed_document** | **bool** |  | [optional] [default to false]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

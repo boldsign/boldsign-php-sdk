@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **files** | **\SplFileObject[]** |  | [optional]
 **file_urls** | **string[]** |  | [optional]
 **template_ids** | **string[]** |  | [optional]
+**use_text_tags** | **bool** |  | [optional]
+**text_tag_definitions** | [**\BoldSign\Model\TextTagDefinition[]**](TextTagDefinition.md) |  | [optional]
 **document_id** | **string** |  | [optional]
 **title** | **string** |  | [optional]
 **message** | **string** |  | [optional]

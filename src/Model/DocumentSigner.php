@@ -74,7 +74,8 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => '\BoldSign\Model\FormField[]',
         'language' => 'int',
         'locale' => 'string',
-        'authentication_retry_count' => 'int'
+        'authentication_retry_count' => 'int',
+        'enable_qes' => 'bool'
     ];
 
     /**
@@ -102,7 +103,8 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => null,
         'language' => 'int32',
         'locale' => null,
-        'authentication_retry_count' => 'int32'
+        'authentication_retry_count' => 'int32',
+        'enable_qes' => null
     ];
 
     /**
@@ -128,7 +130,8 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => true,
         'language' => false,
         'locale' => false,
-        'authentication_retry_count' => true
+        'authentication_retry_count' => true,
+        'enable_qes' => true
     ];
 
     /**
@@ -234,7 +237,8 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => 'formFields',
         'language' => 'language',
         'locale' => 'locale',
-        'authentication_retry_count' => 'authenticationRetryCount'
+        'authentication_retry_count' => 'authenticationRetryCount',
+        'enable_qes' => 'enableQes'
     ];
 
     /**
@@ -260,7 +264,8 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => 'setFormFields',
         'language' => 'setLanguage',
         'locale' => 'setLocale',
-        'authentication_retry_count' => 'setAuthenticationRetryCount'
+        'authentication_retry_count' => 'setAuthenticationRetryCount',
+        'enable_qes' => 'setEnableQes'
     ];
 
     /**
@@ -286,7 +291,8 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => 'getFormFields',
         'language' => 'getLanguage',
         'locale' => 'getLocale',
-        'authentication_retry_count' => 'getAuthenticationRetryCount'
+        'authentication_retry_count' => 'getAuthenticationRetryCount',
+        'enable_qes' => 'getEnableQes'
     ];
 
     /**
@@ -505,6 +511,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('language', $data ?? [], null);
         $this->setIfExists('locale', $data ?? [], null);
         $this->setIfExists('authentication_retry_count', $data ?? [], null);
+        $this->setIfExists('enable_qes', $data ?? [], null);
     }
 
     /**
@@ -1219,6 +1226,40 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['authentication_retry_count'] = $authentication_retry_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_qes
+     *
+     * @return bool|null
+     */
+    public function getEnableQes()
+    {
+        return $this->container['enable_qes'];
+    }
+
+    /**
+     * Sets enable_qes
+     *
+     * @param bool|null $enable_qes enable_qes
+     *
+     * @return self
+     */
+    public function setEnableQes($enable_qes)
+    {
+        if (is_null($enable_qes)) {
+            array_push($this->openAPINullablesSetToNull, 'enable_qes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('enable_qes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['enable_qes'] = $enable_qes;
 
         return $this;
     }

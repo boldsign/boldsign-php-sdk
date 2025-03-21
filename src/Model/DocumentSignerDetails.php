@@ -80,7 +80,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'phone_number' => '\BoldSign\Model\PhoneNumber',
         'id_verification' => '\BoldSign\Model\IdVerification',
         'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
-        'authentication_retry_count' => 'int'
+        'authentication_retry_count' => 'int',
+        'enable_qes' => 'bool'
     ];
 
     /**
@@ -114,7 +115,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'phone_number' => null,
         'id_verification' => null,
         'recipient_notification_settings' => null,
-        'authentication_retry_count' => 'int32'
+        'authentication_retry_count' => 'int32',
+        'enable_qes' => null
     ];
 
     /**
@@ -146,7 +148,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'phone_number' => false,
         'id_verification' => false,
         'recipient_notification_settings' => false,
-        'authentication_retry_count' => true
+        'authentication_retry_count' => true,
+        'enable_qes' => true
     ];
 
     /**
@@ -258,7 +261,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'phone_number' => 'phoneNumber',
         'id_verification' => 'idVerification',
         'recipient_notification_settings' => 'recipientNotificationSettings',
-        'authentication_retry_count' => 'authenticationRetryCount'
+        'authentication_retry_count' => 'authenticationRetryCount',
+        'enable_qes' => 'enableQes'
     ];
 
     /**
@@ -290,7 +294,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'phone_number' => 'setPhoneNumber',
         'id_verification' => 'setIdVerification',
         'recipient_notification_settings' => 'setRecipientNotificationSettings',
-        'authentication_retry_count' => 'setAuthenticationRetryCount'
+        'authentication_retry_count' => 'setAuthenticationRetryCount',
+        'enable_qes' => 'setEnableQes'
     ];
 
     /**
@@ -322,7 +327,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'phone_number' => 'getPhoneNumber',
         'id_verification' => 'getIdVerification',
         'recipient_notification_settings' => 'getRecipientNotificationSettings',
-        'authentication_retry_count' => 'getAuthenticationRetryCount'
+        'authentication_retry_count' => 'getAuthenticationRetryCount',
+        'enable_qes' => 'getEnableQes'
     ];
 
     /**
@@ -553,6 +559,7 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('id_verification', $data ?? [], null);
         $this->setIfExists('recipient_notification_settings', $data ?? [], null);
         $this->setIfExists('authentication_retry_count', $data ?? [], null);
+        $this->setIfExists('enable_qes', $data ?? [], null);
     }
 
     /**
@@ -1399,6 +1406,40 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['authentication_retry_count'] = $authentication_retry_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_qes
+     *
+     * @return bool|null
+     */
+    public function getEnableQes()
+    {
+        return $this->container['enable_qes'];
+    }
+
+    /**
+     * Sets enable_qes
+     *
+     * @param bool|null $enable_qes enable_qes
+     *
+     * @return self
+     */
+    public function setEnableQes($enable_qes)
+    {
+        if (is_null($enable_qes)) {
+            array_push($this->openAPINullablesSetToNull, 'enable_qes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('enable_qes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['enable_qes'] = $enable_qes;
 
         return $this;
     }

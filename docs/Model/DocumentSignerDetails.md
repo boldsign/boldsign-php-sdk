@@ -28,5 +28,6 @@ Name | Type | Description | Notes
 **id_verification** | [**\BoldSign\Model\IdVerification**](IdVerification.md) |  | [optional]
 **recipient_notification_settings** | [**\BoldSign\Model\RecipientNotificationSettings**](RecipientNotificationSettings.md) |  | [optional]
 **authentication_retry_count** | **int** |  | [optional]
+**enable_qes** | **bool** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

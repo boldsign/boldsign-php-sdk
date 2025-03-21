@@ -67,7 +67,8 @@ class RecipientNotificationSettings implements ModelInterface, ArrayAccess, \Jso
         'deleted' => 'bool',
         'reminders' => 'bool',
         'edit_recipient' => 'bool',
-        'edit_document' => 'bool'
+        'edit_document' => 'bool',
+        'viewed' => 'bool'
     ];
 
     /**
@@ -88,7 +89,8 @@ class RecipientNotificationSettings implements ModelInterface, ArrayAccess, \Jso
         'deleted' => null,
         'reminders' => null,
         'edit_recipient' => null,
-        'edit_document' => null
+        'edit_document' => null,
+        'viewed' => null
     ];
 
     /**
@@ -107,7 +109,8 @@ class RecipientNotificationSettings implements ModelInterface, ArrayAccess, \Jso
         'deleted' => false,
         'reminders' => false,
         'edit_recipient' => false,
-        'edit_document' => false
+        'edit_document' => false,
+        'viewed' => false
     ];
 
     /**
@@ -206,7 +209,8 @@ class RecipientNotificationSettings implements ModelInterface, ArrayAccess, \Jso
         'deleted' => 'deleted',
         'reminders' => 'reminders',
         'edit_recipient' => 'editRecipient',
-        'edit_document' => 'editDocument'
+        'edit_document' => 'editDocument',
+        'viewed' => 'viewed'
     ];
 
     /**
@@ -225,7 +229,8 @@ class RecipientNotificationSettings implements ModelInterface, ArrayAccess, \Jso
         'deleted' => 'setDeleted',
         'reminders' => 'setReminders',
         'edit_recipient' => 'setEditRecipient',
-        'edit_document' => 'setEditDocument'
+        'edit_document' => 'setEditDocument',
+        'viewed' => 'setViewed'
     ];
 
     /**
@@ -244,7 +249,8 @@ class RecipientNotificationSettings implements ModelInterface, ArrayAccess, \Jso
         'deleted' => 'getDeleted',
         'reminders' => 'getReminders',
         'edit_recipient' => 'getEditRecipient',
-        'edit_document' => 'getEditDocument'
+        'edit_document' => 'getEditDocument',
+        'viewed' => 'getViewed'
     ];
 
     /**
@@ -315,6 +321,7 @@ class RecipientNotificationSettings implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('reminders', $data ?? [], true);
         $this->setIfExists('edit_recipient', $data ?? [], true);
         $this->setIfExists('edit_document', $data ?? [], true);
+        $this->setIfExists('viewed', $data ?? [], null);
     }
 
     /**
@@ -652,6 +659,33 @@ class RecipientNotificationSettings implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable edit_document cannot be null');
         }
         $this->container['edit_document'] = $edit_document;
+
+        return $this;
+    }
+
+    /**
+     * Gets viewed
+     *
+     * @return bool|null
+     */
+    public function getViewed()
+    {
+        return $this->container['viewed'];
+    }
+
+    /**
+     * Sets viewed
+     *
+     * @param bool|null $viewed viewed
+     *
+     * @return self
+     */
+    public function setViewed($viewed)
+    {
+        if (is_null($viewed)) {
+            throw new \InvalidArgumentException('non-nullable viewed cannot be null');
+        }
+        $this->container['viewed'] = $viewed;
 
         return $this;
     }

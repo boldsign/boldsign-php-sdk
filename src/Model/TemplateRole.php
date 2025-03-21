@@ -72,7 +72,8 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'allow_field_configuration' => 'bool',
         'form_fields' => '\BoldSign\Model\FormField[]',
         'allow_role_edit' => 'bool',
-        'allow_role_delete' => 'bool'
+        'allow_role_delete' => 'bool',
+        'enable_qes' => 'bool'
     ];
 
     /**
@@ -98,7 +99,8 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'allow_field_configuration' => null,
         'form_fields' => null,
         'allow_role_edit' => null,
-        'allow_role_delete' => null
+        'allow_role_delete' => null,
+        'enable_qes' => null
     ];
 
     /**
@@ -122,7 +124,8 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'allow_field_configuration' => false,
         'form_fields' => true,
         'allow_role_edit' => false,
-        'allow_role_delete' => false
+        'allow_role_delete' => false,
+        'enable_qes' => true
     ];
 
     /**
@@ -226,7 +229,8 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'allow_field_configuration' => 'allowFieldConfiguration',
         'form_fields' => 'formFields',
         'allow_role_edit' => 'allowRoleEdit',
-        'allow_role_delete' => 'allowRoleDelete'
+        'allow_role_delete' => 'allowRoleDelete',
+        'enable_qes' => 'enableQes'
     ];
 
     /**
@@ -250,7 +254,8 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'allow_field_configuration' => 'setAllowFieldConfiguration',
         'form_fields' => 'setFormFields',
         'allow_role_edit' => 'setAllowRoleEdit',
-        'allow_role_delete' => 'setAllowRoleDelete'
+        'allow_role_delete' => 'setAllowRoleDelete',
+        'enable_qes' => 'setEnableQes'
     ];
 
     /**
@@ -274,7 +279,8 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'allow_field_configuration' => 'getAllowFieldConfiguration',
         'form_fields' => 'getFormFields',
         'allow_role_edit' => 'getAllowRoleEdit',
-        'allow_role_delete' => 'getAllowRoleDelete'
+        'allow_role_delete' => 'getAllowRoleDelete',
+        'enable_qes' => 'getEnableQes'
     ];
 
     /**
@@ -491,6 +497,7 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('form_fields', $data ?? [], null);
         $this->setIfExists('allow_role_edit', $data ?? [], null);
         $this->setIfExists('allow_role_delete', $data ?? [], null);
+        $this->setIfExists('enable_qes', $data ?? [], null);
     }
 
     /**
@@ -1157,6 +1164,40 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable allow_role_delete cannot be null');
         }
         $this->container['allow_role_delete'] = $allow_role_delete;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_qes
+     *
+     * @return bool|null
+     */
+    public function getEnableQes()
+    {
+        return $this->container['enable_qes'];
+    }
+
+    /**
+     * Sets enable_qes
+     *
+     * @param bool|null $enable_qes enable_qes
+     *
+     * @return self
+     */
+    public function setEnableQes($enable_qes)
+    {
+        if (is_null($enable_qes)) {
+            array_push($this->openAPINullablesSetToNull, 'enable_qes');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('enable_qes', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['enable_qes'] = $enable_qes;
 
         return $this;
     }

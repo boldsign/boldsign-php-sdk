@@ -60,6 +60,8 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         'files' => '\SplFileObject[]',
         'file_urls' => 'string[]',
         'template_ids' => 'string[]',
+        'use_text_tags' => 'bool',
+        'text_tag_definitions' => '\BoldSign\Model\TextTagDefinition[]',
         'document_id' => 'string',
         'title' => 'string',
         'message' => 'string',
@@ -101,6 +103,8 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         'files' => 'binary',
         'file_urls' => 'uri',
         'template_ids' => null,
+        'use_text_tags' => null,
+        'text_tag_definitions' => null,
         'document_id' => null,
         'title' => null,
         'message' => null,
@@ -140,6 +144,8 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         'files' => true,
         'file_urls' => true,
         'template_ids' => true,
+        'use_text_tags' => false,
+        'text_tag_definitions' => true,
         'document_id' => true,
         'title' => true,
         'message' => true,
@@ -259,6 +265,8 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         'files' => 'files',
         'file_urls' => 'fileUrls',
         'template_ids' => 'templateIds',
+        'use_text_tags' => 'useTextTags',
+        'text_tag_definitions' => 'textTagDefinitions',
         'document_id' => 'documentId',
         'title' => 'title',
         'message' => 'message',
@@ -298,6 +306,8 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         'files' => 'setFiles',
         'file_urls' => 'setFileUrls',
         'template_ids' => 'setTemplateIds',
+        'use_text_tags' => 'setUseTextTags',
+        'text_tag_definitions' => 'setTextTagDefinitions',
         'document_id' => 'setDocumentId',
         'title' => 'setTitle',
         'message' => 'setMessage',
@@ -337,6 +347,8 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         'files' => 'getFiles',
         'file_urls' => 'getFileUrls',
         'template_ids' => 'getTemplateIds',
+        'use_text_tags' => 'getUseTextTags',
+        'text_tag_definitions' => 'getTextTagDefinitions',
         'document_id' => 'getDocumentId',
         'title' => 'getTitle',
         'message' => 'getMessage',
@@ -459,6 +471,8 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('files', $data ?? [], null);
         $this->setIfExists('file_urls', $data ?? [], null);
         $this->setIfExists('template_ids', $data ?? [], null);
+        $this->setIfExists('use_text_tags', $data ?? [], null);
+        $this->setIfExists('text_tag_definitions', $data ?? [], null);
         $this->setIfExists('document_id', $data ?? [], null);
         $this->setIfExists('title', $data ?? [], null);
         $this->setIfExists('message', $data ?? [], null);
@@ -671,6 +685,67 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
             }
         }
         $this->container['template_ids'] = $template_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets use_text_tags
+     *
+     * @return bool|null
+     */
+    public function getUseTextTags()
+    {
+        return $this->container['use_text_tags'];
+    }
+
+    /**
+     * Sets use_text_tags
+     *
+     * @param bool|null $use_text_tags use_text_tags
+     *
+     * @return self
+     */
+    public function setUseTextTags($use_text_tags)
+    {
+        if (is_null($use_text_tags)) {
+            throw new \InvalidArgumentException('non-nullable use_text_tags cannot be null');
+        }
+        $this->container['use_text_tags'] = $use_text_tags;
+
+        return $this;
+    }
+
+    /**
+     * Gets text_tag_definitions
+     *
+     * @return \BoldSign\Model\TextTagDefinition[]|null
+     */
+    public function getTextTagDefinitions()
+    {
+        return $this->container['text_tag_definitions'];
+    }
+
+    /**
+     * Sets text_tag_definitions
+     *
+     * @param \BoldSign\Model\TextTagDefinition[]|null $text_tag_definitions text_tag_definitions
+     *
+     * @return self
+     */
+    public function setTextTagDefinitions($text_tag_definitions)
+    {
+        if (is_null($text_tag_definitions)) {
+            array_push($this->openAPINullablesSetToNull, 'text_tag_definitions');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('text_tag_definitions', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['text_tag_definitions'] = $text_tag_definitions;
 
         return $this;
     }

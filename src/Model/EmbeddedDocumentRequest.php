@@ -94,6 +94,7 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'on_behalf_of' => 'string',
         'auto_detect_fields' => 'bool',
         'document_download_option' => 'string',
+        'is_sandbox' => 'bool',
         'meta_data' => 'array<string,string>',
         'form_groups' => '\BoldSign\Model\FormGroup[]',
         'enable_audit_trail_localization' => 'bool',
@@ -145,6 +146,7 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'on_behalf_of' => null,
         'auto_detect_fields' => null,
         'document_download_option' => null,
+        'is_sandbox' => null,
         'meta_data' => null,
         'form_groups' => null,
         'enable_audit_trail_localization' => null,
@@ -194,6 +196,7 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'on_behalf_of' => true,
         'auto_detect_fields' => false,
         'document_download_option' => true,
+        'is_sandbox' => true,
         'meta_data' => true,
         'form_groups' => true,
         'enable_audit_trail_localization' => true,
@@ -323,6 +326,7 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'on_behalf_of' => 'onBehalfOf',
         'auto_detect_fields' => 'AutoDetectFields',
         'document_download_option' => 'documentDownloadOption',
+        'is_sandbox' => 'isSandbox',
         'meta_data' => 'metaData',
         'form_groups' => 'formGroups',
         'enable_audit_trail_localization' => 'enableAuditTrailLocalization',
@@ -372,6 +376,7 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'on_behalf_of' => 'setOnBehalfOf',
         'auto_detect_fields' => 'setAutoDetectFields',
         'document_download_option' => 'setDocumentDownloadOption',
+        'is_sandbox' => 'setIsSandbox',
         'meta_data' => 'setMetaData',
         'form_groups' => 'setFormGroups',
         'enable_audit_trail_localization' => 'setEnableAuditTrailLocalization',
@@ -421,6 +426,7 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'on_behalf_of' => 'getOnBehalfOf',
         'auto_detect_fields' => 'getAutoDetectFields',
         'document_download_option' => 'getDocumentDownloadOption',
+        'is_sandbox' => 'getIsSandbox',
         'meta_data' => 'getMetaData',
         'form_groups' => 'getFormGroups',
         'enable_audit_trail_localization' => 'getEnableAuditTrailLocalization',
@@ -611,6 +617,7 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('on_behalf_of', $data ?? [], null);
         $this->setIfExists('auto_detect_fields', $data ?? [], false);
         $this->setIfExists('document_download_option', $data ?? [], null);
+        $this->setIfExists('is_sandbox', $data ?? [], null);
         $this->setIfExists('meta_data', $data ?? [], null);
         $this->setIfExists('form_groups', $data ?? [], null);
         $this->setIfExists('enable_audit_trail_localization', $data ?? [], null);
@@ -1891,6 +1898,40 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
             );
         }
         $this->container['document_download_option'] = $document_download_option;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_sandbox
+     *
+     * @return bool|null
+     */
+    public function getIsSandbox()
+    {
+        return $this->container['is_sandbox'];
+    }
+
+    /**
+     * Sets is_sandbox
+     *
+     * @param bool|null $is_sandbox is_sandbox
+     *
+     * @return self
+     */
+    public function setIsSandbox($is_sandbox)
+    {
+        if (is_null($is_sandbox)) {
+            array_push($this->openAPINullablesSetToNull, 'is_sandbox');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('is_sandbox', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['is_sandbox'] = $is_sandbox;
 
         return $this;
     }

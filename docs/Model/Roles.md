@@ -26,5 +26,6 @@ Name | Type | Description | Notes
 **enable_edit_recipients** | **bool** |  | [optional]
 **enable_delete_recipients** | **bool** |  | [optional]
 **recipient_notification_settings** | [**\BoldSign\Model\RecipientNotificationSettings**](RecipientNotificationSettings.md) |  | [optional]
+**enable_qes** | **bool** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

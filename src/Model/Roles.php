@@ -78,7 +78,8 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => '\BoldSign\Model\TemplateFormFields[]',
         'enable_edit_recipients' => 'bool',
         'enable_delete_recipients' => 'bool',
-        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings'
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
+        'enable_qes' => 'bool'
     ];
 
     /**
@@ -110,7 +111,8 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => null,
         'enable_edit_recipients' => null,
         'enable_delete_recipients' => null,
-        'recipient_notification_settings' => null
+        'recipient_notification_settings' => null,
+        'enable_qes' => null
     ];
 
     /**
@@ -140,7 +142,8 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => true,
         'enable_edit_recipients' => false,
         'enable_delete_recipients' => false,
-        'recipient_notification_settings' => false
+        'recipient_notification_settings' => false,
+        'enable_qes' => false
     ];
 
     /**
@@ -250,7 +253,8 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => 'formFields',
         'enable_edit_recipients' => 'enableEditRecipients',
         'enable_delete_recipients' => 'enableDeleteRecipients',
-        'recipient_notification_settings' => 'recipientNotificationSettings'
+        'recipient_notification_settings' => 'recipientNotificationSettings',
+        'enable_qes' => 'enableQes'
     ];
 
     /**
@@ -280,7 +284,8 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => 'setFormFields',
         'enable_edit_recipients' => 'setEnableEditRecipients',
         'enable_delete_recipients' => 'setEnableDeleteRecipients',
-        'recipient_notification_settings' => 'setRecipientNotificationSettings'
+        'recipient_notification_settings' => 'setRecipientNotificationSettings',
+        'enable_qes' => 'setEnableQes'
     ];
 
     /**
@@ -310,7 +315,8 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => 'getFormFields',
         'enable_edit_recipients' => 'getEnableEditRecipients',
         'enable_delete_recipients' => 'getEnableDeleteRecipients',
-        'recipient_notification_settings' => 'getRecipientNotificationSettings'
+        'recipient_notification_settings' => 'getRecipientNotificationSettings',
+        'enable_qes' => 'getEnableQes'
     ];
 
     /**
@@ -533,6 +539,7 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('enable_edit_recipients', $data ?? [], null);
         $this->setIfExists('enable_delete_recipients', $data ?? [], null);
         $this->setIfExists('recipient_notification_settings', $data ?? [], null);
+        $this->setIfExists('enable_qes', $data ?? [], null);
     }
 
     /**
@@ -1304,6 +1311,33 @@ class Roles implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
         }
         $this->container['recipient_notification_settings'] = $recipient_notification_settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable_qes
+     *
+     * @return bool|null
+     */
+    public function getEnableQes()
+    {
+        return $this->container['enable_qes'];
+    }
+
+    /**
+     * Sets enable_qes
+     *
+     * @param bool|null $enable_qes enable_qes
+     *
+     * @return self
+     */
+    public function setEnableQes($enable_qes)
+    {
+        if (is_null($enable_qes)) {
+            throw new \InvalidArgumentException('non-nullable enable_qes cannot be null');
+        }
+        $this->container['enable_qes'] = $enable_qes;
 
         return $this;
     }

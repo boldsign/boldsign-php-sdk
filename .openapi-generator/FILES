@@ -16,6 +16,7 @@ docs/Model/AccessCodeDetail.md
 docs/Model/AccessCodeDetails.md
 docs/Model/AttachmentInfo.md
 docs/Model/AuditTrail.md
+docs/Model/Base64File.md
 docs/Model/BehalfDocument.md
 docs/Model/BehalfDocumentRecords.md
 docs/Model/BehalfOf.md
@@ -147,6 +148,7 @@ src/Model/AccessCodeDetail.php
 src/Model/AccessCodeDetails.php
 src/Model/AttachmentInfo.php
 src/Model/AuditTrail.php
+src/Model/Base64File.php
 src/Model/BehalfDocument.php
 src/Model/BehalfDocumentRecords.php
 src/Model/BehalfOf.php

@@ -261,7 +261,7 @@ void (empty response body)
 ## `changeRecipient()`
 
 ```php
-changeRecipient($document_id, $change_recipient): \BoldSign\Model\ErrorResult
+changeRecipient($document_id, $change_recipient)
 ```
 
 Change recipient details of a document.
@@ -280,8 +280,7 @@ $document_id = 'document_id_example'; // string | The documentID details.
 $change_recipient = new \BoldSign\Model\ChangeRecipient(); // \BoldSign\Model\ChangeRecipient | The new recipient details.
 
 try {
-    $result = $apiInstance->changeRecipient($document_id, $change_recipient);
-    print_r($result);
+    $apiInstance->changeRecipient($document_id, $change_recipient);
 } catch (Exception $e) {
     echo 'Exception when calling DocumentApi->changeRecipient: ', $e->getMessage(), PHP_EOL;
 }
@@ -296,7 +295,7 @@ try {
 
 ### Return type
 
-[**\BoldSign\Model\ErrorResult**](../Model/ErrorResult.md)
+void (empty response body)
 
 ### Authorization
 

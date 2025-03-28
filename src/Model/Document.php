@@ -71,7 +71,8 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_deleted' => 'bool',
         'labels' => 'string[]',
         'cursor' => 'int',
-        'brand_id' => 'string'
+        'brand_id' => 'string',
+        'scheduled_send_time' => 'int'
     ];
 
     /**
@@ -96,7 +97,8 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_deleted' => null,
         'labels' => null,
         'cursor' => 'int64',
-        'brand_id' => null
+        'brand_id' => null,
+        'scheduled_send_time' => 'int64'
     ];
 
     /**
@@ -119,7 +121,8 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_deleted' => false,
         'labels' => true,
         'cursor' => false,
-        'brand_id' => true
+        'brand_id' => true,
+        'scheduled_send_time' => true
     ];
 
     /**
@@ -222,7 +225,8 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_deleted' => 'isDeleted',
         'labels' => 'labels',
         'cursor' => 'cursor',
-        'brand_id' => 'brandId'
+        'brand_id' => 'brandId',
+        'scheduled_send_time' => 'scheduledSendTime'
     ];
 
     /**
@@ -245,7 +249,8 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_deleted' => 'setIsDeleted',
         'labels' => 'setLabels',
         'cursor' => 'setCursor',
-        'brand_id' => 'setBrandId'
+        'brand_id' => 'setBrandId',
+        'scheduled_send_time' => 'setScheduledSendTime'
     ];
 
     /**
@@ -268,7 +273,8 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_deleted' => 'getIsDeleted',
         'labels' => 'getLabels',
         'cursor' => 'getCursor',
-        'brand_id' => 'getBrandId'
+        'brand_id' => 'getBrandId',
+        'scheduled_send_time' => 'getScheduledSendTime'
     ];
 
     /**
@@ -318,6 +324,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_EXPIRED = 'Expired';
     public const STATUS_REVOKED = 'Revoked';
     public const STATUS_DRAFT = 'Draft';
+    public const STATUS_SCHEDULED = 'Scheduled';
 
     /**
      * Gets allowable values of the enum
@@ -333,6 +340,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_EXPIRED,
             self::STATUS_REVOKED,
             self::STATUS_DRAFT,
+            self::STATUS_SCHEDULED,
         ];
     }
 
@@ -366,6 +374,7 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('labels', $data ?? [], null);
         $this->setIfExists('cursor', $data ?? [], null);
         $this->setIfExists('brand_id', $data ?? [], null);
+        $this->setIfExists('scheduled_send_time', $data ?? [], null);
     }
 
     /**
@@ -879,6 +888,40 @@ class Document implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['brand_id'] = $brand_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets scheduled_send_time
+     *
+     * @return int|null
+     */
+    public function getScheduledSendTime()
+    {
+        return $this->container['scheduled_send_time'];
+    }
+
+    /**
+     * Sets scheduled_send_time
+     *
+     * @param int|null $scheduled_send_time scheduled_send_time
+     *
+     * @return self
+     */
+    public function setScheduledSendTime($scheduled_send_time)
+    {
+        if (is_null($scheduled_send_time)) {
+            array_push($this->openAPINullablesSetToNull, 'scheduled_send_time');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('scheduled_send_time', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['scheduled_send_time'] = $scheduled_send_time;
 
         return $this;
     }

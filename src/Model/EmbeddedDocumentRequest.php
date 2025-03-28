@@ -96,9 +96,12 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'document_download_option' => 'string',
         'is_sandbox' => 'bool',
         'meta_data' => 'array<string,string>',
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
         'form_groups' => '\BoldSign\Model\FormGroup[]',
         'enable_audit_trail_localization' => 'bool',
-        'download_file_name' => 'string'
+        'download_file_name' => 'string',
+        'scheduled_send_time' => 'int',
+        'allow_scheduled_send' => 'bool'
     ];
 
     /**
@@ -148,9 +151,12 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'document_download_option' => null,
         'is_sandbox' => null,
         'meta_data' => null,
+        'recipient_notification_settings' => null,
         'form_groups' => null,
         'enable_audit_trail_localization' => null,
-        'download_file_name' => null
+        'download_file_name' => null,
+        'scheduled_send_time' => 'int64',
+        'allow_scheduled_send' => null
     ];
 
     /**
@@ -198,9 +204,12 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'document_download_option' => true,
         'is_sandbox' => true,
         'meta_data' => true,
+        'recipient_notification_settings' => false,
         'form_groups' => true,
         'enable_audit_trail_localization' => true,
-        'download_file_name' => true
+        'download_file_name' => true,
+        'scheduled_send_time' => true,
+        'allow_scheduled_send' => false
     ];
 
     /**
@@ -328,9 +337,12 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'document_download_option' => 'documentDownloadOption',
         'is_sandbox' => 'isSandbox',
         'meta_data' => 'metaData',
+        'recipient_notification_settings' => 'recipientNotificationSettings',
         'form_groups' => 'formGroups',
         'enable_audit_trail_localization' => 'enableAuditTrailLocalization',
-        'download_file_name' => 'downloadFileName'
+        'download_file_name' => 'downloadFileName',
+        'scheduled_send_time' => 'scheduledSendTime',
+        'allow_scheduled_send' => 'allowScheduledSend'
     ];
 
     /**
@@ -378,9 +390,12 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'document_download_option' => 'setDocumentDownloadOption',
         'is_sandbox' => 'setIsSandbox',
         'meta_data' => 'setMetaData',
+        'recipient_notification_settings' => 'setRecipientNotificationSettings',
         'form_groups' => 'setFormGroups',
         'enable_audit_trail_localization' => 'setEnableAuditTrailLocalization',
-        'download_file_name' => 'setDownloadFileName'
+        'download_file_name' => 'setDownloadFileName',
+        'scheduled_send_time' => 'setScheduledSendTime',
+        'allow_scheduled_send' => 'setAllowScheduledSend'
     ];
 
     /**
@@ -428,9 +443,12 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'document_download_option' => 'getDocumentDownloadOption',
         'is_sandbox' => 'getIsSandbox',
         'meta_data' => 'getMetaData',
+        'recipient_notification_settings' => 'getRecipientNotificationSettings',
         'form_groups' => 'getFormGroups',
         'enable_audit_trail_localization' => 'getEnableAuditTrailLocalization',
-        'download_file_name' => 'getDownloadFileName'
+        'download_file_name' => 'getDownloadFileName',
+        'scheduled_send_time' => 'getScheduledSendTime',
+        'allow_scheduled_send' => 'getAllowScheduledSend'
     ];
 
     /**
@@ -619,9 +637,12 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('document_download_option', $data ?? [], null);
         $this->setIfExists('is_sandbox', $data ?? [], null);
         $this->setIfExists('meta_data', $data ?? [], null);
+        $this->setIfExists('recipient_notification_settings', $data ?? [], null);
         $this->setIfExists('form_groups', $data ?? [], null);
         $this->setIfExists('enable_audit_trail_localization', $data ?? [], null);
         $this->setIfExists('download_file_name', $data ?? [], null);
+        $this->setIfExists('scheduled_send_time', $data ?? [], null);
+        $this->setIfExists('allow_scheduled_send', $data ?? [], false);
     }
 
     /**
@@ -1973,6 +1994,33 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * Gets recipient_notification_settings
+     *
+     * @return \BoldSign\Model\RecipientNotificationSettings|null
+     */
+    public function getRecipientNotificationSettings()
+    {
+        return $this->container['recipient_notification_settings'];
+    }
+
+    /**
+     * Sets recipient_notification_settings
+     *
+     * @param \BoldSign\Model\RecipientNotificationSettings|null $recipient_notification_settings recipient_notification_settings
+     *
+     * @return self
+     */
+    public function setRecipientNotificationSettings($recipient_notification_settings)
+    {
+        if (is_null($recipient_notification_settings)) {
+            throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
+        }
+        $this->container['recipient_notification_settings'] = $recipient_notification_settings;
+
+        return $this;
+    }
+
+    /**
      * Gets form_groups
      *
      * @return \BoldSign\Model\FormGroup[]|null
@@ -2077,6 +2125,67 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         }
 
         $this->container['download_file_name'] = $download_file_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets scheduled_send_time
+     *
+     * @return int|null
+     */
+    public function getScheduledSendTime()
+    {
+        return $this->container['scheduled_send_time'];
+    }
+
+    /**
+     * Sets scheduled_send_time
+     *
+     * @param int|null $scheduled_send_time scheduled_send_time
+     *
+     * @return self
+     */
+    public function setScheduledSendTime($scheduled_send_time)
+    {
+        if (is_null($scheduled_send_time)) {
+            array_push($this->openAPINullablesSetToNull, 'scheduled_send_time');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('scheduled_send_time', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['scheduled_send_time'] = $scheduled_send_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets allow_scheduled_send
+     *
+     * @return bool|null
+     */
+    public function getAllowScheduledSend()
+    {
+        return $this->container['allow_scheduled_send'];
+    }
+
+    /**
+     * Sets allow_scheduled_send
+     *
+     * @param bool|null $allow_scheduled_send allow_scheduled_send
+     *
+     * @return self
+     */
+    public function setAllowScheduledSend($allow_scheduled_send)
+    {
+        if (is_null($allow_scheduled_send)) {
+            throw new \InvalidArgumentException('non-nullable allow_scheduled_send cannot be null');
+        }
+        $this->container['allow_scheduled_send'] = $allow_scheduled_send;
 
         return $this;
     }

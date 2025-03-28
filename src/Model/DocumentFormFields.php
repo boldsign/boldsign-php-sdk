@@ -92,7 +92,8 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'character_spacing' => 'float',
         'background_hex_color' => 'string',
         'tab_index' => 'int',
-        'formula_field_settings' => '\BoldSign\Model\FormulaFieldSettings'
+        'formula_field_settings' => '\BoldSign\Model\FormulaFieldSettings',
+        'resize_option' => 'string'
     ];
 
     /**
@@ -138,7 +139,8 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'character_spacing' => 'float',
         'background_hex_color' => null,
         'tab_index' => 'int32',
-        'formula_field_settings' => null
+        'formula_field_settings' => null,
+        'resize_option' => null
     ];
 
     /**
@@ -182,7 +184,8 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'character_spacing' => false,
         'background_hex_color' => true,
         'tab_index' => false,
-        'formula_field_settings' => false
+        'formula_field_settings' => false,
+        'resize_option' => true
     ];
 
     /**
@@ -306,7 +309,8 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'character_spacing' => 'characterSpacing',
         'background_hex_color' => 'backgroundHexColor',
         'tab_index' => 'tabIndex',
-        'formula_field_settings' => 'formulaFieldSettings'
+        'formula_field_settings' => 'formulaFieldSettings',
+        'resize_option' => 'resizeOption'
     ];
 
     /**
@@ -350,7 +354,8 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'character_spacing' => 'setCharacterSpacing',
         'background_hex_color' => 'setBackgroundHexColor',
         'tab_index' => 'setTabIndex',
-        'formula_field_settings' => 'setFormulaFieldSettings'
+        'formula_field_settings' => 'setFormulaFieldSettings',
+        'resize_option' => 'setResizeOption'
     ];
 
     /**
@@ -394,7 +399,8 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'character_spacing' => 'getCharacterSpacing',
         'background_hex_color' => 'getBackgroundHexColor',
         'tab_index' => 'getTabIndex',
-        'formula_field_settings' => 'getFormulaFieldSettings'
+        'formula_field_settings' => 'getFormulaFieldSettings',
+        'resize_option' => 'getResizeOption'
     ];
 
     /**
@@ -448,6 +454,11 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
     public const TEXT_ALIGN_RIGHT = 'Right';
     public const TEXT_DIRECTION_LTR = 'LTR';
     public const TEXT_DIRECTION_RTL = 'RTL';
+    public const RESIZE_OPTION_GROW_VERTICALLY = 'GrowVertically';
+    public const RESIZE_OPTION_GROW_HORIZONTALLY = 'GrowHorizontally';
+    public const RESIZE_OPTION_GROW_BOTH = 'GrowBoth';
+    public const RESIZE_OPTION_FIXED = 'Fixed';
+    public const RESIZE_OPTION_AUTO_RESIZE_FONT = 'AutoResizeFont';
 
     /**
      * Gets allowable values of the enum
@@ -489,6 +500,22 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         return [
             self::TEXT_DIRECTION_LTR,
             self::TEXT_DIRECTION_RTL,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getResizeOptionAllowableValues()
+    {
+        return [
+            self::RESIZE_OPTION_GROW_VERTICALLY,
+            self::RESIZE_OPTION_GROW_HORIZONTALLY,
+            self::RESIZE_OPTION_GROW_BOTH,
+            self::RESIZE_OPTION_FIXED,
+            self::RESIZE_OPTION_AUTO_RESIZE_FONT,
         ];
     }
 
@@ -543,6 +570,7 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('background_hex_color', $data ?? [], null);
         $this->setIfExists('tab_index', $data ?? [], null);
         $this->setIfExists('formula_field_settings', $data ?? [], null);
+        $this->setIfExists('resize_option', $data ?? [], null);
     }
 
     /**
@@ -595,6 +623,15 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'text_direction', must be one of '%s'",
                 $this->container['text_direction'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getResizeOptionAllowableValues();
+        if (!is_null($this->container['resize_option']) && !in_array($this->container['resize_option'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'resize_option', must be one of '%s'",
+                $this->container['resize_option'],
                 implode("', '", $allowedValues)
             );
         }
@@ -1731,6 +1768,50 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable formula_field_settings cannot be null');
         }
         $this->container['formula_field_settings'] = $formula_field_settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets resize_option
+     *
+     * @return string|null
+     */
+    public function getResizeOption()
+    {
+        return $this->container['resize_option'];
+    }
+
+    /**
+     * Sets resize_option
+     *
+     * @param string|null $resize_option resize_option
+     *
+     * @return self
+     */
+    public function setResizeOption($resize_option)
+    {
+        if (is_null($resize_option)) {
+            array_push($this->openAPINullablesSetToNull, 'resize_option');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('resize_option', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getResizeOptionAllowableValues();
+        if (!is_null($resize_option) && !in_array($resize_option, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'resize_option', must be one of '%s'",
+                    $resize_option,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['resize_option'] = $resize_option;
 
         return $this;
     }

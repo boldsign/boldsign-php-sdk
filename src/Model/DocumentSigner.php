@@ -74,6 +74,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => '\BoldSign\Model\FormField[]',
         'language' => 'int',
         'locale' => 'string',
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
         'authentication_retry_count' => 'int',
         'enable_qes' => 'bool'
     ];
@@ -103,6 +104,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => null,
         'language' => 'int32',
         'locale' => null,
+        'recipient_notification_settings' => null,
         'authentication_retry_count' => 'int32',
         'enable_qes' => null
     ];
@@ -130,6 +132,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => true,
         'language' => false,
         'locale' => false,
+        'recipient_notification_settings' => false,
         'authentication_retry_count' => true,
         'enable_qes' => true
     ];
@@ -237,6 +240,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => 'formFields',
         'language' => 'language',
         'locale' => 'locale',
+        'recipient_notification_settings' => 'recipientNotificationSettings',
         'authentication_retry_count' => 'authenticationRetryCount',
         'enable_qes' => 'enableQes'
     ];
@@ -264,6 +268,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => 'setFormFields',
         'language' => 'setLanguage',
         'locale' => 'setLocale',
+        'recipient_notification_settings' => 'setRecipientNotificationSettings',
         'authentication_retry_count' => 'setAuthenticationRetryCount',
         'enable_qes' => 'setEnableQes'
     ];
@@ -291,6 +296,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => 'getFormFields',
         'language' => 'getLanguage',
         'locale' => 'getLocale',
+        'recipient_notification_settings' => 'getRecipientNotificationSettings',
         'authentication_retry_count' => 'getAuthenticationRetryCount',
         'enable_qes' => 'getEnableQes'
     ];
@@ -510,6 +516,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('form_fields', $data ?? [], null);
         $this->setIfExists('language', $data ?? [], null);
         $this->setIfExists('locale', $data ?? [], null);
+        $this->setIfExists('recipient_notification_settings', $data ?? [], null);
         $this->setIfExists('authentication_retry_count', $data ?? [], null);
         $this->setIfExists('enable_qes', $data ?? [], null);
     }
@@ -1184,6 +1191,33 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['locale'] = $locale;
+
+        return $this;
+    }
+
+    /**
+     * Gets recipient_notification_settings
+     *
+     * @return \BoldSign\Model\RecipientNotificationSettings|null
+     */
+    public function getRecipientNotificationSettings()
+    {
+        return $this->container['recipient_notification_settings'];
+    }
+
+    /**
+     * Sets recipient_notification_settings
+     *
+     * @param \BoldSign\Model\RecipientNotificationSettings|null $recipient_notification_settings recipient_notification_settings
+     *
+     * @return self
+     */
+    public function setRecipientNotificationSettings($recipient_notification_settings)
+    {
+        if (is_null($recipient_notification_settings)) {
+            throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
+        }
+        $this->container['recipient_notification_settings'] = $recipient_notification_settings;
 
         return $this;
     }

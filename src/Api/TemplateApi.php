@@ -578,7 +578,7 @@ class TemplateApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\EmbeddedSendCreated|\BoldSign\Model\EmbeddedSendCreated
+     * @return \BoldSign\Model\EmbeddedSendCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function createEmbeddedRequestUrlTemplate($template_id, $embedded_send_template_form_request = null, string $contentType = self::contentTypes['createEmbeddedRequestUrlTemplate'][0])
     {
@@ -597,7 +597,7 @@ class TemplateApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\EmbeddedSendCreated|\BoldSign\Model\EmbeddedSendCreated, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\EmbeddedSendCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function createEmbeddedRequestUrlTemplateWithHttpInfo($template_id, $embedded_send_template_form_request = null, string $contentType = self::contentTypes['createEmbeddedRequestUrlTemplate'][0])
     {
@@ -639,7 +639,7 @@ class TemplateApi
             }
 
             switch($statusCode) {
-                case 200:
+                case 201:
                     if ('\BoldSign\Model\EmbeddedSendCreated' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -666,12 +666,12 @@ class TemplateApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 201:
-                    if ('\BoldSign\Model\EmbeddedSendCreated' === '\SplFileObject') {
+                case 422:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\BoldSign\Model\EmbeddedSendCreated' !== 'string') {
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -689,7 +689,34 @@ class TemplateApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\BoldSign\Model\EmbeddedSendCreated', []),
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -725,7 +752,7 @@ class TemplateApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
+                case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BoldSign\Model\EmbeddedSendCreated',
@@ -733,10 +760,18 @@ class TemplateApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 201:
+                case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\BoldSign\Model\EmbeddedSendCreated',
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -972,7 +1007,7 @@ class TemplateApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\EmbeddedTemplateCreated|\BoldSign\Model\EmbeddedTemplateCreated
+     * @return \BoldSign\Model\EmbeddedTemplateCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function createEmbeddedTemplateUrl($embedded_create_template_request = null, string $contentType = self::contentTypes['createEmbeddedTemplateUrl'][0])
     {
@@ -990,7 +1025,7 @@ class TemplateApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\EmbeddedTemplateCreated|\BoldSign\Model\EmbeddedTemplateCreated, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\EmbeddedTemplateCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function createEmbeddedTemplateUrlWithHttpInfo($embedded_create_template_request = null, string $contentType = self::contentTypes['createEmbeddedTemplateUrl'][0])
     {
@@ -1032,7 +1067,7 @@ class TemplateApi
             }
 
             switch($statusCode) {
-                case 200:
+                case 201:
                     if ('\BoldSign\Model\EmbeddedTemplateCreated' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -1059,12 +1094,12 @@ class TemplateApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 201:
-                    if ('\BoldSign\Model\EmbeddedTemplateCreated' === '\SplFileObject') {
+                case 401:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\BoldSign\Model\EmbeddedTemplateCreated' !== 'string') {
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1082,7 +1117,34 @@ class TemplateApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\BoldSign\Model\EmbeddedTemplateCreated', []),
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1118,7 +1180,7 @@ class TemplateApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
+                case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BoldSign\Model\EmbeddedTemplateCreated',
@@ -1126,10 +1188,18 @@ class TemplateApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 201:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\BoldSign\Model\EmbeddedTemplateCreated',
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1346,7 +1416,7 @@ class TemplateApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\TemplateCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
+     * @return \BoldSign\Model\TemplateCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function createTemplate($create_template_request = null, string $contentType = self::contentTypes['createTemplate'][0])
     {
@@ -1364,7 +1434,7 @@ class TemplateApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\TemplateCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\TemplateCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function createTemplateWithHttpInfo($create_template_request = null, string $contentType = self::contentTypes['createTemplate'][0])
     {
@@ -1487,6 +1557,33 @@ class TemplateApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 422:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\BoldSign\Model\TemplateCreated';
@@ -1536,6 +1633,14 @@ class TemplateApi
                     $e->setResponseObject($data);
                     break;
                 case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BoldSign\Model\ErrorResult',
@@ -2099,7 +2204,7 @@ class TemplateApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\BoldSign\Model\ProblemDetails',
+                        '\BoldSign\Model\ErrorResult',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2107,7 +2212,7 @@ class TemplateApi
                 case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\BoldSign\Model\ProblemDetails',
+                        '\BoldSign\Model\ErrorResult',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2796,6 +2901,30 @@ class TemplateApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -2925,7 +3054,7 @@ class TemplateApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            $multipart ? ['multipart/form-data'] : [],
+            $multipart ? ['multipart/form-data'] : ['application/json', ],
             $contentType,
             $multipart
         );
@@ -3021,7 +3150,7 @@ class TemplateApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\EmbeddedTemplateEdited|\BoldSign\Model\EmbeddedTemplateEdited
+     * @return \BoldSign\Model\EmbeddedTemplateEdited|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function getEmbeddedTemplateEditUrl($template_id, $embedded_template_edit_request = null, string $contentType = self::contentTypes['getEmbeddedTemplateEditUrl'][0])
     {
@@ -3040,7 +3169,7 @@ class TemplateApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\EmbeddedTemplateEdited|\BoldSign\Model\EmbeddedTemplateEdited, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\EmbeddedTemplateEdited|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEmbeddedTemplateEditUrlWithHttpInfo($template_id, $embedded_template_edit_request = null, string $contentType = self::contentTypes['getEmbeddedTemplateEditUrl'][0])
     {
@@ -3082,7 +3211,7 @@ class TemplateApi
             }
 
             switch($statusCode) {
-                case 200:
+                case 201:
                     if ('\BoldSign\Model\EmbeddedTemplateEdited' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -3109,12 +3238,12 @@ class TemplateApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 201:
-                    if ('\BoldSign\Model\EmbeddedTemplateEdited' === '\SplFileObject') {
+                case 400:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\BoldSign\Model\EmbeddedTemplateEdited' !== 'string') {
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3132,7 +3261,34 @@ class TemplateApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\BoldSign\Model\EmbeddedTemplateEdited', []),
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3168,7 +3324,7 @@ class TemplateApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
+                case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BoldSign\Model\EmbeddedTemplateEdited',
@@ -3176,10 +3332,18 @@ class TemplateApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 201:
+                case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\BoldSign\Model\EmbeddedTemplateEdited',
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3825,7 +3989,7 @@ class TemplateApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\TemplateRecords|\BoldSign\Model\ProblemDetails
+     * @return \BoldSign\Model\TemplateRecords|\BoldSign\Model\ErrorResult
      */
     public function listTemplates($page, $template_type = null, $page_size = 10, $search_key = null, $on_behalf_of = null, $created_by = null, $template_labels = null, $start_date = null, $end_date = null, $brand_ids = null, string $contentType = self::contentTypes['listTemplates'][0])
     {
@@ -3852,7 +4016,7 @@ class TemplateApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\TemplateRecords|\BoldSign\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\TemplateRecords|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function listTemplatesWithHttpInfo($page, $template_type = null, $page_size = 10, $search_key = null, $on_behalf_of = null, $created_by = null, $template_labels = null, $start_date = null, $end_date = null, $brand_ids = null, string $contentType = self::contentTypes['listTemplates'][0])
     {
@@ -3922,11 +4086,11 @@ class TemplateApi
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\BoldSign\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\BoldSign\Model\ProblemDetails' !== 'string') {
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3944,7 +4108,7 @@ class TemplateApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3991,7 +4155,7 @@ class TemplateApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\BoldSign\Model\ProblemDetails',
+                        '\BoldSign\Model\ErrorResult',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4379,6 +4543,22 @@ class TemplateApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -4483,7 +4663,7 @@ class TemplateApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            $multipart ? ['multipart/form-data'] : [],
+            $multipart ? ['multipart/form-data'] : ['application/json', ],
             $contentType,
             $multipart
         );
@@ -4579,7 +4759,7 @@ class TemplateApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\DocumentCreated|\BoldSign\Model\DocumentCreated|\BoldSign\Model\ErrorResult
+     * @return \BoldSign\Model\DocumentCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function sendUsingTemplate($template_id, $send_for_sign_from_template_form = null, string $contentType = self::contentTypes['sendUsingTemplate'][0])
     {
@@ -4598,7 +4778,7 @@ class TemplateApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\DocumentCreated|\BoldSign\Model\DocumentCreated|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\DocumentCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendUsingTemplateWithHttpInfo($template_id, $send_for_sign_from_template_form = null, string $contentType = self::contentTypes['sendUsingTemplate'][0])
     {
@@ -4640,7 +4820,7 @@ class TemplateApi
             }
 
             switch($statusCode) {
-                case 200:
+                case 201:
                     if ('\BoldSign\Model\DocumentCreated' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -4667,12 +4847,12 @@ class TemplateApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 201:
-                    if ('\BoldSign\Model\DocumentCreated' === '\SplFileObject') {
+                case 401:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\BoldSign\Model\DocumentCreated' !== 'string') {
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -4690,7 +4870,7 @@ class TemplateApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\BoldSign\Model\DocumentCreated', []),
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -4753,7 +4933,7 @@ class TemplateApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
+                case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BoldSign\Model\DocumentCreated',
@@ -4761,10 +4941,10 @@ class TemplateApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 201:
+                case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\BoldSign\Model\DocumentCreated',
+                        '\BoldSign\Model\ErrorResult',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

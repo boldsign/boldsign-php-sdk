@@ -88,7 +88,8 @@ class CustomFormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'character_spacing' => 'float',
         'id_prefix' => 'string',
         'restrict_id_prefix_change' => 'bool',
-        'background_hex_color' => 'string'
+        'background_hex_color' => 'string',
+        'resize_option' => 'string'
     ];
 
     /**
@@ -130,7 +131,8 @@ class CustomFormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'character_spacing' => 'float',
         'id_prefix' => null,
         'restrict_id_prefix_change' => null,
-        'background_hex_color' => null
+        'background_hex_color' => null,
+        'resize_option' => null
     ];
 
     /**
@@ -170,7 +172,8 @@ class CustomFormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'character_spacing' => false,
         'id_prefix' => true,
         'restrict_id_prefix_change' => false,
-        'background_hex_color' => true
+        'background_hex_color' => true,
+        'resize_option' => true
     ];
 
     /**
@@ -290,7 +293,8 @@ class CustomFormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'character_spacing' => 'characterSpacing',
         'id_prefix' => 'idPrefix',
         'restrict_id_prefix_change' => 'restrictIdPrefixChange',
-        'background_hex_color' => 'backgroundHexColor'
+        'background_hex_color' => 'backgroundHexColor',
+        'resize_option' => 'resizeOption'
     ];
 
     /**
@@ -330,7 +334,8 @@ class CustomFormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'character_spacing' => 'setCharacterSpacing',
         'id_prefix' => 'setIdPrefix',
         'restrict_id_prefix_change' => 'setRestrictIdPrefixChange',
-        'background_hex_color' => 'setBackgroundHexColor'
+        'background_hex_color' => 'setBackgroundHexColor',
+        'resize_option' => 'setResizeOption'
     ];
 
     /**
@@ -370,7 +375,8 @@ class CustomFormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'character_spacing' => 'getCharacterSpacing',
         'id_prefix' => 'getIdPrefix',
         'restrict_id_prefix_change' => 'getRestrictIdPrefixChange',
-        'background_hex_color' => 'getBackgroundHexColor'
+        'background_hex_color' => 'getBackgroundHexColor',
+        'resize_option' => 'getResizeOption'
     ];
 
     /**
@@ -443,6 +449,11 @@ class CustomFormField implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TEXT_ALIGN_RIGHT = 'Right';
     public const TEXT_DIRECTION_LTR = 'LTR';
     public const TEXT_DIRECTION_RTL = 'RTL';
+    public const RESIZE_OPTION_GROW_VERTICALLY = 'GrowVertically';
+    public const RESIZE_OPTION_GROW_HORIZONTALLY = 'GrowHorizontally';
+    public const RESIZE_OPTION_GROW_BOTH = 'GrowBoth';
+    public const RESIZE_OPTION_FIXED = 'Fixed';
+    public const RESIZE_OPTION_AUTO_RESIZE_FONT = 'AutoResizeFont';
 
     /**
      * Gets allowable values of the enum
@@ -529,6 +540,22 @@ class CustomFormField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getResizeOptionAllowableValues()
+    {
+        return [
+            self::RESIZE_OPTION_GROW_VERTICALLY,
+            self::RESIZE_OPTION_GROW_HORIZONTALLY,
+            self::RESIZE_OPTION_GROW_BOTH,
+            self::RESIZE_OPTION_FIXED,
+            self::RESIZE_OPTION_AUTO_RESIZE_FONT,
+        ];
+    }
+
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -575,6 +602,7 @@ class CustomFormField implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('id_prefix', $data ?? [], null);
         $this->setIfExists('restrict_id_prefix_change', $data ?? [], false);
         $this->setIfExists('background_hex_color', $data ?? [], null);
+        $this->setIfExists('resize_option', $data ?? [], null);
     }
 
     /**
@@ -668,6 +696,15 @@ class CustomFormField implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'text_direction', must be one of '%s'",
                 $this->container['text_direction'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getResizeOptionAllowableValues();
+        if (!is_null($this->container['resize_option']) && !in_array($this->container['resize_option'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'resize_option', must be one of '%s'",
+                $this->container['resize_option'],
                 implode("', '", $allowedValues)
             );
         }
@@ -1702,6 +1739,50 @@ class CustomFormField implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['background_hex_color'] = $background_hex_color;
+
+        return $this;
+    }
+
+    /**
+     * Gets resize_option
+     *
+     * @return string|null
+     */
+    public function getResizeOption()
+    {
+        return $this->container['resize_option'];
+    }
+
+    /**
+     * Sets resize_option
+     *
+     * @param string|null $resize_option resize_option
+     *
+     * @return self
+     */
+    public function setResizeOption($resize_option)
+    {
+        if (is_null($resize_option)) {
+            array_push($this->openAPINullablesSetToNull, 'resize_option');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('resize_option', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getResizeOptionAllowableValues();
+        if (!is_null($resize_option) && !in_array($resize_option, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'resize_option', must be one of '%s'",
+                    $resize_option,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['resize_option'] = $resize_option;
 
         return $this;
     }

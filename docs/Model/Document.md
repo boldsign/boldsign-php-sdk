@@ -19,5 +19,6 @@ Name | Type | Description | Notes
 **labels** | **string[]** |  | [optional]
 **cursor** | **int** |  | [optional]
 **brand_id** | **string** |  | [optional]
+**scheduled_send_time** | **int** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

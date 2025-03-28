@@ -224,7 +224,7 @@ class CustomFieldApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\CustomFieldMessage|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
+     * @return \BoldSign\Model\CustomFieldMessage|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function createCustomField($brand_custom_field_details, string $contentType = self::contentTypes['createCustomField'][0])
     {
@@ -242,7 +242,7 @@ class CustomFieldApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\CustomFieldMessage|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\CustomFieldMessage|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function createCustomFieldWithHttpInfo($brand_custom_field_details, string $contentType = self::contentTypes['createCustomField'][0])
     {
@@ -365,6 +365,33 @@ class CustomFieldApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 422:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\BoldSign\Model\CustomFieldMessage';
@@ -414,6 +441,14 @@ class CustomFieldApi
                     $e->setResponseObject($data);
                     break;
                 case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BoldSign\Model\ErrorResult',
@@ -1040,7 +1075,7 @@ class CustomFieldApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\DeleteCustomFieldReply|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
+     * @return \BoldSign\Model\DeleteCustomFieldReply|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function deleteCustomField($custom_field_id, string $contentType = self::contentTypes['deleteCustomField'][0])
     {
@@ -1058,7 +1093,7 @@ class CustomFieldApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\DeleteCustomFieldReply|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\DeleteCustomFieldReply|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteCustomFieldWithHttpInfo($custom_field_id, string $contentType = self::contentTypes['deleteCustomField'][0])
     {
@@ -1181,6 +1216,33 @@ class CustomFieldApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 422:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\BoldSign\Model\DeleteCustomFieldReply';
@@ -1230,6 +1292,14 @@ class CustomFieldApi
                     $e->setResponseObject($data);
                     break;
                 case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BoldSign\Model\ErrorResult',
@@ -1442,7 +1512,7 @@ class CustomFieldApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\CustomFieldMessage|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
+     * @return \BoldSign\Model\CustomFieldMessage|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function editCustomField($custom_field_id, $brand_custom_field_details, string $contentType = self::contentTypes['editCustomField'][0])
     {
@@ -1461,7 +1531,7 @@ class CustomFieldApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\CustomFieldMessage|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\CustomFieldMessage|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function editCustomFieldWithHttpInfo($custom_field_id, $brand_custom_field_details, string $contentType = self::contentTypes['editCustomField'][0])
     {
@@ -1584,6 +1654,33 @@ class CustomFieldApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 422:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\BoldSign\Model\CustomFieldMessage';
@@ -1633,6 +1730,14 @@ class CustomFieldApi
                     $e->setResponseObject($data);
                     break;
                 case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BoldSign\Model\ErrorResult',

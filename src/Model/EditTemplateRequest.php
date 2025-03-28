@@ -74,7 +74,8 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'on_behalf_of' => 'string',
         'labels' => 'string[]',
         'template_labels' => 'string[]',
-        'form_groups' => '\BoldSign\Model\FormGroup[]'
+        'form_groups' => '\BoldSign\Model\FormGroup[]',
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings'
     ];
 
     /**
@@ -102,7 +103,8 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'on_behalf_of' => null,
         'labels' => null,
         'template_labels' => null,
-        'form_groups' => null
+        'form_groups' => null,
+        'recipient_notification_settings' => null
     ];
 
     /**
@@ -128,7 +130,8 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'on_behalf_of' => true,
         'labels' => true,
         'template_labels' => true,
-        'form_groups' => true
+        'form_groups' => true,
+        'recipient_notification_settings' => false
     ];
 
     /**
@@ -234,7 +237,8 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'on_behalf_of' => 'onBehalfOf',
         'labels' => 'labels',
         'template_labels' => 'templateLabels',
-        'form_groups' => 'formGroups'
+        'form_groups' => 'formGroups',
+        'recipient_notification_settings' => 'recipientNotificationSettings'
     ];
 
     /**
@@ -260,7 +264,8 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'on_behalf_of' => 'setOnBehalfOf',
         'labels' => 'setLabels',
         'template_labels' => 'setTemplateLabels',
-        'form_groups' => 'setFormGroups'
+        'form_groups' => 'setFormGroups',
+        'recipient_notification_settings' => 'setRecipientNotificationSettings'
     ];
 
     /**
@@ -286,7 +291,8 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'on_behalf_of' => 'getOnBehalfOf',
         'labels' => 'getLabels',
         'template_labels' => 'getTemplateLabels',
-        'form_groups' => 'getFormGroups'
+        'form_groups' => 'getFormGroups',
+        'recipient_notification_settings' => 'getRecipientNotificationSettings'
     ];
 
     /**
@@ -364,6 +370,7 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('labels', $data ?? [], null);
         $this->setIfExists('template_labels', $data ?? [], null);
         $this->setIfExists('form_groups', $data ?? [], null);
+        $this->setIfExists('recipient_notification_settings', $data ?? [], null);
     }
 
     /**
@@ -1076,6 +1083,33 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
             }
         }
         $this->container['form_groups'] = $form_groups;
+
+        return $this;
+    }
+
+    /**
+     * Gets recipient_notification_settings
+     *
+     * @return \BoldSign\Model\RecipientNotificationSettings|null
+     */
+    public function getRecipientNotificationSettings()
+    {
+        return $this->container['recipient_notification_settings'];
+    }
+
+    /**
+     * Sets recipient_notification_settings
+     *
+     * @param \BoldSign\Model\RecipientNotificationSettings|null $recipient_notification_settings recipient_notification_settings
+     *
+     * @return self
+     */
+    public function setRecipientNotificationSettings($recipient_notification_settings)
+    {
+        if (is_null($recipient_notification_settings)) {
+            throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
+        }
+        $this->container['recipient_notification_settings'] = $recipient_notification_settings;
 
         return $this;
     }

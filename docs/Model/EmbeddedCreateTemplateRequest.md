@@ -38,6 +38,7 @@ Name | Type | Description | Notes
 **on_behalf_of** | **string** |  | [optional]
 **labels** | **string[]** |  | [optional]
 **template_labels** | **string[]** |  | [optional]
+**recipient_notification_settings** | [**\BoldSign\Model\RecipientNotificationSettings**](RecipientNotificationSettings.md) |  | [optional]
 **form_groups** | [**\BoldSign\Model\FormGroup[]**](FormGroup.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

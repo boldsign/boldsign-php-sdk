@@ -342,6 +342,7 @@ class Template implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_EXPIRED = 'Expired';
     public const STATUS_REVOKED = 'Revoked';
     public const STATUS_DRAFT = 'Draft';
+    public const STATUS_SCHEDULED = 'Scheduled';
     public const ACCESS_TYPE__USE = 'Use';
     public const ACCESS_TYPE_EDIT = 'Edit';
     public const ACCESS_TYPE_NONE = 'None';
@@ -360,6 +361,7 @@ class Template implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_EXPIRED,
             self::STATUS_REVOKED,
             self::STATUS_DRAFT,
+            self::STATUS_SCHEDULED,
         ];
     }
 

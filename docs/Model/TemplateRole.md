@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **form_fields** | [**\BoldSign\Model\FormField[]**](FormField.md) |  | [optional]
 **allow_role_edit** | **bool** |  | [optional]
 **allow_role_delete** | **bool** |  | [optional]
+**recipient_notification_settings** | [**\BoldSign\Model\RecipientNotificationSettings**](RecipientNotificationSettings.md) |  | [optional]
 **enable_qes** | **bool** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

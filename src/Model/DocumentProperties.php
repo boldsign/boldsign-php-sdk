@@ -93,9 +93,10 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'expiry_value' => 'int',
         'document_download_option' => 'string',
         'meta_data' => 'array<string,string>',
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
         'enable_audit_trail_localization' => 'bool',
         'download_file_name' => 'string',
-        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings'
+        'scheduled_send_time' => 'int'
     ];
 
     /**
@@ -142,9 +143,10 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'expiry_value' => 'int64',
         'document_download_option' => null,
         'meta_data' => null,
+        'recipient_notification_settings' => null,
         'enable_audit_trail_localization' => null,
         'download_file_name' => null,
-        'recipient_notification_settings' => null
+        'scheduled_send_time' => 'int64'
     ];
 
     /**
@@ -189,9 +191,10 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'expiry_value' => false,
         'document_download_option' => false,
         'meta_data' => true,
+        'recipient_notification_settings' => false,
         'enable_audit_trail_localization' => false,
         'download_file_name' => true,
-        'recipient_notification_settings' => false
+        'scheduled_send_time' => true
     ];
 
     /**
@@ -316,9 +319,10 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'expiry_value' => 'expiryValue',
         'document_download_option' => 'documentDownloadOption',
         'meta_data' => 'metaData',
+        'recipient_notification_settings' => 'recipientNotificationSettings',
         'enable_audit_trail_localization' => 'enableAuditTrailLocalization',
         'download_file_name' => 'downloadFileName',
-        'recipient_notification_settings' => 'recipientNotificationSettings'
+        'scheduled_send_time' => 'scheduledSendTime'
     ];
 
     /**
@@ -363,9 +367,10 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'expiry_value' => 'setExpiryValue',
         'document_download_option' => 'setDocumentDownloadOption',
         'meta_data' => 'setMetaData',
+        'recipient_notification_settings' => 'setRecipientNotificationSettings',
         'enable_audit_trail_localization' => 'setEnableAuditTrailLocalization',
         'download_file_name' => 'setDownloadFileName',
-        'recipient_notification_settings' => 'setRecipientNotificationSettings'
+        'scheduled_send_time' => 'setScheduledSendTime'
     ];
 
     /**
@@ -410,9 +415,10 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'expiry_value' => 'getExpiryValue',
         'document_download_option' => 'getDocumentDownloadOption',
         'meta_data' => 'getMetaData',
+        'recipient_notification_settings' => 'getRecipientNotificationSettings',
         'enable_audit_trail_localization' => 'getEnableAuditTrailLocalization',
         'download_file_name' => 'getDownloadFileName',
-        'recipient_notification_settings' => 'getRecipientNotificationSettings'
+        'scheduled_send_time' => 'getScheduledSendTime'
     ];
 
     /**
@@ -462,6 +468,7 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
     public const STATUS_EXPIRED = 'Expired';
     public const STATUS_REVOKED = 'Revoked';
     public const STATUS_DRAFT = 'Draft';
+    public const STATUS_SCHEDULED = 'Scheduled';
     public const ACTIVITY_ACTION_VIEWED = 'Viewed';
     public const ACTIVITY_ACTION_SIGNED = 'Signed';
     public const ACTIVITY_ACTION_REASSIGNED = 'Reassigned';
@@ -479,6 +486,7 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
     public const ACTIVITY_ACTION_EDITING_INITIATED = 'EditingInitiated';
     public const ACTIVITY_ACTION_EDITING_CANCELLED = 'EditingCancelled';
     public const ACTIVITY_ACTION_EDITING_COMPLETED = 'EditingCompleted';
+    public const ACTIVITY_ACTION_DOCUMENT_SCHEDULED = 'DocumentScheduled';
     public const EXPIRY_DATE_TYPE_DAYS = 'Days';
     public const EXPIRY_DATE_TYPE_HOURS = 'Hours';
     public const EXPIRY_DATE_TYPE_SPECIFIC_DATE_TIME = 'SpecificDateTime';
@@ -499,6 +507,7 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
             self::STATUS_EXPIRED,
             self::STATUS_REVOKED,
             self::STATUS_DRAFT,
+            self::STATUS_SCHEDULED,
         ];
     }
 
@@ -527,6 +536,7 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
             self::ACTIVITY_ACTION_EDITING_INITIATED,
             self::ACTIVITY_ACTION_EDITING_CANCELLED,
             self::ACTIVITY_ACTION_EDITING_COMPLETED,
+            self::ACTIVITY_ACTION_DOCUMENT_SCHEDULED,
         ];
     }
 
@@ -608,9 +618,10 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('expiry_value', $data ?? [], null);
         $this->setIfExists('document_download_option', $data ?? [], null);
         $this->setIfExists('meta_data', $data ?? [], null);
+        $this->setIfExists('recipient_notification_settings', $data ?? [], null);
         $this->setIfExists('enable_audit_trail_localization', $data ?? [], null);
         $this->setIfExists('download_file_name', $data ?? [], null);
-        $this->setIfExists('recipient_notification_settings', $data ?? [], null);
+        $this->setIfExists('scheduled_send_time', $data ?? [], null);
     }
 
     /**
@@ -1830,6 +1841,33 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Gets recipient_notification_settings
+     *
+     * @return \BoldSign\Model\RecipientNotificationSettings|null
+     */
+    public function getRecipientNotificationSettings()
+    {
+        return $this->container['recipient_notification_settings'];
+    }
+
+    /**
+     * Sets recipient_notification_settings
+     *
+     * @param \BoldSign\Model\RecipientNotificationSettings|null $recipient_notification_settings recipient_notification_settings
+     *
+     * @return self
+     */
+    public function setRecipientNotificationSettings($recipient_notification_settings)
+    {
+        if (is_null($recipient_notification_settings)) {
+            throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
+        }
+        $this->container['recipient_notification_settings'] = $recipient_notification_settings;
+
+        return $this;
+    }
+
+    /**
      * Gets enable_audit_trail_localization
      *
      * @return bool|null
@@ -1891,28 +1929,35 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
-     * Gets recipient_notification_settings
+     * Gets scheduled_send_time
      *
-     * @return \BoldSign\Model\RecipientNotificationSettings|null
+     * @return int|null
      */
-    public function getRecipientNotificationSettings()
+    public function getScheduledSendTime()
     {
-        return $this->container['recipient_notification_settings'];
+        return $this->container['scheduled_send_time'];
     }
 
     /**
-     * Sets recipient_notification_settings
+     * Sets scheduled_send_time
      *
-     * @param \BoldSign\Model\RecipientNotificationSettings|null $recipient_notification_settings recipient_notification_settings
+     * @param int|null $scheduled_send_time scheduled_send_time
      *
      * @return self
      */
-    public function setRecipientNotificationSettings($recipient_notification_settings)
+    public function setScheduledSendTime($scheduled_send_time)
     {
-        if (is_null($recipient_notification_settings)) {
-            throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
+        if (is_null($scheduled_send_time)) {
+            array_push($this->openAPINullablesSetToNull, 'scheduled_send_time');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('scheduled_send_time', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['recipient_notification_settings'] = $recipient_notification_settings;
+        $this->container['scheduled_send_time'] = $scheduled_send_time;
 
         return $this;
     }

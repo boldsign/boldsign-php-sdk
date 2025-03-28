@@ -2072,12 +2072,11 @@ class DocumentApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
+     * @return void
      */
     public function changeRecipient($document_id, $change_recipient, string $contentType = self::contentTypes['changeRecipient'][0])
     {
-        list($response) = $this->changeRecipientWithHttpInfo($document_id, $change_recipient, $contentType);
-        return $response;
+        $this->changeRecipientWithHttpInfo($document_id, $change_recipient, $contentType);
     }
 
     /**
@@ -2091,7 +2090,7 @@ class DocumentApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function changeRecipientWithHttpInfo($document_id, $change_recipient, string $contentType = self::contentTypes['changeRecipient'][0])
     {
@@ -2132,90 +2131,7 @@ class DocumentApi
                 );
             }
 
-            switch($statusCode) {
-                case 401:
-                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 200:
-                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\BoldSign\Model\ErrorResult';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return [null, $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -2227,7 +2143,7 @@ class DocumentApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 200:
+                case 403:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BoldSign\Model\ErrorResult',
@@ -2276,27 +2192,14 @@ class DocumentApi
      */
     public function changeRecipientAsyncWithHttpInfo($document_id, $change_recipient, string $contentType = self::contentTypes['changeRecipient'][0])
     {
-        $returnType = '\BoldSign\Model\ErrorResult';
+        $returnType = '';
         $request = $this->changeRecipientRequest($document_id, $change_recipient, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -2472,7 +2375,7 @@ class DocumentApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\EmbeddedSendCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
+     * @return \BoldSign\Model\EmbeddedSendCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function createEmbeddedRequestUrlDocument($embedded_document_request = null, string $contentType = self::contentTypes['createEmbeddedRequestUrlDocument'][0])
     {
@@ -2490,7 +2393,7 @@ class DocumentApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\EmbeddedSendCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\EmbeddedSendCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function createEmbeddedRequestUrlDocumentWithHttpInfo($embedded_document_request = null, string $contentType = self::contentTypes['createEmbeddedRequestUrlDocument'][0])
     {
@@ -2613,6 +2516,60 @@ class DocumentApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 400:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\BoldSign\Model\EmbeddedSendCreated';
@@ -2662,6 +2619,22 @@ class DocumentApi
                     $e->setResponseObject($data);
                     break;
                 case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BoldSign\Model\ErrorResult',
@@ -7636,7 +7609,7 @@ class DocumentApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\DocumentCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
+     * @return \BoldSign\Model\DocumentCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function sendDocument($send_for_sign = null, string $contentType = self::contentTypes['sendDocument'][0])
     {
@@ -7654,7 +7627,7 @@ class DocumentApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\DocumentCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\DocumentCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendDocumentWithHttpInfo($send_for_sign = null, string $contentType = self::contentTypes['sendDocument'][0])
     {
@@ -7777,6 +7750,60 @@ class DocumentApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 400:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\BoldSign\Model\DocumentCreated';
@@ -7826,6 +7853,22 @@ class DocumentApi
                     $e->setResponseObject($data);
                     break;
                 case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BoldSign\Model\ErrorResult',

@@ -146,7 +146,7 @@ class BrandingApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\BrandingRecords|\BoldSign\Model\ProblemDetails
+     * @return \BoldSign\Model\BrandingRecords|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function brandList(string $contentType = self::contentTypes['brandList'][0])
     {
@@ -163,7 +163,7 @@ class BrandingApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\BrandingRecords|\BoldSign\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\BrandingRecords|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function brandListWithHttpInfo(string $contentType = self::contentTypes['brandList'][0])
     {
@@ -233,11 +233,11 @@ class BrandingApi
                         $response->getHeaders()
                     ];
                 case 401:
-                    if ('\BoldSign\Model\ProblemDetails' === '\SplFileObject') {
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\BoldSign\Model\ProblemDetails' !== 'string') {
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -255,7 +255,34 @@ class BrandingApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ProblemDetails', []),
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -302,7 +329,15 @@ class BrandingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\BoldSign\Model\ProblemDetails',
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -519,7 +554,7 @@ class BrandingApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\BrandCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
+     * @return \BoldSign\Model\BrandCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function createBrand($brand_name, $brand_logo, $background_color = null, $button_color = null, $button_text_color = null, $email_display_name = null, $disclaimer_description = null, $disclaimer_title = null, $redirect_url = null, $is_default = false, $can_hide_tag_line = false, $combine_audit_trail = false, $exclude_audit_trail_from_email = false, $email_signed_document = 'Attachment', $document_time_zone = null, $show_built_in_form_fields = true, $allow_custom_field_creation = false, $show_shared_custom_fields = false, $hide_decline = null, $hide_save = null, $document_expiry_settings_expiry_date_type = null, $document_expiry_settings_expiry_value = null, $document_expiry_settings_enable_default_expiry_alert = null, $document_expiry_settings_enable_auto_reminder = null, $document_expiry_settings_reminder_days = null, $document_expiry_settings_reminder_count = null, $custom_domain_settings_domain_name = null, $custom_domain_settings_from_name = null, string $contentType = self::contentTypes['createBrand'][0])
     {
@@ -564,7 +599,7 @@ class BrandingApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\BrandCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\BrandCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function createBrandWithHttpInfo($brand_name, $brand_logo, $background_color = null, $button_color = null, $button_text_color = null, $email_display_name = null, $disclaimer_description = null, $disclaimer_title = null, $redirect_url = null, $is_default = false, $can_hide_tag_line = false, $combine_audit_trail = false, $exclude_audit_trail_from_email = false, $email_signed_document = 'Attachment', $document_time_zone = null, $show_built_in_form_fields = true, $allow_custom_field_creation = false, $show_shared_custom_fields = false, $hide_decline = null, $hide_save = null, $document_expiry_settings_expiry_date_type = null, $document_expiry_settings_expiry_value = null, $document_expiry_settings_enable_default_expiry_alert = null, $document_expiry_settings_enable_auto_reminder = null, $document_expiry_settings_reminder_days = null, $document_expiry_settings_reminder_count = null, $custom_domain_settings_domain_name = null, $custom_domain_settings_from_name = null, string $contentType = self::contentTypes['createBrand'][0])
     {
@@ -687,6 +722,33 @@ class BrandingApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 422:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\BoldSign\Model\BrandCreated';
@@ -736,6 +798,14 @@ class BrandingApi
                     $e->setResponseObject($data);
                     break;
                 case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BoldSign\Model\ErrorResult',
@@ -1607,7 +1677,7 @@ class BrandingApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\BrandCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
+     * @return \BoldSign\Model\BrandCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function editBrand($brand_id, $brand_name = null, $brand_logo = null, $background_color = null, $button_color = null, $button_text_color = null, $email_display_name = null, $disclaimer_description = null, $disclaimer_title = null, $redirect_url = null, $is_default = false, $can_hide_tag_line = false, $combine_audit_trail = false, $exclude_audit_trail_from_email = false, $email_signed_document = 'Attachment', $document_time_zone = null, $show_built_in_form_fields = true, $allow_custom_field_creation = false, $show_shared_custom_fields = false, $hide_decline = null, $hide_save = null, $document_expiry_settings_expiry_date_type = null, $document_expiry_settings_expiry_value = null, $document_expiry_settings_enable_default_expiry_alert = null, $document_expiry_settings_enable_auto_reminder = null, $document_expiry_settings_reminder_days = null, $document_expiry_settings_reminder_count = null, $custom_domain_settings_domain_name = null, $custom_domain_settings_from_name = null, string $contentType = self::contentTypes['editBrand'][0])
     {
@@ -1653,7 +1723,7 @@ class BrandingApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\BrandCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\BrandCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function editBrandWithHttpInfo($brand_id, $brand_name = null, $brand_logo = null, $background_color = null, $button_color = null, $button_text_color = null, $email_display_name = null, $disclaimer_description = null, $disclaimer_title = null, $redirect_url = null, $is_default = false, $can_hide_tag_line = false, $combine_audit_trail = false, $exclude_audit_trail_from_email = false, $email_signed_document = 'Attachment', $document_time_zone = null, $show_built_in_form_fields = true, $allow_custom_field_creation = false, $show_shared_custom_fields = false, $hide_decline = null, $hide_save = null, $document_expiry_settings_expiry_date_type = null, $document_expiry_settings_expiry_value = null, $document_expiry_settings_enable_default_expiry_alert = null, $document_expiry_settings_enable_auto_reminder = null, $document_expiry_settings_reminder_days = null, $document_expiry_settings_reminder_count = null, $custom_domain_settings_domain_name = null, $custom_domain_settings_from_name = null, string $contentType = self::contentTypes['editBrand'][0])
     {
@@ -1776,6 +1846,33 @@ class BrandingApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 422:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\BoldSign\Model\BrandCreated';
@@ -1825,6 +1922,14 @@ class BrandingApi
                     $e->setResponseObject($data);
                     break;
                 case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BoldSign\Model\ErrorResult',
@@ -2274,7 +2379,7 @@ class BrandingApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \BoldSign\Model\ViewBrandDetails|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
+     * @return \BoldSign\Model\ViewBrandDetails|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function getBrand($brand_id, string $contentType = self::contentTypes['getBrand'][0])
     {
@@ -2292,7 +2397,7 @@ class BrandingApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \BoldSign\Model\ViewBrandDetails|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\ViewBrandDetails|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function getBrandWithHttpInfo($brand_id, string $contentType = self::contentTypes['getBrand'][0])
     {
@@ -2415,6 +2520,33 @@ class BrandingApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 422:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\BoldSign\Model\ViewBrandDetails';
@@ -2464,6 +2596,14 @@ class BrandingApi
                     $e->setResponseObject($data);
                     break;
                 case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\BoldSign\Model\ErrorResult',

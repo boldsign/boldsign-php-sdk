@@ -33,8 +33,11 @@ Name | Type | Description | Notes
 **document_download_option** | **string** |  | [optional]
 **is_sandbox** | **bool** |  | [optional]
 **meta_data** | **array<string,string>** |  | [optional]
+**recipient_notification_settings** | [**\BoldSign\Model\RecipientNotificationSettings**](RecipientNotificationSettings.md) |  | [optional]
 **form_groups** | [**\BoldSign\Model\FormGroup[]**](FormGroup.md) |  | [optional]
 **enable_audit_trail_localization** | **bool** |  | [optional]
 **download_file_name** | **string** |  | [optional]
+**scheduled_send_time** | **int** |  | [optional]
+**allow_scheduled_send** | **bool** |  | [optional] [default to false]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -73,6 +73,7 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => '\BoldSign\Model\FormField[]',
         'allow_role_edit' => 'bool',
         'allow_role_delete' => 'bool',
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
         'enable_qes' => 'bool'
     ];
 
@@ -100,6 +101,7 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => null,
         'allow_role_edit' => null,
         'allow_role_delete' => null,
+        'recipient_notification_settings' => null,
         'enable_qes' => null
     ];
 
@@ -125,6 +127,7 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => true,
         'allow_role_edit' => false,
         'allow_role_delete' => false,
+        'recipient_notification_settings' => false,
         'enable_qes' => true
     ];
 
@@ -230,6 +233,7 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => 'formFields',
         'allow_role_edit' => 'allowRoleEdit',
         'allow_role_delete' => 'allowRoleDelete',
+        'recipient_notification_settings' => 'recipientNotificationSettings',
         'enable_qes' => 'enableQes'
     ];
 
@@ -255,6 +259,7 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => 'setFormFields',
         'allow_role_edit' => 'setAllowRoleEdit',
         'allow_role_delete' => 'setAllowRoleDelete',
+        'recipient_notification_settings' => 'setRecipientNotificationSettings',
         'enable_qes' => 'setEnableQes'
     ];
 
@@ -280,6 +285,7 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
         'form_fields' => 'getFormFields',
         'allow_role_edit' => 'getAllowRoleEdit',
         'allow_role_delete' => 'getAllowRoleDelete',
+        'recipient_notification_settings' => 'getRecipientNotificationSettings',
         'enable_qes' => 'getEnableQes'
     ];
 
@@ -497,6 +503,7 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('form_fields', $data ?? [], null);
         $this->setIfExists('allow_role_edit', $data ?? [], null);
         $this->setIfExists('allow_role_delete', $data ?? [], null);
+        $this->setIfExists('recipient_notification_settings', $data ?? [], null);
         $this->setIfExists('enable_qes', $data ?? [], null);
     }
 
@@ -1164,6 +1171,33 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable allow_role_delete cannot be null');
         }
         $this->container['allow_role_delete'] = $allow_role_delete;
+
+        return $this;
+    }
+
+    /**
+     * Gets recipient_notification_settings
+     *
+     * @return \BoldSign\Model\RecipientNotificationSettings|null
+     */
+    public function getRecipientNotificationSettings()
+    {
+        return $this->container['recipient_notification_settings'];
+    }
+
+    /**
+     * Sets recipient_notification_settings
+     *
+     * @param \BoldSign\Model\RecipientNotificationSettings|null $recipient_notification_settings recipient_notification_settings
+     *
+     * @return self
+     */
+    public function setRecipientNotificationSettings($recipient_notification_settings)
+    {
+        if (is_null($recipient_notification_settings)) {
+            throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
+        }
+        $this->container['recipient_notification_settings'] = $recipient_notification_settings;
 
         return $this;
     }

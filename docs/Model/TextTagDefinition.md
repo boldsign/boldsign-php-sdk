@@ -28,5 +28,6 @@ Name | Type | Description | Notes
 **label** | **string** |  | [optional]
 **tab_index** | **int** |  | [optional]
 **formula_field_settings** | [**\BoldSign\Model\FormulaFieldSettings**](FormulaFieldSettings.md) |  | [optional]
+**resize_option** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

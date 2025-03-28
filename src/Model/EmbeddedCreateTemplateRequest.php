@@ -91,6 +91,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'on_behalf_of' => 'string',
         'labels' => 'string[]',
         'template_labels' => 'string[]',
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
         'form_groups' => '\BoldSign\Model\FormGroup[]'
     ];
 
@@ -136,6 +137,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'on_behalf_of' => null,
         'labels' => null,
         'template_labels' => null,
+        'recipient_notification_settings' => null,
         'form_groups' => null
     ];
 
@@ -179,6 +181,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'on_behalf_of' => true,
         'labels' => true,
         'template_labels' => true,
+        'recipient_notification_settings' => false,
         'form_groups' => true
     ];
 
@@ -302,6 +305,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'on_behalf_of' => 'onBehalfOf',
         'labels' => 'labels',
         'template_labels' => 'templateLabels',
+        'recipient_notification_settings' => 'recipientNotificationSettings',
         'form_groups' => 'formGroups'
     ];
 
@@ -345,6 +349,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'on_behalf_of' => 'setOnBehalfOf',
         'labels' => 'setLabels',
         'template_labels' => 'setTemplateLabels',
+        'recipient_notification_settings' => 'setRecipientNotificationSettings',
         'form_groups' => 'setFormGroups'
     ];
 
@@ -388,6 +393,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'on_behalf_of' => 'getOnBehalfOf',
         'labels' => 'getLabels',
         'template_labels' => 'getTemplateLabels',
+        'recipient_notification_settings' => 'getRecipientNotificationSettings',
         'form_groups' => 'getFormGroups'
     ];
 
@@ -540,6 +546,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('on_behalf_of', $data ?? [], null);
         $this->setIfExists('labels', $data ?? [], null);
         $this->setIfExists('template_labels', $data ?? [], null);
+        $this->setIfExists('recipient_notification_settings', $data ?? [], null);
         $this->setIfExists('form_groups', $data ?? [], null);
     }
 
@@ -1714,6 +1721,33 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
             }
         }
         $this->container['template_labels'] = $template_labels;
+
+        return $this;
+    }
+
+    /**
+     * Gets recipient_notification_settings
+     *
+     * @return \BoldSign\Model\RecipientNotificationSettings|null
+     */
+    public function getRecipientNotificationSettings()
+    {
+        return $this->container['recipient_notification_settings'];
+    }
+
+    /**
+     * Sets recipient_notification_settings
+     *
+     * @param \BoldSign\Model\RecipientNotificationSettings|null $recipient_notification_settings recipient_notification_settings
+     *
+     * @return self
+     */
+    public function setRecipientNotificationSettings($recipient_notification_settings)
+    {
+        if (is_null($recipient_notification_settings)) {
+            throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
+        }
+        $this->container['recipient_notification_settings'] = $recipient_notification_settings;
 
         return $this;
     }

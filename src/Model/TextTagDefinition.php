@@ -80,7 +80,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'offset' => '\BoldSign\Model\TextTagOffset',
         'label' => 'string',
         'tab_index' => 'int',
-        'formula_field_settings' => '\BoldSign\Model\FormulaFieldSettings'
+        'formula_field_settings' => '\BoldSign\Model\FormulaFieldSettings',
+        'resize_option' => 'string'
     ];
 
     /**
@@ -114,7 +115,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'offset' => null,
         'label' => null,
         'tab_index' => 'int32',
-        'formula_field_settings' => null
+        'formula_field_settings' => null,
+        'resize_option' => null
     ];
 
     /**
@@ -146,7 +148,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'offset' => false,
         'label' => true,
         'tab_index' => true,
-        'formula_field_settings' => false
+        'formula_field_settings' => false,
+        'resize_option' => true
     ];
 
     /**
@@ -258,7 +261,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'offset' => 'offset',
         'label' => 'label',
         'tab_index' => 'tabIndex',
-        'formula_field_settings' => 'formulaFieldSettings'
+        'formula_field_settings' => 'formulaFieldSettings',
+        'resize_option' => 'resizeOption'
     ];
 
     /**
@@ -290,7 +294,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'offset' => 'setOffset',
         'label' => 'setLabel',
         'tab_index' => 'setTabIndex',
-        'formula_field_settings' => 'setFormulaFieldSettings'
+        'formula_field_settings' => 'setFormulaFieldSettings',
+        'resize_option' => 'setResizeOption'
     ];
 
     /**
@@ -322,7 +327,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'offset' => 'getOffset',
         'label' => 'getLabel',
         'tab_index' => 'getTabIndex',
-        'formula_field_settings' => 'getFormulaFieldSettings'
+        'formula_field_settings' => 'getFormulaFieldSettings',
+        'resize_option' => 'getResizeOption'
     ];
 
     /**
@@ -381,6 +387,11 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const TYPE_TITLE = 'Title';
     public const TYPE_COMPANY = 'Company';
     public const TYPE_FORMULA = 'Formula';
+    public const RESIZE_OPTION_GROW_VERTICALLY = 'GrowVertically';
+    public const RESIZE_OPTION_GROW_HORIZONTALLY = 'GrowHorizontally';
+    public const RESIZE_OPTION_GROW_BOTH = 'GrowBoth';
+    public const RESIZE_OPTION_FIXED = 'Fixed';
+    public const RESIZE_OPTION_AUTO_RESIZE_FONT = 'AutoResizeFont';
 
     /**
      * Gets allowable values of the enum
@@ -405,6 +416,22 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::TYPE_TITLE,
             self::TYPE_COMPANY,
             self::TYPE_FORMULA,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getResizeOptionAllowableValues()
+    {
+        return [
+            self::RESIZE_OPTION_GROW_VERTICALLY,
+            self::RESIZE_OPTION_GROW_HORIZONTALLY,
+            self::RESIZE_OPTION_GROW_BOTH,
+            self::RESIZE_OPTION_FIXED,
+            self::RESIZE_OPTION_AUTO_RESIZE_FONT,
         ];
     }
 
@@ -447,6 +474,7 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('label', $data ?? [], null);
         $this->setIfExists('tab_index', $data ?? [], null);
         $this->setIfExists('formula_field_settings', $data ?? [], null);
+        $this->setIfExists('resize_option', $data ?? [], null);
     }
 
     /**
@@ -512,6 +540,15 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
 
         if (!is_null($this->container['tab_index']) && ($this->container['tab_index'] < -1)) {
             $invalidProperties[] = "invalid value for 'tab_index', must be bigger than or equal to -1.";
+        }
+
+        $allowedValues = $this->getResizeOptionAllowableValues();
+        if (!is_null($this->container['resize_option']) && !in_array($this->container['resize_option'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'resize_option', must be one of '%s'",
+                $this->container['resize_option'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -1288,6 +1325,50 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable formula_field_settings cannot be null');
         }
         $this->container['formula_field_settings'] = $formula_field_settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets resize_option
+     *
+     * @return string|null
+     */
+    public function getResizeOption()
+    {
+        return $this->container['resize_option'];
+    }
+
+    /**
+     * Sets resize_option
+     *
+     * @param string|null $resize_option resize_option
+     *
+     * @return self
+     */
+    public function setResizeOption($resize_option)
+    {
+        if (is_null($resize_option)) {
+            array_push($this->openAPINullablesSetToNull, 'resize_option');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('resize_option', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getResizeOptionAllowableValues();
+        if (!is_null($resize_option) && !in_array($resize_option, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'resize_option', must be one of '%s'",
+                    $resize_option,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['resize_option'] = $resize_option;
 
         return $this;
     }

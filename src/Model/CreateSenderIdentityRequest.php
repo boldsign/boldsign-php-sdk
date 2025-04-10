@@ -313,8 +313,8 @@ class CreateSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonS
             $invalidProperties[] = "invalid value for 'email', the character length must be bigger than or equal to 0.";
         }
 
-        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 50)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 50.";
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 80)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 80.";
         }
 
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) < 0)) {
@@ -399,8 +399,8 @@ class CreateSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonS
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        if (!is_null($name) && (mb_strlen($name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling CreateSenderIdentityRequest., must be smaller than or equal to 50.');
+        if (!is_null($name) && (mb_strlen($name) > 80)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling CreateSenderIdentityRequest., must be smaller than or equal to 80.');
         }
         if (!is_null($name) && (mb_strlen($name) < 0)) {
             throw new \InvalidArgumentException('invalid length for $name when calling CreateSenderIdentityRequest., must be bigger than or equal to 0.');

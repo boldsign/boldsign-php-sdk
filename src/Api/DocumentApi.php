@@ -5858,6 +5858,7 @@ class DocumentApi
      * @param  string[] $sent_by sent_by (optional)
      * @param  string[] $recipients recipients (optional)
      * @param  string $transmit_type transmit_type (optional)
+     * @param  string $date_filter_type Date Filter as SentBetween and ExpiresOn. (optional)
      * @param  int $page_size Page size specified in get document list request. (optional, default to 10)
      * @param  \DateTime $start_date Start date of the document (optional)
      * @param  string[] $status Status of the document such as In-progress, Completed, Decline, Expired, Revoked, Draft. (optional)
@@ -5872,9 +5873,9 @@ class DocumentApi
      * @throws \InvalidArgumentException
      * @return \BoldSign\Model\DocumentRecords|\BoldSign\Model\ErrorResult
      */
-    public function listDocuments($page, $sent_by = null, $recipients = null, $transmit_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['listDocuments'][0])
+    public function listDocuments($page, $sent_by = null, $recipients = null, $transmit_type = null, $date_filter_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['listDocuments'][0])
     {
-        list($response) = $this->listDocumentsWithHttpInfo($page, $sent_by, $recipients, $transmit_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType);
+        list($response) = $this->listDocumentsWithHttpInfo($page, $sent_by, $recipients, $transmit_type, $date_filter_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType);
         return $response;
     }
 
@@ -5887,6 +5888,7 @@ class DocumentApi
      * @param  string[] $sent_by (optional)
      * @param  string[] $recipients (optional)
      * @param  string $transmit_type (optional)
+     * @param  string $date_filter_type Date Filter as SentBetween and ExpiresOn. (optional)
      * @param  int $page_size Page size specified in get document list request. (optional, default to 10)
      * @param  \DateTime $start_date Start date of the document (optional)
      * @param  string[] $status Status of the document such as In-progress, Completed, Decline, Expired, Revoked, Draft. (optional)
@@ -5901,9 +5903,9 @@ class DocumentApi
      * @throws \InvalidArgumentException
      * @return array of \BoldSign\Model\DocumentRecords|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listDocumentsWithHttpInfo($page, $sent_by = null, $recipients = null, $transmit_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['listDocuments'][0])
+    public function listDocumentsWithHttpInfo($page, $sent_by = null, $recipients = null, $transmit_type = null, $date_filter_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['listDocuments'][0])
     {
-        $request = $this->listDocumentsRequest($page, $sent_by, $recipients, $transmit_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType);
+        $request = $this->listDocumentsRequest($page, $sent_by, $recipients, $transmit_type, $date_filter_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6057,6 +6059,7 @@ class DocumentApi
      * @param  string[] $sent_by (optional)
      * @param  string[] $recipients (optional)
      * @param  string $transmit_type (optional)
+     * @param  string $date_filter_type Date Filter as SentBetween and ExpiresOn. (optional)
      * @param  int $page_size Page size specified in get document list request. (optional, default to 10)
      * @param  \DateTime $start_date Start date of the document (optional)
      * @param  string[] $status Status of the document such as In-progress, Completed, Decline, Expired, Revoked, Draft. (optional)
@@ -6070,9 +6073,9 @@ class DocumentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDocumentsAsync($page, $sent_by = null, $recipients = null, $transmit_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['listDocuments'][0])
+    public function listDocumentsAsync($page, $sent_by = null, $recipients = null, $transmit_type = null, $date_filter_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['listDocuments'][0])
     {
-        return $this->listDocumentsAsyncWithHttpInfo($page, $sent_by, $recipients, $transmit_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType)
+        return $this->listDocumentsAsyncWithHttpInfo($page, $sent_by, $recipients, $transmit_type, $date_filter_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6089,6 +6092,7 @@ class DocumentApi
      * @param  string[] $sent_by (optional)
      * @param  string[] $recipients (optional)
      * @param  string $transmit_type (optional)
+     * @param  string $date_filter_type Date Filter as SentBetween and ExpiresOn. (optional)
      * @param  int $page_size Page size specified in get document list request. (optional, default to 10)
      * @param  \DateTime $start_date Start date of the document (optional)
      * @param  string[] $status Status of the document such as In-progress, Completed, Decline, Expired, Revoked, Draft. (optional)
@@ -6102,10 +6106,10 @@ class DocumentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDocumentsAsyncWithHttpInfo($page, $sent_by = null, $recipients = null, $transmit_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['listDocuments'][0])
+    public function listDocumentsAsyncWithHttpInfo($page, $sent_by = null, $recipients = null, $transmit_type = null, $date_filter_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['listDocuments'][0])
     {
         $returnType = '\BoldSign\Model\DocumentRecords';
-        $request = $this->listDocumentsRequest($page, $sent_by, $recipients, $transmit_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType);
+        $request = $this->listDocumentsRequest($page, $sent_by, $recipients, $transmit_type, $date_filter_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6150,6 +6154,7 @@ class DocumentApi
      * @param  string[] $sent_by (optional)
      * @param  string[] $recipients (optional)
      * @param  string $transmit_type (optional)
+     * @param  string $date_filter_type Date Filter as SentBetween and ExpiresOn. (optional)
      * @param  int $page_size Page size specified in get document list request. (optional, default to 10)
      * @param  \DateTime $start_date Start date of the document (optional)
      * @param  string[] $status Status of the document such as In-progress, Completed, Decline, Expired, Revoked, Draft. (optional)
@@ -6163,7 +6168,7 @@ class DocumentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listDocumentsRequest($page, $sent_by = null, $recipients = null, $transmit_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['listDocuments'][0])
+    public function listDocumentsRequest($page, $sent_by = null, $recipients = null, $transmit_type = null, $date_filter_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['listDocuments'][0])
     {
 
         // verify the required parameter 'page' is set
@@ -6172,6 +6177,7 @@ class DocumentApi
                 'Missing the required parameter $page when calling listDocuments'
             );
         }
+
 
 
 
@@ -6214,6 +6220,15 @@ class DocumentApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $transmit_type,
             'TransmitType', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $date_filter_type,
+            'DateFilterType', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -8087,6 +8102,7 @@ class DocumentApi
      * @param  string[] $user_id UserId of the  Team document. (optional)
      * @param  string[] $team_id TeamId  of the  Team document. (optional)
      * @param  string $transmit_type Transmit type as Sent, Received and Both. (optional)
+     * @param  string $date_filter_type Date Filter as SentBetween and Expiring. (optional)
      * @param  int $page_size Page size specified in get document list request. (optional, default to 10)
      * @param  \DateTime $start_date Start date of the document (optional)
      * @param  string[] $status Status of the document such as In-progress, Completed, Decline, Expired, Revoked, Draft. (optional)
@@ -8101,9 +8117,9 @@ class DocumentApi
      * @throws \InvalidArgumentException
      * @return \BoldSign\Model\TeamDocumentRecords|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
-    public function teamDocuments($page, $user_id = null, $team_id = null, $transmit_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['teamDocuments'][0])
+    public function teamDocuments($page, $user_id = null, $team_id = null, $transmit_type = null, $date_filter_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['teamDocuments'][0])
     {
-        list($response) = $this->teamDocumentsWithHttpInfo($page, $user_id, $team_id, $transmit_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType);
+        list($response) = $this->teamDocumentsWithHttpInfo($page, $user_id, $team_id, $transmit_type, $date_filter_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType);
         return $response;
     }
 
@@ -8116,6 +8132,7 @@ class DocumentApi
      * @param  string[] $user_id UserId of the  Team document. (optional)
      * @param  string[] $team_id TeamId  of the  Team document. (optional)
      * @param  string $transmit_type Transmit type as Sent, Received and Both. (optional)
+     * @param  string $date_filter_type Date Filter as SentBetween and Expiring. (optional)
      * @param  int $page_size Page size specified in get document list request. (optional, default to 10)
      * @param  \DateTime $start_date Start date of the document (optional)
      * @param  string[] $status Status of the document such as In-progress, Completed, Decline, Expired, Revoked, Draft. (optional)
@@ -8130,9 +8147,9 @@ class DocumentApi
      * @throws \InvalidArgumentException
      * @return array of \BoldSign\Model\TeamDocumentRecords|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
-    public function teamDocumentsWithHttpInfo($page, $user_id = null, $team_id = null, $transmit_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['teamDocuments'][0])
+    public function teamDocumentsWithHttpInfo($page, $user_id = null, $team_id = null, $transmit_type = null, $date_filter_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['teamDocuments'][0])
     {
-        $request = $this->teamDocumentsRequest($page, $user_id, $team_id, $transmit_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType);
+        $request = $this->teamDocumentsRequest($page, $user_id, $team_id, $transmit_type, $date_filter_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -8321,6 +8338,7 @@ class DocumentApi
      * @param  string[] $user_id UserId of the  Team document. (optional)
      * @param  string[] $team_id TeamId  of the  Team document. (optional)
      * @param  string $transmit_type Transmit type as Sent, Received and Both. (optional)
+     * @param  string $date_filter_type Date Filter as SentBetween and Expiring. (optional)
      * @param  int $page_size Page size specified in get document list request. (optional, default to 10)
      * @param  \DateTime $start_date Start date of the document (optional)
      * @param  string[] $status Status of the document such as In-progress, Completed, Decline, Expired, Revoked, Draft. (optional)
@@ -8334,9 +8352,9 @@ class DocumentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function teamDocumentsAsync($page, $user_id = null, $team_id = null, $transmit_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['teamDocuments'][0])
+    public function teamDocumentsAsync($page, $user_id = null, $team_id = null, $transmit_type = null, $date_filter_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['teamDocuments'][0])
     {
-        return $this->teamDocumentsAsyncWithHttpInfo($page, $user_id, $team_id, $transmit_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType)
+        return $this->teamDocumentsAsyncWithHttpInfo($page, $user_id, $team_id, $transmit_type, $date_filter_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -8353,6 +8371,7 @@ class DocumentApi
      * @param  string[] $user_id UserId of the  Team document. (optional)
      * @param  string[] $team_id TeamId  of the  Team document. (optional)
      * @param  string $transmit_type Transmit type as Sent, Received and Both. (optional)
+     * @param  string $date_filter_type Date Filter as SentBetween and Expiring. (optional)
      * @param  int $page_size Page size specified in get document list request. (optional, default to 10)
      * @param  \DateTime $start_date Start date of the document (optional)
      * @param  string[] $status Status of the document such as In-progress, Completed, Decline, Expired, Revoked, Draft. (optional)
@@ -8366,10 +8385,10 @@ class DocumentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function teamDocumentsAsyncWithHttpInfo($page, $user_id = null, $team_id = null, $transmit_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['teamDocuments'][0])
+    public function teamDocumentsAsyncWithHttpInfo($page, $user_id = null, $team_id = null, $transmit_type = null, $date_filter_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['teamDocuments'][0])
     {
         $returnType = '\BoldSign\Model\TeamDocumentRecords';
-        $request = $this->teamDocumentsRequest($page, $user_id, $team_id, $transmit_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType);
+        $request = $this->teamDocumentsRequest($page, $user_id, $team_id, $transmit_type, $date_filter_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -8414,6 +8433,7 @@ class DocumentApi
      * @param  string[] $user_id UserId of the  Team document. (optional)
      * @param  string[] $team_id TeamId  of the  Team document. (optional)
      * @param  string $transmit_type Transmit type as Sent, Received and Both. (optional)
+     * @param  string $date_filter_type Date Filter as SentBetween and Expiring. (optional)
      * @param  int $page_size Page size specified in get document list request. (optional, default to 10)
      * @param  \DateTime $start_date Start date of the document (optional)
      * @param  string[] $status Status of the document such as In-progress, Completed, Decline, Expired, Revoked, Draft. (optional)
@@ -8427,7 +8447,7 @@ class DocumentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function teamDocumentsRequest($page, $user_id = null, $team_id = null, $transmit_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['teamDocuments'][0])
+    public function teamDocumentsRequest($page, $user_id = null, $team_id = null, $transmit_type = null, $date_filter_type = null, $page_size = 10, $start_date = null, $status = null, $end_date = null, $search_key = null, $labels = null, $next_cursor = null, $brand_ids = null, string $contentType = self::contentTypes['teamDocuments'][0])
     {
 
         // verify the required parameter 'page' is set
@@ -8436,6 +8456,7 @@ class DocumentApi
                 'Missing the required parameter $page when calling teamDocuments'
             );
         }
+
 
 
 
@@ -8478,6 +8499,15 @@ class DocumentApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $transmit_type,
             'TransmitType', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $date_filter_type,
+            'DateFilterType', // param base name
             'string', // openApiType
             'form', // style
             true, // explode

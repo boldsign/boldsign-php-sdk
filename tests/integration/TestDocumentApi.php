@@ -196,7 +196,7 @@ class TestDocumentApi  extends TestCase
         $page = 1;
         $pageSize = 10;
         try {
-            $list_documents_response = $this->document_api->listDocuments($page, null, null, null, $pageSize);
+            $list_documents_response = $this->document_api->listDocuments($page, null, null, null,null, $pageSize);
             $this->assertTrue($list_documents_response !=null);
             $this->assertTrue(count($list_documents_response->getResult()) > 0);
         }catch (ApiException $e) {
@@ -213,7 +213,7 @@ class TestDocumentApi  extends TestCase
         $page = 300;
         $pageSize = 250;
         try {
-            $list_documents_response = $this->document_api->listDocuments($page, null, null, null, $pageSize);
+            $list_documents_response = $this->document_api->listDocuments($page, null, null, null,null, $pageSize);
         }catch (ApiException $e) {
             $this->assertTrue($e->getCode() === 400);
             $this->assertTrue(strpos($e->getMessage(), "{\"PageSize\":[\"Provide a valid page size between 1 and 100\"]}") !== false);
@@ -229,7 +229,7 @@ class TestDocumentApi  extends TestCase
         $page = 1;
         $pageSize = 10;
         try {
-            $list_documents_response = $this->document_api->teamDocuments($page, null, null, null, $pageSize);
+            $list_documents_response = $this->document_api->teamDocuments($page, null, null, null,null, $pageSize);
             $this->assertTrue($list_documents_response !=null);
             $this->assertTrue(count($list_documents_response->getResult()) > 0);
         }catch (ApiException $e) {
@@ -246,7 +246,7 @@ class TestDocumentApi  extends TestCase
         $page = 300;
         $pageSize = 250;
         try {
-            $list_documents_response = $this->document_api->teamDocuments($page, null, null, null, $pageSize);
+            $list_documents_response = $this->document_api->teamDocuments($page, null, null, null,null, $pageSize);
         }catch (ApiException $e) {
             $this->assertTrue($e->getCode() === 400);
             $this->assertTrue(strpos($e->getMessage(), "{\"PageSize\":[\"Provide a valid page size between 1 and 100\"]}") !== false);

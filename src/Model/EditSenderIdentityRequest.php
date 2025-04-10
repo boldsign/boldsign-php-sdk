@@ -288,8 +288,8 @@ class EditSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 50)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 50.";
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 80)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 80.";
         }
 
         if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) < 0)) {
@@ -340,8 +340,8 @@ class EditSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonSer
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        if (!is_null($name) && (mb_strlen($name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling EditSenderIdentityRequest., must be smaller than or equal to 50.');
+        if (!is_null($name) && (mb_strlen($name) > 80)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling EditSenderIdentityRequest., must be smaller than or equal to 80.');
         }
         if (!is_null($name) && (mb_strlen($name) < 0)) {
             throw new \InvalidArgumentException('invalid length for $name when calling EditSenderIdentityRequest., must be bigger than or equal to 0.');

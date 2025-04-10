@@ -791,7 +791,7 @@ try {
 ## `listDocuments()`
 
 ```php
-listDocuments($page, $sent_by, $recipients, $transmit_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids): \BoldSign\Model\DocumentRecords
+listDocuments($page, $sent_by, $recipients, $transmit_type, $date_filter_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids): \BoldSign\Model\DocumentRecords
 ```
 
 List user documents.
@@ -810,6 +810,7 @@ $page = 1; // int | Page index specified in get document list request.
 $sent_by = array('sent_by_example'); // string[]
 $recipients = array('recipients_example'); // string[]
 $transmit_type = 'transmit_type_example'; // string
+$date_filter_type = 'date_filter_type_example'; // string | Date Filter as SentBetween and ExpiresOn.
 $page_size = 10; // int | Page size specified in get document list request.
 $start_date = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Start date of the document
 $status = array('status_example'); // string[] | Status of the document such as In-progress, Completed, Decline, Expired, Revoked, Draft.
@@ -820,7 +821,7 @@ $next_cursor = 56; // int | Next cursor value for pagination, required for fetch
 $brand_ids = array('brand_ids_example'); // string[] | BrandId(s) of the document.
 
 try {
-    $result = $apiInstance->listDocuments($page, $sent_by, $recipients, $transmit_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids);
+    $result = $apiInstance->listDocuments($page, $sent_by, $recipients, $transmit_type, $date_filter_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DocumentApi->listDocuments: ', $e->getMessage(), PHP_EOL;
@@ -835,6 +836,7 @@ try {
 | **sent_by** | [**string[]**](../Model/string.md)|  | [optional] |
 | **recipients** | [**string[]**](../Model/string.md)|  | [optional] |
 | **transmit_type** | **string**|  | [optional] |
+| **date_filter_type** | **string**| Date Filter as SentBetween and ExpiresOn. | [optional] |
 | **page_size** | **int**| Page size specified in get document list request. | [optional] [default to 10] |
 | **start_date** | **\DateTime**| Start date of the document | [optional] |
 | **status** | [**string[]**](../Model/string.md)| Status of the document such as In-progress, Completed, Decline, Expired, Revoked, Draft. | [optional] |
@@ -1125,7 +1127,7 @@ try {
 ## `teamDocuments()`
 
 ```php
-teamDocuments($page, $user_id, $team_id, $transmit_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids): \BoldSign\Model\TeamDocumentRecords
+teamDocuments($page, $user_id, $team_id, $transmit_type, $date_filter_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids): \BoldSign\Model\TeamDocumentRecords
 ```
 
 Get user Team documents.
@@ -1144,6 +1146,7 @@ $page = 1; // int | Page index specified in get document list request.
 $user_id = array('user_id_example'); // string[] | UserId of the  Team document.
 $team_id = array('team_id_example'); // string[] | TeamId  of the  Team document.
 $transmit_type = 'transmit_type_example'; // string | Transmit type as Sent, Received and Both.
+$date_filter_type = 'date_filter_type_example'; // string | Date Filter as SentBetween and Expiring.
 $page_size = 10; // int | Page size specified in get document list request.
 $start_date = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Start date of the document
 $status = array('status_example'); // string[] | Status of the document such as In-progress, Completed, Decline, Expired, Revoked, Draft.
@@ -1154,7 +1157,7 @@ $next_cursor = 56; // int | Next cursor value for pagination, required for fetch
 $brand_ids = array('brand_ids_example'); // string[] | BrandId(s) of the document.
 
 try {
-    $result = $apiInstance->teamDocuments($page, $user_id, $team_id, $transmit_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids);
+    $result = $apiInstance->teamDocuments($page, $user_id, $team_id, $transmit_type, $date_filter_type, $page_size, $start_date, $status, $end_date, $search_key, $labels, $next_cursor, $brand_ids);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DocumentApi->teamDocuments: ', $e->getMessage(), PHP_EOL;
@@ -1169,6 +1172,7 @@ try {
 | **user_id** | [**string[]**](../Model/string.md)| UserId of the  Team document. | [optional] |
 | **team_id** | [**string[]**](../Model/string.md)| TeamId  of the  Team document. | [optional] |
 | **transmit_type** | **string**| Transmit type as Sent, Received and Both. | [optional] |
+| **date_filter_type** | **string**| Date Filter as SentBetween and Expiring. | [optional] |
 | **page_size** | **int**| Page size specified in get document list request. | [optional] [default to 10] |
 | **start_date** | **\DateTime**| Start date of the document | [optional] |
 | **status** | [**string[]**](../Model/string.md)| Status of the document such as In-progress, Completed, Decline, Expired, Revoked, Draft. | [optional] |

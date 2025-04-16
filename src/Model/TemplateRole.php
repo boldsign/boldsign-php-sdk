@@ -373,6 +373,7 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DELIVERY_MODE_EMAIL = 'Email';
     public const DELIVERY_MODE_SMS = 'SMS';
     public const DELIVERY_MODE_EMAIL_AND_SMS = 'EmailAndSMS';
+    public const DELIVERY_MODE_WHATS_APP = 'WhatsApp';
 
     /**
      * Gets allowable values of the enum
@@ -469,6 +470,7 @@ class TemplateRole implements ModelInterface, ArrayAccess, \JsonSerializable
             self::DELIVERY_MODE_EMAIL,
             self::DELIVERY_MODE_SMS,
             self::DELIVERY_MODE_EMAIL_AND_SMS,
+            self::DELIVERY_MODE_WHATS_APP,
         ];
     }
 

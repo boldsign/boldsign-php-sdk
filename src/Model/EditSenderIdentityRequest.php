@@ -59,7 +59,8 @@ class EditSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPITypes = [
         'name' => 'string',
         'notification_settings' => '\BoldSign\Model\NotificationSettings',
-        'redirect_url' => 'string'
+        'redirect_url' => 'string',
+        'meta_data' => 'array<string,string>'
     ];
 
     /**
@@ -72,7 +73,8 @@ class EditSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $openAPIFormats = [
         'name' => null,
         'notification_settings' => null,
-        'redirect_url' => 'uri'
+        'redirect_url' => 'uri',
+        'meta_data' => null
     ];
 
     /**
@@ -83,7 +85,8 @@ class EditSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static array $openAPINullables = [
         'name' => true,
         'notification_settings' => false,
-        'redirect_url' => true
+        'redirect_url' => true,
+        'meta_data' => true
     ];
 
     /**
@@ -174,7 +177,8 @@ class EditSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $attributeMap = [
         'name' => 'name',
         'notification_settings' => 'notificationSettings',
-        'redirect_url' => 'redirectUrl'
+        'redirect_url' => 'redirectUrl',
+        'meta_data' => 'metaData'
     ];
 
     /**
@@ -185,7 +189,8 @@ class EditSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $setters = [
         'name' => 'setName',
         'notification_settings' => 'setNotificationSettings',
-        'redirect_url' => 'setRedirectUrl'
+        'redirect_url' => 'setRedirectUrl',
+        'meta_data' => 'setMetaData'
     ];
 
     /**
@@ -196,7 +201,8 @@ class EditSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $getters = [
         'name' => 'getName',
         'notification_settings' => 'getNotificationSettings',
-        'redirect_url' => 'getRedirectUrl'
+        'redirect_url' => 'getRedirectUrl',
+        'meta_data' => 'getMetaData'
     ];
 
     /**
@@ -259,6 +265,7 @@ class EditSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('notification_settings', $data ?? [], null);
         $this->setIfExists('redirect_url', $data ?? [], null);
+        $this->setIfExists('meta_data', $data ?? [], null);
     }
 
     /**
@@ -409,6 +416,42 @@ class EditSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonSer
             }
         }
         $this->container['redirect_url'] = $redirect_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets meta_data
+     *
+     * @return array<string,string>|null
+     */
+    public function getMetaData()
+    {
+        return $this->container['meta_data'];
+    }
+
+    /**
+     * Sets meta_data
+     *
+     * @param array<string,string>|null $meta_data meta_data
+     *
+     * @return self
+     */
+    public function setMetaData($meta_data)
+    {
+        if (is_null($meta_data)) {
+            array_push($this->openAPINullablesSetToNull, 'meta_data');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('meta_data', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+
+        $this->container['meta_data'] = $meta_data;
 
         return $this;
     }

@@ -61,7 +61,8 @@ class CreateSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonS
         'name' => 'string',
         'notification_settings' => '\BoldSign\Model\NotificationSettings',
         'brand_id' => 'string',
-        'redirect_url' => 'string'
+        'redirect_url' => 'string',
+        'meta_data' => 'array<string,string>'
     ];
 
     /**
@@ -76,7 +77,8 @@ class CreateSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonS
         'name' => null,
         'notification_settings' => null,
         'brand_id' => null,
-        'redirect_url' => 'uri'
+        'redirect_url' => 'uri',
+        'meta_data' => null
     ];
 
     /**
@@ -89,7 +91,8 @@ class CreateSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonS
         'name' => true,
         'notification_settings' => false,
         'brand_id' => true,
-        'redirect_url' => true
+        'redirect_url' => true,
+        'meta_data' => true
     ];
 
     /**
@@ -182,7 +185,8 @@ class CreateSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonS
         'name' => 'name',
         'notification_settings' => 'notificationSettings',
         'brand_id' => 'brandId',
-        'redirect_url' => 'redirectUrl'
+        'redirect_url' => 'redirectUrl',
+        'meta_data' => 'metaData'
     ];
 
     /**
@@ -195,7 +199,8 @@ class CreateSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonS
         'name' => 'setName',
         'notification_settings' => 'setNotificationSettings',
         'brand_id' => 'setBrandId',
-        'redirect_url' => 'setRedirectUrl'
+        'redirect_url' => 'setRedirectUrl',
+        'meta_data' => 'setMetaData'
     ];
 
     /**
@@ -208,7 +213,8 @@ class CreateSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonS
         'name' => 'getName',
         'notification_settings' => 'getNotificationSettings',
         'brand_id' => 'getBrandId',
-        'redirect_url' => 'getRedirectUrl'
+        'redirect_url' => 'getRedirectUrl',
+        'meta_data' => 'getMetaData'
     ];
 
     /**
@@ -273,6 +279,7 @@ class CreateSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('notification_settings', $data ?? [], null);
         $this->setIfExists('brand_id', $data ?? [], null);
         $this->setIfExists('redirect_url', $data ?? [], null);
+        $this->setIfExists('meta_data', $data ?? [], null);
     }
 
     /**
@@ -502,6 +509,42 @@ class CreateSenderIdentityRequest implements ModelInterface, ArrayAccess, \JsonS
             }
         }
         $this->container['redirect_url'] = $redirect_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets meta_data
+     *
+     * @return array<string,string>|null
+     */
+    public function getMetaData()
+    {
+        return $this->container['meta_data'];
+    }
+
+    /**
+     * Sets meta_data
+     *
+     * @param array<string,string>|null $meta_data meta_data
+     *
+     * @return self
+     */
+    public function setMetaData($meta_data)
+    {
+        if (is_null($meta_data)) {
+            array_push($this->openAPINullablesSetToNull, 'meta_data');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('meta_data', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+
+
+        $this->container['meta_data'] = $meta_data;
 
         return $this;
     }

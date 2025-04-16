@@ -81,7 +81,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'id_verification' => '\BoldSign\Model\IdVerification',
         'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
         'authentication_retry_count' => 'int',
-        'enable_qes' => 'bool'
+        'enable_qes' => 'bool',
+        'delivery_mode' => 'string'
     ];
 
     /**
@@ -116,7 +117,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'id_verification' => null,
         'recipient_notification_settings' => null,
         'authentication_retry_count' => 'int32',
-        'enable_qes' => null
+        'enable_qes' => null,
+        'delivery_mode' => null
     ];
 
     /**
@@ -149,7 +151,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'id_verification' => false,
         'recipient_notification_settings' => false,
         'authentication_retry_count' => true,
-        'enable_qes' => true
+        'enable_qes' => true,
+        'delivery_mode' => false
     ];
 
     /**
@@ -262,7 +265,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'id_verification' => 'idVerification',
         'recipient_notification_settings' => 'recipientNotificationSettings',
         'authentication_retry_count' => 'authenticationRetryCount',
-        'enable_qes' => 'enableQes'
+        'enable_qes' => 'enableQes',
+        'delivery_mode' => 'deliveryMode'
     ];
 
     /**
@@ -295,7 +299,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'id_verification' => 'setIdVerification',
         'recipient_notification_settings' => 'setRecipientNotificationSettings',
         'authentication_retry_count' => 'setAuthenticationRetryCount',
-        'enable_qes' => 'setEnableQes'
+        'enable_qes' => 'setEnableQes',
+        'delivery_mode' => 'setDeliveryMode'
     ];
 
     /**
@@ -328,7 +333,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'id_verification' => 'getIdVerification',
         'recipient_notification_settings' => 'getRecipientNotificationSettings',
         'authentication_retry_count' => 'getAuthenticationRetryCount',
-        'enable_qes' => 'getEnableQes'
+        'enable_qes' => 'getEnableQes',
+        'delivery_mode' => 'getDeliveryMode'
     ];
 
     /**
@@ -418,6 +424,10 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
     public const LOCALE_RU = 'RU';
     public const LOCALE_SV = 'SV';
     public const LOCALE__DEFAULT = 'Default';
+    public const DELIVERY_MODE_EMAIL = 'Email';
+    public const DELIVERY_MODE_SMS = 'SMS';
+    public const DELIVERY_MODE_EMAIL_AND_SMS = 'EmailAndSMS';
+    public const DELIVERY_MODE_WHATS_APP = 'WhatsApp';
 
     /**
      * Gets allowable values of the enum
@@ -521,6 +531,21 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getDeliveryModeAllowableValues()
+    {
+        return [
+            self::DELIVERY_MODE_EMAIL,
+            self::DELIVERY_MODE_SMS,
+            self::DELIVERY_MODE_EMAIL_AND_SMS,
+            self::DELIVERY_MODE_WHATS_APP,
+        ];
+    }
+
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -560,6 +585,7 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('recipient_notification_settings', $data ?? [], null);
         $this->setIfExists('authentication_retry_count', $data ?? [], null);
         $this->setIfExists('enable_qes', $data ?? [], null);
+        $this->setIfExists('delivery_mode', $data ?? [], null);
     }
 
     /**
@@ -630,6 +656,15 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'locale', must be one of '%s'",
                 $this->container['locale'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getDeliveryModeAllowableValues();
+        if (!is_null($this->container['delivery_mode']) && !in_array($this->container['delivery_mode'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'delivery_mode', must be one of '%s'",
+                $this->container['delivery_mode'],
                 implode("', '", $allowedValues)
             );
         }
@@ -1440,6 +1475,43 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
             }
         }
         $this->container['enable_qes'] = $enable_qes;
+
+        return $this;
+    }
+
+    /**
+     * Gets delivery_mode
+     *
+     * @return string|null
+     */
+    public function getDeliveryMode()
+    {
+        return $this->container['delivery_mode'];
+    }
+
+    /**
+     * Sets delivery_mode
+     *
+     * @param string|null $delivery_mode delivery_mode
+     *
+     * @return self
+     */
+    public function setDeliveryMode($delivery_mode)
+    {
+        if (is_null($delivery_mode)) {
+            throw new \InvalidArgumentException('non-nullable delivery_mode cannot be null');
+        }
+        $allowedValues = $this->getDeliveryModeAllowableValues();
+        if (!in_array($delivery_mode, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'delivery_mode', must be one of '%s'",
+                    $delivery_mode,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['delivery_mode'] = $delivery_mode;
 
         return $this;
     }

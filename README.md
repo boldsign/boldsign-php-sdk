@@ -67,7 +67,7 @@ $send_for_sign->setFiles(['\tests\data\agreement.pdf']);
 $documentCreated = $documentApi->sendDocument($send_for_sign);
 ```
 
-## API Endpoints
+## Documentation for API Endpoints
 
 All URIs are relative to *https://api.boldsign.com*
 

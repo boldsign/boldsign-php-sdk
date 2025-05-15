@@ -70,6 +70,16 @@ class ApiException extends Exception
      */
     public function __construct($message = "", $code = 0, $responseHeaders = [], $responseBody = null)
     {
+        if($code === 401) {
+            $message = "Unauthorized request (401): Invalid authentication.";
+        } else {
+            if($responseBody instanceof \stdClass || is_array($responseBody)){
+                $message = json_encode($responseBody, JSON_PRETTY_PRINT);
+            } elseif (is_string($responseBody)) {
+                $message = $responseBody;
+            }
+        }
+
         parent::__construct($message, $code);
         $this->responseHeaders = $responseHeaders;
         $this->responseBody = $responseBody;

@@ -685,7 +685,7 @@ class ObjectSerializer
                         );
                 }
 
-                $formParams[$key] = $listValues;
+                $formParams[$true_key] = $listValues;
                 continue;
             }
 

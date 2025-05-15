@@ -16,7 +16,7 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 ```json
 {
     "require": {
-        "boldsign/boldsign-php": "1.0.0-beta.4"
+        "boldsign/boldsign-php": "1.0.0-beta.5"
     },
     "minimum-stability": "dev"
 }
@@ -27,7 +27,7 @@ Then run `composer install`
 Alternatively, install directly with
 
 ```
-composer require boldsign/boldsign-php:1.0.0-beta.4
+composer require boldsign/boldsign-php:1.0.0-beta.5
 ```
 
 ## Getting Started
@@ -110,6 +110,9 @@ All URIs are relative to *https://api.boldsign.com*
 | *DocumentApi* | [**revokeDocument**](docs/Api/DocumentApi.md#revokedocument) | **POST** /v1/document/revoke | Revoke the document. |
 | *DocumentApi* | [**sendDocument**](docs/Api/DocumentApi.md#senddocument) | **POST** /v1/document/send | Sends the document for sign. |
 | *DocumentApi* | [**teamDocuments**](docs/Api/DocumentApi.md#teamdocuments) | **GET** /v1/document/teamlist | Get user Team documents. |
+| *IdentityVerificationApi* | [**createEmbeddedVerificationUrl**](docs/Api/IdentityVerificationApi.md#createembeddedverificationurl) | **POST** /v1/identityVerification/createEmbeddedVerificationUrl | Generate a URL that embeds manual ID verification for the specified document signer into your application. |
+| *IdentityVerificationApi* | [**image**](docs/Api/IdentityVerificationApi.md#image) | **POST** /v1/identityVerification/image | Retrieve the uploaded ID verification document or selfie image for the specified document signer using the file ID. |
+| *IdentityVerificationApi* | [**report**](docs/Api/IdentityVerificationApi.md#report) | **POST** /v1/identityVerification/report | Retrieve the ID verification report for the specified document signer. |
 | *PlanApi* | [**apiCreditsCount**](docs/Api/PlanApi.md#apicreditscount) | **GET** /v1/plan/apiCreditsCount | Gets the Api credits details. |
 | *SenderIdentitiesApi* | [**createSenderIdentities**](docs/Api/SenderIdentitiesApi.md#createsenderidentities) | **POST** /v1/senderIdentities/create | Creates sender identity. |
 | *SenderIdentitiesApi* | [**deleteSenderIdentities**](docs/Api/SenderIdentitiesApi.md#deletesenderidentities) | **DELETE** /v1/senderIdentities/delete | Deletes sender identity. |
@@ -139,6 +142,7 @@ All URIs are relative to *https://api.boldsign.com*
 | *UserApi* | [**getUser**](docs/Api/UserApi.md#getuser) | **GET** /v1/users/get | Get summary of the user. |
 | *UserApi* | [**listUsers**](docs/Api/UserApi.md#listusers) | **GET** /v1/users/list | List user documents. |
 | *UserApi* | [**resendInvitation**](docs/Api/UserApi.md#resendinvitation) | **POST** /v1/users/resendInvitation | Resend the users invitation. |
+| *UserApi* | [**updateMetaData**](docs/Api/UserApi.md#updatemetadata) | **PUT** /v1/users/updateMetaData | Update new User meta data details. |
 | *UserApi* | [**updateUser**](docs/Api/UserApi.md#updateuser) | **PUT** /v1/users/update | Update new User role. |
 
 
@@ -146,6 +150,7 @@ All URIs are relative to *https://api.boldsign.com*
 
 - [AccessCodeDetail](docs/Model/AccessCodeDetail.md)
 - [AccessCodeDetails](docs/Model/AccessCodeDetails.md)
+- [Address](docs/Model/Address.md)
 - [AttachmentInfo](docs/Model/AttachmentInfo.md)
 - [AuditTrail](docs/Model/AuditTrail.md)
 - [Base64File](docs/Model/Base64File.md)
@@ -173,6 +178,7 @@ All URIs are relative to *https://api.boldsign.com*
 - [CustomFieldCollection](docs/Model/CustomFieldCollection.md)
 - [CustomFieldMessage](docs/Model/CustomFieldMessage.md)
 - [CustomFormField](docs/Model/CustomFormField.md)
+- [Date](docs/Model/Date.md)
 - [DeleteCustomFieldReply](docs/Model/DeleteCustomFieldReply.md)
 - [Document](docs/Model/Document.md)
 - [DocumentCC](docs/Model/DocumentCC.md)
@@ -189,18 +195,22 @@ All URIs are relative to *https://api.boldsign.com*
 - [DocumentSigner](docs/Model/DocumentSigner.md)
 - [DocumentSignerDetails](docs/Model/DocumentSignerDetails.md)
 - [DocumentTags](docs/Model/DocumentTags.md)
+- [DownloadImageRequest](docs/Model/DownloadImageRequest.md)
 - [EditSenderIdentityRequest](docs/Model/EditSenderIdentityRequest.md)
 - [EditTemplateRequest](docs/Model/EditTemplateRequest.md)
 - [EditableDateFieldSettings](docs/Model/EditableDateFieldSettings.md)
 - [EmbeddedCreateTemplateRequest](docs/Model/EmbeddedCreateTemplateRequest.md)
 - [EmbeddedCustomFieldCreated](docs/Model/EmbeddedCustomFieldCreated.md)
 - [EmbeddedDocumentRequest](docs/Model/EmbeddedDocumentRequest.md)
+- [EmbeddedFileDetails](docs/Model/EmbeddedFileDetails.md)
+- [EmbeddedFileLink](docs/Model/EmbeddedFileLink.md)
 - [EmbeddedSendCreated](docs/Model/EmbeddedSendCreated.md)
 - [EmbeddedSendTemplateFormRequest](docs/Model/EmbeddedSendTemplateFormRequest.md)
 - [EmbeddedSigningLink](docs/Model/EmbeddedSigningLink.md)
 - [EmbeddedTemplateCreated](docs/Model/EmbeddedTemplateCreated.md)
 - [EmbeddedTemplateEditRequest](docs/Model/EmbeddedTemplateEditRequest.md)
 - [EmbeddedTemplateEdited](docs/Model/EmbeddedTemplateEdited.md)
+- [Error](docs/Model/Error.md)
 - [ErrorResult](docs/Model/ErrorResult.md)
 - [ExistingFormField](docs/Model/ExistingFormField.md)
 - [ExtendExpiry](docs/Model/ExtendExpiry.md)
@@ -209,6 +219,8 @@ All URIs are relative to *https://api.boldsign.com*
 - [FormField](docs/Model/FormField.md)
 - [FormGroup](docs/Model/FormGroup.md)
 - [FormulaFieldSettings](docs/Model/FormulaFieldSettings.md)
+- [IdDocument](docs/Model/IdDocument.md)
+- [IdReport](docs/Model/IdReport.md)
 - [IdVerification](docs/Model/IdVerification.md)
 - [IdentityVerificationSettings](docs/Model/IdentityVerificationSettings.md)
 - [ImageInfo](docs/Model/ImageInfo.md)
@@ -254,11 +266,13 @@ All URIs are relative to *https://api.boldsign.com*
 - [TextTagDefinition](docs/Model/TextTagDefinition.md)
 - [TextTagOffset](docs/Model/TextTagOffset.md)
 - [UpdateUser](docs/Model/UpdateUser.md)
+- [UpdateUserMetaData](docs/Model/UpdateUserMetaData.md)
 - [UserPageDetails](docs/Model/UserPageDetails.md)
 - [UserProperties](docs/Model/UserProperties.md)
 - [UserRecords](docs/Model/UserRecords.md)
 - [UsersDetails](docs/Model/UsersDetails.md)
 - [Validation](docs/Model/Validation.md)
+- [VerificationDataRequest](docs/Model/VerificationDataRequest.md)
 - [ViewBrandDetails](docs/Model/ViewBrandDetails.md)
 - [ViewCustomFieldDetails](docs/Model/ViewCustomFieldDetails.md)
 
@@ -298,6 +312,6 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `1`
-    - Package version: `1.0.0-beta.4`
+    - Package version: `1.0.0-beta.5`
     - Generator version: `7.8.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

@@ -9,8 +9,8 @@ $apiInstance = new BoldSign\Api\DocumentApi($config);
 
 $document_id = 'YOUR_DOCUMENT_ID'; 
 $signer_email = 'hankwhite@cubeflakes.com'; 
-$country_code = '+1'; 
-$phone_number = '2015550124'; 
+$country_code = '+91'; 
+$phone_number = '6381261236'; 
 $sign_link_valid_till = '12/24/2024';
 $redirect_url = 'https://staging-app.boldsign.com'; 
 try {

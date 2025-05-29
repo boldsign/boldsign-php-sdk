@@ -16,7 +16,7 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 ```json
 {
     "require": {
-        "boldsign/boldsign-php": "1.0.0-beta.5"
+        "boldsign/boldsign-php": "1.0.1"
     },
     "minimum-stability": "dev"
 }
@@ -27,7 +27,7 @@ Then run `composer install`
 Alternatively, install directly with
 
 ```
-composer require boldsign/boldsign-php:1.0.0-beta.5
+composer require boldsign/boldsign-php:1.0.1
 ```
 
 ## Getting Started
@@ -101,8 +101,8 @@ All URIs are relative to *https://api.boldsign.com*
 | *DocumentApi* | [**downloadAuditLog**](docs/Api/DocumentApi.md#downloadauditlog) | **GET** /v1/document/downloadAuditLog | Download the audit trail document. |
 | *DocumentApi* | [**downloadDocument**](docs/Api/DocumentApi.md#downloaddocument) | **GET** /v1/document/download | Download the document. |
 | *DocumentApi* | [**extendExpiry**](docs/Api/DocumentApi.md#extendexpiry) | **PATCH** /v1/document/extendExpiry | Extends the expiration date of the document. |
-| *DocumentApi* | [**getEmbeddedSignLink**](docs/Api/DocumentApi.md#getembeddedsignlink) | **GET** /v1/document/getEmbeddedSignLink | Get sign link for Embedded Sign. |
 | *DocumentApi* | [**getProperties**](docs/Api/DocumentApi.md#getproperties) | **GET** /v1/document/properties | Get summary of the document. |
+| *DocumentApi* | [**getEmbeddedSignLink**](docs/Api/DocumentApi.md#getembeddedsignlink) | **GET** /v1/document/getEmbeddedSignLink | Get sign link for Embedded Sign. |
 | *DocumentApi* | [**listDocuments**](docs/Api/DocumentApi.md#listdocuments) | **GET** /v1/document/list | List user documents. |
 | *DocumentApi* | [**prefillFields**](docs/Api/DocumentApi.md#prefillfields) | **PATCH** /v1/document/prefillFields | Updates the value (prefill) of the fields in the document. |
 | *DocumentApi* | [**remindDocument**](docs/Api/DocumentApi.md#reminddocument) | **POST** /v1/document/remind | Send reminder to pending signers. |
@@ -128,14 +128,15 @@ All URIs are relative to *https://api.boldsign.com*
 | *TemplateApi* | [**createEmbeddedRequestUrlTemplate**](docs/Api/TemplateApi.md#createembeddedrequesturltemplate) | **POST** /v1/template/createEmbeddedRequestUrl | Generates a send URL using a template which embeds document sending process into your application. |
 | *TemplateApi* | [**createEmbeddedTemplateUrl**](docs/Api/TemplateApi.md#createembeddedtemplateurl) | **POST** /v1/template/createEmbeddedTemplateUrl | Generates a create URL to embeds template create process into your application. |
 | *TemplateApi* | [**createTemplate**](docs/Api/TemplateApi.md#createtemplate) | **POST** /v1/template/create | Creates a new template. |
-| *TemplateApi* | [**deleteTag**](docs/Api/TemplateApi.md#deletetag) | **DELETE** /v1/template/deleteTags | Delete the Tags in Templates. |
 | *TemplateApi* | [**deleteTemplate**](docs/Api/TemplateApi.md#deletetemplate) | **DELETE** /v1/template/delete | Deletes a template. |
+| *TemplateApi* | [**deleteTag**](docs/Api/TemplateApi.md#deletetag) | **DELETE** /v1/template/deleteTags | Delete the Tags in Templates. |
 | *TemplateApi* | [**download**](docs/Api/TemplateApi.md#download) | **GET** /v1/template/download | Download the template. |
 | *TemplateApi* | [**editTemplate**](docs/Api/TemplateApi.md#edittemplate) | **PUT** /v1/template/edit | Edit and updates an existing template. |
 | *TemplateApi* | [**getEmbeddedTemplateEditUrl**](docs/Api/TemplateApi.md#getembeddedtemplateediturl) | **POST** /v1/template/getEmbeddedTemplateEditUrl | Generates a edit URL to embeds template edit process into your application. |
 | *TemplateApi* | [**getProperties**](docs/Api/TemplateApi.md#getproperties) | **GET** /v1/template/properties | Get summary of the template. |
 | *TemplateApi* | [**listTemplates**](docs/Api/TemplateApi.md#listtemplates) | **GET** /v1/template/list | List all the templates. |
 | *TemplateApi* | [**mergeAndSend**](docs/Api/TemplateApi.md#mergeandsend) | **POST** /v1/template/mergeAndSend | Send the document by merging multiple templates. |
+| *TemplateApi* | [**mergeCreateEmbeddedRequestUrlTemplate**](docs/Api/TemplateApi.md#mergecreateembeddedrequesturltemplate) | **POST** /v1/template/mergeCreateEmbeddedRequestUrl | Generates a merge request URL using a template that combines document merging and sending processes into your application. |
 | *TemplateApi* | [**sendUsingTemplate**](docs/Api/TemplateApi.md#sendusingtemplate) | **POST** /v1/template/send | Send a document for signature using a Template. |
 | *UserApi* | [**cancelInvitation**](docs/Api/UserApi.md#cancelinvitation) | **POST** /v1/users/cancelInvitation | Cancel the users invitation. |
 | *UserApi* | [**createUser**](docs/Api/UserApi.md#createuser) | **POST** /v1/users/create | Create the user. |
@@ -204,6 +205,7 @@ All URIs are relative to *https://api.boldsign.com*
 - [EmbeddedDocumentRequest](docs/Model/EmbeddedDocumentRequest.md)
 - [EmbeddedFileDetails](docs/Model/EmbeddedFileDetails.md)
 - [EmbeddedFileLink](docs/Model/EmbeddedFileLink.md)
+- [EmbeddedMergeTemplateFormRequest](docs/Model/EmbeddedMergeTemplateFormRequest.md)
 - [EmbeddedSendCreated](docs/Model/EmbeddedSendCreated.md)
 - [EmbeddedSendTemplateFormRequest](docs/Model/EmbeddedSendTemplateFormRequest.md)
 - [EmbeddedSigningLink](docs/Model/EmbeddedSigningLink.md)
@@ -240,6 +242,7 @@ All URIs are relative to *https://api.boldsign.com*
 - [Roles](docs/Model/Roles.md)
 - [SendForSign](docs/Model/SendForSign.md)
 - [SendForSignFromTemplateForm](docs/Model/SendForSignFromTemplateForm.md)
+- [SenderIdentityCreated](docs/Model/SenderIdentityCreated.md)
 - [SenderIdentityList](docs/Model/SenderIdentityList.md)
 - [SenderIdentityViewModel](docs/Model/SenderIdentityViewModel.md)
 - [Size](docs/Model/Size.md)
@@ -312,6 +315,6 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `1`
-    - Package version: `1.0.0-beta.5`
+    - Package version: `1.0.1`
     - Generator version: `7.8.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

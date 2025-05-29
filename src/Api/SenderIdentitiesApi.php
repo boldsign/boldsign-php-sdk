@@ -227,11 +227,12 @@ class SenderIdentitiesApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \BoldSign\Model\SenderIdentityCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function createSenderIdentities($create_sender_identity_request, string $contentType = self::contentTypes['createSenderIdentities'][0])
     {
-        $this->createSenderIdentitiesWithHttpInfo($create_sender_identity_request, $contentType);
+        list($response) = $this->createSenderIdentitiesWithHttpInfo($create_sender_identity_request, $contentType);
+        return $response;
     }
 
     /**
@@ -244,7 +245,7 @@ class SenderIdentitiesApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\SenderIdentityCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function createSenderIdentitiesWithHttpInfo($create_sender_identity_request, string $contentType = self::contentTypes['createSenderIdentities'][0])
     {
@@ -285,10 +286,155 @@ class SenderIdentitiesApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            switch($statusCode) {
+                case 201:
+                    if ('\BoldSign\Model\SenderIdentityCreated' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\SenderIdentityCreated' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\SenderIdentityCreated', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\BoldSign\Model\SenderIdentityCreated';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\SenderIdentityCreated',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -352,14 +498,27 @@ class SenderIdentitiesApi
      */
     public function createSenderIdentitiesAsyncWithHttpInfo($create_sender_identity_request, string $contentType = self::contentTypes['createSenderIdentities'][0])
     {
-        $returnType = '';
+        $returnType = '\BoldSign\Model\SenderIdentityCreated';
         $request = $this->createSenderIdentitiesRequest($create_sender_identity_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();

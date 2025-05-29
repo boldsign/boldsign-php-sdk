@@ -82,7 +82,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'allow_new_roles' => 'bool',
         'allow_new_files' => 'bool',
         'enable_reassign' => 'bool',
-        'enable_print_and_assign' => 'bool',
+        'enable_print_and_sign' => 'bool',
         'enable_signing_order' => 'bool',
         'document_info' => '\BoldSign\Model\DocumentInfo[]',
         'use_text_tags' => 'bool',
@@ -128,7 +128,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'allow_new_roles' => null,
         'allow_new_files' => null,
         'enable_reassign' => null,
-        'enable_print_and_assign' => null,
+        'enable_print_and_sign' => null,
         'enable_signing_order' => null,
         'document_info' => null,
         'use_text_tags' => null,
@@ -172,7 +172,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'allow_new_roles' => false,
         'allow_new_files' => false,
         'enable_reassign' => false,
-        'enable_print_and_assign' => false,
+        'enable_print_and_sign' => false,
         'enable_signing_order' => false,
         'document_info' => true,
         'use_text_tags' => false,
@@ -296,7 +296,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'allow_new_roles' => 'allowNewRoles',
         'allow_new_files' => 'allowNewFiles',
         'enable_reassign' => 'enableReassign',
-        'enable_print_and_assign' => 'enablePrintAndAssign',
+        'enable_print_and_sign' => 'enablePrintAndSign',
         'enable_signing_order' => 'enableSigningOrder',
         'document_info' => 'documentInfo',
         'use_text_tags' => 'useTextTags',
@@ -340,7 +340,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'allow_new_roles' => 'setAllowNewRoles',
         'allow_new_files' => 'setAllowNewFiles',
         'enable_reassign' => 'setEnableReassign',
-        'enable_print_and_assign' => 'setEnablePrintAndAssign',
+        'enable_print_and_sign' => 'setEnablePrintAndSign',
         'enable_signing_order' => 'setEnableSigningOrder',
         'document_info' => 'setDocumentInfo',
         'use_text_tags' => 'setUseTextTags',
@@ -384,7 +384,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'allow_new_roles' => 'getAllowNewRoles',
         'allow_new_files' => 'getAllowNewFiles',
         'enable_reassign' => 'getEnableReassign',
-        'enable_print_and_assign' => 'getEnablePrintAndAssign',
+        'enable_print_and_sign' => 'getEnablePrintAndSign',
         'enable_signing_order' => 'getEnableSigningOrder',
         'document_info' => 'getDocumentInfo',
         'use_text_tags' => 'getUseTextTags',
@@ -537,7 +537,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('allow_new_roles', $data ?? [], true);
         $this->setIfExists('allow_new_files', $data ?? [], true);
         $this->setIfExists('enable_reassign', $data ?? [], true);
-        $this->setIfExists('enable_print_and_assign', $data ?? [], false);
+        $this->setIfExists('enable_print_and_sign', $data ?? [], false);
         $this->setIfExists('enable_signing_order', $data ?? [], false);
         $this->setIfExists('document_info', $data ?? [], null);
         $this->setIfExists('use_text_tags', $data ?? [], false);
@@ -1448,28 +1448,28 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
-     * Gets enable_print_and_assign
+     * Gets enable_print_and_sign
      *
      * @return bool|null
      */
-    public function getEnablePrintAndAssign()
+    public function getEnablePrintAndSign()
     {
-        return $this->container['enable_print_and_assign'];
+        return $this->container['enable_print_and_sign'];
     }
 
     /**
-     * Sets enable_print_and_assign
+     * Sets enable_print_and_sign
      *
-     * @param bool|null $enable_print_and_assign enable_print_and_assign
+     * @param bool|null $enable_print_and_sign enable_print_and_sign
      *
      * @return self
      */
-    public function setEnablePrintAndAssign($enable_print_and_assign)
+    public function setEnablePrintAndSign($enable_print_and_sign)
     {
-        if (is_null($enable_print_and_assign)) {
-            throw new \InvalidArgumentException('non-nullable enable_print_and_assign cannot be null');
+        if (is_null($enable_print_and_sign)) {
+            throw new \InvalidArgumentException('non-nullable enable_print_and_sign cannot be null');
         }
-        $this->container['enable_print_and_assign'] = $enable_print_and_assign;
+        $this->container['enable_print_and_sign'] = $enable_print_and_sign;
 
         return $this;
     }

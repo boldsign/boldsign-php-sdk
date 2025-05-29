@@ -58,7 +58,8 @@ class Validation implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'type' => 'string',
-        'regex' => 'string'
+        'regex' => 'string',
+        'regex_message' => 'string'
     ];
 
     /**
@@ -70,7 +71,8 @@ class Validation implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'type' => null,
-        'regex' => null
+        'regex' => null,
+        'regex_message' => null
     ];
 
     /**
@@ -80,7 +82,8 @@ class Validation implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'type' => false,
-        'regex' => true
+        'regex' => true,
+        'regex_message' => true
     ];
 
     /**
@@ -170,7 +173,8 @@ class Validation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'type' => 'type',
-        'regex' => 'regex'
+        'regex' => 'regex',
+        'regex_message' => 'regexMessage'
     ];
 
     /**
@@ -180,7 +184,8 @@ class Validation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'type' => 'setType',
-        'regex' => 'setRegex'
+        'regex' => 'setRegex',
+        'regex_message' => 'setRegexMessage'
     ];
 
     /**
@@ -190,7 +195,8 @@ class Validation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'type' => 'getType',
-        'regex' => 'getRegex'
+        'regex' => 'getRegex',
+        'regex_message' => 'getRegexMessage'
     ];
 
     /**
@@ -238,6 +244,7 @@ class Validation implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_EMAIL = 'Email';
     public const TYPE_CURRENCY = 'Currency';
     public const TYPE_REGEX = 'Regex';
+    public const TYPE_NONE = 'None';
 
     /**
      * Gets allowable values of the enum
@@ -251,6 +258,7 @@ class Validation implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_EMAIL,
             self::TYPE_CURRENCY,
             self::TYPE_REGEX,
+            self::TYPE_NONE,
         ];
     }
 
@@ -271,6 +279,7 @@ class Validation implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('regex', $data ?? [], null);
+        $this->setIfExists('regex_message', $data ?? [], null);
     }
 
     /**
@@ -394,6 +403,40 @@ class Validation implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['regex'] = $regex;
+
+        return $this;
+    }
+
+    /**
+     * Gets regex_message
+     *
+     * @return string|null
+     */
+    public function getRegexMessage()
+    {
+        return $this->container['regex_message'];
+    }
+
+    /**
+     * Sets regex_message
+     *
+     * @param string|null $regex_message regex_message
+     *
+     * @return self
+     */
+    public function setRegexMessage($regex_message)
+    {
+        if (is_null($regex_message)) {
+            array_push($this->openAPINullablesSetToNull, 'regex_message');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('regex_message', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['regex_message'] = $regex_message;
 
         return $this;
     }

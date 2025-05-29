@@ -15,7 +15,7 @@ All URIs are relative to https://api.boldsign.com, except if the operation defin
 ## `createSenderIdentities()`
 
 ```php
-createSenderIdentities($create_sender_identity_request)
+createSenderIdentities($create_sender_identity_request): \BoldSign\Model\SenderIdentityCreated
 ```
 
 Creates sender identity.
@@ -33,7 +33,8 @@ $apiInstance = new BoldSign\Api\SenderIdentitiesApi($config);
 $create_sender_identity_request = new \BoldSign\Model\CreateSenderIdentityRequest(); // \BoldSign\Model\CreateSenderIdentityRequest | The create sender identity request.
 
 try {
-    $apiInstance->createSenderIdentities($create_sender_identity_request);
+    $result = $apiInstance->createSenderIdentities($create_sender_identity_request);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SenderIdentitiesApi->createSenderIdentities: ', $e->getMessage(), PHP_EOL;
 }
@@ -47,7 +48,7 @@ try {
 
 ### Return type
 
-void (empty response body)
+[**\BoldSign\Model\SenderIdentityCreated**](../Model/SenderIdentityCreated.md)
 
 ### Authorization
 

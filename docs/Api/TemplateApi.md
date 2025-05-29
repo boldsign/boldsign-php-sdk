@@ -8,14 +8,15 @@ All URIs are relative to https://api.boldsign.com, except if the operation defin
 | [**createEmbeddedRequestUrlTemplate()**](TemplateApi.md#createEmbeddedRequestUrlTemplate) | **POST** /v1/template/createEmbeddedRequestUrl | Generates a send URL using a template which embeds document sending process into your application. |
 | [**createEmbeddedTemplateUrl()**](TemplateApi.md#createEmbeddedTemplateUrl) | **POST** /v1/template/createEmbeddedTemplateUrl | Generates a create URL to embeds template create process into your application. |
 | [**createTemplate()**](TemplateApi.md#createTemplate) | **POST** /v1/template/create | Creates a new template. |
-| [**deleteTag()**](TemplateApi.md#deleteTag) | **DELETE** /v1/template/deleteTags | Delete the Tags in Templates. |
 | [**deleteTemplate()**](TemplateApi.md#deleteTemplate) | **DELETE** /v1/template/delete | Deletes a template. |
+| [**deleteTag()**](TemplateApi.md#deleteTag) | **DELETE** /v1/template/deleteTags | Delete the Tags in Templates. |
 | [**download()**](TemplateApi.md#download) | **GET** /v1/template/download | Download the template. |
 | [**editTemplate()**](TemplateApi.md#editTemplate) | **PUT** /v1/template/edit | Edit and updates an existing template. |
 | [**getEmbeddedTemplateEditUrl()**](TemplateApi.md#getEmbeddedTemplateEditUrl) | **POST** /v1/template/getEmbeddedTemplateEditUrl | Generates a edit URL to embeds template edit process into your application. |
 | [**getProperties()**](TemplateApi.md#getProperties) | **GET** /v1/template/properties | Get summary of the template. |
 | [**listTemplates()**](TemplateApi.md#listTemplates) | **GET** /v1/template/list | List all the templates. |
 | [**mergeAndSend()**](TemplateApi.md#mergeAndSend) | **POST** /v1/template/mergeAndSend | Send the document by merging multiple templates. |
+| [**mergeCreateEmbeddedRequestUrlTemplate()**](TemplateApi.md#mergeCreateEmbeddedRequestUrlTemplate) | **POST** /v1/template/mergeCreateEmbeddedRequestUrl | Generates a merge request URL using a template that combines document merging and sending processes into your application. |
 | [**sendUsingTemplate()**](TemplateApi.md#sendUsingTemplate) | **POST** /v1/template/send | Send a document for signature using a Template. |
 
 
@@ -224,56 +225,6 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `deleteTag()`
-
-```php
-deleteTag($template_tag)
-```
-
-Delete the Tags in Templates.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$config = new BoldSign\Configuration();
-$config->setApiKey('YOUR_API_KEY');
-
-$apiInstance = new BoldSign\Api\TemplateApi($config);
-$template_tag = new \BoldSign\Model\TemplateTag(); // \BoldSign\Model\TemplateTag | Contains TemplateId and LabelNames for Adding Tags.
-
-try {
-    $apiInstance->deleteTag($template_tag);
-} catch (Exception $e) {
-    echo 'Exception when calling TemplateApi->deleteTag: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **template_tag** | [**\BoldSign\Model\TemplateTag**](../Model/TemplateTag.md)| Contains TemplateId and LabelNames for Adding Tags. | [optional] |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[X-API-KEY](../../README.md#X-API-KEY), [Bearer](../../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json;odata.metadata=minimal;odata.streaming=true`, `application/json;odata.metadata=minimal;odata.streaming=false`, `application/json;odata.metadata=minimal`, `application/json;odata.metadata=full;odata.streaming=true`, `application/json;odata.metadata=full;odata.streaming=false`, `application/json;odata.metadata=full`, `application/json;odata.metadata=none;odata.streaming=true`, `application/json;odata.metadata=none;odata.streaming=false`, `application/json;odata.metadata=none`, `application/json;odata.streaming=true`, `application/json;odata.streaming=false`, `application/json`, `application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=minimal;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;IEEE754Compatible=true`, `application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=full;IEEE754Compatible=false`, `application/json;odata.metadata=full;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=none;IEEE754Compatible=false`, `application/json;odata.metadata=none;IEEE754Compatible=true`, `application/json;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.streaming=false;IEEE754Compatible=true`, `application/json;IEEE754Compatible=false`, `application/json;IEEE754Compatible=true`, `application/xml`, `text/plain`, `application/json-patch+json`, `text/json`, `application/*+json`
-- **Accept**: `application/json;odata.metadata=minimal;odata.streaming=true`, `application/json;odata.metadata=minimal;odata.streaming=false`, `application/json;odata.metadata=minimal`, `application/json;odata.metadata=full;odata.streaming=true`, `application/json;odata.metadata=full;odata.streaming=false`, `application/json;odata.metadata=full`, `application/json;odata.metadata=none;odata.streaming=true`, `application/json;odata.metadata=none;odata.streaming=false`, `application/json;odata.metadata=none`, `application/json;odata.streaming=true`, `application/json;odata.streaming=false`, `application/json`, `application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=minimal;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;IEEE754Compatible=true`, `application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=full;IEEE754Compatible=false`, `application/json;odata.metadata=full;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=none;IEEE754Compatible=false`, `application/json;odata.metadata=none;IEEE754Compatible=true`, `application/json;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.streaming=false;IEEE754Compatible=true`, `application/json;IEEE754Compatible=false`, `application/json;IEEE754Compatible=true`, `application/xml`, `text/plain`, `application/octet-stream`, `text/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
 ## `deleteTemplate()`
 
 ```php
@@ -321,6 +272,56 @@ void (empty response body)
 
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteTag()`
+
+```php
+deleteTag($template_tag)
+```
+
+Delete the Tags in Templates.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
+
+$apiInstance = new BoldSign\Api\TemplateApi($config);
+$template_tag = new \BoldSign\Model\TemplateTag(); // \BoldSign\Model\TemplateTag | Contains TemplateId and LabelNames for Adding Tags.
+
+try {
+    $apiInstance->deleteTag($template_tag);
+} catch (Exception $e) {
+    echo 'Exception when calling TemplateApi->deleteTag: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **template_tag** | [**\BoldSign\Model\TemplateTag**](../Model/TemplateTag.md)| Contains TemplateId and LabelNames for Adding Tags. | [optional] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[X-API-KEY](../../README.md#X-API-KEY), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json;odata.metadata=minimal;odata.streaming=true`, `application/json;odata.metadata=minimal;odata.streaming=false`, `application/json;odata.metadata=minimal`, `application/json;odata.metadata=full;odata.streaming=true`, `application/json;odata.metadata=full;odata.streaming=false`, `application/json;odata.metadata=full`, `application/json;odata.metadata=none;odata.streaming=true`, `application/json;odata.metadata=none;odata.streaming=false`, `application/json;odata.metadata=none`, `application/json;odata.streaming=true`, `application/json;odata.streaming=false`, `application/json`, `application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=minimal;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;IEEE754Compatible=true`, `application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=full;IEEE754Compatible=false`, `application/json;odata.metadata=full;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=none;IEEE754Compatible=false`, `application/json;odata.metadata=none;IEEE754Compatible=true`, `application/json;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.streaming=false;IEEE754Compatible=true`, `application/json;IEEE754Compatible=false`, `application/json;IEEE754Compatible=true`, `application/xml`, `text/plain`, `application/json-patch+json`, `text/json`, `application/*+json`
+- **Accept**: `application/json;odata.metadata=minimal;odata.streaming=true`, `application/json;odata.metadata=minimal;odata.streaming=false`, `application/json;odata.metadata=minimal`, `application/json;odata.metadata=full;odata.streaming=true`, `application/json;odata.metadata=full;odata.streaming=false`, `application/json;odata.metadata=full`, `application/json;odata.metadata=none;odata.streaming=true`, `application/json;odata.metadata=none;odata.streaming=false`, `application/json;odata.metadata=none`, `application/json;odata.streaming=true`, `application/json;odata.streaming=false`, `application/json`, `application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=minimal;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;IEEE754Compatible=true`, `application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=full;IEEE754Compatible=false`, `application/json;odata.metadata=full;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=none;IEEE754Compatible=false`, `application/json;odata.metadata=none;IEEE754Compatible=true`, `application/json;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.streaming=false;IEEE754Compatible=true`, `application/json;IEEE754Compatible=false`, `application/json;IEEE754Compatible=true`, `application/xml`, `text/plain`, `application/octet-stream`, `text/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -607,7 +608,7 @@ try {
 ## `mergeAndSend()`
 
 ```php
-mergeAndSend($merge_and_send_for_sign_form)
+mergeAndSend($merge_and_send_for_sign_form): \BoldSign\Model\DocumentCreated
 ```
 
 Send the document by merging multiple templates.
@@ -625,7 +626,8 @@ $apiInstance = new BoldSign\Api\TemplateApi($config);
 $merge_and_send_for_sign_form = new \BoldSign\Model\MergeAndSendForSignForm(); // \BoldSign\Model\MergeAndSendForSignForm | The merge and send details as JSON.
 
 try {
-    $apiInstance->mergeAndSend($merge_and_send_for_sign_form);
+    $result = $apiInstance->mergeAndSend($merge_and_send_for_sign_form);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TemplateApi->mergeAndSend: ', $e->getMessage(), PHP_EOL;
 }
@@ -639,7 +641,58 @@ try {
 
 ### Return type
 
-void (empty response body)
+[**\BoldSign\Model\DocumentCreated**](../Model/DocumentCreated.md)
+
+### Authorization
+
+[X-API-KEY](../../README.md#X-API-KEY), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`, `multipart/form-data`, `application/x-www-form-urlencoded`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `mergeCreateEmbeddedRequestUrlTemplate()`
+
+```php
+mergeCreateEmbeddedRequestUrlTemplate($embedded_merge_template_form_request): \BoldSign\Model\EmbeddedSendCreated
+```
+
+Generates a merge request URL using a template that combines document merging and sending processes into your application.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
+
+$apiInstance = new BoldSign\Api\TemplateApi($config);
+$embedded_merge_template_form_request = new \BoldSign\Model\EmbeddedMergeTemplateFormRequest(); // \BoldSign\Model\EmbeddedMergeTemplateFormRequest | Embedded merge and send template json request.
+
+try {
+    $result = $apiInstance->mergeCreateEmbeddedRequestUrlTemplate($embedded_merge_template_form_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling TemplateApi->mergeCreateEmbeddedRequestUrlTemplate: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **embedded_merge_template_form_request** | [**\BoldSign\Model\EmbeddedMergeTemplateFormRequest**](../Model/EmbeddedMergeTemplateFormRequest.md)| Embedded merge and send template json request. | [optional] |
+
+### Return type
+
+[**\BoldSign\Model\EmbeddedSendCreated**](../Model/EmbeddedSendCreated.md)
 
 ### Authorization
 

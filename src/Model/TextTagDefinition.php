@@ -80,6 +80,11 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'offset' => '\BoldSign\Model\TextTagOffset',
         'label' => 'string',
         'tab_index' => 'int',
+        'data_sync_tag' => 'string',
+        'text_align' => 'string',
+        'text_direction' => 'string',
+        'character_spacing' => 'float',
+        'character_limit' => 'int',
         'formula_field_settings' => '\BoldSign\Model\FormulaFieldSettings',
         'resize_option' => 'string'
     ];
@@ -115,6 +120,11 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'offset' => null,
         'label' => null,
         'tab_index' => 'int32',
+        'data_sync_tag' => null,
+        'text_align' => null,
+        'text_direction' => null,
+        'character_spacing' => 'float',
+        'character_limit' => 'int32',
         'formula_field_settings' => null,
         'resize_option' => null
     ];
@@ -148,6 +158,11 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'offset' => false,
         'label' => true,
         'tab_index' => true,
+        'data_sync_tag' => true,
+        'text_align' => false,
+        'text_direction' => false,
+        'character_spacing' => false,
+        'character_limit' => false,
         'formula_field_settings' => false,
         'resize_option' => true
     ];
@@ -261,6 +276,11 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'offset' => 'offset',
         'label' => 'label',
         'tab_index' => 'tabIndex',
+        'data_sync_tag' => 'dataSyncTag',
+        'text_align' => 'textAlign',
+        'text_direction' => 'textDirection',
+        'character_spacing' => 'characterSpacing',
+        'character_limit' => 'characterLimit',
         'formula_field_settings' => 'formulaFieldSettings',
         'resize_option' => 'resizeOption'
     ];
@@ -294,6 +314,11 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'offset' => 'setOffset',
         'label' => 'setLabel',
         'tab_index' => 'setTabIndex',
+        'data_sync_tag' => 'setDataSyncTag',
+        'text_align' => 'setTextAlign',
+        'text_direction' => 'setTextDirection',
+        'character_spacing' => 'setCharacterSpacing',
+        'character_limit' => 'setCharacterLimit',
         'formula_field_settings' => 'setFormulaFieldSettings',
         'resize_option' => 'setResizeOption'
     ];
@@ -327,6 +352,11 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'offset' => 'getOffset',
         'label' => 'getLabel',
         'tab_index' => 'getTabIndex',
+        'data_sync_tag' => 'getDataSyncTag',
+        'text_align' => 'getTextAlign',
+        'text_direction' => 'getTextDirection',
+        'character_spacing' => 'getCharacterSpacing',
+        'character_limit' => 'getCharacterLimit',
         'formula_field_settings' => 'getFormulaFieldSettings',
         'resize_option' => 'getResizeOption'
     ];
@@ -387,6 +417,11 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const TYPE_TITLE = 'Title';
     public const TYPE_COMPANY = 'Company';
     public const TYPE_FORMULA = 'Formula';
+    public const TEXT_ALIGN_LEFT = 'Left';
+    public const TEXT_ALIGN_CENTER = 'Center';
+    public const TEXT_ALIGN_RIGHT = 'Right';
+    public const TEXT_DIRECTION_LTR = 'LTR';
+    public const TEXT_DIRECTION_RTL = 'RTL';
     public const RESIZE_OPTION_GROW_VERTICALLY = 'GrowVertically';
     public const RESIZE_OPTION_GROW_HORIZONTALLY = 'GrowHorizontally';
     public const RESIZE_OPTION_GROW_BOTH = 'GrowBoth';
@@ -416,6 +451,33 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::TYPE_TITLE,
             self::TYPE_COMPANY,
             self::TYPE_FORMULA,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTextAlignAllowableValues()
+    {
+        return [
+            self::TEXT_ALIGN_LEFT,
+            self::TEXT_ALIGN_CENTER,
+            self::TEXT_ALIGN_RIGHT,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTextDirectionAllowableValues()
+    {
+        return [
+            self::TEXT_DIRECTION_LTR,
+            self::TEXT_DIRECTION_RTL,
         ];
     }
 
@@ -473,6 +535,11 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('offset', $data ?? [], null);
         $this->setIfExists('label', $data ?? [], null);
         $this->setIfExists('tab_index', $data ?? [], null);
+        $this->setIfExists('data_sync_tag', $data ?? [], null);
+        $this->setIfExists('text_align', $data ?? [], null);
+        $this->setIfExists('text_direction', $data ?? [], null);
+        $this->setIfExists('character_spacing', $data ?? [], null);
+        $this->setIfExists('character_limit', $data ?? [], null);
         $this->setIfExists('formula_field_settings', $data ?? [], null);
         $this->setIfExists('resize_option', $data ?? [], null);
     }
@@ -540,6 +607,32 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
 
         if (!is_null($this->container['tab_index']) && ($this->container['tab_index'] < -1)) {
             $invalidProperties[] = "invalid value for 'tab_index', must be bigger than or equal to -1.";
+        }
+
+        $allowedValues = $this->getTextAlignAllowableValues();
+        if (!is_null($this->container['text_align']) && !in_array($this->container['text_align'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'text_align', must be one of '%s'",
+                $this->container['text_align'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getTextDirectionAllowableValues();
+        if (!is_null($this->container['text_direction']) && !in_array($this->container['text_direction'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'text_direction', must be one of '%s'",
+                $this->container['text_direction'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if (!is_null($this->container['character_limit']) && ($this->container['character_limit'] > 2147483647)) {
+            $invalidProperties[] = "invalid value for 'character_limit', must be smaller than or equal to 2147483647.";
+        }
+
+        if (!is_null($this->container['character_limit']) && ($this->container['character_limit'] < 0)) {
+            $invalidProperties[] = "invalid value for 'character_limit', must be bigger than or equal to 0.";
         }
 
         $allowedValues = $this->getResizeOptionAllowableValues();
@@ -1298,6 +1391,176 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         }
 
         $this->container['tab_index'] = $tab_index;
+
+        return $this;
+    }
+
+    /**
+     * Gets data_sync_tag
+     *
+     * @return string|null
+     */
+    public function getDataSyncTag()
+    {
+        return $this->container['data_sync_tag'];
+    }
+
+    /**
+     * Sets data_sync_tag
+     *
+     * @param string|null $data_sync_tag data_sync_tag
+     *
+     * @return self
+     */
+    public function setDataSyncTag($data_sync_tag)
+    {
+        if (is_null($data_sync_tag)) {
+            array_push($this->openAPINullablesSetToNull, 'data_sync_tag');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('data_sync_tag', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['data_sync_tag'] = $data_sync_tag;
+
+        return $this;
+    }
+
+    /**
+     * Gets text_align
+     *
+     * @return string|null
+     */
+    public function getTextAlign()
+    {
+        return $this->container['text_align'];
+    }
+
+    /**
+     * Sets text_align
+     *
+     * @param string|null $text_align text_align
+     *
+     * @return self
+     */
+    public function setTextAlign($text_align)
+    {
+        if (is_null($text_align)) {
+            throw new \InvalidArgumentException('non-nullable text_align cannot be null');
+        }
+        $allowedValues = $this->getTextAlignAllowableValues();
+        if (!in_array($text_align, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'text_align', must be one of '%s'",
+                    $text_align,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['text_align'] = $text_align;
+
+        return $this;
+    }
+
+    /**
+     * Gets text_direction
+     *
+     * @return string|null
+     */
+    public function getTextDirection()
+    {
+        return $this->container['text_direction'];
+    }
+
+    /**
+     * Sets text_direction
+     *
+     * @param string|null $text_direction text_direction
+     *
+     * @return self
+     */
+    public function setTextDirection($text_direction)
+    {
+        if (is_null($text_direction)) {
+            throw new \InvalidArgumentException('non-nullable text_direction cannot be null');
+        }
+        $allowedValues = $this->getTextDirectionAllowableValues();
+        if (!in_array($text_direction, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'text_direction', must be one of '%s'",
+                    $text_direction,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['text_direction'] = $text_direction;
+
+        return $this;
+    }
+
+    /**
+     * Gets character_spacing
+     *
+     * @return float|null
+     */
+    public function getCharacterSpacing()
+    {
+        return $this->container['character_spacing'];
+    }
+
+    /**
+     * Sets character_spacing
+     *
+     * @param float|null $character_spacing character_spacing
+     *
+     * @return self
+     */
+    public function setCharacterSpacing($character_spacing)
+    {
+        if (is_null($character_spacing)) {
+            throw new \InvalidArgumentException('non-nullable character_spacing cannot be null');
+        }
+        $this->container['character_spacing'] = $character_spacing;
+
+        return $this;
+    }
+
+    /**
+     * Gets character_limit
+     *
+     * @return int|null
+     */
+    public function getCharacterLimit()
+    {
+        return $this->container['character_limit'];
+    }
+
+    /**
+     * Sets character_limit
+     *
+     * @param int|null $character_limit character_limit
+     *
+     * @return self
+     */
+    public function setCharacterLimit($character_limit)
+    {
+        if (is_null($character_limit)) {
+            throw new \InvalidArgumentException('non-nullable character_limit cannot be null');
+        }
+
+        if (($character_limit > 2147483647)) {
+            throw new \InvalidArgumentException('invalid value for $character_limit when calling TextTagDefinition., must be smaller than or equal to 2147483647.');
+        }
+        if (($character_limit < 0)) {
+            throw new \InvalidArgumentException('invalid value for $character_limit when calling TextTagDefinition., must be bigger than or equal to 0.');
+        }
+
+        $this->container['character_limit'] = $character_limit;
 
         return $this;
     }

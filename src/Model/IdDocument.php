@@ -63,9 +63,9 @@ class IdDocument implements ModelInterface, ArrayAccess, \JsonSerializable
         'country' => 'string',
         'document_number' => 'string',
         'address' => '\BoldSign\Model\Address',
-        'dob' => '\DateTime',
-        'issued_date' => '\DateTime',
-        'expiration_date' => '\DateTime',
+        'dob' => '\BoldSign\Model\Date',
+        'issued_date' => '\BoldSign\Model\Date',
+        'expiration_date' => '\BoldSign\Model\Date',
         'document_files' => 'string[]',
         'selfie_file' => 'string'
     ];
@@ -559,7 +559,7 @@ class IdDocument implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets dob
      *
-     * @return \DateTime|null
+     * @return \BoldSign\Model\Date|null
      */
     public function getDob()
     {
@@ -569,7 +569,7 @@ class IdDocument implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets dob
      *
-     * @param \DateTime|null $dob dob
+     * @param \BoldSign\Model\Date|null $dob dob
      *
      * @return self
      */
@@ -586,7 +586,7 @@ class IdDocument implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets issued_date
      *
-     * @return \DateTime|null
+     * @return \BoldSign\Model\Date|null
      */
     public function getIssuedDate()
     {
@@ -596,7 +596,7 @@ class IdDocument implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets issued_date
      *
-     * @param \DateTime|null $issued_date issued_date
+     * @param \BoldSign\Model\Date|null $issued_date issued_date
      *
      * @return self
      */
@@ -613,7 +613,7 @@ class IdDocument implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets expiration_date
      *
-     * @return \DateTime|null
+     * @return \BoldSign\Model\Date|null
      */
     public function getExpirationDate()
     {
@@ -623,7 +623,7 @@ class IdDocument implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets expiration_date
      *
-     * @param \DateTime|null $expiration_date expiration_date
+     * @param \BoldSign\Model\Date|null $expiration_date expiration_date
      *
      * @return self
      */

@@ -27,6 +27,11 @@ Name | Type | Description | Notes
 **offset** | [**\BoldSign\Model\TextTagOffset**](TextTagOffset.md) |  | [optional]
 **label** | **string** |  | [optional]
 **tab_index** | **int** |  | [optional]
+**data_sync_tag** | **string** |  | [optional]
+**text_align** | **string** |  | [optional]
+**text_direction** | **string** |  | [optional]
+**character_spacing** | **float** |  | [optional]
+**character_limit** | **int** |  | [optional]
 **formula_field_settings** | [**\BoldSign\Model\FormulaFieldSettings**](FormulaFieldSettings.md) |  | [optional]
 **resize_option** | **string** |  | [optional]
 

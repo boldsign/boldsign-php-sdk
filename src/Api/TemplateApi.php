@@ -129,6 +129,9 @@ class TemplateApi
             'multipart/form-data',
             'application/x-www-form-urlencoded',
         ],
+        'deleteTemplate' => [
+            'application/json',
+        ],
         'deleteTag' => [
             'application/json;odata.metadata=minimal;odata.streaming=true',
             'application/json;odata.metadata=minimal;odata.streaming=false',
@@ -171,9 +174,6 @@ class TemplateApi
             'application/json-patch+json',
             'text/json',
             'application/*+json',
-        ],
-        'deleteTemplate' => [
-            'application/json',
         ],
         'download' => [
             'application/json',
@@ -233,6 +233,11 @@ class TemplateApi
             'application/json',
         ],
         'mergeAndSend' => [
+            'application/json',
+            'multipart/form-data',
+            'application/x-www-form-urlencoded',
+        ],
+        'mergeCreateEmbeddedRequestUrlTemplate' => [
             'application/json',
             'multipart/form-data',
             'application/x-www-form-urlencoded',
@@ -1851,283 +1856,6 @@ class TemplateApi
     }
 
     /**
-     * Operation deleteTag
-     *
-     * Delete the Tags in Templates.
-     *
-     * @param  \BoldSign\Model\TemplateTag $template_tag Contains TemplateId and LabelNames for Adding Tags. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
-     *
-     * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function deleteTag($template_tag = null, string $contentType = self::contentTypes['deleteTag'][0])
-    {
-        $this->deleteTagWithHttpInfo($template_tag, $contentType);
-    }
-
-    /**
-     * Operation deleteTagWithHttpInfo
-     *
-     * Delete the Tags in Templates.
-     *
-     * @param  \BoldSign\Model\TemplateTag $template_tag Contains TemplateId and LabelNames for Adding Tags. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
-     *
-     * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function deleteTagWithHttpInfo($template_tag = null, string $contentType = self::contentTypes['deleteTag'][0])
-    {
-        $request = $this->deleteTagRequest($template_tag, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\BoldSign\Model\ErrorResult',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\BoldSign\Model\ErrorResult',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation deleteTagAsync
-     *
-     * Delete the Tags in Templates.
-     *
-     * @param  \BoldSign\Model\TemplateTag $template_tag Contains TemplateId and LabelNames for Adding Tags. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteTagAsync($template_tag = null, string $contentType = self::contentTypes['deleteTag'][0])
-    {
-        return $this->deleteTagAsyncWithHttpInfo($template_tag, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation deleteTagAsyncWithHttpInfo
-     *
-     * Delete the Tags in Templates.
-     *
-     * @param  \BoldSign\Model\TemplateTag $template_tag Contains TemplateId and LabelNames for Adding Tags. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function deleteTagAsyncWithHttpInfo($template_tag = null, string $contentType = self::contentTypes['deleteTag'][0])
-    {
-        $returnType = '';
-        $request = $this->deleteTagRequest($template_tag, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'deleteTag'
-     *
-     * @param  \BoldSign\Model\TemplateTag $template_tag Contains TemplateId and LabelNames for Adding Tags. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function deleteTagRequest($template_tag = null, string $contentType = self::contentTypes['deleteTag'][0])
-    {
-
-
-
-        $resourcePath = '/v1/template/deleteTags';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        if(!is_array($template_tag)) {
-            $formParams = ObjectSerializer::getFormParams(
-                $template_tag
-            );
-        }
-        else {
-            foreach($template_tag as $param){
-                $formParams = ObjectSerializer::getFormParams(
-                $param);
-            }
-        }
-
-        $multipart = !empty($formParams);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            $multipart ? ['multipart/form-data'] : ['application/json;odata.metadata=minimal;odata.streaming=true', 'application/json;odata.metadata=minimal;odata.streaming=false', 'application/json;odata.metadata=minimal', 'application/json;odata.metadata=full;odata.streaming=true', 'application/json;odata.metadata=full;odata.streaming=false', 'application/json;odata.metadata=full', 'application/json;odata.metadata=none;odata.streaming=true', 'application/json;odata.metadata=none;odata.streaming=false', 'application/json;odata.metadata=none', 'application/json;odata.streaming=true', 'application/json;odata.streaming=false', 'application/json', 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false', 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true', 'application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false', 'application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true', 'application/json;odata.metadata=minimal;IEEE754Compatible=false', 'application/json;odata.metadata=minimal;IEEE754Compatible=true', 'application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false', 'application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true', 'application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false', 'application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true', 'application/json;odata.metadata=full;IEEE754Compatible=false', 'application/json;odata.metadata=full;IEEE754Compatible=true', 'application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false', 'application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true', 'application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true', 'application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false', 'application/json;odata.metadata=none;IEEE754Compatible=false', 'application/json;odata.metadata=none;IEEE754Compatible=true', 'application/json;odata.streaming=true;IEEE754Compatible=false', 'application/json;odata.streaming=true;IEEE754Compatible=true', 'application/json;odata.streaming=false;IEEE754Compatible=false', 'application/json;odata.streaming=false;IEEE754Compatible=true', 'application/json;IEEE754Compatible=false', 'application/json;IEEE754Compatible=true', 'application/xml', 'text/plain', 'application/octet-stream', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) === 0) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($template_tag));
-            } else {
-                $httpBody = $template_tag;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                if (!empty($body)) {
-                    $multipartContents[] = [
-                        'name'     => 'body',
-                        'contents' => $body,
-                        'headers'  => ['Content-Type' => 'application/json'],
-                    ];
-                }
-
-                if ($payloadHook = $this->config->getPayloadHook()) {
-                    $payloadHook('multipart', $multipartContents, $template_tag);
-                }
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
-        if ($apiKey !== null) {
-            $headers['X-API-KEY'] = $apiKey;
-        }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
      * Operation deleteTemplate
      *
      * Deletes a template.
@@ -2363,6 +2091,283 @@ class TemplateApi
                     ];
                 }
 
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
+        if ($apiKey !== null) {
+            $headers['X-API-KEY'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteTag
+     *
+     * Delete the Tags in Templates.
+     *
+     * @param  \BoldSign\Model\TemplateTag $template_tag Contains TemplateId and LabelNames for Adding Tags. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
+     *
+     * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteTag($template_tag = null, string $contentType = self::contentTypes['deleteTag'][0])
+    {
+        $this->deleteTagWithHttpInfo($template_tag, $contentType);
+    }
+
+    /**
+     * Operation deleteTagWithHttpInfo
+     *
+     * Delete the Tags in Templates.
+     *
+     * @param  \BoldSign\Model\TemplateTag $template_tag Contains TemplateId and LabelNames for Adding Tags. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
+     *
+     * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteTagWithHttpInfo($template_tag = null, string $contentType = self::contentTypes['deleteTag'][0])
+    {
+        $request = $this->deleteTagRequest($template_tag, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteTagAsync
+     *
+     * Delete the Tags in Templates.
+     *
+     * @param  \BoldSign\Model\TemplateTag $template_tag Contains TemplateId and LabelNames for Adding Tags. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteTagAsync($template_tag = null, string $contentType = self::contentTypes['deleteTag'][0])
+    {
+        return $this->deleteTagAsyncWithHttpInfo($template_tag, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteTagAsyncWithHttpInfo
+     *
+     * Delete the Tags in Templates.
+     *
+     * @param  \BoldSign\Model\TemplateTag $template_tag Contains TemplateId and LabelNames for Adding Tags. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteTagAsyncWithHttpInfo($template_tag = null, string $contentType = self::contentTypes['deleteTag'][0])
+    {
+        $returnType = '';
+        $request = $this->deleteTagRequest($template_tag, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteTag'
+     *
+     * @param  \BoldSign\Model\TemplateTag $template_tag Contains TemplateId and LabelNames for Adding Tags. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTag'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteTagRequest($template_tag = null, string $contentType = self::contentTypes['deleteTag'][0])
+    {
+
+
+
+        $resourcePath = '/v1/template/deleteTags';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        if(!is_array($template_tag)) {
+            $formParams = ObjectSerializer::getFormParams(
+                $template_tag
+            );
+        }
+        else {
+            foreach($template_tag as $param){
+                $formParams = ObjectSerializer::getFormParams(
+                $param);
+            }
+        }
+
+        $multipart = !empty($formParams);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            $multipart ? ['multipart/form-data'] : ['application/json;odata.metadata=minimal;odata.streaming=true', 'application/json;odata.metadata=minimal;odata.streaming=false', 'application/json;odata.metadata=minimal', 'application/json;odata.metadata=full;odata.streaming=true', 'application/json;odata.metadata=full;odata.streaming=false', 'application/json;odata.metadata=full', 'application/json;odata.metadata=none;odata.streaming=true', 'application/json;odata.metadata=none;odata.streaming=false', 'application/json;odata.metadata=none', 'application/json;odata.streaming=true', 'application/json;odata.streaming=false', 'application/json', 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false', 'application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true', 'application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false', 'application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true', 'application/json;odata.metadata=minimal;IEEE754Compatible=false', 'application/json;odata.metadata=minimal;IEEE754Compatible=true', 'application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false', 'application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true', 'application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false', 'application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true', 'application/json;odata.metadata=full;IEEE754Compatible=false', 'application/json;odata.metadata=full;IEEE754Compatible=true', 'application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false', 'application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true', 'application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true', 'application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false', 'application/json;odata.metadata=none;IEEE754Compatible=false', 'application/json;odata.metadata=none;IEEE754Compatible=true', 'application/json;odata.streaming=true;IEEE754Compatible=false', 'application/json;odata.streaming=true;IEEE754Compatible=true', 'application/json;odata.streaming=false;IEEE754Compatible=false', 'application/json;odata.streaming=false;IEEE754Compatible=true', 'application/json;IEEE754Compatible=false', 'application/json;IEEE754Compatible=true', 'application/xml', 'text/plain', 'application/octet-stream', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) === 0) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($template_tag));
+            } else {
+                $httpBody = $template_tag;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                if (!empty($body)) {
+                    $multipartContents[] = [
+                        'name'     => 'body',
+                        'contents' => $body,
+                        'headers'  => ['Content-Type' => 'application/json'],
+                    ];
+                }
+
+                if ($payloadHook = $this->config->getPayloadHook()) {
+                    $payloadHook('multipart', $multipartContents, $template_tag);
+                }
                 $httpBody = new MultipartStream($multipartContents);
 
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
@@ -3869,7 +3874,7 @@ class TemplateApi
         // verify the required parameter 'template_id' is set
         if ($template_id === null || (is_array($template_id) && count($template_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $template_id when calling getProperties'
+                'Missing the required parameter $template_id when calling getTemplateProperties'
             );
         }
 
@@ -4481,11 +4486,12 @@ class TemplateApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \BoldSign\Model\DocumentCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
     public function mergeAndSend($merge_and_send_for_sign_form = null, string $contentType = self::contentTypes['mergeAndSend'][0])
     {
-        $this->mergeAndSendWithHttpInfo($merge_and_send_for_sign_form, $contentType);
+        list($response) = $this->mergeAndSendWithHttpInfo($merge_and_send_for_sign_form, $contentType);
+        return $response;
     }
 
     /**
@@ -4498,7 +4504,7 @@ class TemplateApi
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \BoldSign\Model\DocumentCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
     public function mergeAndSendWithHttpInfo($merge_and_send_for_sign_form = null, string $contentType = self::contentTypes['mergeAndSend'][0])
     {
@@ -4539,10 +4545,128 @@ class TemplateApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            switch($statusCode) {
+                case 201:
+                    if ('\BoldSign\Model\DocumentCreated' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\DocumentCreated' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\DocumentCreated', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\BoldSign\Model\DocumentCreated';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\DocumentCreated',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 422:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -4598,14 +4722,27 @@ class TemplateApi
      */
     public function mergeAndSendAsyncWithHttpInfo($merge_and_send_for_sign_form = null, string $contentType = self::contentTypes['mergeAndSend'][0])
     {
-        $returnType = '';
+        $returnType = '\BoldSign\Model\DocumentCreated';
         $request = $this->mergeAndSendRequest($merge_and_send_for_sign_form, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -4699,6 +4836,415 @@ class TemplateApi
 
                 if ($payloadHook = $this->config->getPayloadHook()) {
                     $payloadHook('multipart', $multipartContents, $merge_and_send_for_sign_form);
+                }
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-KEY');
+        if ($apiKey !== null) {
+            $headers['X-API-KEY'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation mergeCreateEmbeddedRequestUrlTemplate
+     *
+     * Generates a merge request URL using a template that combines document merging and sending processes into your application.
+     *
+     * @param  \BoldSign\Model\EmbeddedMergeTemplateFormRequest $embedded_merge_template_form_request Embedded merge and send template json request. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mergeCreateEmbeddedRequestUrlTemplate'] to see the possible values for this operation
+     *
+     * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \BoldSign\Model\EmbeddedSendCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
+     */
+    public function mergeCreateEmbeddedRequestUrlTemplate($embedded_merge_template_form_request = null, string $contentType = self::contentTypes['mergeCreateEmbeddedRequestUrlTemplate'][0])
+    {
+        list($response) = $this->mergeCreateEmbeddedRequestUrlTemplateWithHttpInfo($embedded_merge_template_form_request, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation mergeCreateEmbeddedRequestUrlTemplateWithHttpInfo
+     *
+     * Generates a merge request URL using a template that combines document merging and sending processes into your application.
+     *
+     * @param  \BoldSign\Model\EmbeddedMergeTemplateFormRequest $embedded_merge_template_form_request Embedded merge and send template json request. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mergeCreateEmbeddedRequestUrlTemplate'] to see the possible values for this operation
+     *
+     * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \BoldSign\Model\EmbeddedSendCreated|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function mergeCreateEmbeddedRequestUrlTemplateWithHttpInfo($embedded_merge_template_form_request = null, string $contentType = self::contentTypes['mergeCreateEmbeddedRequestUrlTemplate'][0])
+    {
+        $request = $this->mergeCreateEmbeddedRequestUrlTemplateRequest($embedded_merge_template_form_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 201:
+                    if ('\BoldSign\Model\EmbeddedSendCreated' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\EmbeddedSendCreated' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\EmbeddedSendCreated', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 401:
+                    if ('\BoldSign\Model\ErrorResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\BoldSign\Model\ErrorResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\BoldSign\Model\ErrorResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\BoldSign\Model\EmbeddedSendCreated';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\EmbeddedSendCreated',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 401:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\BoldSign\Model\ErrorResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation mergeCreateEmbeddedRequestUrlTemplateAsync
+     *
+     * Generates a merge request URL using a template that combines document merging and sending processes into your application.
+     *
+     * @param  \BoldSign\Model\EmbeddedMergeTemplateFormRequest $embedded_merge_template_form_request Embedded merge and send template json request. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mergeCreateEmbeddedRequestUrlTemplate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function mergeCreateEmbeddedRequestUrlTemplateAsync($embedded_merge_template_form_request = null, string $contentType = self::contentTypes['mergeCreateEmbeddedRequestUrlTemplate'][0])
+    {
+        return $this->mergeCreateEmbeddedRequestUrlTemplateAsyncWithHttpInfo($embedded_merge_template_form_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation mergeCreateEmbeddedRequestUrlTemplateAsyncWithHttpInfo
+     *
+     * Generates a merge request URL using a template that combines document merging and sending processes into your application.
+     *
+     * @param  \BoldSign\Model\EmbeddedMergeTemplateFormRequest $embedded_merge_template_form_request Embedded merge and send template json request. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mergeCreateEmbeddedRequestUrlTemplate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function mergeCreateEmbeddedRequestUrlTemplateAsyncWithHttpInfo($embedded_merge_template_form_request = null, string $contentType = self::contentTypes['mergeCreateEmbeddedRequestUrlTemplate'][0])
+    {
+        $returnType = '\BoldSign\Model\EmbeddedSendCreated';
+        $request = $this->mergeCreateEmbeddedRequestUrlTemplateRequest($embedded_merge_template_form_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'mergeCreateEmbeddedRequestUrlTemplate'
+     *
+     * @param  \BoldSign\Model\EmbeddedMergeTemplateFormRequest $embedded_merge_template_form_request Embedded merge and send template json request. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mergeCreateEmbeddedRequestUrlTemplate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function mergeCreateEmbeddedRequestUrlTemplateRequest($embedded_merge_template_form_request = null, string $contentType = self::contentTypes['mergeCreateEmbeddedRequestUrlTemplate'][0])
+    {
+
+
+
+        $resourcePath = '/v1/template/mergeCreateEmbeddedRequestUrl';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        if(!is_array($embedded_merge_template_form_request)) {
+            $formParams = ObjectSerializer::getFormParams(
+                $embedded_merge_template_form_request
+            );
+        }
+        else {
+            foreach($embedded_merge_template_form_request as $param){
+                $formParams = ObjectSerializer::getFormParams(
+                $param);
+            }
+        }
+
+        $multipart = !empty($formParams);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            $multipart ? ['multipart/form-data'] : ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) === 0) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($embedded_merge_template_form_request));
+            } else {
+                $httpBody = $embedded_merge_template_form_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                if (!empty($body)) {
+                    $multipartContents[] = [
+                        'name'     => 'body',
+                        'contents' => $body,
+                        'headers'  => ['Content-Type' => 'application/json'],
+                    ];
+                }
+
+                if ($payloadHook = $this->config->getPayloadHook()) {
+                    $payloadHook('multipart', $multipartContents, $embedded_merge_template_form_request);
                 }
                 $httpBody = new MultipartStream($multipartContents);
 

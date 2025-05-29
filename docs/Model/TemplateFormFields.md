@@ -42,5 +42,7 @@ Name | Type | Description | Notes
 **tab_index** | **int** |  | [optional]
 **formula_field_settings** | [**\BoldSign\Model\FormulaFieldSettings**](FormulaFieldSettings.md) |  | [optional]
 **resize_option** | **string** |  | [optional]
+**allow_edit_form_field** | **bool** |  | [optional]
+**allow_delete_form_field** | **bool** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

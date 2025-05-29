@@ -61,7 +61,10 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
         'color' => 'string',
         'size' => 'float',
         'style' => 'string',
-        'line_height' => 'int'
+        'line_height' => 'int',
+        'is_bold_font' => 'bool',
+        'is_italic_font' => 'bool',
+        'is_under_line_font' => 'bool'
     ];
 
     /**
@@ -76,7 +79,10 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
         'color' => null,
         'size' => 'float',
         'style' => null,
-        'line_height' => 'int32'
+        'line_height' => 'int32',
+        'is_bold_font' => null,
+        'is_italic_font' => null,
+        'is_under_line_font' => null
     ];
 
     /**
@@ -89,7 +95,10 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
         'color' => true,
         'size' => false,
         'style' => true,
-        'line_height' => false
+        'line_height' => false,
+        'is_bold_font' => false,
+        'is_italic_font' => false,
+        'is_under_line_font' => false
     ];
 
     /**
@@ -182,7 +191,10 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
         'color' => 'color',
         'size' => 'size',
         'style' => 'style',
-        'line_height' => 'lineHeight'
+        'line_height' => 'lineHeight',
+        'is_bold_font' => 'isBoldFont',
+        'is_italic_font' => 'isItalicFont',
+        'is_under_line_font' => 'isUnderLineFont'
     ];
 
     /**
@@ -195,7 +207,10 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
         'color' => 'setColor',
         'size' => 'setSize',
         'style' => 'setStyle',
-        'line_height' => 'setLineHeight'
+        'line_height' => 'setLineHeight',
+        'is_bold_font' => 'setIsBoldFont',
+        'is_italic_font' => 'setIsItalicFont',
+        'is_under_line_font' => 'setIsUnderLineFont'
     ];
 
     /**
@@ -208,7 +223,10 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
         'color' => 'getColor',
         'size' => 'getSize',
         'style' => 'getStyle',
-        'line_height' => 'getLineHeight'
+        'line_height' => 'getLineHeight',
+        'is_bold_font' => 'getIsBoldFont',
+        'is_italic_font' => 'getIsItalicFont',
+        'is_under_line_font' => 'getIsUnderLineFont'
     ];
 
     /**
@@ -311,6 +329,9 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('size', $data ?? [], null);
         $this->setIfExists('style', $data ?? [], null);
         $this->setIfExists('line_height', $data ?? [], null);
+        $this->setIfExists('is_bold_font', $data ?? [], null);
+        $this->setIfExists('is_italic_font', $data ?? [], null);
+        $this->setIfExists('is_under_line_font', $data ?? [], null);
     }
 
     /**
@@ -482,6 +503,7 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets style
      *
      * @return string|null
+     * @deprecated
      */
     public function getStyle()
     {
@@ -494,6 +516,7 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $style style
      *
      * @return self
+     * @deprecated
      */
     public function setStyle($style)
     {
@@ -545,6 +568,87 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable line_height cannot be null');
         }
         $this->container['line_height'] = $line_height;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_bold_font
+     *
+     * @return bool|null
+     */
+    public function getIsBoldFont()
+    {
+        return $this->container['is_bold_font'];
+    }
+
+    /**
+     * Sets is_bold_font
+     *
+     * @param bool|null $is_bold_font is_bold_font
+     *
+     * @return self
+     */
+    public function setIsBoldFont($is_bold_font)
+    {
+        if (is_null($is_bold_font)) {
+            throw new \InvalidArgumentException('non-nullable is_bold_font cannot be null');
+        }
+        $this->container['is_bold_font'] = $is_bold_font;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_italic_font
+     *
+     * @return bool|null
+     */
+    public function getIsItalicFont()
+    {
+        return $this->container['is_italic_font'];
+    }
+
+    /**
+     * Sets is_italic_font
+     *
+     * @param bool|null $is_italic_font is_italic_font
+     *
+     * @return self
+     */
+    public function setIsItalicFont($is_italic_font)
+    {
+        if (is_null($is_italic_font)) {
+            throw new \InvalidArgumentException('non-nullable is_italic_font cannot be null');
+        }
+        $this->container['is_italic_font'] = $is_italic_font;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_under_line_font
+     *
+     * @return bool|null
+     */
+    public function getIsUnderLineFont()
+    {
+        return $this->container['is_under_line_font'];
+    }
+
+    /**
+     * Sets is_under_line_font
+     *
+     * @param bool|null $is_under_line_font is_under_line_font
+     *
+     * @return self
+     */
+    public function setIsUnderLineFont($is_under_line_font)
+    {
+        if (is_null($is_under_line_font)) {
+            throw new \InvalidArgumentException('non-nullable is_under_line_font cannot be null');
+        }
+        $this->container['is_under_line_font'] = $is_under_line_font;
 
         return $this;
     }

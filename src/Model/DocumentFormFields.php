@@ -93,7 +93,9 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'background_hex_color' => 'string',
         'tab_index' => 'int',
         'formula_field_settings' => '\BoldSign\Model\FormulaFieldSettings',
-        'resize_option' => 'string'
+        'resize_option' => 'string',
+        'allow_edit_form_field' => 'bool',
+        'allow_delete_form_field' => 'bool'
     ];
 
     /**
@@ -140,7 +142,9 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'background_hex_color' => null,
         'tab_index' => 'int32',
         'formula_field_settings' => null,
-        'resize_option' => null
+        'resize_option' => null,
+        'allow_edit_form_field' => null,
+        'allow_delete_form_field' => null
     ];
 
     /**
@@ -185,7 +189,9 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'background_hex_color' => true,
         'tab_index' => false,
         'formula_field_settings' => false,
-        'resize_option' => true
+        'resize_option' => true,
+        'allow_edit_form_field' => false,
+        'allow_delete_form_field' => false
     ];
 
     /**
@@ -310,7 +316,9 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'background_hex_color' => 'backgroundHexColor',
         'tab_index' => 'tabIndex',
         'formula_field_settings' => 'formulaFieldSettings',
-        'resize_option' => 'resizeOption'
+        'resize_option' => 'resizeOption',
+        'allow_edit_form_field' => 'allowEditFormField',
+        'allow_delete_form_field' => 'allowDeleteFormField'
     ];
 
     /**
@@ -355,7 +363,9 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'background_hex_color' => 'setBackgroundHexColor',
         'tab_index' => 'setTabIndex',
         'formula_field_settings' => 'setFormulaFieldSettings',
-        'resize_option' => 'setResizeOption'
+        'resize_option' => 'setResizeOption',
+        'allow_edit_form_field' => 'setAllowEditFormField',
+        'allow_delete_form_field' => 'setAllowDeleteFormField'
     ];
 
     /**
@@ -400,7 +410,9 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'background_hex_color' => 'getBackgroundHexColor',
         'tab_index' => 'getTabIndex',
         'formula_field_settings' => 'getFormulaFieldSettings',
-        'resize_option' => 'getResizeOption'
+        'resize_option' => 'getResizeOption',
+        'allow_edit_form_field' => 'getAllowEditFormField',
+        'allow_delete_form_field' => 'getAllowDeleteFormField'
     ];
 
     /**
@@ -571,6 +583,8 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('tab_index', $data ?? [], null);
         $this->setIfExists('formula_field_settings', $data ?? [], null);
         $this->setIfExists('resize_option', $data ?? [], null);
+        $this->setIfExists('allow_edit_form_field', $data ?? [], null);
+        $this->setIfExists('allow_delete_form_field', $data ?? [], null);
     }
 
     /**
@@ -1812,6 +1826,60 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
             );
         }
         $this->container['resize_option'] = $resize_option;
+
+        return $this;
+    }
+
+    /**
+     * Gets allow_edit_form_field
+     *
+     * @return bool|null
+     */
+    public function getAllowEditFormField()
+    {
+        return $this->container['allow_edit_form_field'];
+    }
+
+    /**
+     * Sets allow_edit_form_field
+     *
+     * @param bool|null $allow_edit_form_field allow_edit_form_field
+     *
+     * @return self
+     */
+    public function setAllowEditFormField($allow_edit_form_field)
+    {
+        if (is_null($allow_edit_form_field)) {
+            throw new \InvalidArgumentException('non-nullable allow_edit_form_field cannot be null');
+        }
+        $this->container['allow_edit_form_field'] = $allow_edit_form_field;
+
+        return $this;
+    }
+
+    /**
+     * Gets allow_delete_form_field
+     *
+     * @return bool|null
+     */
+    public function getAllowDeleteFormField()
+    {
+        return $this->container['allow_delete_form_field'];
+    }
+
+    /**
+     * Sets allow_delete_form_field
+     *
+     * @param bool|null $allow_delete_form_field allow_delete_form_field
+     *
+     * @return self
+     */
+    public function setAllowDeleteFormField($allow_delete_form_field)
+    {
+        if (is_null($allow_delete_form_field)) {
+            throw new \InvalidArgumentException('non-nullable allow_delete_form_field cannot be null');
+        }
+        $this->container['allow_delete_form_field'] = $allow_delete_form_field;
 
         return $this;
     }

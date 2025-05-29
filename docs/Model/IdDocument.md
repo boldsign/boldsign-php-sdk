@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **country** | **string** |  | [optional]
 **document_number** | **string** |  | [optional]
 **address** | [**\BoldSign\Model\Address**](Address.md) |  | [optional]
-**dob** | **\DateTime** |  | [optional]
-**issued_date** | **\DateTime** |  | [optional]
-**expiration_date** | **\DateTime** |  | [optional]
+**dob** | [**\BoldSign\Model\Date**](Date.md) |  | [optional]
+**issued_date** | [**\BoldSign\Model\Date**](Date.md) |  | [optional]
+**expiration_date** | [**\BoldSign\Model\Date**](Date.md) |  | [optional]
 **document_files** | **string[]** |  | [optional]
 **selfie_file** | **string** |  | [optional]
 

@@ -16,8 +16,8 @@ All URIs are relative to https://api.boldsign.com, except if the operation defin
 | [**downloadAuditLog()**](DocumentApi.md#downloadAuditLog) | **GET** /v1/document/downloadAuditLog | Download the audit trail document. |
 | [**downloadDocument()**](DocumentApi.md#downloadDocument) | **GET** /v1/document/download | Download the document. |
 | [**extendExpiry()**](DocumentApi.md#extendExpiry) | **PATCH** /v1/document/extendExpiry | Extends the expiration date of the document. |
-| [**getEmbeddedSignLink()**](DocumentApi.md#getEmbeddedSignLink) | **GET** /v1/document/getEmbeddedSignLink | Get sign link for Embedded Sign. |
 | [**getProperties()**](DocumentApi.md#getProperties) | **GET** /v1/document/properties | Get summary of the document. |
+| [**getEmbeddedSignLink()**](DocumentApi.md#getEmbeddedSignLink) | **GET** /v1/document/getEmbeddedSignLink | Get sign link for Embedded Sign. |
 | [**listDocuments()**](DocumentApi.md#listDocuments) | **GET** /v1/document/list | List user documents. |
 | [**prefillFields()**](DocumentApi.md#prefillFields) | **PATCH** /v1/document/prefillFields | Updates the value (prefill) of the fields in the document. |
 | [**remindDocument()**](DocumentApi.md#remindDocument) | **POST** /v1/document/remind | Send reminder to pending signers. |
@@ -676,6 +676,57 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getProperties()`
+
+```php
+getProperties($document_id): \BoldSign\Model\DocumentProperties
+```
+
+Get summary of the document.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
+
+$apiInstance = new BoldSign\Api\DocumentApi($config);
+$document_id = 'document_id_example'; // string | Document Id.
+
+try {
+    $result = $apiInstance->getProperties($document_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DocumentApi->getProperties: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **document_id** | **string**| Document Id. | |
+
+### Return type
+
+[**\BoldSign\Model\DocumentProperties**](../Model/DocumentProperties.md)
+
+### Authorization
+
+[X-API-KEY](../../README.md#X-API-KEY), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getEmbeddedSignLink()`
 
 ```php
@@ -732,57 +783,6 @@ try {
 
 - **Content-Type**: Not defined
 - **Accept**: `application/json;odata.metadata=minimal;odata.streaming=true`, `application/json;odata.metadata=minimal;odata.streaming=false`, `application/json;odata.metadata=minimal`, `application/json;odata.metadata=full;odata.streaming=true`, `application/json;odata.metadata=full;odata.streaming=false`, `application/json;odata.metadata=full`, `application/json;odata.metadata=none;odata.streaming=true`, `application/json;odata.metadata=none;odata.streaming=false`, `application/json;odata.metadata=none`, `application/json;odata.streaming=true`, `application/json;odata.streaming=false`, `application/json`, `application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=minimal;IEEE754Compatible=false`, `application/json;odata.metadata=minimal;IEEE754Compatible=true`, `application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=full;IEEE754Compatible=false`, `application/json;odata.metadata=full;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true`, `application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.metadata=none;IEEE754Compatible=false`, `application/json;odata.metadata=none;IEEE754Compatible=true`, `application/json;odata.streaming=true;IEEE754Compatible=false`, `application/json;odata.streaming=true;IEEE754Compatible=true`, `application/json;odata.streaming=false;IEEE754Compatible=false`, `application/json;odata.streaming=false;IEEE754Compatible=true`, `application/json;IEEE754Compatible=false`, `application/json;IEEE754Compatible=true`, `application/xml`, `text/plain`, `application/octet-stream`, `text/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `getProperties()`
-
-```php
-getProperties($document_id): \BoldSign\Model\DocumentProperties
-```
-
-Get summary of the document.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-$config = new BoldSign\Configuration();
-$config->setApiKey('YOUR_API_KEY');
-
-$apiInstance = new BoldSign\Api\DocumentApi($config);
-$document_id = 'document_id_example'; // string | Document Id.
-
-try {
-    $result = $apiInstance->getProperties($document_id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DocumentApi->getProperties: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **document_id** | **string**| Document Id. | |
-
-### Return type
-
-[**\BoldSign\Model\DocumentProperties**](../Model/DocumentProperties.md)
-
-### Authorization
-
-[X-API-KEY](../../README.md#X-API-KEY), [Bearer](../../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

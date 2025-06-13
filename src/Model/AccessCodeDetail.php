@@ -64,7 +64,8 @@ class AccessCodeDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         'on_behalf_of' => 'string',
         'phone_number' => '\BoldSign\Model\PhoneNumber',
         'identity_verification_settings' => '\BoldSign\Model\IdentityVerificationSettings',
-        'authentication_retry_count' => 'int'
+        'authentication_retry_count' => 'int',
+        'authentication_settings' => '\BoldSign\Model\AuthenticationSettings'
     ];
 
     /**
@@ -82,7 +83,8 @@ class AccessCodeDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         'on_behalf_of' => null,
         'phone_number' => null,
         'identity_verification_settings' => null,
-        'authentication_retry_count' => 'int32'
+        'authentication_retry_count' => 'int32',
+        'authentication_settings' => null
     ];
 
     /**
@@ -98,7 +100,8 @@ class AccessCodeDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         'on_behalf_of' => true,
         'phone_number' => false,
         'identity_verification_settings' => false,
-        'authentication_retry_count' => true
+        'authentication_retry_count' => true,
+        'authentication_settings' => false
     ];
 
     /**
@@ -194,7 +197,8 @@ class AccessCodeDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         'on_behalf_of' => 'onBehalfOf',
         'phone_number' => 'phoneNumber',
         'identity_verification_settings' => 'identityVerificationSettings',
-        'authentication_retry_count' => 'authenticationRetryCount'
+        'authentication_retry_count' => 'authenticationRetryCount',
+        'authentication_settings' => 'authenticationSettings'
     ];
 
     /**
@@ -210,7 +214,8 @@ class AccessCodeDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         'on_behalf_of' => 'setOnBehalfOf',
         'phone_number' => 'setPhoneNumber',
         'identity_verification_settings' => 'setIdentityVerificationSettings',
-        'authentication_retry_count' => 'setAuthenticationRetryCount'
+        'authentication_retry_count' => 'setAuthenticationRetryCount',
+        'authentication_settings' => 'setAuthenticationSettings'
     ];
 
     /**
@@ -226,7 +231,8 @@ class AccessCodeDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         'on_behalf_of' => 'getOnBehalfOf',
         'phone_number' => 'getPhoneNumber',
         'identity_verification_settings' => 'getIdentityVerificationSettings',
-        'authentication_retry_count' => 'getAuthenticationRetryCount'
+        'authentication_retry_count' => 'getAuthenticationRetryCount',
+        'authentication_settings' => 'getAuthenticationSettings'
     ];
 
     /**
@@ -315,6 +321,7 @@ class AccessCodeDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('phone_number', $data ?? [], null);
         $this->setIfExists('identity_verification_settings', $data ?? [], null);
         $this->setIfExists('authentication_retry_count', $data ?? [], null);
+        $this->setIfExists('authentication_settings', $data ?? [], null);
     }
 
     /**
@@ -660,6 +667,33 @@ class AccessCodeDetail implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['authentication_retry_count'] = $authentication_retry_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets authentication_settings
+     *
+     * @return \BoldSign\Model\AuthenticationSettings|null
+     */
+    public function getAuthenticationSettings()
+    {
+        return $this->container['authentication_settings'];
+    }
+
+    /**
+     * Sets authentication_settings
+     *
+     * @param \BoldSign\Model\AuthenticationSettings|null $authentication_settings authentication_settings
+     *
+     * @return self
+     */
+    public function setAuthenticationSettings($authentication_settings)
+    {
+        if (is_null($authentication_settings)) {
+            throw new \InvalidArgumentException('non-nullable authentication_settings cannot be null');
+        }
+        $this->container['authentication_settings'] = $authentication_settings;
 
         return $this;
     }

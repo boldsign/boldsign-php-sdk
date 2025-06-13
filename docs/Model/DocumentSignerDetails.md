@@ -30,5 +30,6 @@ Name | Type | Description | Notes
 **authentication_retry_count** | **int** |  | [optional]
 **enable_qes** | **bool** |  | [optional]
 **delivery_mode** | **string** |  | [optional]
+**authentication_settings** | [**\BoldSign\Model\SignerAuthenticationSettings**](SignerAuthenticationSettings.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

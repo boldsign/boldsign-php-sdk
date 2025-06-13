@@ -24,5 +24,6 @@ Name | Type | Description | Notes
 **recipient_notification_settings** | [**\BoldSign\Model\RecipientNotificationSettings**](RecipientNotificationSettings.md) |  | [optional]
 **authentication_retry_count** | **int** |  | [optional]
 **enable_qes** | **bool** |  | [optional]
+**authentication_settings** | [**\BoldSign\Model\AuthenticationSettings**](AuthenticationSettings.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

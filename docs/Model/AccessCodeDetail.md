@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **phone_number** | [**\BoldSign\Model\PhoneNumber**](PhoneNumber.md) |  | [optional]
 **identity_verification_settings** | [**\BoldSign\Model\IdentityVerificationSettings**](IdentityVerificationSettings.md) |  | [optional]
 **authentication_retry_count** | **int** |  | [optional]
+**authentication_settings** | [**\BoldSign\Model\AuthenticationSettings**](AuthenticationSettings.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

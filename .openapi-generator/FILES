@@ -18,6 +18,7 @@ docs/Model/AccessCodeDetails.md
 docs/Model/Address.md
 docs/Model/AttachmentInfo.md
 docs/Model/AuditTrail.md
+docs/Model/AuthenticationSettings.md
 docs/Model/Base64File.md
 docs/Model/BehalfDocument.md
 docs/Model/BehalfDocumentRecords.md
@@ -109,6 +110,7 @@ docs/Model/SendForSignFromTemplateForm.md
 docs/Model/SenderIdentityCreated.md
 docs/Model/SenderIdentityList.md
 docs/Model/SenderIdentityViewModel.md
+docs/Model/SignerAuthenticationSettings.md
 docs/Model/Size.md
 docs/Model/TeamCreated.md
 docs/Model/TeamDocumentRecords.md
@@ -162,6 +164,7 @@ src/Model/AccessCodeDetails.php
 src/Model/Address.php
 src/Model/AttachmentInfo.php
 src/Model/AuditTrail.php
+src/Model/AuthenticationSettings.php
 src/Model/Base64File.php
 src/Model/BehalfDocument.php
 src/Model/BehalfDocumentRecords.php
@@ -254,6 +257,7 @@ src/Model/SendForSignFromTemplateForm.php
 src/Model/SenderIdentityCreated.php
 src/Model/SenderIdentityList.php
 src/Model/SenderIdentityViewModel.php
+src/Model/SignerAuthenticationSettings.php
 src/Model/Size.php
 src/Model/TeamCreated.php
 src/Model/TeamDocumentRecords.php

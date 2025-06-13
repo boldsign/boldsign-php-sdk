@@ -78,7 +78,8 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
         'locale' => 'string',
         'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
         'authentication_retry_count' => 'int',
-        'enable_qes' => 'bool'
+        'enable_qes' => 'bool',
+        'authentication_settings' => '\BoldSign\Model\AuthenticationSettings'
     ];
 
     /**
@@ -110,7 +111,8 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
         'locale' => null,
         'recipient_notification_settings' => null,
         'authentication_retry_count' => 'int32',
-        'enable_qes' => null
+        'enable_qes' => null,
+        'authentication_settings' => null
     ];
 
     /**
@@ -140,7 +142,8 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
         'locale' => false,
         'recipient_notification_settings' => false,
         'authentication_retry_count' => true,
-        'enable_qes' => true
+        'enable_qes' => true,
+        'authentication_settings' => false
     ];
 
     /**
@@ -250,7 +253,8 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
         'locale' => 'locale',
         'recipient_notification_settings' => 'recipientNotificationSettings',
         'authentication_retry_count' => 'authenticationRetryCount',
-        'enable_qes' => 'enableQes'
+        'enable_qes' => 'enableQes',
+        'authentication_settings' => 'authenticationSettings'
     ];
 
     /**
@@ -280,7 +284,8 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
         'locale' => 'setLocale',
         'recipient_notification_settings' => 'setRecipientNotificationSettings',
         'authentication_retry_count' => 'setAuthenticationRetryCount',
-        'enable_qes' => 'setEnableQes'
+        'enable_qes' => 'setEnableQes',
+        'authentication_settings' => 'setAuthenticationSettings'
     ];
 
     /**
@@ -310,7 +315,8 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
         'locale' => 'getLocale',
         'recipient_notification_settings' => 'getRecipientNotificationSettings',
         'authentication_retry_count' => 'getAuthenticationRetryCount',
-        'enable_qes' => 'getEnableQes'
+        'enable_qes' => 'getEnableQes',
+        'authentication_settings' => 'getAuthenticationSettings'
     ];
 
     /**
@@ -535,6 +541,7 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('recipient_notification_settings', $data ?? [], null);
         $this->setIfExists('authentication_retry_count', $data ?? [], null);
         $this->setIfExists('enable_qes', $data ?? [], null);
+        $this->setIfExists('authentication_settings', $data ?? [], null);
     }
 
     /**
@@ -1403,6 +1410,33 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['enable_qes'] = $enable_qes;
+
+        return $this;
+    }
+
+    /**
+     * Gets authentication_settings
+     *
+     * @return \BoldSign\Model\AuthenticationSettings|null
+     */
+    public function getAuthenticationSettings()
+    {
+        return $this->container['authentication_settings'];
+    }
+
+    /**
+     * Sets authentication_settings
+     *
+     * @param \BoldSign\Model\AuthenticationSettings|null $authentication_settings authentication_settings
+     *
+     * @return self
+     */
+    public function setAuthenticationSettings($authentication_settings)
+    {
+        if (is_null($authentication_settings)) {
+            throw new \InvalidArgumentException('non-nullable authentication_settings cannot be null');
+        }
+        $this->container['authentication_settings'] = $authentication_settings;
 
         return $this;
     }

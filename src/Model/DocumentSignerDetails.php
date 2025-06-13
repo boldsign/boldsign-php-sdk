@@ -82,7 +82,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
         'authentication_retry_count' => 'int',
         'enable_qes' => 'bool',
-        'delivery_mode' => 'string'
+        'delivery_mode' => 'string',
+        'authentication_settings' => '\BoldSign\Model\SignerAuthenticationSettings'
     ];
 
     /**
@@ -118,7 +119,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'recipient_notification_settings' => null,
         'authentication_retry_count' => 'int32',
         'enable_qes' => null,
-        'delivery_mode' => null
+        'delivery_mode' => null,
+        'authentication_settings' => null
     ];
 
     /**
@@ -152,7 +154,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'recipient_notification_settings' => false,
         'authentication_retry_count' => true,
         'enable_qes' => true,
-        'delivery_mode' => false
+        'delivery_mode' => false,
+        'authentication_settings' => false
     ];
 
     /**
@@ -266,7 +269,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'recipient_notification_settings' => 'recipientNotificationSettings',
         'authentication_retry_count' => 'authenticationRetryCount',
         'enable_qes' => 'enableQes',
-        'delivery_mode' => 'deliveryMode'
+        'delivery_mode' => 'deliveryMode',
+        'authentication_settings' => 'authenticationSettings'
     ];
 
     /**
@@ -300,7 +304,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'recipient_notification_settings' => 'setRecipientNotificationSettings',
         'authentication_retry_count' => 'setAuthenticationRetryCount',
         'enable_qes' => 'setEnableQes',
-        'delivery_mode' => 'setDeliveryMode'
+        'delivery_mode' => 'setDeliveryMode',
+        'authentication_settings' => 'setAuthenticationSettings'
     ];
 
     /**
@@ -334,7 +339,8 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'recipient_notification_settings' => 'getRecipientNotificationSettings',
         'authentication_retry_count' => 'getAuthenticationRetryCount',
         'enable_qes' => 'getEnableQes',
-        'delivery_mode' => 'getDeliveryMode'
+        'delivery_mode' => 'getDeliveryMode',
+        'authentication_settings' => 'getAuthenticationSettings'
     ];
 
     /**
@@ -586,6 +592,7 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->setIfExists('authentication_retry_count', $data ?? [], null);
         $this->setIfExists('enable_qes', $data ?? [], null);
         $this->setIfExists('delivery_mode', $data ?? [], null);
+        $this->setIfExists('authentication_settings', $data ?? [], null);
     }
 
     /**
@@ -1512,6 +1519,33 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
             );
         }
         $this->container['delivery_mode'] = $delivery_mode;
+
+        return $this;
+    }
+
+    /**
+     * Gets authentication_settings
+     *
+     * @return \BoldSign\Model\SignerAuthenticationSettings|null
+     */
+    public function getAuthenticationSettings()
+    {
+        return $this->container['authentication_settings'];
+    }
+
+    /**
+     * Sets authentication_settings
+     *
+     * @param \BoldSign\Model\SignerAuthenticationSettings|null $authentication_settings authentication_settings
+     *
+     * @return self
+     */
+    public function setAuthenticationSettings($authentication_settings)
+    {
+        if (is_null($authentication_settings)) {
+            throw new \InvalidArgumentException('non-nullable authentication_settings cannot be null');
+        }
+        $this->container['authentication_settings'] = $authentication_settings;
 
         return $this;
     }

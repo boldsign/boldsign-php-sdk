@@ -174,7 +174,7 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'show_preview_button' => false,
         'show_navigation_buttons' => false,
         'show_tooltip' => false,
-        'embedded_send_link_valid_till' => false,
+        'embedded_send_link_valid_till' => true,
         'files' => true,
         'title' => true,
         'message' => true,
@@ -513,8 +513,10 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
     public const EXPIRY_DATE_TYPE_DAYS = 'Days';
     public const EXPIRY_DATE_TYPE_HOURS = 'Hours';
     public const EXPIRY_DATE_TYPE_SPECIFIC_DATE_TIME = 'SpecificDateTime';
+    public const EXPIRY_DATE_TYPE_NULL = 'null';
     public const DOCUMENT_DOWNLOAD_OPTION_COMBINED = 'Combined';
     public const DOCUMENT_DOWNLOAD_OPTION_INDIVIDUALLY = 'Individually';
+    public const DOCUMENT_DOWNLOAD_OPTION_NULL = 'null';
 
     /**
      * Gets allowable values of the enum
@@ -567,6 +569,7 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
             self::EXPIRY_DATE_TYPE_DAYS,
             self::EXPIRY_DATE_TYPE_HOURS,
             self::EXPIRY_DATE_TYPE_SPECIFIC_DATE_TIME,
+            self::EXPIRY_DATE_TYPE_NULL,
         ];
     }
 
@@ -580,6 +583,7 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
         return [
             self::DOCUMENT_DOWNLOAD_OPTION_COMBINED,
             self::DOCUMENT_DOWNLOAD_OPTION_INDIVIDUALLY,
+            self::DOCUMENT_DOWNLOAD_OPTION_NULL,
         ];
     }
 
@@ -1037,7 +1041,14 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
     public function setEmbeddedSendLinkValidTill($embedded_send_link_valid_till)
     {
         if (is_null($embedded_send_link_valid_till)) {
-            throw new \InvalidArgumentException('non-nullable embedded_send_link_valid_till cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'embedded_send_link_valid_till');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('embedded_send_link_valid_till', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['embedded_send_link_valid_till'] = $embedded_send_link_valid_till;
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * AuthenticationSettings
+ * RecipientChangeLog
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \BoldSign\ObjectSerializer;
 
 /**
- * AuthenticationSettings Class Doc Comment
+ * RecipientChangeLog Class Doc Comment
  *
  * @category Class
  * @package  BoldSign
@@ -40,7 +40,7 @@ use \BoldSign\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class RecipientChangeLog implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AuthenticationSettings';
+    protected static $openAPIModelName = 'RecipientChangeLog';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,8 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'authentication_frequency' => 'string'
+        'added' => '\BoldSign\Model\Added[]',
+        'removed' => '\BoldSign\Model\Removed[]'
     ];
 
     /**
@@ -68,7 +69,8 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'authentication_frequency' => null
+        'added' => null,
+        'removed' => null
     ];
 
     /**
@@ -77,7 +79,8 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'authentication_frequency' => true
+        'added' => true,
+        'removed' => true
     ];
 
     /**
@@ -166,7 +169,8 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'authentication_frequency' => 'authenticationFrequency'
+        'added' => 'added',
+        'removed' => 'removed'
     ];
 
     /**
@@ -175,7 +179,8 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'authentication_frequency' => 'setAuthenticationFrequency'
+        'added' => 'setAdded',
+        'removed' => 'setRemoved'
     ];
 
     /**
@@ -184,7 +189,8 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'authentication_frequency' => 'getAuthenticationFrequency'
+        'added' => 'getAdded',
+        'removed' => 'getRemoved'
     ];
 
     /**
@@ -228,27 +234,6 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
-    public const AUTHENTICATION_FREQUENCY_NONE = 'None';
-    public const AUTHENTICATION_FREQUENCY_EVERY_ACCESS = 'EveryAccess';
-    public const AUTHENTICATION_FREQUENCY_UNTIL_SIGN_COMPLETED = 'UntilSignCompleted';
-    public const AUTHENTICATION_FREQUENCY_ONCE_PER_DOCUMENT = 'OncePerDocument';
-    public const AUTHENTICATION_FREQUENCY_NULL = 'null';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getAuthenticationFrequencyAllowableValues()
-    {
-        return [
-            self::AUTHENTICATION_FREQUENCY_NONE,
-            self::AUTHENTICATION_FREQUENCY_EVERY_ACCESS,
-            self::AUTHENTICATION_FREQUENCY_UNTIL_SIGN_COMPLETED,
-            self::AUTHENTICATION_FREQUENCY_ONCE_PER_DOCUMENT,
-            self::AUTHENTICATION_FREQUENCY_NULL,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -265,7 +250,8 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('authentication_frequency', $data ?? [], null);
+        $this->setIfExists('added', $data ?? [], null);
+        $this->setIfExists('removed', $data ?? [], null);
     }
 
     /**
@@ -295,15 +281,6 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getAuthenticationFrequencyAllowableValues();
-        if (!is_null($this->container['authentication_frequency']) && !in_array($this->container['authentication_frequency'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'authentication_frequency', must be one of '%s'",
-                $this->container['authentication_frequency'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -320,45 +297,69 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
-     * Gets authentication_frequency
+     * Gets added
      *
-     * @return string|null
+     * @return \BoldSign\Model\Added[]|null
      */
-    public function getAuthenticationFrequency()
+    public function getAdded()
     {
-        return $this->container['authentication_frequency'];
+        return $this->container['added'];
     }
 
     /**
-     * Sets authentication_frequency
+     * Sets added
      *
-     * @param string|null $authentication_frequency authentication_frequency
+     * @param \BoldSign\Model\Added[]|null $added added
      *
      * @return self
      */
-    public function setAuthenticationFrequency($authentication_frequency)
+    public function setAdded($added)
     {
-        if (is_null($authentication_frequency)) {
-            array_push($this->openAPINullablesSetToNull, 'authentication_frequency');
+        if (is_null($added)) {
+            array_push($this->openAPINullablesSetToNull, 'added');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('authentication_frequency', $nullablesSetToNull);
+            $index = array_search('added', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $allowedValues = $this->getAuthenticationFrequencyAllowableValues();
-        if (!is_null($authentication_frequency) && !in_array($authentication_frequency, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'authentication_frequency', must be one of '%s'",
-                    $authentication_frequency,
-                    implode("', '", $allowedValues)
-                )
-            );
+        $this->container['added'] = $added;
+
+        return $this;
+    }
+
+    /**
+     * Gets removed
+     *
+     * @return \BoldSign\Model\Removed[]|null
+     */
+    public function getRemoved()
+    {
+        return $this->container['removed'];
+    }
+
+    /**
+     * Sets removed
+     *
+     * @param \BoldSign\Model\Removed[]|null $removed removed
+     *
+     * @return self
+     */
+    public function setRemoved($removed)
+    {
+        if (is_null($removed)) {
+            array_push($this->openAPINullablesSetToNull, 'removed');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('removed', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['authentication_frequency'] = $authentication_frequency;
+        $this->container['removed'] = $removed;
 
         return $this;
     }

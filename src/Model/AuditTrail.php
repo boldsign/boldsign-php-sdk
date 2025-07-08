@@ -64,7 +64,10 @@ class AuditTrail implements ModelInterface, ArrayAccess, \JsonSerializable
         'to_email' => 'string',
         'ipaddress' => 'string',
         'action' => 'string',
-        'timestamp' => 'int'
+        'timestamp' => 'int',
+        'recipient_change_log' => '\BoldSign\Model\RecipientChangeLog',
+        'document_change_log' => '\BoldSign\Model\ModificationDetails',
+        'field_change_log' => '\BoldSign\Model\ModificationDetails'
     ];
 
     /**
@@ -82,7 +85,10 @@ class AuditTrail implements ModelInterface, ArrayAccess, \JsonSerializable
         'to_email' => null,
         'ipaddress' => null,
         'action' => null,
-        'timestamp' => 'int64'
+        'timestamp' => 'int64',
+        'recipient_change_log' => null,
+        'document_change_log' => null,
+        'field_change_log' => null
     ];
 
     /**
@@ -98,7 +104,10 @@ class AuditTrail implements ModelInterface, ArrayAccess, \JsonSerializable
         'to_email' => true,
         'ipaddress' => true,
         'action' => false,
-        'timestamp' => false
+        'timestamp' => false,
+        'recipient_change_log' => false,
+        'document_change_log' => false,
+        'field_change_log' => false
     ];
 
     /**
@@ -194,7 +203,10 @@ class AuditTrail implements ModelInterface, ArrayAccess, \JsonSerializable
         'to_email' => 'toEmail',
         'ipaddress' => 'ipaddress',
         'action' => 'action',
-        'timestamp' => 'timestamp'
+        'timestamp' => 'timestamp',
+        'recipient_change_log' => 'recipientChangeLog',
+        'document_change_log' => 'documentChangeLog',
+        'field_change_log' => 'fieldChangeLog'
     ];
 
     /**
@@ -210,7 +222,10 @@ class AuditTrail implements ModelInterface, ArrayAccess, \JsonSerializable
         'to_email' => 'setToEmail',
         'ipaddress' => 'setIpaddress',
         'action' => 'setAction',
-        'timestamp' => 'setTimestamp'
+        'timestamp' => 'setTimestamp',
+        'recipient_change_log' => 'setRecipientChangeLog',
+        'document_change_log' => 'setDocumentChangeLog',
+        'field_change_log' => 'setFieldChangeLog'
     ];
 
     /**
@@ -226,7 +241,10 @@ class AuditTrail implements ModelInterface, ArrayAccess, \JsonSerializable
         'to_email' => 'getToEmail',
         'ipaddress' => 'getIpaddress',
         'action' => 'getAction',
-        'timestamp' => 'getTimestamp'
+        'timestamp' => 'getTimestamp',
+        'recipient_change_log' => 'getRecipientChangeLog',
+        'document_change_log' => 'getDocumentChangeLog',
+        'field_change_log' => 'getFieldChangeLog'
     ];
 
     /**
@@ -461,6 +479,9 @@ class AuditTrail implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('ipaddress', $data ?? [], null);
         $this->setIfExists('action', $data ?? [], null);
         $this->setIfExists('timestamp', $data ?? [], null);
+        $this->setIfExists('recipient_change_log', $data ?? [], null);
+        $this->setIfExists('document_change_log', $data ?? [], null);
+        $this->setIfExists('field_change_log', $data ?? [], null);
     }
 
     /**
@@ -778,6 +799,87 @@ class AuditTrail implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable timestamp cannot be null');
         }
         $this->container['timestamp'] = $timestamp;
+
+        return $this;
+    }
+
+    /**
+     * Gets recipient_change_log
+     *
+     * @return \BoldSign\Model\RecipientChangeLog|null
+     */
+    public function getRecipientChangeLog()
+    {
+        return $this->container['recipient_change_log'];
+    }
+
+    /**
+     * Sets recipient_change_log
+     *
+     * @param \BoldSign\Model\RecipientChangeLog|null $recipient_change_log recipient_change_log
+     *
+     * @return self
+     */
+    public function setRecipientChangeLog($recipient_change_log)
+    {
+        if (is_null($recipient_change_log)) {
+            throw new \InvalidArgumentException('non-nullable recipient_change_log cannot be null');
+        }
+        $this->container['recipient_change_log'] = $recipient_change_log;
+
+        return $this;
+    }
+
+    /**
+     * Gets document_change_log
+     *
+     * @return \BoldSign\Model\ModificationDetails|null
+     */
+    public function getDocumentChangeLog()
+    {
+        return $this->container['document_change_log'];
+    }
+
+    /**
+     * Sets document_change_log
+     *
+     * @param \BoldSign\Model\ModificationDetails|null $document_change_log document_change_log
+     *
+     * @return self
+     */
+    public function setDocumentChangeLog($document_change_log)
+    {
+        if (is_null($document_change_log)) {
+            throw new \InvalidArgumentException('non-nullable document_change_log cannot be null');
+        }
+        $this->container['document_change_log'] = $document_change_log;
+
+        return $this;
+    }
+
+    /**
+     * Gets field_change_log
+     *
+     * @return \BoldSign\Model\ModificationDetails|null
+     */
+    public function getFieldChangeLog()
+    {
+        return $this->container['field_change_log'];
+    }
+
+    /**
+     * Sets field_change_log
+     *
+     * @param \BoldSign\Model\ModificationDetails|null $field_change_log field_change_log
+     *
+     * @return self
+     */
+    public function setFieldChangeLog($field_change_log)
+    {
+        if (is_null($field_change_log)) {
+            throw new \InvalidArgumentException('non-nullable field_change_log cannot be null');
+        }
+        $this->container['field_change_log'] = $field_change_log;
 
         return $this;
     }

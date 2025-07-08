@@ -519,8 +519,10 @@ class EmbeddedMergeTemplateFormRequest implements ModelInterface, ArrayAccess, \
     public const EXPIRY_DATE_TYPE_DAYS = 'Days';
     public const EXPIRY_DATE_TYPE_HOURS = 'Hours';
     public const EXPIRY_DATE_TYPE_SPECIFIC_DATE_TIME = 'SpecificDateTime';
+    public const EXPIRY_DATE_TYPE_NULL = 'null';
     public const DOCUMENT_DOWNLOAD_OPTION_COMBINED = 'Combined';
     public const DOCUMENT_DOWNLOAD_OPTION_INDIVIDUALLY = 'Individually';
+    public const DOCUMENT_DOWNLOAD_OPTION_NULL = 'null';
 
     /**
      * Gets allowable values of the enum
@@ -573,6 +575,7 @@ class EmbeddedMergeTemplateFormRequest implements ModelInterface, ArrayAccess, \
             self::EXPIRY_DATE_TYPE_DAYS,
             self::EXPIRY_DATE_TYPE_HOURS,
             self::EXPIRY_DATE_TYPE_SPECIFIC_DATE_TIME,
+            self::EXPIRY_DATE_TYPE_NULL,
         ];
     }
 
@@ -586,6 +589,7 @@ class EmbeddedMergeTemplateFormRequest implements ModelInterface, ArrayAccess, \
         return [
             self::DOCUMENT_DOWNLOAD_OPTION_COMBINED,
             self::DOCUMENT_DOWNLOAD_OPTION_INDIVIDUALLY,
+            self::DOCUMENT_DOWNLOAD_OPTION_NULL,
         ];
     }
 

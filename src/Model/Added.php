@@ -1,6 +1,6 @@
 <?php
 /**
- * AuthenticationSettings
+ * Added
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \BoldSign\ObjectSerializer;
 
 /**
- * AuthenticationSettings Class Doc Comment
+ * Added Class Doc Comment
  *
  * @category Class
  * @package  BoldSign
@@ -40,7 +40,7 @@ use \BoldSign\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerializable
+class Added implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AuthenticationSettings';
+    protected static $openAPIModelName = 'Added';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,9 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
       * @var string[]
       */
     protected static $openAPITypes = [
-        'authentication_frequency' => 'string'
+        'signer_name' => 'string',
+        'signer_email' => 'string',
+        'signer_phone_number' => 'string'
     ];
 
     /**
@@ -68,7 +70,9 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'authentication_frequency' => null
+        'signer_name' => null,
+        'signer_email' => null,
+        'signer_phone_number' => null
     ];
 
     /**
@@ -77,7 +81,9 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'authentication_frequency' => true
+        'signer_name' => true,
+        'signer_email' => true,
+        'signer_phone_number' => true
     ];
 
     /**
@@ -166,7 +172,9 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $attributeMap = [
-        'authentication_frequency' => 'authenticationFrequency'
+        'signer_name' => 'signerName',
+        'signer_email' => 'signerEmail',
+        'signer_phone_number' => 'signerPhoneNumber'
     ];
 
     /**
@@ -175,7 +183,9 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $setters = [
-        'authentication_frequency' => 'setAuthenticationFrequency'
+        'signer_name' => 'setSignerName',
+        'signer_email' => 'setSignerEmail',
+        'signer_phone_number' => 'setSignerPhoneNumber'
     ];
 
     /**
@@ -184,7 +194,9 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
      * @var string[]
      */
     protected static $getters = [
-        'authentication_frequency' => 'getAuthenticationFrequency'
+        'signer_name' => 'getSignerName',
+        'signer_email' => 'getSignerEmail',
+        'signer_phone_number' => 'getSignerPhoneNumber'
     ];
 
     /**
@@ -228,27 +240,6 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
-    public const AUTHENTICATION_FREQUENCY_NONE = 'None';
-    public const AUTHENTICATION_FREQUENCY_EVERY_ACCESS = 'EveryAccess';
-    public const AUTHENTICATION_FREQUENCY_UNTIL_SIGN_COMPLETED = 'UntilSignCompleted';
-    public const AUTHENTICATION_FREQUENCY_ONCE_PER_DOCUMENT = 'OncePerDocument';
-    public const AUTHENTICATION_FREQUENCY_NULL = 'null';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getAuthenticationFrequencyAllowableValues()
-    {
-        return [
-            self::AUTHENTICATION_FREQUENCY_NONE,
-            self::AUTHENTICATION_FREQUENCY_EVERY_ACCESS,
-            self::AUTHENTICATION_FREQUENCY_UNTIL_SIGN_COMPLETED,
-            self::AUTHENTICATION_FREQUENCY_ONCE_PER_DOCUMENT,
-            self::AUTHENTICATION_FREQUENCY_NULL,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -265,7 +256,9 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('authentication_frequency', $data ?? [], null);
+        $this->setIfExists('signer_name', $data ?? [], null);
+        $this->setIfExists('signer_email', $data ?? [], null);
+        $this->setIfExists('signer_phone_number', $data ?? [], null);
     }
 
     /**
@@ -295,15 +288,6 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getAuthenticationFrequencyAllowableValues();
-        if (!is_null($this->container['authentication_frequency']) && !in_array($this->container['authentication_frequency'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'authentication_frequency', must be one of '%s'",
-                $this->container['authentication_frequency'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -320,45 +304,103 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
 
 
     /**
-     * Gets authentication_frequency
+     * Gets signer_name
      *
      * @return string|null
      */
-    public function getAuthenticationFrequency()
+    public function getSignerName()
     {
-        return $this->container['authentication_frequency'];
+        return $this->container['signer_name'];
     }
 
     /**
-     * Sets authentication_frequency
+     * Sets signer_name
      *
-     * @param string|null $authentication_frequency authentication_frequency
+     * @param string|null $signer_name signer_name
      *
      * @return self
      */
-    public function setAuthenticationFrequency($authentication_frequency)
+    public function setSignerName($signer_name)
     {
-        if (is_null($authentication_frequency)) {
-            array_push($this->openAPINullablesSetToNull, 'authentication_frequency');
+        if (is_null($signer_name)) {
+            array_push($this->openAPINullablesSetToNull, 'signer_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('authentication_frequency', $nullablesSetToNull);
+            $index = array_search('signer_name', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $allowedValues = $this->getAuthenticationFrequencyAllowableValues();
-        if (!is_null($authentication_frequency) && !in_array($authentication_frequency, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'authentication_frequency', must be one of '%s'",
-                    $authentication_frequency,
-                    implode("', '", $allowedValues)
-                )
-            );
+        $this->container['signer_name'] = $signer_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets signer_email
+     *
+     * @return string|null
+     */
+    public function getSignerEmail()
+    {
+        return $this->container['signer_email'];
+    }
+
+    /**
+     * Sets signer_email
+     *
+     * @param string|null $signer_email signer_email
+     *
+     * @return self
+     */
+    public function setSignerEmail($signer_email)
+    {
+        if (is_null($signer_email)) {
+            array_push($this->openAPINullablesSetToNull, 'signer_email');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('signer_email', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['authentication_frequency'] = $authentication_frequency;
+        $this->container['signer_email'] = $signer_email;
+
+        return $this;
+    }
+
+    /**
+     * Gets signer_phone_number
+     *
+     * @return string|null
+     */
+    public function getSignerPhoneNumber()
+    {
+        return $this->container['signer_phone_number'];
+    }
+
+    /**
+     * Sets signer_phone_number
+     *
+     * @param string|null $signer_phone_number signer_phone_number
+     *
+     * @return self
+     */
+    public function setSignerPhoneNumber($signer_phone_number)
+    {
+        if (is_null($signer_phone_number)) {
+            array_push($this->openAPINullablesSetToNull, 'signer_phone_number');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('signer_phone_number', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['signer_phone_number'] = $signer_phone_number;
 
         return $this;
     }

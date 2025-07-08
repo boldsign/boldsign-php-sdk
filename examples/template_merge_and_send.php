@@ -19,7 +19,7 @@ $role->setFormFields([$form_fields]);
 $role1 = new BoldSign\Model\Role();
 $role1->setRoleIndex(1);
 $role1->setSignerName('david');
-$role1->setSignerEmail('david @gmail.com');
+$role1->setSignerEmail('david@gmail.com');
 $role1->setSignerRole('Manager2');
 $role1->setFormFields([$form_fields]);
 

@@ -57,6 +57,7 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'id' => 'string',
         'document_name' => 'string',
         'order' => 'int',
         'page_count' => 'int'
@@ -70,6 +71,7 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'id' => null,
         'document_name' => null,
         'order' => 'int32',
         'page_count' => 'int32'
@@ -81,6 +83,7 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'id' => true,
         'document_name' => true,
         'order' => false,
         'page_count' => false
@@ -172,6 +175,7 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
         'document_name' => 'documentName',
         'order' => 'order',
         'page_count' => 'pageCount'
@@ -183,6 +187,7 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
         'document_name' => 'setDocumentName',
         'order' => 'setOrder',
         'page_count' => 'setPageCount'
@@ -194,6 +199,7 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
         'document_name' => 'getDocumentName',
         'order' => 'getOrder',
         'page_count' => 'getPageCount'
@@ -256,6 +262,7 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('document_name', $data ?? [], null);
         $this->setIfExists('order', $data ?? [], null);
         $this->setIfExists('page_count', $data ?? [], null);
@@ -302,6 +309,40 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string|null $id id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            array_push($this->openAPINullablesSetToNull, 'id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
 
     /**
      * Gets document_name

@@ -16,7 +16,7 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 ```json
 {
     "require": {
-        "boldsign/boldsign-php": "1.0.3-beta.1"
+        "boldsign/boldsign-php": "1.0.4"
     },
     "minimum-stability": "dev"
 }
@@ -27,7 +27,7 @@ Then run `composer install`
 Alternatively, install directly with
 
 ```
-composer require boldsign/boldsign-php:1.0.3-beta.1
+composer require boldsign/boldsign-php:1.0.4
 ```
 
 ## Getting Started
@@ -166,6 +166,7 @@ All URIs are relative to *https://api.boldsign.com*
 - [BrandingMessage](docs/Model/BrandingMessage.md)
 - [BrandingRecords](docs/Model/BrandingRecords.md)
 - [ChangeRecipient](docs/Model/ChangeRecipient.md)
+- [CollaborationSettings](docs/Model/CollaborationSettings.md)
 - [ConditionalRule](docs/Model/ConditionalRule.md)
 - [ContactCreated](docs/Model/ContactCreated.md)
 - [ContactDetails](docs/Model/ContactDetails.md)
@@ -186,9 +187,7 @@ All URIs are relative to *https://api.boldsign.com*
 - [Document](docs/Model/Document.md)
 - [DocumentCC](docs/Model/DocumentCC.md)
 - [DocumentCcDetails](docs/Model/DocumentCcDetails.md)
-- [DocumentCcWebhookModel](docs/Model/DocumentCcWebhookModel.md)
 - [DocumentCreated](docs/Model/DocumentCreated.md)
-- [DocumentEvent](docs/Model/DocumentEvent.md)
 - [DocumentExpirySettings](docs/Model/DocumentExpirySettings.md)
 - [DocumentFiles](docs/Model/DocumentFiles.md)
 - [DocumentFormFields](docs/Model/DocumentFormFields.md)
@@ -196,11 +195,9 @@ All URIs are relative to *https://api.boldsign.com*
 - [DocumentProperties](docs/Model/DocumentProperties.md)
 - [DocumentReassign](docs/Model/DocumentReassign.md)
 - [DocumentRecords](docs/Model/DocumentRecords.md)
-- [DocumentSender](docs/Model/DocumentSender.md)
 - [DocumentSenderDetail](docs/Model/DocumentSenderDetail.md)
 - [DocumentSigner](docs/Model/DocumentSigner.md)
 - [DocumentSignerDetails](docs/Model/DocumentSignerDetails.md)
-- [DocumentSignerWebhookModel](docs/Model/DocumentSignerWebhookModel.md)
 - [DocumentTags](docs/Model/DocumentTags.md)
 - [DownloadImageRequest](docs/Model/DownloadImageRequest.md)
 - [EditSenderIdentityRequest](docs/Model/EditSenderIdentityRequest.md)
@@ -227,11 +224,9 @@ All URIs are relative to *https://api.boldsign.com*
 - [FormField](docs/Model/FormField.md)
 - [FormGroup](docs/Model/FormGroup.md)
 - [FormulaFieldSettings](docs/Model/FormulaFieldSettings.md)
-- [IWebhookData](docs/Model/IWebhookData.md)
 - [IdDocument](docs/Model/IdDocument.md)
 - [IdReport](docs/Model/IdReport.md)
 - [IdVerification](docs/Model/IdVerification.md)
-- [IdentityVerificationEvent](docs/Model/IdentityVerificationEvent.md)
 - [IdentityVerificationSettings](docs/Model/IdentityVerificationSettings.md)
 - [ImageInfo](docs/Model/ImageInfo.md)
 - [MergeAndSendForSignForm](docs/Model/MergeAndSendForSignForm.md)
@@ -239,7 +234,6 @@ All URIs are relative to *https://api.boldsign.com*
 - [NotificationSettings](docs/Model/NotificationSettings.md)
 - [PageDetails](docs/Model/PageDetails.md)
 - [PhoneNumber](docs/Model/PhoneNumber.md)
-- [PhoneNumberWebhookModel](docs/Model/PhoneNumberWebhookModel.md)
 - [PrefillField](docs/Model/PrefillField.md)
 - [PrefillFieldRequest](docs/Model/PrefillFieldRequest.md)
 - [RecipientChangeLog](docs/Model/RecipientChangeLog.md)
@@ -255,7 +249,6 @@ All URIs are relative to *https://api.boldsign.com*
 - [SendForSign](docs/Model/SendForSign.md)
 - [SendForSignFromTemplateForm](docs/Model/SendForSignFromTemplateForm.md)
 - [SenderIdentityCreated](docs/Model/SenderIdentityCreated.md)
-- [SenderIdentityEvent](docs/Model/SenderIdentityEvent.md)
 - [SenderIdentityList](docs/Model/SenderIdentityList.md)
 - [SenderIdentityViewModel](docs/Model/SenderIdentityViewModel.md)
 - [SignerAuthenticationSettings](docs/Model/SignerAuthenticationSettings.md)
@@ -270,18 +263,14 @@ All URIs are relative to *https://api.boldsign.com*
 - [Teams](docs/Model/Teams.md)
 - [Template](docs/Model/Template.md)
 - [TemplateCC](docs/Model/TemplateCC.md)
-- [TemplateCcWebhookModel](docs/Model/TemplateCcWebhookModel.md)
 - [TemplateCreated](docs/Model/TemplateCreated.md)
-- [TemplateEvent](docs/Model/TemplateEvent.md)
 - [TemplateFormFields](docs/Model/TemplateFormFields.md)
 - [TemplateProperties](docs/Model/TemplateProperties.md)
 - [TemplateRecords](docs/Model/TemplateRecords.md)
 - [TemplateRole](docs/Model/TemplateRole.md)
-- [TemplateSender](docs/Model/TemplateSender.md)
 - [TemplateSenderDetail](docs/Model/TemplateSenderDetail.md)
 - [TemplateSenderDetails](docs/Model/TemplateSenderDetails.md)
 - [TemplateSharedTemplateDetail](docs/Model/TemplateSharedTemplateDetail.md)
-- [TemplateSigner](docs/Model/TemplateSigner.md)
 - [TemplateSignerDetails](docs/Model/TemplateSignerDetails.md)
 - [TemplateTag](docs/Model/TemplateTag.md)
 - [TextTagDefinition](docs/Model/TextTagDefinition.md)
@@ -296,9 +285,6 @@ All URIs are relative to *https://api.boldsign.com*
 - [VerificationDataRequest](docs/Model/VerificationDataRequest.md)
 - [ViewBrandDetails](docs/Model/ViewBrandDetails.md)
 - [ViewCustomFieldDetails](docs/Model/ViewCustomFieldDetails.md)
-- [WebhookEvent](docs/Model/WebhookEvent.md)
-- [WebhookEventData](docs/Model/WebhookEventData.md)
-- [WebhookEventMetadata](docs/Model/WebhookEventMetadata.md)
 
 ## Authorization
 
@@ -336,6 +322,6 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `1`
-    - Package version: `1.0.3-beta.1`
+    - Package version: `1.0.4`
     - Generator version: `7.8.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

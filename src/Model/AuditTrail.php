@@ -366,6 +366,8 @@ class AuditTrail implements ModelInterface, ArrayAccess, \JsonSerializable
     public const ACTION_QES_REJECTED = 'QESRejected';
     public const ACTION_QES_EXPIRED = 'QESExpired';
     public const ACTION_QES_WITHDRAWN = 'QESWithdrawn';
+    public const ACTION_RESENT_FOR_APPROVAL = 'ResentForApproval';
+    public const ACTION_DOCUMENT_FIELD_MARKUP = 'DocumentFieldMarkup';
 
     /**
      * Gets allowable values of the enum
@@ -453,6 +455,8 @@ class AuditTrail implements ModelInterface, ArrayAccess, \JsonSerializable
             self::ACTION_QES_REJECTED,
             self::ACTION_QES_EXPIRED,
             self::ACTION_QES_WITHDRAWN,
+            self::ACTION_RESENT_FOR_APPROVAL,
+            self::ACTION_DOCUMENT_FIELD_MARKUP,
         ];
     }
 

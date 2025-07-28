@@ -93,9 +93,9 @@ class EmbeddedSendTemplateFormRequest implements ModelInterface, ArrayAccess, \J
         'role_removal_indices' => 'int[]',
         'document_download_option' => 'string',
         'meta_data' => 'array<string,string>',
-        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
         'form_groups' => '\BoldSign\Model\FormGroup[]',
         'remove_form_fields' => 'string[]',
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
         'enable_audit_trail_localization' => 'bool',
         'download_file_name' => 'string',
         'scheduled_send_time' => 'int',
@@ -146,9 +146,9 @@ class EmbeddedSendTemplateFormRequest implements ModelInterface, ArrayAccess, \J
         'role_removal_indices' => 'int32',
         'document_download_option' => null,
         'meta_data' => null,
-        'recipient_notification_settings' => null,
         'form_groups' => null,
         'remove_form_fields' => null,
+        'recipient_notification_settings' => null,
         'enable_audit_trail_localization' => null,
         'download_file_name' => null,
         'scheduled_send_time' => 'int64',
@@ -197,9 +197,9 @@ class EmbeddedSendTemplateFormRequest implements ModelInterface, ArrayAccess, \J
         'role_removal_indices' => true,
         'document_download_option' => true,
         'meta_data' => true,
-        'recipient_notification_settings' => false,
         'form_groups' => true,
         'remove_form_fields' => true,
+        'recipient_notification_settings' => false,
         'enable_audit_trail_localization' => true,
         'download_file_name' => true,
         'scheduled_send_time' => true,
@@ -328,9 +328,9 @@ class EmbeddedSendTemplateFormRequest implements ModelInterface, ArrayAccess, \J
         'role_removal_indices' => 'roleRemovalIndices',
         'document_download_option' => 'documentDownloadOption',
         'meta_data' => 'metaData',
-        'recipient_notification_settings' => 'recipientNotificationSettings',
         'form_groups' => 'formGroups',
         'remove_form_fields' => 'removeFormFields',
+        'recipient_notification_settings' => 'recipientNotificationSettings',
         'enable_audit_trail_localization' => 'enableAuditTrailLocalization',
         'download_file_name' => 'downloadFileName',
         'scheduled_send_time' => 'scheduledSendTime',
@@ -379,9 +379,9 @@ class EmbeddedSendTemplateFormRequest implements ModelInterface, ArrayAccess, \J
         'role_removal_indices' => 'setRoleRemovalIndices',
         'document_download_option' => 'setDocumentDownloadOption',
         'meta_data' => 'setMetaData',
-        'recipient_notification_settings' => 'setRecipientNotificationSettings',
         'form_groups' => 'setFormGroups',
         'remove_form_fields' => 'setRemoveFormFields',
+        'recipient_notification_settings' => 'setRecipientNotificationSettings',
         'enable_audit_trail_localization' => 'setEnableAuditTrailLocalization',
         'download_file_name' => 'setDownloadFileName',
         'scheduled_send_time' => 'setScheduledSendTime',
@@ -430,9 +430,9 @@ class EmbeddedSendTemplateFormRequest implements ModelInterface, ArrayAccess, \J
         'role_removal_indices' => 'getRoleRemovalIndices',
         'document_download_option' => 'getDocumentDownloadOption',
         'meta_data' => 'getMetaData',
-        'recipient_notification_settings' => 'getRecipientNotificationSettings',
         'form_groups' => 'getFormGroups',
         'remove_form_fields' => 'getRemoveFormFields',
+        'recipient_notification_settings' => 'getRecipientNotificationSettings',
         'enable_audit_trail_localization' => 'getEnableAuditTrailLocalization',
         'download_file_name' => 'getDownloadFileName',
         'scheduled_send_time' => 'getScheduledSendTime',
@@ -626,9 +626,9 @@ class EmbeddedSendTemplateFormRequest implements ModelInterface, ArrayAccess, \J
         $this->setIfExists('role_removal_indices', $data ?? [], null);
         $this->setIfExists('document_download_option', $data ?? [], null);
         $this->setIfExists('meta_data', $data ?? [], null);
-        $this->setIfExists('recipient_notification_settings', $data ?? [], null);
         $this->setIfExists('form_groups', $data ?? [], null);
         $this->setIfExists('remove_form_fields', $data ?? [], null);
+        $this->setIfExists('recipient_notification_settings', $data ?? [], null);
         $this->setIfExists('enable_audit_trail_localization', $data ?? [], null);
         $this->setIfExists('download_file_name', $data ?? [], null);
         $this->setIfExists('scheduled_send_time', $data ?? [], null);
@@ -1922,33 +1922,6 @@ class EmbeddedSendTemplateFormRequest implements ModelInterface, ArrayAccess, \J
     }
 
     /**
-     * Gets recipient_notification_settings
-     *
-     * @return \BoldSign\Model\RecipientNotificationSettings|null
-     */
-    public function getRecipientNotificationSettings()
-    {
-        return $this->container['recipient_notification_settings'];
-    }
-
-    /**
-     * Sets recipient_notification_settings
-     *
-     * @param \BoldSign\Model\RecipientNotificationSettings|null $recipient_notification_settings recipient_notification_settings
-     *
-     * @return self
-     */
-    public function setRecipientNotificationSettings($recipient_notification_settings)
-    {
-        if (is_null($recipient_notification_settings)) {
-            throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
-        }
-        $this->container['recipient_notification_settings'] = $recipient_notification_settings;
-
-        return $this;
-    }
-
-    /**
      * Gets form_groups
      *
      * @return \BoldSign\Model\FormGroup[]|null
@@ -2012,6 +1985,33 @@ class EmbeddedSendTemplateFormRequest implements ModelInterface, ArrayAccess, \J
             }
         }
         $this->container['remove_form_fields'] = $remove_form_fields;
+
+        return $this;
+    }
+
+    /**
+     * Gets recipient_notification_settings
+     *
+     * @return \BoldSign\Model\RecipientNotificationSettings|null
+     */
+    public function getRecipientNotificationSettings()
+    {
+        return $this->container['recipient_notification_settings'];
+    }
+
+    /**
+     * Sets recipient_notification_settings
+     *
+     * @param \BoldSign\Model\RecipientNotificationSettings|null $recipient_notification_settings recipient_notification_settings
+     *
+     * @return self
+     */
+    public function setRecipientNotificationSettings($recipient_notification_settings)
+    {
+        if (is_null($recipient_notification_settings)) {
+            throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
+        }
+        $this->container['recipient_notification_settings'] = $recipient_notification_settings;
 
         return $this;
     }

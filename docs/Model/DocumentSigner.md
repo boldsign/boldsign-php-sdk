@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** |  |
+**id** | **string** |  | [optional]
 **email_address** | **string** |  | [optional]
 **private_message** | **string** |  | [optional]
 **authentication_type** | **string** |  | [optional]

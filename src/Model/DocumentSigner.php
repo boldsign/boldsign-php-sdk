@@ -58,6 +58,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'name' => 'string',
+        'id' => 'string',
         'email_address' => 'string',
         'private_message' => 'string',
         'authentication_type' => 'string',
@@ -89,6 +90,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'name' => null,
+        'id' => null,
         'email_address' => null,
         'private_message' => null,
         'authentication_type' => null,
@@ -118,6 +120,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'name' => false,
+        'id' => true,
         'email_address' => true,
         'private_message' => true,
         'authentication_type' => false,
@@ -227,6 +230,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'name' => 'name',
+        'id' => 'id',
         'email_address' => 'emailAddress',
         'private_message' => 'privateMessage',
         'authentication_type' => 'authenticationType',
@@ -256,6 +260,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'name' => 'setName',
+        'id' => 'setId',
         'email_address' => 'setEmailAddress',
         'private_message' => 'setPrivateMessage',
         'authentication_type' => 'setAuthenticationType',
@@ -285,6 +290,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'name' => 'getName',
+        'id' => 'getId',
         'email_address' => 'getEmailAddress',
         'private_message' => 'getPrivateMessage',
         'authentication_type' => 'getAuthenticationType',
@@ -508,6 +514,7 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('email_address', $data ?? [], null);
         $this->setIfExists('private_message', $data ?? [], null);
         $this->setIfExists('authentication_type', $data ?? [], null);
@@ -668,6 +675,40 @@ class DocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string|null $id id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            array_push($this->openAPINullablesSetToNull, 'id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['id'] = $id;
 
         return $this;
     }

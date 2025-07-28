@@ -57,6 +57,7 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
+        'id' => 'string',
         'signer_name' => 'string',
         'signer_role' => 'string',
         'signer_email' => 'string',
@@ -94,6 +95,7 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'id' => null,
         'signer_name' => null,
         'signer_role' => null,
         'signer_email' => null,
@@ -129,6 +131,7 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'id' => true,
         'signer_name' => true,
         'signer_role' => true,
         'signer_email' => true,
@@ -244,6 +247,7 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
         'signer_name' => 'signerName',
         'signer_role' => 'signerRole',
         'signer_email' => 'signerEmail',
@@ -279,6 +283,7 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
         'signer_name' => 'setSignerName',
         'signer_role' => 'setSignerRole',
         'signer_email' => 'setSignerEmail',
@@ -314,6 +319,7 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
         'signer_name' => 'getSignerName',
         'signer_role' => 'getSignerRole',
         'signer_email' => 'getSignerEmail',
@@ -566,6 +572,7 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('signer_name', $data ?? [], null);
         $this->setIfExists('signer_role', $data ?? [], null);
         $this->setIfExists('signer_email', $data ?? [], null);
@@ -690,6 +697,40 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string|null $id id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            array_push($this->openAPINullablesSetToNull, 'id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
 
     /**
      * Gets signer_name

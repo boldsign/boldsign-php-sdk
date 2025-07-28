@@ -1,6 +1,6 @@
 <?php
 /**
- * DocumentSender
+ * CollaborationSettings
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \BoldSign\ObjectSerializer;
 
 /**
- * DocumentSender Class Doc Comment
+ * CollaborationSettings Class Doc Comment
  *
  * @category Class
  * @package  BoldSign
@@ -40,7 +40,7 @@ use \BoldSign\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
+class CollaborationSettings implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DocumentSender';
+    protected static $openAPIModelName = 'CollaborationSettings';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,10 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'email_address' => 'string'
+        'is_required' => 'bool',
+        'require_signer_approval' => 'bool',
+        'require_initial' => 'bool',
+        'allowed_signers' => 'string[]'
     ];
 
     /**
@@ -69,8 +71,10 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'email_address' => null
+        'is_required' => null,
+        'require_signer_approval' => null,
+        'require_initial' => null,
+        'allowed_signers' => null
     ];
 
     /**
@@ -79,8 +83,10 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => true,
-        'email_address' => true
+        'is_required' => true,
+        'require_signer_approval' => true,
+        'require_initial' => true,
+        'allowed_signers' => true
     ];
 
     /**
@@ -169,8 +175,10 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'email_address' => 'emailAddress'
+        'is_required' => 'isRequired',
+        'require_signer_approval' => 'requireSignerApproval',
+        'require_initial' => 'requireInitial',
+        'allowed_signers' => 'allowedSigners'
     ];
 
     /**
@@ -179,8 +187,10 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'email_address' => 'setEmailAddress'
+        'is_required' => 'setIsRequired',
+        'require_signer_approval' => 'setRequireSignerApproval',
+        'require_initial' => 'setRequireInitial',
+        'allowed_signers' => 'setAllowedSigners'
     ];
 
     /**
@@ -189,8 +199,10 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'email_address' => 'getEmailAddress'
+        'is_required' => 'getIsRequired',
+        'require_signer_approval' => 'getRequireSignerApproval',
+        'require_initial' => 'getRequireInitial',
+        'allowed_signers' => 'getAllowedSigners'
     ];
 
     /**
@@ -250,8 +262,10 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('email_address', $data ?? [], null);
+        $this->setIfExists('is_required', $data ?? [], null);
+        $this->setIfExists('require_signer_approval', $data ?? [], null);
+        $this->setIfExists('require_initial', $data ?? [], null);
+        $this->setIfExists('allowed_signers', $data ?? [], null);
     }
 
     /**
@@ -297,69 +311,137 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets name
+     * Gets is_required
      *
-     * @return string|null
+     * @return bool|null
      */
-    public function getName()
+    public function getIsRequired()
     {
-        return $this->container['name'];
+        return $this->container['is_required'];
     }
 
     /**
-     * Sets name
+     * Sets is_required
      *
-     * @param string|null $name name
+     * @param bool|null $is_required is_required
      *
      * @return self
      */
-    public function setName($name)
+    public function setIsRequired($is_required)
     {
-        if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
+        if (is_null($is_required)) {
+            array_push($this->openAPINullablesSetToNull, 'is_required');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
+            $index = array_search('is_required', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['name'] = $name;
+        $this->container['is_required'] = $is_required;
 
         return $this;
     }
 
     /**
-     * Gets email_address
+     * Gets require_signer_approval
      *
-     * @return string|null
+     * @return bool|null
      */
-    public function getEmailAddress()
+    public function getRequireSignerApproval()
     {
-        return $this->container['email_address'];
+        return $this->container['require_signer_approval'];
     }
 
     /**
-     * Sets email_address
+     * Sets require_signer_approval
      *
-     * @param string|null $email_address email_address
+     * @param bool|null $require_signer_approval require_signer_approval
      *
      * @return self
      */
-    public function setEmailAddress($email_address)
+    public function setRequireSignerApproval($require_signer_approval)
     {
-        if (is_null($email_address)) {
-            array_push($this->openAPINullablesSetToNull, 'email_address');
+        if (is_null($require_signer_approval)) {
+            array_push($this->openAPINullablesSetToNull, 'require_signer_approval');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('email_address', $nullablesSetToNull);
+            $index = array_search('require_signer_approval', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['email_address'] = $email_address;
+        $this->container['require_signer_approval'] = $require_signer_approval;
+
+        return $this;
+    }
+
+    /**
+     * Gets require_initial
+     *
+     * @return bool|null
+     */
+    public function getRequireInitial()
+    {
+        return $this->container['require_initial'];
+    }
+
+    /**
+     * Sets require_initial
+     *
+     * @param bool|null $require_initial require_initial
+     *
+     * @return self
+     */
+    public function setRequireInitial($require_initial)
+    {
+        if (is_null($require_initial)) {
+            array_push($this->openAPINullablesSetToNull, 'require_initial');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('require_initial', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['require_initial'] = $require_initial;
+
+        return $this;
+    }
+
+    /**
+     * Gets allowed_signers
+     *
+     * @return string[]|null
+     */
+    public function getAllowedSigners()
+    {
+        return $this->container['allowed_signers'];
+    }
+
+    /**
+     * Sets allowed_signers
+     *
+     * @param string[]|null $allowed_signers allowed_signers
+     *
+     * @return self
+     */
+    public function setAllowedSigners($allowed_signers)
+    {
+        if (is_null($allowed_signers)) {
+            array_push($this->openAPINullablesSetToNull, 'allowed_signers');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('allowed_signers', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['allowed_signers'] = $allowed_signers;
 
         return $this;
     }

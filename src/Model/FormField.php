@@ -96,7 +96,8 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'formula_field_settings' => '\BoldSign\Model\FormulaFieldSettings',
         'resize_option' => 'string',
         'allow_edit_form_field' => 'bool',
-        'allow_delete_form_field' => 'bool'
+        'allow_delete_form_field' => 'bool',
+        'collaboration_settings' => '\BoldSign\Model\CollaborationSettings'
     ];
 
     /**
@@ -146,7 +147,8 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'formula_field_settings' => null,
         'resize_option' => null,
         'allow_edit_form_field' => null,
-        'allow_delete_form_field' => null
+        'allow_delete_form_field' => null,
+        'collaboration_settings' => null
     ];
 
     /**
@@ -194,7 +196,8 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'formula_field_settings' => false,
         'resize_option' => true,
         'allow_edit_form_field' => true,
-        'allow_delete_form_field' => true
+        'allow_delete_form_field' => true,
+        'collaboration_settings' => false
     ];
 
     /**
@@ -322,7 +325,8 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'formula_field_settings' => 'formulaFieldSettings',
         'resize_option' => 'resizeOption',
         'allow_edit_form_field' => 'allowEditFormField',
-        'allow_delete_form_field' => 'allowDeleteFormField'
+        'allow_delete_form_field' => 'allowDeleteFormField',
+        'collaboration_settings' => 'collaborationSettings'
     ];
 
     /**
@@ -370,7 +374,8 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'formula_field_settings' => 'setFormulaFieldSettings',
         'resize_option' => 'setResizeOption',
         'allow_edit_form_field' => 'setAllowEditFormField',
-        'allow_delete_form_field' => 'setAllowDeleteFormField'
+        'allow_delete_form_field' => 'setAllowDeleteFormField',
+        'collaboration_settings' => 'setCollaborationSettings'
     ];
 
     /**
@@ -418,7 +423,8 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         'formula_field_settings' => 'getFormulaFieldSettings',
         'resize_option' => 'getResizeOption',
         'allow_edit_form_field' => 'getAllowEditFormField',
-        'allow_delete_form_field' => 'getAllowDeleteFormField'
+        'allow_delete_form_field' => 'getAllowDeleteFormField',
+        'collaboration_settings' => 'getCollaborationSettings'
     ];
 
     /**
@@ -654,6 +660,7 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('resize_option', $data ?? [], null);
         $this->setIfExists('allow_edit_form_field', $data ?? [], null);
         $this->setIfExists('allow_delete_form_field', $data ?? [], null);
+        $this->setIfExists('collaboration_settings', $data ?? [], null);
     }
 
     /**
@@ -2094,6 +2101,33 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['allow_delete_form_field'] = $allow_delete_form_field;
+
+        return $this;
+    }
+
+    /**
+     * Gets collaboration_settings
+     *
+     * @return \BoldSign\Model\CollaborationSettings|null
+     */
+    public function getCollaborationSettings()
+    {
+        return $this->container['collaboration_settings'];
+    }
+
+    /**
+     * Sets collaboration_settings
+     *
+     * @param \BoldSign\Model\CollaborationSettings|null $collaboration_settings collaboration_settings
+     *
+     * @return self
+     */
+    public function setCollaborationSettings($collaboration_settings)
+    {
+        if (is_null($collaboration_settings)) {
+            throw new \InvalidArgumentException('non-nullable collaboration_settings cannot be null');
+        }
+        $this->container['collaboration_settings'] = $collaboration_settings;
 
         return $this;
     }

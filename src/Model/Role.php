@@ -372,7 +372,6 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
     public const SIGNER_TYPE_SIGNER = 'Signer';
     public const SIGNER_TYPE_REVIEWER = 'Reviewer';
     public const SIGNER_TYPE_IN_PERSON_SIGNER = 'InPersonSigner';
-    public const SIGNER_TYPE_NULL = 'null';
     public const LANGUAGE_0 = 0;
     public const LANGUAGE_1 = 1;
     public const LANGUAGE_2 = 2;
@@ -448,7 +447,6 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
             self::SIGNER_TYPE_SIGNER,
             self::SIGNER_TYPE_REVIEWER,
             self::SIGNER_TYPE_IN_PERSON_SIGNER,
-            self::SIGNER_TYPE_NULL,
         ];
     }
 

@@ -274,12 +274,10 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
     public const NAME_COURIER = 'Courier';
     public const NAME_TIMES_ROMAN = 'TimesRoman';
     public const NAME_NOTO_SANS = 'NotoSans';
-    public const NAME_NULL = 'null';
     public const STYLE_REGULAR = 'Regular';
     public const STYLE_BOLD = 'Bold';
     public const STYLE_ITALIC = 'Italic';
     public const STYLE_UNDERLINE = 'Underline';
-    public const STYLE_NULL = 'null';
 
     /**
      * Gets allowable values of the enum
@@ -293,7 +291,6 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
             self::NAME_COURIER,
             self::NAME_TIMES_ROMAN,
             self::NAME_NOTO_SANS,
-            self::NAME_NULL,
         ];
     }
 
@@ -309,7 +306,6 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STYLE_BOLD,
             self::STYLE_ITALIC,
             self::STYLE_UNDERLINE,
-            self::STYLE_NULL,
         ];
     }
 

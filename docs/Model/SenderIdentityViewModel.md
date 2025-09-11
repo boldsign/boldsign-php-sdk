@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  | [optional]
 **name** | **string** |  | [optional]
 **email** | **string** |  | [optional]
 **status** | **string** |  | [optional]

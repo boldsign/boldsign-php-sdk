@@ -261,11 +261,9 @@ class IdentityVerificationSettings implements ModelInterface, ArrayAccess, \Json
     public const TYPE_EVERY_ACCESS = 'EveryAccess';
     public const TYPE_UNTIL_SIGN_COMPLETED = 'UntilSignCompleted';
     public const TYPE_ONCE_PER_DOCUMENT = 'OncePerDocument';
-    public const TYPE_NULL = 'null';
     public const NAME_MATCHER_STRICT = 'Strict';
     public const NAME_MATCHER_MODERATE = 'Moderate';
     public const NAME_MATCHER_LENIENT = 'Lenient';
-    public const NAME_MATCHER_NULL = 'null';
 
     /**
      * Gets allowable values of the enum
@@ -278,7 +276,6 @@ class IdentityVerificationSettings implements ModelInterface, ArrayAccess, \Json
             self::TYPE_EVERY_ACCESS,
             self::TYPE_UNTIL_SIGN_COMPLETED,
             self::TYPE_ONCE_PER_DOCUMENT,
-            self::TYPE_NULL,
         ];
     }
 
@@ -293,7 +290,6 @@ class IdentityVerificationSettings implements ModelInterface, ArrayAccess, \Json
             self::NAME_MATCHER_STRICT,
             self::NAME_MATCHER_MODERATE,
             self::NAME_MATCHER_LENIENT,
-            self::NAME_MATCHER_NULL,
         ];
     }
 

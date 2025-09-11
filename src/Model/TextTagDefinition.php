@@ -433,7 +433,6 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const RESIZE_OPTION_GROW_BOTH = 'GrowBoth';
     public const RESIZE_OPTION_FIXED = 'Fixed';
     public const RESIZE_OPTION_AUTO_RESIZE_FONT = 'AutoResizeFont';
-    public const RESIZE_OPTION_NULL = 'null';
 
     /**
      * Gets allowable values of the enum
@@ -501,7 +500,6 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::RESIZE_OPTION_GROW_BOTH,
             self::RESIZE_OPTION_FIXED,
             self::RESIZE_OPTION_AUTO_RESIZE_FONT,
-            self::RESIZE_OPTION_NULL,
         ];
     }
 

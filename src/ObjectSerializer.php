@@ -675,7 +675,27 @@ class ObjectSerializer
                     $keyCount[$key] = 0;
                 }
 
-                $listValues = [];  // Initialize an array to store list values.
+                // Check if this is an associative array (like metadata)
+                // Compatible with PHP 7.4+ (array_is_list is only available in PHP 8.1+)
+                $isAssociativeArray = is_array($value) && (
+                    !function_exists('array_is_list') ? 
+                    (array_keys($value) !== range(0, count($value) - 1)) : 
+                    !array_is_list($value)
+                );
+                
+                if ($isAssociativeArray) {
+                    // For associative arrays, flatten them into form parameters
+                    foreach ($value as $assocKey => $assocValue) {
+                        $formParams[$true_key . '[' . $assocKey . ']'] = is_scalar($assocValue)
+                            ? ObjectSerializer::toFormValue($assocValue)
+                            : GuzzleHttp\Utils::jsonEncode(
+                                ObjectSerializer::sanitizeForSerialization($assocValue)
+                            );
+                    }
+                    continue;
+                }
+                
+                $listValues = [];  // Initialize an array to store list values for indexed arrays.
 
                 foreach ($value as $arrayValue) {
                     $listValues[] = is_scalar($arrayValue)

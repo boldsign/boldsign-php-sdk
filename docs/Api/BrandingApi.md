@@ -63,7 +63,7 @@ This endpoint does not need any parameter.
 ## `createBrand()`
 
 ```php
-createBrand($brand_name, $brand_logo, $background_color, $button_color, $button_text_color, $email_display_name, $disclaimer_description, $disclaimer_title, $redirect_url, $is_default, $can_hide_tag_line, $combine_audit_trail, $exclude_audit_trail_from_email, $email_signed_document, $document_time_zone, $show_built_in_form_fields, $allow_custom_field_creation, $show_shared_custom_fields, $hide_decline, $hide_save, $document_expiry_settings_expiry_date_type, $document_expiry_settings_expiry_value, $document_expiry_settings_enable_default_expiry_alert, $document_expiry_settings_enable_auto_reminder, $document_expiry_settings_reminder_days, $document_expiry_settings_reminder_count, $custom_domain_settings_domain_name, $custom_domain_settings_from_name): \BoldSign\Model\BrandCreated
+createBrand($brand_name, $brand_logo, $background_color, $button_color, $button_text_color, $email_display_name, $disclaimer_description, $disclaimer_title, $redirect_url, $is_default, $can_hide_tag_line, $combine_audit_trail, $combine_attachments, $exclude_audit_trail_from_email, $email_signed_document, $document_time_zone, $show_built_in_form_fields, $allow_custom_field_creation, $show_shared_custom_fields, $hide_decline, $hide_save, $document_expiry_settings_expiry_date_type, $document_expiry_settings_expiry_value, $document_expiry_settings_enable_default_expiry_alert, $document_expiry_settings_enable_auto_reminder, $document_expiry_settings_reminder_days, $document_expiry_settings_reminder_count, $custom_domain_settings_domain_name, $custom_domain_settings_from_name): \BoldSign\Model\BrandCreated
 ```
 
 Create the brand.
@@ -90,6 +90,7 @@ $redirect_url = 'redirect_url_example'; // string
 $is_default = false; // bool
 $can_hide_tag_line = false; // bool
 $combine_audit_trail = false; // bool
+$combine_attachments = false; // bool
 $exclude_audit_trail_from_email = false; // bool
 $email_signed_document = 'Attachment'; // string
 $document_time_zone = 'document_time_zone_example'; // string
@@ -108,7 +109,7 @@ $custom_domain_settings_domain_name = 'custom_domain_settings_domain_name_exampl
 $custom_domain_settings_from_name = 'custom_domain_settings_from_name_example'; // string
 
 try {
-    $result = $apiInstance->createBrand($brand_name, $brand_logo, $background_color, $button_color, $button_text_color, $email_display_name, $disclaimer_description, $disclaimer_title, $redirect_url, $is_default, $can_hide_tag_line, $combine_audit_trail, $exclude_audit_trail_from_email, $email_signed_document, $document_time_zone, $show_built_in_form_fields, $allow_custom_field_creation, $show_shared_custom_fields, $hide_decline, $hide_save, $document_expiry_settings_expiry_date_type, $document_expiry_settings_expiry_value, $document_expiry_settings_enable_default_expiry_alert, $document_expiry_settings_enable_auto_reminder, $document_expiry_settings_reminder_days, $document_expiry_settings_reminder_count, $custom_domain_settings_domain_name, $custom_domain_settings_from_name);
+    $result = $apiInstance->createBrand($brand_name, $brand_logo, $background_color, $button_color, $button_text_color, $email_display_name, $disclaimer_description, $disclaimer_title, $redirect_url, $is_default, $can_hide_tag_line, $combine_audit_trail, $combine_attachments, $exclude_audit_trail_from_email, $email_signed_document, $document_time_zone, $show_built_in_form_fields, $allow_custom_field_creation, $show_shared_custom_fields, $hide_decline, $hide_save, $document_expiry_settings_expiry_date_type, $document_expiry_settings_expiry_value, $document_expiry_settings_enable_default_expiry_alert, $document_expiry_settings_enable_auto_reminder, $document_expiry_settings_reminder_days, $document_expiry_settings_reminder_count, $custom_domain_settings_domain_name, $custom_domain_settings_from_name);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BrandingApi->createBrand: ', $e->getMessage(), PHP_EOL;
@@ -131,6 +132,7 @@ try {
 | **is_default** | **bool**|  | [optional] [default to false] |
 | **can_hide_tag_line** | **bool**|  | [optional] [default to false] |
 | **combine_audit_trail** | **bool**|  | [optional] [default to false] |
+| **combine_attachments** | **bool**|  | [optional] [default to false] |
 | **exclude_audit_trail_from_email** | **bool**|  | [optional] [default to false] |
 | **email_signed_document** | **string**|  | [optional] [default to &#39;Attachment&#39;] |
 | **document_time_zone** | **string**|  | [optional] |
@@ -219,7 +221,7 @@ try {
 ## `editBrand()`
 
 ```php
-editBrand($brand_id, $brand_name, $brand_logo, $background_color, $button_color, $button_text_color, $email_display_name, $disclaimer_description, $disclaimer_title, $redirect_url, $is_default, $can_hide_tag_line, $combine_audit_trail, $exclude_audit_trail_from_email, $email_signed_document, $document_time_zone, $show_built_in_form_fields, $allow_custom_field_creation, $show_shared_custom_fields, $hide_decline, $hide_save, $document_expiry_settings_expiry_date_type, $document_expiry_settings_expiry_value, $document_expiry_settings_enable_default_expiry_alert, $document_expiry_settings_enable_auto_reminder, $document_expiry_settings_reminder_days, $document_expiry_settings_reminder_count, $custom_domain_settings_domain_name, $custom_domain_settings_from_name): \BoldSign\Model\BrandCreated
+editBrand($brand_id, $brand_name, $brand_logo, $background_color, $button_color, $button_text_color, $email_display_name, $disclaimer_description, $disclaimer_title, $redirect_url, $is_default, $can_hide_tag_line, $combine_audit_trail, $combine_attachments, $exclude_audit_trail_from_email, $email_signed_document, $document_time_zone, $show_built_in_form_fields, $allow_custom_field_creation, $show_shared_custom_fields, $hide_decline, $hide_save, $document_expiry_settings_expiry_date_type, $document_expiry_settings_expiry_value, $document_expiry_settings_enable_default_expiry_alert, $document_expiry_settings_enable_auto_reminder, $document_expiry_settings_reminder_days, $document_expiry_settings_reminder_count, $custom_domain_settings_domain_name, $custom_domain_settings_from_name): \BoldSign\Model\BrandCreated
 ```
 
 Edit the brand.
@@ -247,6 +249,7 @@ $redirect_url = 'redirect_url_example'; // string
 $is_default = false; // bool
 $can_hide_tag_line = false; // bool
 $combine_audit_trail = false; // bool
+$combine_attachments = false; // bool
 $exclude_audit_trail_from_email = false; // bool
 $email_signed_document = 'Attachment'; // string
 $document_time_zone = 'document_time_zone_example'; // string
@@ -265,7 +268,7 @@ $custom_domain_settings_domain_name = 'custom_domain_settings_domain_name_exampl
 $custom_domain_settings_from_name = 'custom_domain_settings_from_name_example'; // string
 
 try {
-    $result = $apiInstance->editBrand($brand_id, $brand_name, $brand_logo, $background_color, $button_color, $button_text_color, $email_display_name, $disclaimer_description, $disclaimer_title, $redirect_url, $is_default, $can_hide_tag_line, $combine_audit_trail, $exclude_audit_trail_from_email, $email_signed_document, $document_time_zone, $show_built_in_form_fields, $allow_custom_field_creation, $show_shared_custom_fields, $hide_decline, $hide_save, $document_expiry_settings_expiry_date_type, $document_expiry_settings_expiry_value, $document_expiry_settings_enable_default_expiry_alert, $document_expiry_settings_enable_auto_reminder, $document_expiry_settings_reminder_days, $document_expiry_settings_reminder_count, $custom_domain_settings_domain_name, $custom_domain_settings_from_name);
+    $result = $apiInstance->editBrand($brand_id, $brand_name, $brand_logo, $background_color, $button_color, $button_text_color, $email_display_name, $disclaimer_description, $disclaimer_title, $redirect_url, $is_default, $can_hide_tag_line, $combine_audit_trail, $combine_attachments, $exclude_audit_trail_from_email, $email_signed_document, $document_time_zone, $show_built_in_form_fields, $allow_custom_field_creation, $show_shared_custom_fields, $hide_decline, $hide_save, $document_expiry_settings_expiry_date_type, $document_expiry_settings_expiry_value, $document_expiry_settings_enable_default_expiry_alert, $document_expiry_settings_enable_auto_reminder, $document_expiry_settings_reminder_days, $document_expiry_settings_reminder_count, $custom_domain_settings_domain_name, $custom_domain_settings_from_name);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BrandingApi->editBrand: ', $e->getMessage(), PHP_EOL;
@@ -289,6 +292,7 @@ try {
 | **is_default** | **bool**|  | [optional] [default to false] |
 | **can_hide_tag_line** | **bool**|  | [optional] [default to false] |
 | **combine_audit_trail** | **bool**|  | [optional] [default to false] |
+| **combine_attachments** | **bool**|  | [optional] [default to false] |
 | **exclude_audit_trail_from_email** | **bool**|  | [optional] [default to false] |
 | **email_signed_document** | **string**|  | [optional] [default to &#39;Attachment&#39;] |
 | **document_time_zone** | **string**|  | [optional] |

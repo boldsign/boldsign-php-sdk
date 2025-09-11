@@ -58,6 +58,7 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPITypes = [
         'id' => 'string',
+        'form_field_id' => 'string',
         'type' => 'string',
         'value' => 'string',
         'font' => 'string',
@@ -95,7 +96,9 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'formula_field_settings' => '\BoldSign\Model\FormulaFieldSettings',
         'resize_option' => 'string',
         'allow_edit_form_field' => 'bool',
-        'allow_delete_form_field' => 'bool'
+        'allow_delete_form_field' => 'bool',
+        'collaboration_settings' => '\BoldSign\Model\CollaborationSettings',
+        'hidden' => 'bool'
     ];
 
     /**
@@ -107,6 +110,7 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPIFormats = [
         'id' => null,
+        'form_field_id' => null,
         'type' => null,
         'value' => null,
         'font' => null,
@@ -144,7 +148,9 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'formula_field_settings' => null,
         'resize_option' => null,
         'allow_edit_form_field' => null,
-        'allow_delete_form_field' => null
+        'allow_delete_form_field' => null,
+        'collaboration_settings' => null,
+        'hidden' => null
     ];
 
     /**
@@ -154,6 +160,7 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static array $openAPINullables = [
         'id' => true,
+        'form_field_id' => true,
         'type' => true,
         'value' => true,
         'font' => true,
@@ -191,7 +198,9 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'formula_field_settings' => false,
         'resize_option' => true,
         'allow_edit_form_field' => false,
-        'allow_delete_form_field' => false
+        'allow_delete_form_field' => false,
+        'collaboration_settings' => false,
+        'hidden' => false
     ];
 
     /**
@@ -281,6 +290,7 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     protected static $attributeMap = [
         'id' => 'id',
+        'form_field_id' => 'formFieldId',
         'type' => 'type',
         'value' => 'value',
         'font' => 'font',
@@ -318,7 +328,9 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'formula_field_settings' => 'formulaFieldSettings',
         'resize_option' => 'resizeOption',
         'allow_edit_form_field' => 'allowEditFormField',
-        'allow_delete_form_field' => 'allowDeleteFormField'
+        'allow_delete_form_field' => 'allowDeleteFormField',
+        'collaboration_settings' => 'collaborationSettings',
+        'hidden' => 'hidden'
     ];
 
     /**
@@ -328,6 +340,7 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     protected static $setters = [
         'id' => 'setId',
+        'form_field_id' => 'setFormFieldId',
         'type' => 'setType',
         'value' => 'setValue',
         'font' => 'setFont',
@@ -365,7 +378,9 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'formula_field_settings' => 'setFormulaFieldSettings',
         'resize_option' => 'setResizeOption',
         'allow_edit_form_field' => 'setAllowEditFormField',
-        'allow_delete_form_field' => 'setAllowDeleteFormField'
+        'allow_delete_form_field' => 'setAllowDeleteFormField',
+        'collaboration_settings' => 'setCollaborationSettings',
+        'hidden' => 'setHidden'
     ];
 
     /**
@@ -375,6 +390,7 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     protected static $getters = [
         'id' => 'getId',
+        'form_field_id' => 'getFormFieldId',
         'type' => 'getType',
         'value' => 'getValue',
         'font' => 'getFont',
@@ -412,7 +428,9 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         'formula_field_settings' => 'getFormulaFieldSettings',
         'resize_option' => 'getResizeOption',
         'allow_edit_form_field' => 'getAllowEditFormField',
-        'allow_delete_form_field' => 'getAllowDeleteFormField'
+        'allow_delete_form_field' => 'getAllowDeleteFormField',
+        'collaboration_settings' => 'getCollaborationSettings',
+        'hidden' => 'getHidden'
     ];
 
     /**
@@ -471,7 +489,6 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
     public const RESIZE_OPTION_GROW_BOTH = 'GrowBoth';
     public const RESIZE_OPTION_FIXED = 'Fixed';
     public const RESIZE_OPTION_AUTO_RESIZE_FONT = 'AutoResizeFont';
-    public const RESIZE_OPTION_NULL = 'null';
 
     /**
      * Gets allowable values of the enum
@@ -529,7 +546,6 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
             self::RESIZE_OPTION_GROW_BOTH,
             self::RESIZE_OPTION_FIXED,
             self::RESIZE_OPTION_AUTO_RESIZE_FONT,
-            self::RESIZE_OPTION_NULL,
         ];
     }
 
@@ -549,6 +565,7 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
     public function __construct(array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('form_field_id', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
         $this->setIfExists('font', $data ?? [], null);
@@ -587,6 +604,8 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('resize_option', $data ?? [], null);
         $this->setIfExists('allow_edit_form_field', $data ?? [], null);
         $this->setIfExists('allow_delete_form_field', $data ?? [], null);
+        $this->setIfExists('collaboration_settings', $data ?? [], null);
+        $this->setIfExists('hidden', $data ?? [], null);
     }
 
     /**
@@ -697,6 +716,40 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
             }
         }
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets form_field_id
+     *
+     * @return string|null
+     */
+    public function getFormFieldId()
+    {
+        return $this->container['form_field_id'];
+    }
+
+    /**
+     * Sets form_field_id
+     *
+     * @param string|null $form_field_id form_field_id
+     *
+     * @return self
+     */
+    public function setFormFieldId($form_field_id)
+    {
+        if (is_null($form_field_id)) {
+            array_push($this->openAPINullablesSetToNull, 'form_field_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('form_field_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['form_field_id'] = $form_field_id;
 
         return $this;
     }
@@ -1882,6 +1935,60 @@ class DocumentFormFields implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable allow_delete_form_field cannot be null');
         }
         $this->container['allow_delete_form_field'] = $allow_delete_form_field;
+
+        return $this;
+    }
+
+    /**
+     * Gets collaboration_settings
+     *
+     * @return \BoldSign\Model\CollaborationSettings|null
+     */
+    public function getCollaborationSettings()
+    {
+        return $this->container['collaboration_settings'];
+    }
+
+    /**
+     * Sets collaboration_settings
+     *
+     * @param \BoldSign\Model\CollaborationSettings|null $collaboration_settings collaboration_settings
+     *
+     * @return self
+     */
+    public function setCollaborationSettings($collaboration_settings)
+    {
+        if (is_null($collaboration_settings)) {
+            throw new \InvalidArgumentException('non-nullable collaboration_settings cannot be null');
+        }
+        $this->container['collaboration_settings'] = $collaboration_settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets hidden
+     *
+     * @return bool|null
+     */
+    public function getHidden()
+    {
+        return $this->container['hidden'];
+    }
+
+    /**
+     * Sets hidden
+     *
+     * @param bool|null $hidden hidden
+     *
+     * @return self
+     */
+    public function setHidden($hidden)
+    {
+        if (is_null($hidden)) {
+            throw new \InvalidArgumentException('non-nullable hidden cannot be null');
+        }
+        $this->container['hidden'] = $hidden;
 
         return $this;
     }

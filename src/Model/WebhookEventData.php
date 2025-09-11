@@ -74,9 +74,11 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
         'error_message' => 'string',
         'labels' => 'string[]',
         'is_combined_audit' => 'bool',
+        'is_combined_attachment' => 'bool',
         'brand_id' => 'string',
         'document_download_option' => 'string',
         'meta_data' => 'array<string,string>',
+        'failed_delivery_mode' => 'string',
         'template_id' => 'string',
         'allow_new_files' => 'bool',
         'allow_modify_files' => 'bool',
@@ -120,9 +122,11 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
         'error_message' => null,
         'labels' => null,
         'is_combined_audit' => null,
+        'is_combined_attachment' => null,
         'brand_id' => null,
         'document_download_option' => null,
         'meta_data' => null,
+        'failed_delivery_mode' => null,
         'template_id' => null,
         'allow_new_files' => null,
         'allow_modify_files' => null,
@@ -164,9 +168,11 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
         'error_message' => true,
         'labels' => true,
         'is_combined_audit' => false,
+        'is_combined_attachment' => false,
         'brand_id' => true,
         'document_download_option' => true,
         'meta_data' => true,
+        'failed_delivery_mode' => true,
         'template_id' => true,
         'allow_new_files' => true,
         'allow_modify_files' => true,
@@ -288,9 +294,11 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
         'error_message' => 'errorMessage',
         'labels' => 'labels',
         'is_combined_audit' => 'isCombinedAudit',
+        'is_combined_attachment' => 'isCombinedAttachment',
         'brand_id' => 'brandId',
         'document_download_option' => 'documentDownloadOption',
         'meta_data' => 'metaData',
+        'failed_delivery_mode' => 'failedDeliveryMode',
         'template_id' => 'templateId',
         'allow_new_files' => 'allowNewFiles',
         'allow_modify_files' => 'allowModifyFiles',
@@ -332,9 +340,11 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
         'error_message' => 'setErrorMessage',
         'labels' => 'setLabels',
         'is_combined_audit' => 'setIsCombinedAudit',
+        'is_combined_attachment' => 'setIsCombinedAttachment',
         'brand_id' => 'setBrandId',
         'document_download_option' => 'setDocumentDownloadOption',
         'meta_data' => 'setMetaData',
+        'failed_delivery_mode' => 'setFailedDeliveryMode',
         'template_id' => 'setTemplateId',
         'allow_new_files' => 'setAllowNewFiles',
         'allow_modify_files' => 'setAllowModifyFiles',
@@ -376,9 +386,11 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
         'error_message' => 'getErrorMessage',
         'labels' => 'getLabels',
         'is_combined_audit' => 'getIsCombinedAudit',
+        'is_combined_attachment' => 'getIsCombinedAttachment',
         'brand_id' => 'getBrandId',
         'document_download_option' => 'getDocumentDownloadOption',
         'meta_data' => 'getMetaData',
+        'failed_delivery_mode' => 'getFailedDeliveryMode',
         'template_id' => 'getTemplateId',
         'allow_new_files' => 'getAllowNewFiles',
         'allow_modify_files' => 'getAllowModifyFiles',
@@ -445,6 +457,9 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_REVOKED = 'Revoked';
     public const STATUS_DRAFT = 'Draft';
     public const STATUS_SCHEDULED = 'Scheduled';
+    public const FAILED_DELIVERY_MODE_EMAIL = 'Email';
+    public const FAILED_DELIVERY_MODE_SMS = 'SMS';
+    public const FAILED_DELIVERY_MODE_WHATS_APP = 'WhatsApp';
 
     /**
      * Gets allowable values of the enum
@@ -461,6 +476,20 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_REVOKED,
             self::STATUS_DRAFT,
             self::STATUS_SCHEDULED,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getFailedDeliveryModeAllowableValues()
+    {
+        return [
+            self::FAILED_DELIVERY_MODE_EMAIL,
+            self::FAILED_DELIVERY_MODE_SMS,
+            self::FAILED_DELIVERY_MODE_WHATS_APP,
         ];
     }
 
@@ -496,9 +525,11 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('error_message', $data ?? [], null);
         $this->setIfExists('labels', $data ?? [], null);
         $this->setIfExists('is_combined_audit', $data ?? [], null);
+        $this->setIfExists('is_combined_attachment', $data ?? [], null);
         $this->setIfExists('brand_id', $data ?? [], null);
         $this->setIfExists('document_download_option', $data ?? [], null);
         $this->setIfExists('meta_data', $data ?? [], null);
+        $this->setIfExists('failed_delivery_mode', $data ?? [], null);
         $this->setIfExists('template_id', $data ?? [], null);
         $this->setIfExists('allow_new_files', $data ?? [], null);
         $this->setIfExists('allow_modify_files', $data ?? [], null);
@@ -552,6 +583,15 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'status', must be one of '%s'",
                 $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getFailedDeliveryModeAllowableValues();
+        if (!is_null($this->container['failed_delivery_mode']) && !in_array($this->container['failed_delivery_mode'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'failed_delivery_mode', must be one of '%s'",
+                $this->container['failed_delivery_mode'],
                 implode("', '", $allowedValues)
             );
         }
@@ -1125,6 +1165,33 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets is_combined_attachment
+     *
+     * @return bool|null
+     */
+    public function getIsCombinedAttachment()
+    {
+        return $this->container['is_combined_attachment'];
+    }
+
+    /**
+     * Sets is_combined_attachment
+     *
+     * @param bool|null $is_combined_attachment is_combined_attachment
+     *
+     * @return self
+     */
+    public function setIsCombinedAttachment($is_combined_attachment)
+    {
+        if (is_null($is_combined_attachment)) {
+            throw new \InvalidArgumentException('non-nullable is_combined_attachment cannot be null');
+        }
+        $this->container['is_combined_attachment'] = $is_combined_attachment;
+
+        return $this;
+    }
+
+    /**
      * Gets brand_id
      *
      * @return string|null
@@ -1222,6 +1289,50 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['meta_data'] = $meta_data;
+
+        return $this;
+    }
+
+    /**
+     * Gets failed_delivery_mode
+     *
+     * @return string|null
+     */
+    public function getFailedDeliveryMode()
+    {
+        return $this->container['failed_delivery_mode'];
+    }
+
+    /**
+     * Sets failed_delivery_mode
+     *
+     * @param string|null $failed_delivery_mode failed_delivery_mode
+     *
+     * @return self
+     */
+    public function setFailedDeliveryMode($failed_delivery_mode)
+    {
+        if (is_null($failed_delivery_mode)) {
+            array_push($this->openAPINullablesSetToNull, 'failed_delivery_mode');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('failed_delivery_mode', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getFailedDeliveryModeAllowableValues();
+        if (!is_null($failed_delivery_mode) && !in_array($failed_delivery_mode, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'failed_delivery_mode', must be one of '%s'",
+                    $failed_delivery_mode,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['failed_delivery_mode'] = $failed_delivery_mode;
 
         return $this;
     }

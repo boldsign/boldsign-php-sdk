@@ -70,6 +70,7 @@ class ViewBrandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_default' => 'bool',
         'can_hide_tag_line' => 'bool',
         'combine_audit_trail' => 'bool',
+        'combine_attachments' => 'bool',
         'exclude_audit_trail_from_email' => 'bool',
         'email_signed_document' => 'string',
         'document_time_zone' => 'string',
@@ -104,6 +105,7 @@ class ViewBrandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_default' => null,
         'can_hide_tag_line' => null,
         'combine_audit_trail' => null,
+        'combine_attachments' => null,
         'exclude_audit_trail_from_email' => null,
         'email_signed_document' => null,
         'document_time_zone' => null,
@@ -136,6 +138,7 @@ class ViewBrandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_default' => false,
         'can_hide_tag_line' => false,
         'combine_audit_trail' => false,
+        'combine_attachments' => false,
         'exclude_audit_trail_from_email' => false,
         'email_signed_document' => false,
         'document_time_zone' => true,
@@ -248,6 +251,7 @@ class ViewBrandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_default' => 'isDefault',
         'can_hide_tag_line' => 'canHideTagLine',
         'combine_audit_trail' => 'combineAuditTrail',
+        'combine_attachments' => 'combineAttachments',
         'exclude_audit_trail_from_email' => 'excludeAuditTrailFromEmail',
         'email_signed_document' => 'emailSignedDocument',
         'document_time_zone' => 'documentTimeZone',
@@ -280,6 +284,7 @@ class ViewBrandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_default' => 'setIsDefault',
         'can_hide_tag_line' => 'setCanHideTagLine',
         'combine_audit_trail' => 'setCombineAuditTrail',
+        'combine_attachments' => 'setCombineAttachments',
         'exclude_audit_trail_from_email' => 'setExcludeAuditTrailFromEmail',
         'email_signed_document' => 'setEmailSignedDocument',
         'document_time_zone' => 'setDocumentTimeZone',
@@ -312,6 +317,7 @@ class ViewBrandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_default' => 'getIsDefault',
         'can_hide_tag_line' => 'getCanHideTagLine',
         'combine_audit_trail' => 'getCombineAuditTrail',
+        'combine_attachments' => 'getCombineAttachments',
         'exclude_audit_trail_from_email' => 'getExcludeAuditTrailFromEmail',
         'email_signed_document' => 'getEmailSignedDocument',
         'document_time_zone' => 'getDocumentTimeZone',
@@ -410,6 +416,7 @@ class ViewBrandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('is_default', $data ?? [], null);
         $this->setIfExists('can_hide_tag_line', $data ?? [], null);
         $this->setIfExists('combine_audit_trail', $data ?? [], null);
+        $this->setIfExists('combine_attachments', $data ?? [], null);
         $this->setIfExists('exclude_audit_trail_from_email', $data ?? [], null);
         $this->setIfExists('email_signed_document', $data ?? [], null);
         $this->setIfExists('document_time_zone', $data ?? [], null);
@@ -891,6 +898,33 @@ class ViewBrandDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable combine_audit_trail cannot be null');
         }
         $this->container['combine_audit_trail'] = $combine_audit_trail;
+
+        return $this;
+    }
+
+    /**
+     * Gets combine_attachments
+     *
+     * @return bool|null
+     */
+    public function getCombineAttachments()
+    {
+        return $this->container['combine_attachments'];
+    }
+
+    /**
+     * Sets combine_attachments
+     *
+     * @param bool|null $combine_attachments combine_attachments
+     *
+     * @return self
+     */
+    public function setCombineAttachments($combine_attachments)
+    {
+        if (is_null($combine_attachments)) {
+            throw new \InvalidArgumentException('non-nullable combine_attachments cannot be null');
+        }
+        $this->container['combine_attachments'] = $combine_attachments;
 
         return $this;
     }

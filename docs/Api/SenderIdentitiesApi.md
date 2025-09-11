@@ -6,6 +6,7 @@ All URIs are relative to https://api.boldsign.com, except if the operation defin
 | ------------- | ------------- | ------------- |
 | [**createSenderIdentities()**](SenderIdentitiesApi.md#createSenderIdentities) | **POST** /v1/senderIdentities/create | Creates sender identity. |
 | [**deleteSenderIdentities()**](SenderIdentitiesApi.md#deleteSenderIdentities) | **DELETE** /v1/senderIdentities/delete | Deletes sender identity. |
+| [**getSenderIdentityProperties()**](SenderIdentitiesApi.md#getSenderIdentityProperties) | **GET** /v1-beta/senderIdentities/properties | Gets sender identity by ID or email. |
 | [**listSenderIdentities()**](SenderIdentitiesApi.md#listSenderIdentities) | **GET** /v1/senderIdentities/list | Lists sender identity. |
 | [**reRequestSenderIdentities()**](SenderIdentitiesApi.md#reRequestSenderIdentities) | **POST** /v1/senderIdentities/rerequest | Rerequests denied sender identity. |
 | [**resendInvitationSenderIdentities()**](SenderIdentitiesApi.md#resendInvitationSenderIdentities) | **POST** /v1/senderIdentities/resendInvitation | Resends sender identity invitation. |
@@ -99,6 +100,59 @@ try {
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+[X-API-KEY](../../README.md#X-API-KEY), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getSenderIdentityProperties()`
+
+```php
+getSenderIdentityProperties($id, $email): \BoldSign\Model\SenderIdentityViewModel
+```
+
+Gets sender identity by ID or email.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
+
+$apiInstance = new BoldSign\Api\SenderIdentitiesApi($config);
+$id = 'id_example'; // string | The sender identity id.
+$email = 'email_example'; // string | The sender identity email.
+
+try {
+    $result = $apiInstance->getSenderIdentityProperties($id, $email);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SenderIdentitiesApi->getSenderIdentityProperties: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| The sender identity id. | [optional] |
+| **email** | **string**| The sender identity email. | [optional] |
+
+### Return type
+
+[**\BoldSign\Model\SenderIdentityViewModel**](../Model/SenderIdentityViewModel.md)
 
 ### Authorization
 

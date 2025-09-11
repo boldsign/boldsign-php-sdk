@@ -21,8 +21,10 @@ Name | Type | Description | Notes
 **error_message** | **string** |  | [optional]
 **labels** | **string[]** |  | [optional]
 **is_combined_audit** | **bool** |  | [optional]
+**is_combined_attachment** | **bool** |  | [optional]
 **brand_id** | **string** |  | [optional]
 **document_download_option** | **string** |  | [optional]
 **meta_data** | **array<string,string>** |  | [optional]
+**failed_delivery_mode** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

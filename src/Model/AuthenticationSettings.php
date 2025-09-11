@@ -232,7 +232,6 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
     public const AUTHENTICATION_FREQUENCY_EVERY_ACCESS = 'EveryAccess';
     public const AUTHENTICATION_FREQUENCY_UNTIL_SIGN_COMPLETED = 'UntilSignCompleted';
     public const AUTHENTICATION_FREQUENCY_ONCE_PER_DOCUMENT = 'OncePerDocument';
-    public const AUTHENTICATION_FREQUENCY_NULL = 'null';
 
     /**
      * Gets allowable values of the enum
@@ -246,7 +245,6 @@ class AuthenticationSettings implements ModelInterface, ArrayAccess, \JsonSerial
             self::AUTHENTICATION_FREQUENCY_EVERY_ACCESS,
             self::AUTHENTICATION_FREQUENCY_UNTIL_SIGN_COMPLETED,
             self::AUTHENTICATION_FREQUENCY_ONCE_PER_DOCUMENT,
-            self::AUTHENTICATION_FREQUENCY_NULL,
         ];
     }
 

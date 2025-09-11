@@ -30,6 +30,7 @@ docs/Model/BrandCustomFieldDetails.md
 docs/Model/BrandingMessage.md
 docs/Model/BrandingRecords.md
 docs/Model/ChangeRecipient.md
+docs/Model/CollaborationSettings.md
 docs/Model/ConditionalRule.md
 docs/Model/ContactCreated.md
 docs/Model/ContactDetails.md
@@ -52,6 +53,7 @@ docs/Model/DocumentCC.md
 docs/Model/DocumentCcDetails.md
 docs/Model/DocumentCcWebhookModel.md
 docs/Model/DocumentCreated.md
+docs/Model/DocumentEdited.md
 docs/Model/DocumentEvent.md
 docs/Model/DocumentExpirySettings.md
 docs/Model/DocumentFiles.md
@@ -67,6 +69,10 @@ docs/Model/DocumentSignerDetails.md
 docs/Model/DocumentSignerWebhookModel.md
 docs/Model/DocumentTags.md
 docs/Model/DownloadImageRequest.md
+docs/Model/EditDocumentFile.md
+docs/Model/EditDocumentRequest.md
+docs/Model/EditDocumentSigner.md
+docs/Model/EditFormField.md
 docs/Model/EditSenderIdentityRequest.md
 docs/Model/EditTemplateRequest.md
 docs/Model/EditableDateFieldSettings.md
@@ -195,6 +201,7 @@ src/Model/BrandCustomFieldDetails.php
 src/Model/BrandingMessage.php
 src/Model/BrandingRecords.php
 src/Model/ChangeRecipient.php
+src/Model/CollaborationSettings.php
 src/Model/ConditionalRule.php
 src/Model/ContactCreated.php
 src/Model/ContactDetails.php
@@ -217,6 +224,7 @@ src/Model/DocumentCC.php
 src/Model/DocumentCcDetails.php
 src/Model/DocumentCcWebhookModel.php
 src/Model/DocumentCreated.php
+src/Model/DocumentEdited.php
 src/Model/DocumentEvent.php
 src/Model/DocumentExpirySettings.php
 src/Model/DocumentFiles.php
@@ -232,6 +240,10 @@ src/Model/DocumentSignerDetails.php
 src/Model/DocumentSignerWebhookModel.php
 src/Model/DocumentTags.php
 src/Model/DownloadImageRequest.php
+src/Model/EditDocumentFile.php
+src/Model/EditDocumentRequest.php
+src/Model/EditDocumentSigner.php
+src/Model/EditFormField.php
 src/Model/EditSenderIdentityRequest.php
 src/Model/EditTemplateRequest.php
 src/Model/EditableDateFieldSettings.php

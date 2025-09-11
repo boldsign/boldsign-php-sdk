@@ -86,7 +86,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'character_spacing' => 'float',
         'character_limit' => 'int',
         'formula_field_settings' => '\BoldSign\Model\FormulaFieldSettings',
-        'resize_option' => 'string'
+        'resize_option' => 'string',
+        'collaboration_settings' => '\BoldSign\Model\CollaborationSettings'
     ];
 
     /**
@@ -126,7 +127,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'character_spacing' => 'float',
         'character_limit' => 'int32',
         'formula_field_settings' => null,
-        'resize_option' => null
+        'resize_option' => null,
+        'collaboration_settings' => null
     ];
 
     /**
@@ -164,7 +166,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'character_spacing' => false,
         'character_limit' => false,
         'formula_field_settings' => false,
-        'resize_option' => true
+        'resize_option' => true,
+        'collaboration_settings' => false
     ];
 
     /**
@@ -282,7 +285,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'character_spacing' => 'characterSpacing',
         'character_limit' => 'characterLimit',
         'formula_field_settings' => 'formulaFieldSettings',
-        'resize_option' => 'resizeOption'
+        'resize_option' => 'resizeOption',
+        'collaboration_settings' => 'collaborationSettings'
     ];
 
     /**
@@ -320,7 +324,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'character_spacing' => 'setCharacterSpacing',
         'character_limit' => 'setCharacterLimit',
         'formula_field_settings' => 'setFormulaFieldSettings',
-        'resize_option' => 'setResizeOption'
+        'resize_option' => 'setResizeOption',
+        'collaboration_settings' => 'setCollaborationSettings'
     ];
 
     /**
@@ -358,7 +363,8 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         'character_spacing' => 'getCharacterSpacing',
         'character_limit' => 'getCharacterLimit',
         'formula_field_settings' => 'getFormulaFieldSettings',
-        'resize_option' => 'getResizeOption'
+        'resize_option' => 'getResizeOption',
+        'collaboration_settings' => 'getCollaborationSettings'
     ];
 
     /**
@@ -427,7 +433,6 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const RESIZE_OPTION_GROW_BOTH = 'GrowBoth';
     public const RESIZE_OPTION_FIXED = 'Fixed';
     public const RESIZE_OPTION_AUTO_RESIZE_FONT = 'AutoResizeFont';
-    public const RESIZE_OPTION_NULL = 'null';
 
     /**
      * Gets allowable values of the enum
@@ -495,7 +500,6 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::RESIZE_OPTION_GROW_BOTH,
             self::RESIZE_OPTION_FIXED,
             self::RESIZE_OPTION_AUTO_RESIZE_FONT,
-            self::RESIZE_OPTION_NULL,
         ];
     }
 
@@ -544,6 +548,7 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('character_limit', $data ?? [], null);
         $this->setIfExists('formula_field_settings', $data ?? [], null);
         $this->setIfExists('resize_option', $data ?? [], null);
+        $this->setIfExists('collaboration_settings', $data ?? [], null);
     }
 
     /**
@@ -1634,6 +1639,33 @@ class TextTagDefinition implements ModelInterface, ArrayAccess, \JsonSerializabl
             );
         }
         $this->container['resize_option'] = $resize_option;
+
+        return $this;
+    }
+
+    /**
+     * Gets collaboration_settings
+     *
+     * @return \BoldSign\Model\CollaborationSettings|null
+     */
+    public function getCollaborationSettings()
+    {
+        return $this->container['collaboration_settings'];
+    }
+
+    /**
+     * Sets collaboration_settings
+     *
+     * @param \BoldSign\Model\CollaborationSettings|null $collaboration_settings collaboration_settings
+     *
+     * @return self
+     */
+    public function setCollaborationSettings($collaboration_settings)
+    {
+        if (is_null($collaboration_settings)) {
+            throw new \InvalidArgumentException('non-nullable collaboration_settings cannot be null');
+        }
+        $this->container['collaboration_settings'] = $collaboration_settings;
 
         return $this;
     }

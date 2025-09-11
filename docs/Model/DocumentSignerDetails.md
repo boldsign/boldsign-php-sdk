@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  | [optional]
 **signer_name** | **string** |  | [optional]
 **signer_role** | **string** |  | [optional]
 **signer_email** | **string** |  | [optional]

@@ -86,8 +86,8 @@ class SendForSign implements ModelInterface, ArrayAccess, \JsonSerializable
         'document_download_option' => 'string',
         'is_sandbox' => 'bool',
         'meta_data' => 'array<string,string>',
-        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
         'form_groups' => '\BoldSign\Model\FormGroup[]',
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
         'enable_audit_trail_localization' => 'bool',
         'download_file_name' => 'string',
         'scheduled_send_time' => 'int',
@@ -131,8 +131,8 @@ class SendForSign implements ModelInterface, ArrayAccess, \JsonSerializable
         'document_download_option' => null,
         'is_sandbox' => null,
         'meta_data' => null,
-        'recipient_notification_settings' => null,
         'form_groups' => null,
+        'recipient_notification_settings' => null,
         'enable_audit_trail_localization' => null,
         'download_file_name' => null,
         'scheduled_send_time' => 'int64',
@@ -174,8 +174,8 @@ class SendForSign implements ModelInterface, ArrayAccess, \JsonSerializable
         'document_download_option' => true,
         'is_sandbox' => true,
         'meta_data' => true,
-        'recipient_notification_settings' => false,
         'form_groups' => true,
+        'recipient_notification_settings' => false,
         'enable_audit_trail_localization' => true,
         'download_file_name' => true,
         'scheduled_send_time' => true,
@@ -297,8 +297,8 @@ class SendForSign implements ModelInterface, ArrayAccess, \JsonSerializable
         'document_download_option' => 'documentDownloadOption',
         'is_sandbox' => 'isSandbox',
         'meta_data' => 'metaData',
-        'recipient_notification_settings' => 'recipientNotificationSettings',
         'form_groups' => 'formGroups',
+        'recipient_notification_settings' => 'recipientNotificationSettings',
         'enable_audit_trail_localization' => 'enableAuditTrailLocalization',
         'download_file_name' => 'downloadFileName',
         'scheduled_send_time' => 'scheduledSendTime',
@@ -340,8 +340,8 @@ class SendForSign implements ModelInterface, ArrayAccess, \JsonSerializable
         'document_download_option' => 'setDocumentDownloadOption',
         'is_sandbox' => 'setIsSandbox',
         'meta_data' => 'setMetaData',
-        'recipient_notification_settings' => 'setRecipientNotificationSettings',
         'form_groups' => 'setFormGroups',
+        'recipient_notification_settings' => 'setRecipientNotificationSettings',
         'enable_audit_trail_localization' => 'setEnableAuditTrailLocalization',
         'download_file_name' => 'setDownloadFileName',
         'scheduled_send_time' => 'setScheduledSendTime',
@@ -383,8 +383,8 @@ class SendForSign implements ModelInterface, ArrayAccess, \JsonSerializable
         'document_download_option' => 'getDocumentDownloadOption',
         'is_sandbox' => 'getIsSandbox',
         'meta_data' => 'getMetaData',
-        'recipient_notification_settings' => 'getRecipientNotificationSettings',
         'form_groups' => 'getFormGroups',
+        'recipient_notification_settings' => 'getRecipientNotificationSettings',
         'enable_audit_trail_localization' => 'getEnableAuditTrailLocalization',
         'download_file_name' => 'getDownloadFileName',
         'scheduled_send_time' => 'getScheduledSendTime',
@@ -435,10 +435,8 @@ class SendForSign implements ModelInterface, ArrayAccess, \JsonSerializable
     public const EXPIRY_DATE_TYPE_DAYS = 'Days';
     public const EXPIRY_DATE_TYPE_HOURS = 'Hours';
     public const EXPIRY_DATE_TYPE_SPECIFIC_DATE_TIME = 'SpecificDateTime';
-    public const EXPIRY_DATE_TYPE_NULL = 'null';
     public const DOCUMENT_DOWNLOAD_OPTION_COMBINED = 'Combined';
     public const DOCUMENT_DOWNLOAD_OPTION_INDIVIDUALLY = 'Individually';
-    public const DOCUMENT_DOWNLOAD_OPTION_NULL = 'null';
 
     /**
      * Gets allowable values of the enum
@@ -451,7 +449,6 @@ class SendForSign implements ModelInterface, ArrayAccess, \JsonSerializable
             self::EXPIRY_DATE_TYPE_DAYS,
             self::EXPIRY_DATE_TYPE_HOURS,
             self::EXPIRY_DATE_TYPE_SPECIFIC_DATE_TIME,
-            self::EXPIRY_DATE_TYPE_NULL,
         ];
     }
 
@@ -465,7 +462,6 @@ class SendForSign implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::DOCUMENT_DOWNLOAD_OPTION_COMBINED,
             self::DOCUMENT_DOWNLOAD_OPTION_INDIVIDUALLY,
-            self::DOCUMENT_DOWNLOAD_OPTION_NULL,
         ];
     }
 
@@ -513,8 +509,8 @@ class SendForSign implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('document_download_option', $data ?? [], null);
         $this->setIfExists('is_sandbox', $data ?? [], null);
         $this->setIfExists('meta_data', $data ?? [], null);
-        $this->setIfExists('recipient_notification_settings', $data ?? [], null);
         $this->setIfExists('form_groups', $data ?? [], null);
+        $this->setIfExists('recipient_notification_settings', $data ?? [], null);
         $this->setIfExists('enable_audit_trail_localization', $data ?? [], null);
         $this->setIfExists('download_file_name', $data ?? [], null);
         $this->setIfExists('scheduled_send_time', $data ?? [], null);
@@ -1555,33 +1551,6 @@ class SendForSign implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets recipient_notification_settings
-     *
-     * @return \BoldSign\Model\RecipientNotificationSettings|null
-     */
-    public function getRecipientNotificationSettings()
-    {
-        return $this->container['recipient_notification_settings'];
-    }
-
-    /**
-     * Sets recipient_notification_settings
-     *
-     * @param \BoldSign\Model\RecipientNotificationSettings|null $recipient_notification_settings recipient_notification_settings
-     *
-     * @return self
-     */
-    public function setRecipientNotificationSettings($recipient_notification_settings)
-    {
-        if (is_null($recipient_notification_settings)) {
-            throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
-        }
-        $this->container['recipient_notification_settings'] = $recipient_notification_settings;
-
-        return $this;
-    }
-
-    /**
      * Gets form_groups
      *
      * @return \BoldSign\Model\FormGroup[]|null
@@ -1611,6 +1580,33 @@ class SendForSign implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['form_groups'] = $form_groups;
+
+        return $this;
+    }
+
+    /**
+     * Gets recipient_notification_settings
+     *
+     * @return \BoldSign\Model\RecipientNotificationSettings|null
+     */
+    public function getRecipientNotificationSettings()
+    {
+        return $this->container['recipient_notification_settings'];
+    }
+
+    /**
+     * Sets recipient_notification_settings
+     *
+     * @param \BoldSign\Model\RecipientNotificationSettings|null $recipient_notification_settings recipient_notification_settings
+     *
+     * @return self
+     */
+    public function setRecipientNotificationSettings($recipient_notification_settings)
+    {
+        if (is_null($recipient_notification_settings)) {
+            throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
+        }
+        $this->container['recipient_notification_settings'] = $recipient_notification_settings;
 
         return $this;
     }

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **string** |  | [optional]
+**form_field_id** | **string** |  | [optional]
 **type** | **string** |  | [optional]
 **value** | **string** |  | [optional]
 **font** | **string** |  | [optional]
@@ -43,5 +44,7 @@ Name | Type | Description | Notes
 **resize_option** | **string** |  | [optional]
 **allow_edit_form_field** | **bool** |  | [optional]
 **allow_delete_form_field** | **bool** |  | [optional]
+**collaboration_settings** | [**\BoldSign\Model\CollaborationSettings**](CollaborationSettings.md) |  | [optional]
+**hidden** | **bool** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

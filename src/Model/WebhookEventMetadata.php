@@ -280,6 +280,7 @@ class WebhookEventMetadata implements ModelInterface, ArrayAccess, \JsonSerializ
     public const EVENT_TYPE_IDENTITY_VERIFICATION_FAILED = 'IdentityVerificationFailed';
     public const EVENT_TYPE_REMINDER = 'Reminder';
     public const EVENT_TYPE_EDITED = 'Edited';
+    public const EVENT_TYPE_EDIT_FAILED = 'EditFailed';
     public const ENVIRONMENT_TEST = 'Test';
     public const ENVIRONMENT_LIVE = 'Live';
 
@@ -319,6 +320,7 @@ class WebhookEventMetadata implements ModelInterface, ArrayAccess, \JsonSerializ
             self::EVENT_TYPE_IDENTITY_VERIFICATION_FAILED,
             self::EVENT_TYPE_REMINDER,
             self::EVENT_TYPE_EDITED,
+            self::EVENT_TYPE_EDIT_FAILED,
         ];
     }
 

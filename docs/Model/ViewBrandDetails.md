@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **is_default** | **bool** |  | [optional]
 **can_hide_tag_line** | **bool** |  | [optional]
 **combine_audit_trail** | **bool** |  | [optional]
+**combine_attachments** | **bool** |  | [optional]
 **exclude_audit_trail_from_email** | **bool** |  | [optional]
 **email_signed_document** | **string** |  | [optional]
 **document_time_zone** | **string** |  | [optional]

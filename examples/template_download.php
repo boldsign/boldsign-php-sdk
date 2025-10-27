@@ -10,7 +10,7 @@ $apiInstance = new BoldSign\Api\TemplateApi($config);
 $template_id = 'YOUR_TEMPLATE_ID';
 
 try {
-    $result = $apiInstance->download($template_id);    
+    $result = $apiInstance->download($template_id,null,true);    
     $outputFile = __DIR__ . '/template.pdf';
     file_put_contents($outputFile, $result);
     echo "Template downloaded successfully. Saved to: $outputFile\n";

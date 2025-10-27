@@ -41,6 +41,7 @@ Name | Type | Description | Notes
 **modified_date** | **\DateTime** |  | [optional]
 **approved_date_time** | **\DateTime** |  | [optional]
 **redirect_url** | **string** |  | [optional]
+**created_by** | [**\BoldSign\Model\SenderIdentityCreator**](SenderIdentityCreator.md) |  | [optional]
 **signer_detail** | [**\BoldSign\Model\DocumentSignerWebhookModel**](DocumentSignerWebhookModel.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

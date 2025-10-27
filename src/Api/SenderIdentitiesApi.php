@@ -1244,7 +1244,7 @@ class SenderIdentitiesApi
 
 
 
-        $resourcePath = '/v1-beta/senderIdentities/properties';
+        $resourcePath = '/v1/senderIdentities/properties';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

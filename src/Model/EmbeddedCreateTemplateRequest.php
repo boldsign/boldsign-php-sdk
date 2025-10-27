@@ -92,7 +92,8 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'labels' => 'string[]',
         'template_labels' => 'string[]',
         'form_groups' => '\BoldSign\Model\FormGroup[]',
-        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings'
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
+        'form_field_permission' => '\BoldSign\Model\FormFieldPermission'
     ];
 
     /**
@@ -138,7 +139,8 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'labels' => null,
         'template_labels' => null,
         'form_groups' => null,
-        'recipient_notification_settings' => null
+        'recipient_notification_settings' => null,
+        'form_field_permission' => null
     ];
 
     /**
@@ -182,7 +184,8 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'labels' => true,
         'template_labels' => true,
         'form_groups' => true,
-        'recipient_notification_settings' => false
+        'recipient_notification_settings' => false,
+        'form_field_permission' => false
     ];
 
     /**
@@ -306,7 +309,8 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'labels' => 'labels',
         'template_labels' => 'templateLabels',
         'form_groups' => 'formGroups',
-        'recipient_notification_settings' => 'recipientNotificationSettings'
+        'recipient_notification_settings' => 'recipientNotificationSettings',
+        'form_field_permission' => 'formFieldPermission'
     ];
 
     /**
@@ -350,7 +354,8 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'labels' => 'setLabels',
         'template_labels' => 'setTemplateLabels',
         'form_groups' => 'setFormGroups',
-        'recipient_notification_settings' => 'setRecipientNotificationSettings'
+        'recipient_notification_settings' => 'setRecipientNotificationSettings',
+        'form_field_permission' => 'setFormFieldPermission'
     ];
 
     /**
@@ -394,7 +399,8 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         'labels' => 'getLabels',
         'template_labels' => 'getTemplateLabels',
         'form_groups' => 'getFormGroups',
-        'recipient_notification_settings' => 'getRecipientNotificationSettings'
+        'recipient_notification_settings' => 'getRecipientNotificationSettings',
+        'form_field_permission' => 'getFormFieldPermission'
     ];
 
     /**
@@ -456,6 +462,10 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
     public const LOCALE_RU = 'RU';
     public const LOCALE_SV = 'SV';
     public const LOCALE__DEFAULT = 'Default';
+    public const LOCALE_JA = 'JA';
+    public const LOCALE_TH = 'TH';
+    public const LOCALE_ZH_CN = 'ZH_CN';
+    public const LOCALE_ZH_TW = 'ZH_TW';
 
     /**
      * Gets allowable values of the enum
@@ -494,6 +504,10 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
             self::LOCALE_RU,
             self::LOCALE_SV,
             self::LOCALE__DEFAULT,
+            self::LOCALE_JA,
+            self::LOCALE_TH,
+            self::LOCALE_ZH_CN,
+            self::LOCALE_ZH_TW,
         ];
     }
 
@@ -548,6 +562,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
         $this->setIfExists('template_labels', $data ?? [], null);
         $this->setIfExists('form_groups', $data ?? [], null);
         $this->setIfExists('recipient_notification_settings', $data ?? [], null);
+        $this->setIfExists('form_field_permission', $data ?? [], null);
     }
 
     /**
@@ -1782,6 +1797,33 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
             throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
         }
         $this->container['recipient_notification_settings'] = $recipient_notification_settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets form_field_permission
+     *
+     * @return \BoldSign\Model\FormFieldPermission|null
+     */
+    public function getFormFieldPermission()
+    {
+        return $this->container['form_field_permission'];
+    }
+
+    /**
+     * Sets form_field_permission
+     *
+     * @param \BoldSign\Model\FormFieldPermission|null $form_field_permission form_field_permission
+     *
+     * @return self
+     */
+    public function setFormFieldPermission($form_field_permission)
+    {
+        if (is_null($form_field_permission)) {
+            throw new \InvalidArgumentException('non-nullable form_field_permission cannot be null');
+        }
+        $this->container['form_field_permission'] = $form_field_permission;
 
         return $this;
     }

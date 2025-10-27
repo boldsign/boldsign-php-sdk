@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **description** | **string** |  | [optional]
 **document_title** | **string** |  | [optional]
 **document_message** | **string** |  | [optional]
-**files** | [**\BoldSign\Model\DocumentFiles[]**](DocumentFiles.md) |  | [optional]
+**files** | [**\BoldSign\Model\TemplateFiles[]**](TemplateFiles.md) |  | [optional]
 **roles** | [**\BoldSign\Model\Roles[]**](Roles.md) |  | [optional]
 **form_groups** | [**\BoldSign\Model\FormGroup[]**](FormGroup.md) |  | [optional]
 **common_fields** | [**\BoldSign\Model\TemplateFormFields[]**](TemplateFormFields.md) |  | [optional]
@@ -31,5 +31,6 @@ Name | Type | Description | Notes
 **behalf_of** | [**\BoldSign\Model\BehalfOf**](BehalfOf.md) |  | [optional]
 **document_download_option** | **string** |  | [optional]
 **recipient_notification_settings** | [**\BoldSign\Model\RecipientNotificationSettings**](RecipientNotificationSettings.md) |  | [optional]
+**form_field_permission** | [**\BoldSign\Model\FormFieldPermission**](FormFieldPermission.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

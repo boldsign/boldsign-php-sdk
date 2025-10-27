@@ -330,7 +330,7 @@ void (empty response body)
 ## `download()`
 
 ```php
-download($template_id, $on_behalf_of): \SplFileObject
+download($template_id, $on_behalf_of, $include_form_field_values): \SplFileObject
 ```
 
 Download the template.
@@ -347,9 +347,10 @@ $config->setApiKey('YOUR_API_KEY');
 $apiInstance = new BoldSign\Api\TemplateApi($config);
 $template_id = 'template_id_example'; // string | Template Id.
 $on_behalf_of = 'on_behalf_of_example'; // string | The on behalfof email address.
+$include_form_field_values = false; // bool | Include form field data.
 
 try {
-    $result = $apiInstance->download($template_id, $on_behalf_of);
+    $result = $apiInstance->download($template_id, $on_behalf_of, $include_form_field_values);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TemplateApi->download: ', $e->getMessage(), PHP_EOL;
@@ -362,6 +363,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **template_id** | **string**| Template Id. | |
 | **on_behalf_of** | **string**| The on behalfof email address. | [optional] |
+| **include_form_field_values** | **bool**| Include form field data. | [optional] [default to false] |
 
 ### Return type
 

@@ -15,5 +15,6 @@ Name | Type | Description | Notes
 **brand_id** | **string** |  | [optional]
 **redirect_url** | **string** |  | [optional]
 **meta_data** | **array<string,string>** |  | [optional]
+**created_by** | [**\BoldSign\Model\SenderIdentityCreator**](SenderIdentityCreator.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

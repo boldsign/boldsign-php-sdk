@@ -1,12 +1,10 @@
-# # DocumentSender
+# # ChangeTeamRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **string** |  | [optional]
-**email_address** | **string** |  | [optional]
-**user_id** | **string** |  | [optional]
-**team_id** | **string** |  | [optional]
+**to_team_id** | **string** |  |
+**transfer_documents_to_user_id** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

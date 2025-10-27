@@ -1,6 +1,6 @@
 <?php
 /**
- * DocumentSender
+ * TemplateFiles
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \BoldSign\ObjectSerializer;
 
 /**
- * DocumentSender Class Doc Comment
+ * TemplateFiles Class Doc Comment
  *
  * @category Class
  * @package  BoldSign
@@ -40,7 +40,7 @@ use \BoldSign\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
+class TemplateFiles implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DocumentSender';
+    protected static $openAPIModelName = 'TemplateFiles';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,10 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'email_address' => 'string',
-        'user_id' => 'string',
-        'team_id' => 'string'
+        'document_id' => 'string',
+        'document_name' => 'string',
+        'order' => 'int',
+        'page_count' => 'int'
     ];
 
     /**
@@ -71,10 +71,10 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'email_address' => null,
-        'user_id' => null,
-        'team_id' => null
+        'document_id' => null,
+        'document_name' => null,
+        'order' => 'int32',
+        'page_count' => 'int32'
     ];
 
     /**
@@ -83,10 +83,10 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => true,
-        'email_address' => true,
-        'user_id' => true,
-        'team_id' => true
+        'document_id' => true,
+        'document_name' => true,
+        'order' => false,
+        'page_count' => false
     ];
 
     /**
@@ -175,10 +175,10 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'email_address' => 'emailAddress',
-        'user_id' => 'userId',
-        'team_id' => 'teamId'
+        'document_id' => 'documentId',
+        'document_name' => 'documentName',
+        'order' => 'order',
+        'page_count' => 'pageCount'
     ];
 
     /**
@@ -187,10 +187,10 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'email_address' => 'setEmailAddress',
-        'user_id' => 'setUserId',
-        'team_id' => 'setTeamId'
+        'document_id' => 'setDocumentId',
+        'document_name' => 'setDocumentName',
+        'order' => 'setOrder',
+        'page_count' => 'setPageCount'
     ];
 
     /**
@@ -199,10 +199,10 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'email_address' => 'getEmailAddress',
-        'user_id' => 'getUserId',
-        'team_id' => 'getTeamId'
+        'document_id' => 'getDocumentId',
+        'document_name' => 'getDocumentName',
+        'order' => 'getOrder',
+        'page_count' => 'getPageCount'
     ];
 
     /**
@@ -262,10 +262,10 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('email_address', $data ?? [], null);
-        $this->setIfExists('user_id', $data ?? [], null);
-        $this->setIfExists('team_id', $data ?? [], null);
+        $this->setIfExists('document_id', $data ?? [], null);
+        $this->setIfExists('document_name', $data ?? [], null);
+        $this->setIfExists('order', $data ?? [], null);
+        $this->setIfExists('page_count', $data ?? [], null);
     }
 
     /**
@@ -311,137 +311,123 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets name
+     * Gets document_id
      *
      * @return string|null
      */
-    public function getName()
+    public function getDocumentId()
     {
-        return $this->container['name'];
+        return $this->container['document_id'];
     }
 
     /**
-     * Sets name
+     * Sets document_id
      *
-     * @param string|null $name name
+     * @param string|null $document_id document_id
      *
      * @return self
      */
-    public function setName($name)
+    public function setDocumentId($document_id)
     {
-        if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
+        if (is_null($document_id)) {
+            array_push($this->openAPINullablesSetToNull, 'document_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
+            $index = array_search('document_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['name'] = $name;
+        $this->container['document_id'] = $document_id;
 
         return $this;
     }
 
     /**
-     * Gets email_address
+     * Gets document_name
      *
      * @return string|null
      */
-    public function getEmailAddress()
+    public function getDocumentName()
     {
-        return $this->container['email_address'];
+        return $this->container['document_name'];
     }
 
     /**
-     * Sets email_address
+     * Sets document_name
      *
-     * @param string|null $email_address email_address
+     * @param string|null $document_name document_name
      *
      * @return self
      */
-    public function setEmailAddress($email_address)
+    public function setDocumentName($document_name)
     {
-        if (is_null($email_address)) {
-            array_push($this->openAPINullablesSetToNull, 'email_address');
+        if (is_null($document_name)) {
+            array_push($this->openAPINullablesSetToNull, 'document_name');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('email_address', $nullablesSetToNull);
+            $index = array_search('document_name', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['email_address'] = $email_address;
+        $this->container['document_name'] = $document_name;
 
         return $this;
     }
 
     /**
-     * Gets user_id
+     * Gets order
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getUserId()
+    public function getOrder()
     {
-        return $this->container['user_id'];
+        return $this->container['order'];
     }
 
     /**
-     * Sets user_id
+     * Sets order
      *
-     * @param string|null $user_id user_id
+     * @param int|null $order order
      *
      * @return self
      */
-    public function setUserId($user_id)
+    public function setOrder($order)
     {
-        if (is_null($user_id)) {
-            array_push($this->openAPINullablesSetToNull, 'user_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('user_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($order)) {
+            throw new \InvalidArgumentException('non-nullable order cannot be null');
         }
-        $this->container['user_id'] = $user_id;
+        $this->container['order'] = $order;
 
         return $this;
     }
 
     /**
-     * Gets team_id
+     * Gets page_count
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getTeamId()
+    public function getPageCount()
     {
-        return $this->container['team_id'];
+        return $this->container['page_count'];
     }
 
     /**
-     * Sets team_id
+     * Sets page_count
      *
-     * @param string|null $team_id team_id
+     * @param int|null $page_count page_count
      *
      * @return self
      */
-    public function setTeamId($team_id)
+    public function setPageCount($page_count)
     {
-        if (is_null($team_id)) {
-            array_push($this->openAPINullablesSetToNull, 'team_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('team_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($page_count)) {
+            throw new \InvalidArgumentException('non-nullable page_count cannot be null');
         }
-        $this->container['team_id'] = $team_id;
+        $this->container['page_count'] = $page_count;
 
         return $this;
     }

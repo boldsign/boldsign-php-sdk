@@ -1,6 +1,6 @@
 <?php
 /**
- * DocumentSender
+ * SenderIdentityCreator
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \BoldSign\ObjectSerializer;
 
 /**
- * DocumentSender Class Doc Comment
+ * SenderIdentityCreator Class Doc Comment
  *
  * @category Class
  * @package  BoldSign
@@ -40,7 +40,7 @@ use \BoldSign\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
+class SenderIdentityCreator implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DocumentSender';
+    protected static $openAPIModelName = 'SenderIdentityCreator';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

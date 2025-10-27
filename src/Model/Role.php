@@ -388,6 +388,10 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
     public const LANGUAGE_13 = 13;
     public const LANGUAGE_14 = 14;
     public const LANGUAGE_15 = 15;
+    public const LANGUAGE_16 = 16;
+    public const LANGUAGE_17 = 17;
+    public const LANGUAGE_18 = 18;
+    public const LANGUAGE_19 = 19;
     public const LOCALE_EN = 'EN';
     public const LOCALE_NO = 'NO';
     public const LOCALE_FR = 'FR';
@@ -404,6 +408,10 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
     public const LOCALE_RU = 'RU';
     public const LOCALE_SV = 'SV';
     public const LOCALE__DEFAULT = 'Default';
+    public const LOCALE_JA = 'JA';
+    public const LOCALE_TH = 'TH';
+    public const LOCALE_ZH_CN = 'ZH_CN';
+    public const LOCALE_ZH_TW = 'ZH_TW';
 
     /**
      * Gets allowable values of the enum
@@ -474,6 +482,10 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
             self::LANGUAGE_13,
             self::LANGUAGE_14,
             self::LANGUAGE_15,
+            self::LANGUAGE_16,
+            self::LANGUAGE_17,
+            self::LANGUAGE_18,
+            self::LANGUAGE_19,
         ];
     }
 
@@ -501,6 +513,10 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
             self::LOCALE_RU,
             self::LOCALE_SV,
             self::LOCALE__DEFAULT,
+            self::LOCALE_JA,
+            self::LOCALE_TH,
+            self::LOCALE_ZH_CN,
+            self::LOCALE_ZH_TW,
         ];
     }
 
@@ -1250,7 +1266,7 @@ class Role implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets language
      *
-     * @param int|null $language <p>Description:</p><ul><li><i>0</i> - None</li><li><i>1</i> - English</li><li><i>2</i> - Spanish</li><li><i>3</i> - German</li><li><i>4</i> - French</li><li><i>5</i> - Romanian</li><li><i>6</i> - Norwegian</li><li><i>7</i> - Bulgarian</li><li><i>8</i> - Italian</li><li><i>9</i> - Danish</li><li><i>10</i> - Polish</li><li><i>11</i> - Portuguese</li><li><i>12</i> - Czech</li><li><i>13</i> - Dutch</li><li><i>14</i> - Swedish</li><li><i>15</i> - Russian</li></ul>
+     * @param int|null $language <p>Description:</p><ul><li><i>0</i> - None</li><li><i>1</i> - English</li><li><i>2</i> - Spanish</li><li><i>3</i> - German</li><li><i>4</i> - French</li><li><i>5</i> - Romanian</li><li><i>6</i> - Norwegian</li><li><i>7</i> - Bulgarian</li><li><i>8</i> - Italian</li><li><i>9</i> - Danish</li><li><i>10</i> - Polish</li><li><i>11</i> - Portuguese</li><li><i>12</i> - Czech</li><li><i>13</i> - Dutch</li><li><i>14</i> - Swedish</li><li><i>15</i> - Russian</li><li><i>16</i> - Japanese</li><li><i>17</i> - Thai</li><li><i>18</i> - SimplifiedChinese</li><li><i>19</i> - TraditionalChinese</li></ul>
      *
      * @return self
      */

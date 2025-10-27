@@ -16,7 +16,7 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 ```json
 {
     "require": {
-        "boldsign/boldsign-php": "2.0.0-beta.1"
+        "boldsign/boldsign-php": "2.0.0-beta.2"
     },
     "minimum-stability": "dev"
 }
@@ -27,7 +27,7 @@ Then run `composer install`
 Alternatively, install directly with
 
 ```
-composer require boldsign/boldsign-php:2.0.0-beta.1
+composer require boldsign/boldsign-php:2.0.0-beta.2
 ```
 
 ## Getting Started
@@ -118,7 +118,7 @@ All URIs are relative to *https://api.boldsign.com*
 | *PlanApi* | [**apiCreditsCount**](docs/Api/PlanApi.md#apicreditscount) | **GET** /v1/plan/apiCreditsCount | Gets the Api credits details. |
 | *SenderIdentitiesApi* | [**createSenderIdentities**](docs/Api/SenderIdentitiesApi.md#createsenderidentities) | **POST** /v1/senderIdentities/create | Creates sender identity. |
 | *SenderIdentitiesApi* | [**deleteSenderIdentities**](docs/Api/SenderIdentitiesApi.md#deletesenderidentities) | **DELETE** /v1/senderIdentities/delete | Deletes sender identity. |
-| *SenderIdentitiesApi* | [**getSenderIdentityProperties**](docs/Api/SenderIdentitiesApi.md#getsenderidentityproperties) | **GET** /v1-beta/senderIdentities/properties | Gets sender identity by ID or email. |
+| *SenderIdentitiesApi* | [**getSenderIdentityProperties**](docs/Api/SenderIdentitiesApi.md#getsenderidentityproperties) | **GET** /v1/senderIdentities/properties | Gets sender identity by ID or email. |
 | *SenderIdentitiesApi* | [**listSenderIdentities**](docs/Api/SenderIdentitiesApi.md#listsenderidentities) | **GET** /v1/senderIdentities/list | Lists sender identity. |
 | *SenderIdentitiesApi* | [**reRequestSenderIdentities**](docs/Api/SenderIdentitiesApi.md#rerequestsenderidentities) | **POST** /v1/senderIdentities/rerequest | Rerequests denied sender identity. |
 | *SenderIdentitiesApi* | [**resendInvitationSenderIdentities**](docs/Api/SenderIdentitiesApi.md#resendinvitationsenderidentities) | **POST** /v1/senderIdentities/resendInvitation | Resends sender identity invitation. |
@@ -142,6 +142,7 @@ All URIs are relative to *https://api.boldsign.com*
 | *TemplateApi* | [**mergeCreateEmbeddedRequestUrlTemplate**](docs/Api/TemplateApi.md#mergecreateembeddedrequesturltemplate) | **POST** /v1/template/mergeCreateEmbeddedRequestUrl | Generates a merge request URL using a template that combines document merging and sending processes into your application. |
 | *TemplateApi* | [**sendUsingTemplate**](docs/Api/TemplateApi.md#sendusingtemplate) | **POST** /v1/template/send | Send a document for signature using a Template. |
 | *UserApi* | [**cancelInvitation**](docs/Api/UserApi.md#cancelinvitation) | **POST** /v1/users/cancelInvitation | Cancel the users invitation. |
+| *UserApi* | [**changeTeam**](docs/Api/UserApi.md#changeteam) | **PUT** /v1-beta/users/changeTeam | Change users to other team. |
 | *UserApi* | [**createUser**](docs/Api/UserApi.md#createuser) | **POST** /v1/users/create | Create the user. |
 | *UserApi* | [**getUser**](docs/Api/UserApi.md#getuser) | **GET** /v1/users/get | Get summary of the user. |
 | *UserApi* | [**listUsers**](docs/Api/UserApi.md#listusers) | **GET** /v1/users/list | List user documents. |
@@ -169,6 +170,7 @@ All URIs are relative to *https://api.boldsign.com*
 - [BrandingMessage](docs/Model/BrandingMessage.md)
 - [BrandingRecords](docs/Model/BrandingRecords.md)
 - [ChangeRecipient](docs/Model/ChangeRecipient.md)
+- [ChangeTeamRequest](docs/Model/ChangeTeamRequest.md)
 - [CollaborationSettings](docs/Model/CollaborationSettings.md)
 - [ConditionalRule](docs/Model/ConditionalRule.md)
 - [ContactCreated](docs/Model/ContactCreated.md)
@@ -234,6 +236,7 @@ All URIs are relative to *https://api.boldsign.com*
 - [FileInfo](docs/Model/FileInfo.md)
 - [Font](docs/Model/Font.md)
 - [FormField](docs/Model/FormField.md)
+- [FormFieldPermission](docs/Model/FormFieldPermission.md)
 - [FormGroup](docs/Model/FormGroup.md)
 - [FormulaFieldSettings](docs/Model/FormulaFieldSettings.md)
 - [IWebhookData](docs/Model/IWebhookData.md)
@@ -264,6 +267,7 @@ All URIs are relative to *https://api.boldsign.com*
 - [SendForSign](docs/Model/SendForSign.md)
 - [SendForSignFromTemplateForm](docs/Model/SendForSignFromTemplateForm.md)
 - [SenderIdentityCreated](docs/Model/SenderIdentityCreated.md)
+- [SenderIdentityCreator](docs/Model/SenderIdentityCreator.md)
 - [SenderIdentityEvent](docs/Model/SenderIdentityEvent.md)
 - [SenderIdentityList](docs/Model/SenderIdentityList.md)
 - [SenderIdentityViewModel](docs/Model/SenderIdentityViewModel.md)
@@ -282,6 +286,7 @@ All URIs are relative to *https://api.boldsign.com*
 - [TemplateCcWebhookModel](docs/Model/TemplateCcWebhookModel.md)
 - [TemplateCreated](docs/Model/TemplateCreated.md)
 - [TemplateEvent](docs/Model/TemplateEvent.md)
+- [TemplateFiles](docs/Model/TemplateFiles.md)
 - [TemplateFormFields](docs/Model/TemplateFormFields.md)
 - [TemplateProperties](docs/Model/TemplateProperties.md)
 - [TemplateRecords](docs/Model/TemplateRecords.md)
@@ -345,6 +350,6 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `1`
-    - Package version: `2.0.0-beta.1`
+    - Package version: `2.0.0-beta.2`
     - Generator version: `7.8.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

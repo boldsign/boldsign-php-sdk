@@ -94,6 +94,7 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
         'modified_date' => '\DateTime',
         'approved_date_time' => '\DateTime',
         'redirect_url' => 'string',
+        'created_by' => '\BoldSign\Model\SenderIdentityCreator',
         'signer_detail' => '\BoldSign\Model\DocumentSignerWebhookModel'
     ];
 
@@ -142,6 +143,7 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
         'modified_date' => 'date-time',
         'approved_date_time' => 'date-time',
         'redirect_url' => null,
+        'created_by' => null,
         'signer_detail' => null
     ];
 
@@ -188,6 +190,7 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
         'modified_date' => true,
         'approved_date_time' => true,
         'redirect_url' => true,
+        'created_by' => false,
         'signer_detail' => false
     ];
 
@@ -314,6 +317,7 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
         'modified_date' => 'modifiedDate',
         'approved_date_time' => 'approvedDateTime',
         'redirect_url' => 'redirectUrl',
+        'created_by' => 'createdBy',
         'signer_detail' => 'signerDetail'
     ];
 
@@ -360,6 +364,7 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
         'modified_date' => 'setModifiedDate',
         'approved_date_time' => 'setApprovedDateTime',
         'redirect_url' => 'setRedirectUrl',
+        'created_by' => 'setCreatedBy',
         'signer_detail' => 'setSignerDetail'
     ];
 
@@ -406,6 +411,7 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
         'modified_date' => 'getModifiedDate',
         'approved_date_time' => 'getApprovedDateTime',
         'redirect_url' => 'getRedirectUrl',
+        'created_by' => 'getCreatedBy',
         'signer_detail' => 'getSignerDetail'
     ];
 
@@ -545,6 +551,7 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('modified_date', $data ?? [], null);
         $this->setIfExists('approved_date_time', $data ?? [], null);
         $this->setIfExists('redirect_url', $data ?? [], null);
+        $this->setIfExists('created_by', $data ?? [], null);
         $this->setIfExists('signer_detail', $data ?? [], null);
 
         // Initialize discriminator property with the model name.
@@ -1829,6 +1836,33 @@ class WebhookEventData implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['redirect_url'] = $redirect_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_by
+     *
+     * @return \BoldSign\Model\SenderIdentityCreator|null
+     */
+    public function getCreatedBy()
+    {
+        return $this->container['created_by'];
+    }
+
+    /**
+     * Sets created_by
+     *
+     * @param \BoldSign\Model\SenderIdentityCreator|null $created_by created_by
+     *
+     * @return self
+     */
+    public function setCreatedBy($created_by)
+    {
+        if (is_null($created_by)) {
+            throw new \InvalidArgumentException('non-nullable created_by cannot be null');
+        }
+        $this->container['created_by'] = $created_by;
 
         return $this;
     }

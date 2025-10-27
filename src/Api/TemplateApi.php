@@ -2423,15 +2423,16 @@ class TemplateApi
      *
      * @param  string $template_id Template Id. (required)
      * @param  string $on_behalf_of The on behalfof email address. (optional)
+     * @param  bool $include_form_field_values Include form field data. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['download'] to see the possible values for this operation
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SplFileObject|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult
      */
-    public function download($template_id, $on_behalf_of = null, string $contentType = self::contentTypes['download'][0])
+    public function download($template_id, $on_behalf_of = null, $include_form_field_values = false, string $contentType = self::contentTypes['download'][0])
     {
-        list($response) = $this->downloadWithHttpInfo($template_id, $on_behalf_of, $contentType);
+        list($response) = $this->downloadWithHttpInfo($template_id, $on_behalf_of, $include_form_field_values, $contentType);
         return $response;
     }
 
@@ -2442,15 +2443,16 @@ class TemplateApi
      *
      * @param  string $template_id Template Id. (required)
      * @param  string $on_behalf_of The on behalfof email address. (optional)
+     * @param  bool $include_form_field_values Include form field data. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['download'] to see the possible values for this operation
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\BoldSign\Model\ErrorResult|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
-    public function downloadWithHttpInfo($template_id, $on_behalf_of = null, string $contentType = self::contentTypes['download'][0])
+    public function downloadWithHttpInfo($template_id, $on_behalf_of = null, $include_form_field_values = false, string $contentType = self::contentTypes['download'][0])
     {
-        $request = $this->downloadRequest($template_id, $on_behalf_of, $contentType);
+        $request = $this->downloadRequest($template_id, $on_behalf_of, $include_form_field_values, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2637,14 +2639,15 @@ class TemplateApi
      *
      * @param  string $template_id Template Id. (required)
      * @param  string $on_behalf_of The on behalfof email address. (optional)
+     * @param  bool $include_form_field_values Include form field data. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['download'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function downloadAsync($template_id, $on_behalf_of = null, string $contentType = self::contentTypes['download'][0])
+    public function downloadAsync($template_id, $on_behalf_of = null, $include_form_field_values = false, string $contentType = self::contentTypes['download'][0])
     {
-        return $this->downloadAsyncWithHttpInfo($template_id, $on_behalf_of, $contentType)
+        return $this->downloadAsyncWithHttpInfo($template_id, $on_behalf_of, $include_form_field_values, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2659,15 +2662,16 @@ class TemplateApi
      *
      * @param  string $template_id Template Id. (required)
      * @param  string $on_behalf_of The on behalfof email address. (optional)
+     * @param  bool $include_form_field_values Include form field data. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['download'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function downloadAsyncWithHttpInfo($template_id, $on_behalf_of = null, string $contentType = self::contentTypes['download'][0])
+    public function downloadAsyncWithHttpInfo($template_id, $on_behalf_of = null, $include_form_field_values = false, string $contentType = self::contentTypes['download'][0])
     {
         $returnType = '\SplFileObject';
-        $request = $this->downloadRequest($template_id, $on_behalf_of, $contentType);
+        $request = $this->downloadRequest($template_id, $on_behalf_of, $include_form_field_values, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2710,12 +2714,13 @@ class TemplateApi
      *
      * @param  string $template_id Template Id. (required)
      * @param  string $on_behalf_of The on behalfof email address. (optional)
+     * @param  bool $include_form_field_values Include form field data. (optional, default to false)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['download'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function downloadRequest($template_id, $on_behalf_of = null, string $contentType = self::contentTypes['download'][0])
+    public function downloadRequest($template_id, $on_behalf_of = null, $include_form_field_values = false, string $contentType = self::contentTypes['download'][0])
     {
 
         // verify the required parameter 'template_id' is set
@@ -2724,6 +2729,7 @@ class TemplateApi
                 'Missing the required parameter $template_id when calling download'
             );
         }
+
 
 
 
@@ -2748,6 +2754,15 @@ class TemplateApi
             $on_behalf_of,
             'onBehalfOf', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $include_form_field_values,
+            'includeFormFieldValues', // param base name
+            'boolean', // openApiType
             'form', // style
             true, // explode
             false // required

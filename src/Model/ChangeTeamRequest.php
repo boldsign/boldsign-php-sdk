@@ -1,6 +1,6 @@
 <?php
 /**
- * DocumentSender
+ * ChangeTeamRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \BoldSign\ObjectSerializer;
 
 /**
- * DocumentSender Class Doc Comment
+ * ChangeTeamRequest Class Doc Comment
  *
  * @category Class
  * @package  BoldSign
@@ -40,7 +40,7 @@ use \BoldSign\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
+class ChangeTeamRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DocumentSender';
+    protected static $openAPIModelName = 'ChangeTeamRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,8 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'email_address' => 'string',
-        'user_id' => 'string',
-        'team_id' => 'string'
+        'to_team_id' => 'string',
+        'transfer_documents_to_user_id' => 'string'
     ];
 
     /**
@@ -71,10 +69,8 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'email_address' => null,
-        'user_id' => null,
-        'team_id' => null
+        'to_team_id' => null,
+        'transfer_documents_to_user_id' => null
     ];
 
     /**
@@ -83,10 +79,8 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => true,
-        'email_address' => true,
-        'user_id' => true,
-        'team_id' => true
+        'to_team_id' => false,
+        'transfer_documents_to_user_id' => true
     ];
 
     /**
@@ -175,10 +169,8 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'email_address' => 'emailAddress',
-        'user_id' => 'userId',
-        'team_id' => 'teamId'
+        'to_team_id' => 'toTeamId',
+        'transfer_documents_to_user_id' => 'transferDocumentsToUserId'
     ];
 
     /**
@@ -187,10 +179,8 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'email_address' => 'setEmailAddress',
-        'user_id' => 'setUserId',
-        'team_id' => 'setTeamId'
+        'to_team_id' => 'setToTeamId',
+        'transfer_documents_to_user_id' => 'setTransferDocumentsToUserId'
     ];
 
     /**
@@ -199,10 +189,8 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'email_address' => 'getEmailAddress',
-        'user_id' => 'getUserId',
-        'team_id' => 'getTeamId'
+        'to_team_id' => 'getToTeamId',
+        'transfer_documents_to_user_id' => 'getTransferDocumentsToUserId'
     ];
 
     /**
@@ -262,10 +250,8 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('email_address', $data ?? [], null);
-        $this->setIfExists('user_id', $data ?? [], null);
-        $this->setIfExists('team_id', $data ?? [], null);
+        $this->setIfExists('to_team_id', $data ?? [], null);
+        $this->setIfExists('transfer_documents_to_user_id', $data ?? [], null);
     }
 
     /**
@@ -295,6 +281,13 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['to_team_id'] === null) {
+            $invalidProperties[] = "'to_team_id' can't be null";
+        }
+        if ((mb_strlen($this->container['to_team_id']) < 1)) {
+            $invalidProperties[] = "invalid value for 'to_team_id', the character length must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -311,137 +304,67 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets name
+     * Gets to_team_id
      *
-     * @return string|null
+     * @return string
      */
-    public function getName()
+    public function getToTeamId()
     {
-        return $this->container['name'];
+        return $this->container['to_team_id'];
     }
 
     /**
-     * Sets name
+     * Sets to_team_id
      *
-     * @param string|null $name name
+     * @param string $to_team_id to_team_id
      *
      * @return self
      */
-    public function setName($name)
+    public function setToTeamId($to_team_id)
     {
-        if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($to_team_id)) {
+            throw new \InvalidArgumentException('non-nullable to_team_id cannot be null');
         }
-        $this->container['name'] = $name;
+
+        if ((mb_strlen($to_team_id) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $to_team_id when calling ChangeTeamRequest., must be bigger than or equal to 1.');
+        }
+
+        $this->container['to_team_id'] = $to_team_id;
 
         return $this;
     }
 
     /**
-     * Gets email_address
+     * Gets transfer_documents_to_user_id
      *
      * @return string|null
      */
-    public function getEmailAddress()
+    public function getTransferDocumentsToUserId()
     {
-        return $this->container['email_address'];
+        return $this->container['transfer_documents_to_user_id'];
     }
 
     /**
-     * Sets email_address
+     * Sets transfer_documents_to_user_id
      *
-     * @param string|null $email_address email_address
+     * @param string|null $transfer_documents_to_user_id transfer_documents_to_user_id
      *
      * @return self
      */
-    public function setEmailAddress($email_address)
+    public function setTransferDocumentsToUserId($transfer_documents_to_user_id)
     {
-        if (is_null($email_address)) {
-            array_push($this->openAPINullablesSetToNull, 'email_address');
+        if (is_null($transfer_documents_to_user_id)) {
+            array_push($this->openAPINullablesSetToNull, 'transfer_documents_to_user_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('email_address', $nullablesSetToNull);
+            $index = array_search('transfer_documents_to_user_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['email_address'] = $email_address;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_id
-     *
-     * @return string|null
-     */
-    public function getUserId()
-    {
-        return $this->container['user_id'];
-    }
-
-    /**
-     * Sets user_id
-     *
-     * @param string|null $user_id user_id
-     *
-     * @return self
-     */
-    public function setUserId($user_id)
-    {
-        if (is_null($user_id)) {
-            array_push($this->openAPINullablesSetToNull, 'user_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('user_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['user_id'] = $user_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets team_id
-     *
-     * @return string|null
-     */
-    public function getTeamId()
-    {
-        return $this->container['team_id'];
-    }
-
-    /**
-     * Sets team_id
-     *
-     * @param string|null $team_id team_id
-     *
-     * @return self
-     */
-    public function setTeamId($team_id)
-    {
-        if (is_null($team_id)) {
-            array_push($this->openAPINullablesSetToNull, 'team_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('team_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['team_id'] = $team_id;
+        $this->container['transfer_documents_to_user_id'] = $transfer_documents_to_user_id;
 
         return $this;
     }

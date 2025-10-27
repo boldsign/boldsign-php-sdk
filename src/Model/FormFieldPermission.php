@@ -1,6 +1,6 @@
 <?php
 /**
- * DocumentSender
+ * FormFieldPermission
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \BoldSign\ObjectSerializer;
 
 /**
- * DocumentSender Class Doc Comment
+ * FormFieldPermission Class Doc Comment
  *
  * @category Class
  * @package  BoldSign
@@ -40,7 +40,7 @@ use \BoldSign\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
+class FormFieldPermission implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DocumentSender';
+    protected static $openAPIModelName = 'FormFieldPermission';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,9 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'email_address' => 'string',
-        'user_id' => 'string',
-        'team_id' => 'string'
+        'can_add' => 'bool',
+        'can_modify' => 'bool',
+        'can_modify_default_value' => 'bool'
     ];
 
     /**
@@ -71,10 +70,9 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'email_address' => null,
-        'user_id' => null,
-        'team_id' => null
+        'can_add' => null,
+        'can_modify' => null,
+        'can_modify_default_value' => null
     ];
 
     /**
@@ -83,10 +81,9 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'name' => true,
-        'email_address' => true,
-        'user_id' => true,
-        'team_id' => true
+        'can_add' => false,
+        'can_modify' => false,
+        'can_modify_default_value' => false
     ];
 
     /**
@@ -175,10 +172,9 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'email_address' => 'emailAddress',
-        'user_id' => 'userId',
-        'team_id' => 'teamId'
+        'can_add' => 'canAdd',
+        'can_modify' => 'canModify',
+        'can_modify_default_value' => 'canModifyDefaultValue'
     ];
 
     /**
@@ -187,10 +183,9 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'email_address' => 'setEmailAddress',
-        'user_id' => 'setUserId',
-        'team_id' => 'setTeamId'
+        'can_add' => 'setCanAdd',
+        'can_modify' => 'setCanModify',
+        'can_modify_default_value' => 'setCanModifyDefaultValue'
     ];
 
     /**
@@ -199,10 +194,9 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'email_address' => 'getEmailAddress',
-        'user_id' => 'getUserId',
-        'team_id' => 'getTeamId'
+        'can_add' => 'getCanAdd',
+        'can_modify' => 'getCanModify',
+        'can_modify_default_value' => 'getCanModifyDefaultValue'
     ];
 
     /**
@@ -262,10 +256,9 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('email_address', $data ?? [], null);
-        $this->setIfExists('user_id', $data ?? [], null);
-        $this->setIfExists('team_id', $data ?? [], null);
+        $this->setIfExists('can_add', $data ?? [], null);
+        $this->setIfExists('can_modify', $data ?? [], null);
+        $this->setIfExists('can_modify_default_value', $data ?? [], null);
     }
 
     /**
@@ -311,137 +304,82 @@ class DocumentSender implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets name
+     * Gets can_add
      *
-     * @return string|null
+     * @return bool|null
      */
-    public function getName()
+    public function getCanAdd()
     {
-        return $this->container['name'];
+        return $this->container['can_add'];
     }
 
     /**
-     * Sets name
+     * Sets can_add
      *
-     * @param string|null $name name
+     * @param bool|null $can_add can_add
      *
      * @return self
      */
-    public function setName($name)
+    public function setCanAdd($can_add)
     {
-        if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($can_add)) {
+            throw new \InvalidArgumentException('non-nullable can_add cannot be null');
         }
-        $this->container['name'] = $name;
+        $this->container['can_add'] = $can_add;
 
         return $this;
     }
 
     /**
-     * Gets email_address
+     * Gets can_modify
      *
-     * @return string|null
+     * @return bool|null
      */
-    public function getEmailAddress()
+    public function getCanModify()
     {
-        return $this->container['email_address'];
+        return $this->container['can_modify'];
     }
 
     /**
-     * Sets email_address
+     * Sets can_modify
      *
-     * @param string|null $email_address email_address
+     * @param bool|null $can_modify can_modify
      *
      * @return self
      */
-    public function setEmailAddress($email_address)
+    public function setCanModify($can_modify)
     {
-        if (is_null($email_address)) {
-            array_push($this->openAPINullablesSetToNull, 'email_address');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('email_address', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($can_modify)) {
+            throw new \InvalidArgumentException('non-nullable can_modify cannot be null');
         }
-        $this->container['email_address'] = $email_address;
+        $this->container['can_modify'] = $can_modify;
 
         return $this;
     }
 
     /**
-     * Gets user_id
+     * Gets can_modify_default_value
      *
-     * @return string|null
+     * @return bool|null
      */
-    public function getUserId()
+    public function getCanModifyDefaultValue()
     {
-        return $this->container['user_id'];
+        return $this->container['can_modify_default_value'];
     }
 
     /**
-     * Sets user_id
+     * Sets can_modify_default_value
      *
-     * @param string|null $user_id user_id
+     * @param bool|null $can_modify_default_value can_modify_default_value
      *
      * @return self
      */
-    public function setUserId($user_id)
+    public function setCanModifyDefaultValue($can_modify_default_value)
     {
-        if (is_null($user_id)) {
-            array_push($this->openAPINullablesSetToNull, 'user_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('user_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($can_modify_default_value)) {
+            throw new \InvalidArgumentException('non-nullable can_modify_default_value cannot be null');
         }
-        $this->container['user_id'] = $user_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets team_id
-     *
-     * @return string|null
-     */
-    public function getTeamId()
-    {
-        return $this->container['team_id'];
-    }
-
-    /**
-     * Sets team_id
-     *
-     * @param string|null $team_id team_id
-     *
-     * @return self
-     */
-    public function setTeamId($team_id)
-    {
-        if (is_null($team_id)) {
-            array_push($this->openAPINullablesSetToNull, 'team_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('team_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['team_id'] = $team_id;
+        $this->container['can_modify_default_value'] = $can_modify_default_value;
 
         return $this;
     }

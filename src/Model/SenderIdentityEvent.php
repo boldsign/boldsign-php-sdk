@@ -67,7 +67,8 @@ class SenderIdentityEvent implements ModelInterface, ArrayAccess, \JsonSerializa
         'approved_date_time' => '\DateTime',
         'brand_id' => 'string',
         'redirect_url' => 'string',
-        'meta_data' => 'array<string,string>'
+        'meta_data' => 'array<string,string>',
+        'created_by' => '\BoldSign\Model\SenderIdentityCreator'
     ];
 
     /**
@@ -88,7 +89,8 @@ class SenderIdentityEvent implements ModelInterface, ArrayAccess, \JsonSerializa
         'approved_date_time' => 'date-time',
         'brand_id' => null,
         'redirect_url' => null,
-        'meta_data' => null
+        'meta_data' => null,
+        'created_by' => null
     ];
 
     /**
@@ -107,7 +109,8 @@ class SenderIdentityEvent implements ModelInterface, ArrayAccess, \JsonSerializa
         'approved_date_time' => true,
         'brand_id' => true,
         'redirect_url' => true,
-        'meta_data' => true
+        'meta_data' => true,
+        'created_by' => false
     ];
 
     /**
@@ -206,7 +209,8 @@ class SenderIdentityEvent implements ModelInterface, ArrayAccess, \JsonSerializa
         'approved_date_time' => 'approvedDateTime',
         'brand_id' => 'brandId',
         'redirect_url' => 'redirectUrl',
-        'meta_data' => 'metaData'
+        'meta_data' => 'metaData',
+        'created_by' => 'createdBy'
     ];
 
     /**
@@ -225,7 +229,8 @@ class SenderIdentityEvent implements ModelInterface, ArrayAccess, \JsonSerializa
         'approved_date_time' => 'setApprovedDateTime',
         'brand_id' => 'setBrandId',
         'redirect_url' => 'setRedirectUrl',
-        'meta_data' => 'setMetaData'
+        'meta_data' => 'setMetaData',
+        'created_by' => 'setCreatedBy'
     ];
 
     /**
@@ -244,7 +249,8 @@ class SenderIdentityEvent implements ModelInterface, ArrayAccess, \JsonSerializa
         'approved_date_time' => 'getApprovedDateTime',
         'brand_id' => 'getBrandId',
         'redirect_url' => 'getRedirectUrl',
-        'meta_data' => 'getMetaData'
+        'meta_data' => 'getMetaData',
+        'created_by' => 'getCreatedBy'
     ];
 
     /**
@@ -315,6 +321,7 @@ class SenderIdentityEvent implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('brand_id', $data ?? [], null);
         $this->setIfExists('redirect_url', $data ?? [], null);
         $this->setIfExists('meta_data', $data ?? [], null);
+        $this->setIfExists('created_by', $data ?? [], null);
     }
 
     /**
@@ -722,6 +729,33 @@ class SenderIdentityEvent implements ModelInterface, ArrayAccess, \JsonSerializa
             }
         }
         $this->container['meta_data'] = $meta_data;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_by
+     *
+     * @return \BoldSign\Model\SenderIdentityCreator|null
+     */
+    public function getCreatedBy()
+    {
+        return $this->container['created_by'];
+    }
+
+    /**
+     * Sets created_by
+     *
+     * @param \BoldSign\Model\SenderIdentityCreator|null $created_by created_by
+     *
+     * @return self
+     */
+    public function setCreatedBy($created_by)
+    {
+        if (is_null($created_by)) {
+            throw new \InvalidArgumentException('non-nullable created_by cannot be null');
+        }
+        $this->container['created_by'] = $created_by;
 
         return $this;
     }

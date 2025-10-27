@@ -1,12 +1,11 @@
-# # DocumentSender
+# # FormFieldPermission
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **string** |  | [optional]
-**email_address** | **string** |  | [optional]
-**user_id** | **string** |  | [optional]
-**team_id** | **string** |  | [optional]
+**can_add** | **bool** |  | [optional]
+**can_modify** | **bool** |  | [optional]
+**can_modify_default_value** | **bool** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** |  | [optional]
+**team_id** | **string** |  | [optional]
 **email_address** | **string** |  | [optional]
 **user_id** | **string** |  | [optional]
 

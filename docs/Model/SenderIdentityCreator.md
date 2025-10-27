@@ -1,4 +1,4 @@
-# # DocumentSender
+# # SenderIdentityCreator
 
 ## Properties
 

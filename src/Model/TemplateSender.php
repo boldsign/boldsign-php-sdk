@@ -58,6 +58,7 @@ class TemplateSender implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'name' => 'string',
+        'team_id' => 'string',
         'email_address' => 'string',
         'user_id' => 'string'
     ];
@@ -71,6 +72,7 @@ class TemplateSender implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'name' => null,
+        'team_id' => null,
         'email_address' => null,
         'user_id' => null
     ];
@@ -82,6 +84,7 @@ class TemplateSender implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'name' => true,
+        'team_id' => true,
         'email_address' => true,
         'user_id' => true
     ];
@@ -173,6 +176,7 @@ class TemplateSender implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'name' => 'name',
+        'team_id' => 'teamId',
         'email_address' => 'emailAddress',
         'user_id' => 'userId'
     ];
@@ -184,6 +188,7 @@ class TemplateSender implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'name' => 'setName',
+        'team_id' => 'setTeamId',
         'email_address' => 'setEmailAddress',
         'user_id' => 'setUserId'
     ];
@@ -195,6 +200,7 @@ class TemplateSender implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'name' => 'getName',
+        'team_id' => 'getTeamId',
         'email_address' => 'getEmailAddress',
         'user_id' => 'getUserId'
     ];
@@ -257,6 +263,7 @@ class TemplateSender implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('team_id', $data ?? [], null);
         $this->setIfExists('email_address', $data ?? [], null);
         $this->setIfExists('user_id', $data ?? [], null);
     }
@@ -333,6 +340,40 @@ class TemplateSender implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets team_id
+     *
+     * @return string|null
+     */
+    public function getTeamId()
+    {
+        return $this->container['team_id'];
+    }
+
+    /**
+     * Sets team_id
+     *
+     * @param string|null $team_id team_id
+     *
+     * @return self
+     */
+    public function setTeamId($team_id)
+    {
+        if (is_null($team_id)) {
+            array_push($this->openAPINullablesSetToNull, 'team_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('team_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['team_id'] = $team_id;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * DocumentFiles
+ * FormFieldPermission
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \BoldSign\ObjectSerializer;
 
 /**
- * DocumentFiles Class Doc Comment
+ * FormFieldPermission Class Doc Comment
  *
  * @category Class
  * @package  BoldSign
@@ -40,7 +40,7 @@ use \BoldSign\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
+class FormFieldPermission implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DocumentFiles';
+    protected static $openAPIModelName = 'FormFieldPermission';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,12 +57,9 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'document_name' => 'string',
-        'order' => 'int',
-        'page_count' => 'int',
-        'template_name' => 'string',
-        'template_id' => 'string'
+        'can_add' => 'bool',
+        'can_modify' => 'bool',
+        'can_modify_default_value' => 'bool'
     ];
 
     /**
@@ -73,12 +70,9 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'document_name' => null,
-        'order' => 'int32',
-        'page_count' => 'int32',
-        'template_name' => null,
-        'template_id' => null
+        'can_add' => null,
+        'can_modify' => null,
+        'can_modify_default_value' => null
     ];
 
     /**
@@ -87,12 +81,9 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => true,
-        'document_name' => true,
-        'order' => false,
-        'page_count' => false,
-        'template_name' => true,
-        'template_id' => true
+        'can_add' => false,
+        'can_modify' => false,
+        'can_modify_default_value' => false
     ];
 
     /**
@@ -181,12 +172,9 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'document_name' => 'documentName',
-        'order' => 'order',
-        'page_count' => 'pageCount',
-        'template_name' => 'templateName',
-        'template_id' => 'templateId'
+        'can_add' => 'canAdd',
+        'can_modify' => 'canModify',
+        'can_modify_default_value' => 'canModifyDefaultValue'
     ];
 
     /**
@@ -195,12 +183,9 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'document_name' => 'setDocumentName',
-        'order' => 'setOrder',
-        'page_count' => 'setPageCount',
-        'template_name' => 'setTemplateName',
-        'template_id' => 'setTemplateId'
+        'can_add' => 'setCanAdd',
+        'can_modify' => 'setCanModify',
+        'can_modify_default_value' => 'setCanModifyDefaultValue'
     ];
 
     /**
@@ -209,12 +194,9 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'document_name' => 'getDocumentName',
-        'order' => 'getOrder',
-        'page_count' => 'getPageCount',
-        'template_name' => 'getTemplateName',
-        'template_id' => 'getTemplateId'
+        'can_add' => 'getCanAdd',
+        'can_modify' => 'getCanModify',
+        'can_modify_default_value' => 'getCanModifyDefaultValue'
     ];
 
     /**
@@ -274,12 +256,9 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('document_name', $data ?? [], null);
-        $this->setIfExists('order', $data ?? [], null);
-        $this->setIfExists('page_count', $data ?? [], null);
-        $this->setIfExists('template_name', $data ?? [], null);
-        $this->setIfExists('template_id', $data ?? [], null);
+        $this->setIfExists('can_add', $data ?? [], null);
+        $this->setIfExists('can_modify', $data ?? [], null);
+        $this->setIfExists('can_modify_default_value', $data ?? [], null);
     }
 
     /**
@@ -325,191 +304,82 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets can_add
      *
-     * @return string|null
+     * @return bool|null
      */
-    public function getId()
+    public function getCanAdd()
     {
-        return $this->container['id'];
+        return $this->container['can_add'];
     }
 
     /**
-     * Sets id
+     * Sets can_add
      *
-     * @param string|null $id id
+     * @param bool|null $can_add can_add
      *
      * @return self
      */
-    public function setId($id)
+    public function setCanAdd($can_add)
     {
-        if (is_null($id)) {
-            array_push($this->openAPINullablesSetToNull, 'id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($can_add)) {
+            throw new \InvalidArgumentException('non-nullable can_add cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['can_add'] = $can_add;
 
         return $this;
     }
 
     /**
-     * Gets document_name
+     * Gets can_modify
      *
-     * @return string|null
+     * @return bool|null
      */
-    public function getDocumentName()
+    public function getCanModify()
     {
-        return $this->container['document_name'];
+        return $this->container['can_modify'];
     }
 
     /**
-     * Sets document_name
+     * Sets can_modify
      *
-     * @param string|null $document_name document_name
+     * @param bool|null $can_modify can_modify
      *
      * @return self
      */
-    public function setDocumentName($document_name)
+    public function setCanModify($can_modify)
     {
-        if (is_null($document_name)) {
-            array_push($this->openAPINullablesSetToNull, 'document_name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('document_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($can_modify)) {
+            throw new \InvalidArgumentException('non-nullable can_modify cannot be null');
         }
-        $this->container['document_name'] = $document_name;
+        $this->container['can_modify'] = $can_modify;
 
         return $this;
     }
 
     /**
-     * Gets order
+     * Gets can_modify_default_value
      *
-     * @return int|null
+     * @return bool|null
      */
-    public function getOrder()
+    public function getCanModifyDefaultValue()
     {
-        return $this->container['order'];
+        return $this->container['can_modify_default_value'];
     }
 
     /**
-     * Sets order
+     * Sets can_modify_default_value
      *
-     * @param int|null $order order
+     * @param bool|null $can_modify_default_value can_modify_default_value
      *
      * @return self
      */
-    public function setOrder($order)
+    public function setCanModifyDefaultValue($can_modify_default_value)
     {
-        if (is_null($order)) {
-            throw new \InvalidArgumentException('non-nullable order cannot be null');
+        if (is_null($can_modify_default_value)) {
+            throw new \InvalidArgumentException('non-nullable can_modify_default_value cannot be null');
         }
-        $this->container['order'] = $order;
-
-        return $this;
-    }
-
-    /**
-     * Gets page_count
-     *
-     * @return int|null
-     */
-    public function getPageCount()
-    {
-        return $this->container['page_count'];
-    }
-
-    /**
-     * Sets page_count
-     *
-     * @param int|null $page_count page_count
-     *
-     * @return self
-     */
-    public function setPageCount($page_count)
-    {
-        if (is_null($page_count)) {
-            throw new \InvalidArgumentException('non-nullable page_count cannot be null');
-        }
-        $this->container['page_count'] = $page_count;
-
-        return $this;
-    }
-
-    /**
-     * Gets template_name
-     *
-     * @return string|null
-     */
-    public function getTemplateName()
-    {
-        return $this->container['template_name'];
-    }
-
-    /**
-     * Sets template_name
-     *
-     * @param string|null $template_name template_name
-     *
-     * @return self
-     */
-    public function setTemplateName($template_name)
-    {
-        if (is_null($template_name)) {
-            array_push($this->openAPINullablesSetToNull, 'template_name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('template_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['template_name'] = $template_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets template_id
-     *
-     * @return string|null
-     */
-    public function getTemplateId()
-    {
-        return $this->container['template_id'];
-    }
-
-    /**
-     * Sets template_id
-     *
-     * @param string|null $template_id template_id
-     *
-     * @return self
-     */
-    public function setTemplateId($template_id)
-    {
-        if (is_null($template_id)) {
-            array_push($this->openAPINullablesSetToNull, 'template_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('template_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['template_id'] = $template_id;
+        $this->container['can_modify_default_value'] = $can_modify_default_value;
 
         return $this;
     }

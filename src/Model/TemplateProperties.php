@@ -62,7 +62,7 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'description' => 'string',
         'document_title' => 'string',
         'document_message' => 'string',
-        'files' => '\BoldSign\Model\DocumentFiles[]',
+        'files' => '\BoldSign\Model\TemplateFiles[]',
         'roles' => '\BoldSign\Model\Roles[]',
         'form_groups' => '\BoldSign\Model\FormGroup[]',
         'common_fields' => '\BoldSign\Model\TemplateFormFields[]',
@@ -83,7 +83,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'template_labels' => 'string[]',
         'behalf_of' => '\BoldSign\Model\BehalfOf',
         'document_download_option' => 'string',
-        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings'
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
+        'form_field_permission' => '\BoldSign\Model\FormFieldPermission'
     ];
 
     /**
@@ -120,7 +121,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'template_labels' => null,
         'behalf_of' => null,
         'document_download_option' => null,
-        'recipient_notification_settings' => null
+        'recipient_notification_settings' => null,
+        'form_field_permission' => null
     ];
 
     /**
@@ -155,7 +157,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'template_labels' => true,
         'behalf_of' => false,
         'document_download_option' => false,
-        'recipient_notification_settings' => false
+        'recipient_notification_settings' => false,
+        'form_field_permission' => false
     ];
 
     /**
@@ -270,7 +273,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'template_labels' => 'templateLabels',
         'behalf_of' => 'behalfOf',
         'document_download_option' => 'documentDownloadOption',
-        'recipient_notification_settings' => 'recipientNotificationSettings'
+        'recipient_notification_settings' => 'recipientNotificationSettings',
+        'form_field_permission' => 'formFieldPermission'
     ];
 
     /**
@@ -305,7 +309,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'template_labels' => 'setTemplateLabels',
         'behalf_of' => 'setBehalfOf',
         'document_download_option' => 'setDocumentDownloadOption',
-        'recipient_notification_settings' => 'setRecipientNotificationSettings'
+        'recipient_notification_settings' => 'setRecipientNotificationSettings',
+        'form_field_permission' => 'setFormFieldPermission'
     ];
 
     /**
@@ -340,7 +345,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'template_labels' => 'getTemplateLabels',
         'behalf_of' => 'getBehalfOf',
         'document_download_option' => 'getDocumentDownloadOption',
-        'recipient_notification_settings' => 'getRecipientNotificationSettings'
+        'recipient_notification_settings' => 'getRecipientNotificationSettings',
+        'form_field_permission' => 'getFormFieldPermission'
     ];
 
     /**
@@ -442,6 +448,7 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('behalf_of', $data ?? [], null);
         $this->setIfExists('document_download_option', $data ?? [], null);
         $this->setIfExists('recipient_notification_settings', $data ?? [], null);
+        $this->setIfExists('form_field_permission', $data ?? [], null);
     }
 
     /**
@@ -668,7 +675,7 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets files
      *
-     * @return \BoldSign\Model\DocumentFiles[]|null
+     * @return \BoldSign\Model\TemplateFiles[]|null
      */
     public function getFiles()
     {
@@ -678,7 +685,7 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets files
      *
-     * @param \BoldSign\Model\DocumentFiles[]|null $files files
+     * @param \BoldSign\Model\TemplateFiles[]|null $files files
      *
      * @return self
      */
@@ -1335,6 +1342,33 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
         }
         $this->container['recipient_notification_settings'] = $recipient_notification_settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets form_field_permission
+     *
+     * @return \BoldSign\Model\FormFieldPermission|null
+     */
+    public function getFormFieldPermission()
+    {
+        return $this->container['form_field_permission'];
+    }
+
+    /**
+     * Sets form_field_permission
+     *
+     * @param \BoldSign\Model\FormFieldPermission|null $form_field_permission form_field_permission
+     *
+     * @return self
+     */
+    public function setFormFieldPermission($form_field_permission)
+    {
+        if (is_null($form_field_permission)) {
+            throw new \InvalidArgumentException('non-nullable form_field_permission cannot be null');
+        }
+        $this->container['form_field_permission'] = $form_field_permission;
 
         return $this;
     }

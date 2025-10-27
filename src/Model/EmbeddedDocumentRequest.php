@@ -510,6 +510,10 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
     public const LOCALE_RU = 'RU';
     public const LOCALE_SV = 'SV';
     public const LOCALE__DEFAULT = 'Default';
+    public const LOCALE_JA = 'JA';
+    public const LOCALE_TH = 'TH';
+    public const LOCALE_ZH_CN = 'ZH_CN';
+    public const LOCALE_ZH_TW = 'ZH_TW';
     public const EXPIRY_DATE_TYPE_DAYS = 'Days';
     public const EXPIRY_DATE_TYPE_HOURS = 'Hours';
     public const EXPIRY_DATE_TYPE_SPECIFIC_DATE_TIME = 'SpecificDateTime';
@@ -553,6 +557,10 @@ class EmbeddedDocumentRequest implements ModelInterface, ArrayAccess, \JsonSeria
             self::LOCALE_RU,
             self::LOCALE_SV,
             self::LOCALE__DEFAULT,
+            self::LOCALE_JA,
+            self::LOCALE_TH,
+            self::LOCALE_ZH_CN,
+            self::LOCALE_ZH_TW,
         ];
     }
 

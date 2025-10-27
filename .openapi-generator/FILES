@@ -86,6 +86,7 @@ docs/Model/ExtendExpiry.md
 docs/Model/FileInfo.md
 docs/Model/Font.md
 docs/Model/FormField.md
+docs/Model/FormFieldPermission.md
 docs/Model/FormGroup.md
 docs/Model/FormulaFieldSettings.md
 docs/Model/IdDocument.md
@@ -128,6 +129,7 @@ docs/Model/Teams.md
 docs/Model/Template.md
 docs/Model/TemplateCC.md
 docs/Model/TemplateCreated.md
+docs/Model/TemplateFiles.md
 docs/Model/TemplateFormFields.md
 docs/Model/TemplateProperties.md
 docs/Model/TemplateRecords.md
@@ -237,6 +239,7 @@ src/Model/ExtendExpiry.php
 src/Model/FileInfo.php
 src/Model/Font.php
 src/Model/FormField.php
+src/Model/FormFieldPermission.php
 src/Model/FormGroup.php
 src/Model/FormulaFieldSettings.php
 src/Model/IdDocument.php
@@ -280,6 +283,7 @@ src/Model/Teams.php
 src/Model/Template.php
 src/Model/TemplateCC.php
 src/Model/TemplateCreated.php
+src/Model/TemplateFiles.php
 src/Model/TemplateFormFields.php
 src/Model/TemplateProperties.php
 src/Model/TemplateRecords.php

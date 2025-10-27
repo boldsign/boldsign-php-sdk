@@ -75,7 +75,8 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'labels' => 'string[]',
         'template_labels' => 'string[]',
         'form_groups' => '\BoldSign\Model\FormGroup[]',
-        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings'
+        'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
+        'form_field_permission' => '\BoldSign\Model\FormFieldPermission'
     ];
 
     /**
@@ -104,7 +105,8 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'labels' => null,
         'template_labels' => null,
         'form_groups' => null,
-        'recipient_notification_settings' => null
+        'recipient_notification_settings' => null,
+        'form_field_permission' => null
     ];
 
     /**
@@ -131,7 +133,8 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'labels' => true,
         'template_labels' => true,
         'form_groups' => true,
-        'recipient_notification_settings' => false
+        'recipient_notification_settings' => false,
+        'form_field_permission' => false
     ];
 
     /**
@@ -238,7 +241,8 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'labels' => 'labels',
         'template_labels' => 'templateLabels',
         'form_groups' => 'formGroups',
-        'recipient_notification_settings' => 'recipientNotificationSettings'
+        'recipient_notification_settings' => 'recipientNotificationSettings',
+        'form_field_permission' => 'formFieldPermission'
     ];
 
     /**
@@ -265,7 +269,8 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'labels' => 'setLabels',
         'template_labels' => 'setTemplateLabels',
         'form_groups' => 'setFormGroups',
-        'recipient_notification_settings' => 'setRecipientNotificationSettings'
+        'recipient_notification_settings' => 'setRecipientNotificationSettings',
+        'form_field_permission' => 'setFormFieldPermission'
     ];
 
     /**
@@ -292,7 +297,8 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'labels' => 'getLabels',
         'template_labels' => 'getTemplateLabels',
         'form_groups' => 'getFormGroups',
-        'recipient_notification_settings' => 'getRecipientNotificationSettings'
+        'recipient_notification_settings' => 'getRecipientNotificationSettings',
+        'form_field_permission' => 'getFormFieldPermission'
     ];
 
     /**
@@ -371,6 +377,7 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('template_labels', $data ?? [], null);
         $this->setIfExists('form_groups', $data ?? [], null);
         $this->setIfExists('recipient_notification_settings', $data ?? [], null);
+        $this->setIfExists('form_field_permission', $data ?? [], null);
     }
 
     /**
@@ -1110,6 +1117,33 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
         }
         $this->container['recipient_notification_settings'] = $recipient_notification_settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets form_field_permission
+     *
+     * @return \BoldSign\Model\FormFieldPermission|null
+     */
+    public function getFormFieldPermission()
+    {
+        return $this->container['form_field_permission'];
+    }
+
+    /**
+     * Sets form_field_permission
+     *
+     * @param \BoldSign\Model\FormFieldPermission|null $form_field_permission form_field_permission
+     *
+     * @return self
+     */
+    public function setFormFieldPermission($form_field_permission)
+    {
+        if (is_null($form_field_permission)) {
+            throw new \InvalidArgumentException('non-nullable form_field_permission cannot be null');
+        }
+        $this->container['form_field_permission'] = $form_field_permission;
 
         return $this;
     }

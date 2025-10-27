@@ -1,6 +1,6 @@
 <?php
 /**
- * DocumentFiles
+ * TemplateFiles
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \BoldSign\ObjectSerializer;
 
 /**
- * DocumentFiles Class Doc Comment
+ * TemplateFiles Class Doc Comment
  *
  * @category Class
  * @package  BoldSign
@@ -40,7 +40,7 @@ use \BoldSign\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
+class TemplateFiles implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DocumentFiles';
+    protected static $openAPIModelName = 'TemplateFiles';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,12 +57,10 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
+        'document_id' => 'string',
         'document_name' => 'string',
         'order' => 'int',
-        'page_count' => 'int',
-        'template_name' => 'string',
-        'template_id' => 'string'
+        'page_count' => 'int'
     ];
 
     /**
@@ -73,12 +71,10 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
+        'document_id' => null,
         'document_name' => null,
         'order' => 'int32',
-        'page_count' => 'int32',
-        'template_name' => null,
-        'template_id' => null
+        'page_count' => 'int32'
     ];
 
     /**
@@ -87,12 +83,10 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => true,
+        'document_id' => true,
         'document_name' => true,
         'order' => false,
-        'page_count' => false,
-        'template_name' => true,
-        'template_id' => true
+        'page_count' => false
     ];
 
     /**
@@ -181,12 +175,10 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
+        'document_id' => 'documentId',
         'document_name' => 'documentName',
         'order' => 'order',
-        'page_count' => 'pageCount',
-        'template_name' => 'templateName',
-        'template_id' => 'templateId'
+        'page_count' => 'pageCount'
     ];
 
     /**
@@ -195,12 +187,10 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
+        'document_id' => 'setDocumentId',
         'document_name' => 'setDocumentName',
         'order' => 'setOrder',
-        'page_count' => 'setPageCount',
-        'template_name' => 'setTemplateName',
-        'template_id' => 'setTemplateId'
+        'page_count' => 'setPageCount'
     ];
 
     /**
@@ -209,12 +199,10 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
+        'document_id' => 'getDocumentId',
         'document_name' => 'getDocumentName',
         'order' => 'getOrder',
-        'page_count' => 'getPageCount',
-        'template_name' => 'getTemplateName',
-        'template_id' => 'getTemplateId'
+        'page_count' => 'getPageCount'
     ];
 
     /**
@@ -274,12 +262,10 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('document_id', $data ?? [], null);
         $this->setIfExists('document_name', $data ?? [], null);
         $this->setIfExists('order', $data ?? [], null);
         $this->setIfExists('page_count', $data ?? [], null);
-        $this->setIfExists('template_name', $data ?? [], null);
-        $this->setIfExists('template_id', $data ?? [], null);
     }
 
     /**
@@ -325,35 +311,35 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets document_id
      *
      * @return string|null
      */
-    public function getId()
+    public function getDocumentId()
     {
-        return $this->container['id'];
+        return $this->container['document_id'];
     }
 
     /**
-     * Sets id
+     * Sets document_id
      *
-     * @param string|null $id id
+     * @param string|null $document_id document_id
      *
      * @return self
      */
-    public function setId($id)
+    public function setDocumentId($document_id)
     {
-        if (is_null($id)) {
-            array_push($this->openAPINullablesSetToNull, 'id');
+        if (is_null($document_id)) {
+            array_push($this->openAPINullablesSetToNull, 'document_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
+            $index = array_search('document_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['id'] = $id;
+        $this->container['document_id'] = $document_id;
 
         return $this;
     }
@@ -442,74 +428,6 @@ class DocumentFiles implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable page_count cannot be null');
         }
         $this->container['page_count'] = $page_count;
-
-        return $this;
-    }
-
-    /**
-     * Gets template_name
-     *
-     * @return string|null
-     */
-    public function getTemplateName()
-    {
-        return $this->container['template_name'];
-    }
-
-    /**
-     * Sets template_name
-     *
-     * @param string|null $template_name template_name
-     *
-     * @return self
-     */
-    public function setTemplateName($template_name)
-    {
-        if (is_null($template_name)) {
-            array_push($this->openAPINullablesSetToNull, 'template_name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('template_name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['template_name'] = $template_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets template_id
-     *
-     * @return string|null
-     */
-    public function getTemplateId()
-    {
-        return $this->container['template_id'];
-    }
-
-    /**
-     * Sets template_id
-     *
-     * @param string|null $template_id template_id
-     *
-     * @return self
-     */
-    public function setTemplateId($template_id)
-    {
-        if (is_null($template_id)) {
-            array_push($this->openAPINullablesSetToNull, 'template_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('template_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['template_id'] = $template_id;
 
         return $this;
     }

@@ -394,6 +394,10 @@ class EditDocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializab
     public const LANGUAGE_13 = 13;
     public const LANGUAGE_14 = 14;
     public const LANGUAGE_15 = 15;
+    public const LANGUAGE_16 = 16;
+    public const LANGUAGE_17 = 17;
+    public const LANGUAGE_18 = 18;
+    public const LANGUAGE_19 = 19;
     public const LANGUAGE_null = null;
     public const LOCALE_EN = 'EN';
     public const LOCALE_NO = 'NO';
@@ -410,6 +414,10 @@ class EditDocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializab
     public const LOCALE_RO = 'RO';
     public const LOCALE_RU = 'RU';
     public const LOCALE_SV = 'SV';
+    public const LOCALE_JA = 'JA';
+    public const LOCALE_TH = 'TH';
+    public const LOCALE_ZH_CN = 'ZH_CN';
+    public const LOCALE_ZH_TW = 'ZH_TW';
     public const LOCALE__DEFAULT = 'Default';
     public const LOCALE_NULL = 'null';
 
@@ -499,6 +507,10 @@ class EditDocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializab
             self::LANGUAGE_13,
             self::LANGUAGE_14,
             self::LANGUAGE_15,
+            self::LANGUAGE_16,
+            self::LANGUAGE_17,
+            self::LANGUAGE_18,
+            self::LANGUAGE_19,
             self::LANGUAGE_null,
         ];
     }
@@ -526,6 +538,10 @@ class EditDocumentSigner implements ModelInterface, ArrayAccess, \JsonSerializab
             self::LOCALE_RO,
             self::LOCALE_RU,
             self::LOCALE_SV,
+            self::LOCALE_JA,
+            self::LOCALE_TH,
+            self::LOCALE_ZH_CN,
+            self::LOCALE_ZH_TW,
             self::LOCALE__DEFAULT,
             self::LOCALE_NULL,
         ];

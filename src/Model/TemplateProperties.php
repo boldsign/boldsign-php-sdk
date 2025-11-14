@@ -84,7 +84,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'behalf_of' => '\BoldSign\Model\BehalfOf',
         'document_download_option' => 'string',
         'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
-        'form_field_permission' => '\BoldSign\Model\FormFieldPermission'
+        'form_field_permission' => '\BoldSign\Model\FormFieldPermission',
+        'allowed_signature_types' => 'string[]'
     ];
 
     /**
@@ -122,7 +123,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'behalf_of' => null,
         'document_download_option' => null,
         'recipient_notification_settings' => null,
-        'form_field_permission' => null
+        'form_field_permission' => null,
+        'allowed_signature_types' => null
     ];
 
     /**
@@ -158,7 +160,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'behalf_of' => false,
         'document_download_option' => false,
         'recipient_notification_settings' => false,
-        'form_field_permission' => false
+        'form_field_permission' => false,
+        'allowed_signature_types' => true
     ];
 
     /**
@@ -274,7 +277,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'behalf_of' => 'behalfOf',
         'document_download_option' => 'documentDownloadOption',
         'recipient_notification_settings' => 'recipientNotificationSettings',
-        'form_field_permission' => 'formFieldPermission'
+        'form_field_permission' => 'formFieldPermission',
+        'allowed_signature_types' => 'allowedSignatureTypes'
     ];
 
     /**
@@ -310,7 +314,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'behalf_of' => 'setBehalfOf',
         'document_download_option' => 'setDocumentDownloadOption',
         'recipient_notification_settings' => 'setRecipientNotificationSettings',
-        'form_field_permission' => 'setFormFieldPermission'
+        'form_field_permission' => 'setFormFieldPermission',
+        'allowed_signature_types' => 'setAllowedSignatureTypes'
     ];
 
     /**
@@ -346,7 +351,8 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'behalf_of' => 'getBehalfOf',
         'document_download_option' => 'getDocumentDownloadOption',
         'recipient_notification_settings' => 'getRecipientNotificationSettings',
-        'form_field_permission' => 'getFormFieldPermission'
+        'form_field_permission' => 'getFormFieldPermission',
+        'allowed_signature_types' => 'getAllowedSignatureTypes'
     ];
 
     /**
@@ -392,6 +398,9 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
 
     public const DOCUMENT_DOWNLOAD_OPTION_COMBINED = 'Combined';
     public const DOCUMENT_DOWNLOAD_OPTION_INDIVIDUALLY = 'Individually';
+    public const ALLOWED_SIGNATURE_TYPES_TEXT = 'Text';
+    public const ALLOWED_SIGNATURE_TYPES_DRAW = 'Draw';
+    public const ALLOWED_SIGNATURE_TYPES_IMAGE = 'Image';
 
     /**
      * Gets allowable values of the enum
@@ -403,6 +412,20 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         return [
             self::DOCUMENT_DOWNLOAD_OPTION_COMBINED,
             self::DOCUMENT_DOWNLOAD_OPTION_INDIVIDUALLY,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAllowedSignatureTypesAllowableValues()
+    {
+        return [
+            self::ALLOWED_SIGNATURE_TYPES_TEXT,
+            self::ALLOWED_SIGNATURE_TYPES_DRAW,
+            self::ALLOWED_SIGNATURE_TYPES_IMAGE,
         ];
     }
 
@@ -449,6 +472,7 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('document_download_option', $data ?? [], null);
         $this->setIfExists('recipient_notification_settings', $data ?? [], null);
         $this->setIfExists('form_field_permission', $data ?? [], null);
+        $this->setIfExists('allowed_signature_types', $data ?? [], null);
     }
 
     /**
@@ -1369,6 +1393,49 @@ class TemplateProperties implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable form_field_permission cannot be null');
         }
         $this->container['form_field_permission'] = $form_field_permission;
+
+        return $this;
+    }
+
+    /**
+     * Gets allowed_signature_types
+     *
+     * @return string[]|null
+     */
+    public function getAllowedSignatureTypes()
+    {
+        return $this->container['allowed_signature_types'];
+    }
+
+    /**
+     * Sets allowed_signature_types
+     *
+     * @param string[]|null $allowed_signature_types allowed_signature_types
+     *
+     * @return self
+     */
+    public function setAllowedSignatureTypes($allowed_signature_types)
+    {
+        if (is_null($allowed_signature_types)) {
+            array_push($this->openAPINullablesSetToNull, 'allowed_signature_types');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('allowed_signature_types', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getAllowedSignatureTypesAllowableValues();
+        if (!is_null($allowed_signature_types) && array_diff($allowed_signature_types, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'allowed_signature_types', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['allowed_signature_types'] = $allowed_signature_types;
 
         return $this;
     }

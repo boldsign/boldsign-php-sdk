@@ -79,7 +79,7 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
         'language' => 'int',
         'locale' => 'string',
         'phone_number' => '\BoldSign\Model\PhoneNumber',
-        'id_verification' => '\BoldSign\Model\IdVerification',
+        'id_verification' => '\BoldSign\Model\IdVerificationDetails',
         'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
         'authentication_retry_count' => 'int',
         'enable_qes' => 'bool',
@@ -1424,7 +1424,7 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets id_verification
      *
-     * @return \BoldSign\Model\IdVerification|null
+     * @return \BoldSign\Model\IdVerificationDetails|null
      */
     public function getIdVerification()
     {
@@ -1434,7 +1434,7 @@ class DocumentSignerDetails implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets id_verification
      *
-     * @param \BoldSign\Model\IdVerification|null $id_verification id_verification
+     * @param \BoldSign\Model\IdVerificationDetails|null $id_verification id_verification
      *
      * @return self
      */

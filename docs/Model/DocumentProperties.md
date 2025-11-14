@@ -44,5 +44,6 @@ Name | Type | Description | Notes
 **enable_audit_trail_localization** | **bool** |  | [optional]
 **download_file_name** | **string** |  | [optional]
 **scheduled_send_time** | **int** |  | [optional]
+**allowed_signature_types** | **string[]** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

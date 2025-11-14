@@ -274,6 +274,7 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
     public const NAME_COURIER = 'Courier';
     public const NAME_TIMES_ROMAN = 'TimesRoman';
     public const NAME_NOTO_SANS = 'NotoSans';
+    public const NAME_CARLITO = 'Carlito';
     public const STYLE_REGULAR = 'Regular';
     public const STYLE_BOLD = 'Bold';
     public const STYLE_ITALIC = 'Italic';
@@ -291,6 +292,7 @@ class Font implements ModelInterface, ArrayAccess, \JsonSerializable
             self::NAME_COURIER,
             self::NAME_TIMES_ROMAN,
             self::NAME_NOTO_SANS,
+            self::NAME_CARLITO,
         ];
     }
 

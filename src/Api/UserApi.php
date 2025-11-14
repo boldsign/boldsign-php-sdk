@@ -1556,15 +1556,16 @@ class UserApi
      * @param  int $page Page index specified in get user list request. (required)
      * @param  int $page_size Page size specified in get user list request. (optional, default to 10)
      * @param  string $search Users can be listed by the search  based on the user ID (optional)
+     * @param  string[] $user_id Users can be listed by the search based on the user IDs (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listUsers'] to see the possible values for this operation
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \BoldSign\Model\UserRecords|\BoldSign\Model\ErrorResult
      */
-    public function listUsers($page, $page_size = 10, $search = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsers($page, $page_size = 10, $search = null, $user_id = null, string $contentType = self::contentTypes['listUsers'][0])
     {
-        list($response) = $this->listUsersWithHttpInfo($page, $page_size, $search, $contentType);
+        list($response) = $this->listUsersWithHttpInfo($page, $page_size, $search, $user_id, $contentType);
         return $response;
     }
 
@@ -1576,15 +1577,16 @@ class UserApi
      * @param  int $page Page index specified in get user list request. (required)
      * @param  int $page_size Page size specified in get user list request. (optional, default to 10)
      * @param  string $search Users can be listed by the search  based on the user ID (optional)
+     * @param  string[] $user_id Users can be listed by the search based on the user IDs (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listUsers'] to see the possible values for this operation
      *
      * @throws \BoldSign\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \BoldSign\Model\UserRecords|\BoldSign\Model\ErrorResult, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listUsersWithHttpInfo($page, $page_size = 10, $search = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsersWithHttpInfo($page, $page_size = 10, $search = null, $user_id = null, string $contentType = self::contentTypes['listUsers'][0])
     {
-        $request = $this->listUsersRequest($page, $page_size, $search, $contentType);
+        $request = $this->listUsersRequest($page, $page_size, $search, $user_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1737,14 +1739,15 @@ class UserApi
      * @param  int $page Page index specified in get user list request. (required)
      * @param  int $page_size Page size specified in get user list request. (optional, default to 10)
      * @param  string $search Users can be listed by the search  based on the user ID (optional)
+     * @param  string[] $user_id Users can be listed by the search based on the user IDs (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listUsersAsync($page, $page_size = 10, $search = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsersAsync($page, $page_size = 10, $search = null, $user_id = null, string $contentType = self::contentTypes['listUsers'][0])
     {
-        return $this->listUsersAsyncWithHttpInfo($page, $page_size, $search, $contentType)
+        return $this->listUsersAsyncWithHttpInfo($page, $page_size, $search, $user_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1760,15 +1763,16 @@ class UserApi
      * @param  int $page Page index specified in get user list request. (required)
      * @param  int $page_size Page size specified in get user list request. (optional, default to 10)
      * @param  string $search Users can be listed by the search  based on the user ID (optional)
+     * @param  string[] $user_id Users can be listed by the search based on the user IDs (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listUsersAsyncWithHttpInfo($page, $page_size = 10, $search = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsersAsyncWithHttpInfo($page, $page_size = 10, $search = null, $user_id = null, string $contentType = self::contentTypes['listUsers'][0])
     {
         $returnType = '\BoldSign\Model\UserRecords';
-        $request = $this->listUsersRequest($page, $page_size, $search, $contentType);
+        $request = $this->listUsersRequest($page, $page_size, $search, $user_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1812,12 +1816,13 @@ class UserApi
      * @param  int $page Page index specified in get user list request. (required)
      * @param  int $page_size Page size specified in get user list request. (optional, default to 10)
      * @param  string $search Users can be listed by the search  based on the user ID (optional)
+     * @param  string[] $user_id Users can be listed by the search based on the user IDs (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listUsersRequest($page, $page_size = 10, $search = null, string $contentType = self::contentTypes['listUsers'][0])
+    public function listUsersRequest($page, $page_size = 10, $search = null, $user_id = null, string $contentType = self::contentTypes['listUsers'][0])
     {
 
         // verify the required parameter 'page' is set
@@ -1826,6 +1831,7 @@ class UserApi
                 'Missing the required parameter $page when calling listUsers'
             );
         }
+
 
 
 
@@ -1860,6 +1866,15 @@ class UserApi
             $search,
             'Search', // param base name
             'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $user_id,
+            'UserId', // param base name
+            'array', // openApiType
             'form', // style
             true, // explode
             false // required

@@ -487,6 +487,7 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
     public const FONT_COURIER = 'Courier';
     public const FONT_TIMES_ROMAN = 'TimesRoman';
     public const FONT_NOTO_SANS = 'NotoSans';
+    public const FONT_CARLITO = 'Carlito';
     public const VALIDATION_TYPE_NONE = 'None';
     public const VALIDATION_TYPE_NUMBERS_ONLY = 'NumbersOnly';
     public const VALIDATION_TYPE_EMAIL_ADDRESS = 'EmailAddress';
@@ -541,6 +542,7 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
             self::FONT_COURIER,
             self::FONT_TIMES_ROMAN,
             self::FONT_NOTO_SANS,
+            self::FONT_CARLITO,
         ];
     }
 

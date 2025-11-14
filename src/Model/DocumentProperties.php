@@ -96,7 +96,8 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
         'enable_audit_trail_localization' => 'bool',
         'download_file_name' => 'string',
-        'scheduled_send_time' => 'int'
+        'scheduled_send_time' => 'int',
+        'allowed_signature_types' => 'string[]'
     ];
 
     /**
@@ -146,7 +147,8 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'recipient_notification_settings' => null,
         'enable_audit_trail_localization' => null,
         'download_file_name' => null,
-        'scheduled_send_time' => 'int64'
+        'scheduled_send_time' => 'int64',
+        'allowed_signature_types' => null
     ];
 
     /**
@@ -194,7 +196,8 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'recipient_notification_settings' => false,
         'enable_audit_trail_localization' => false,
         'download_file_name' => true,
-        'scheduled_send_time' => true
+        'scheduled_send_time' => true,
+        'allowed_signature_types' => true
     ];
 
     /**
@@ -322,7 +325,8 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'recipient_notification_settings' => 'recipientNotificationSettings',
         'enable_audit_trail_localization' => 'enableAuditTrailLocalization',
         'download_file_name' => 'downloadFileName',
-        'scheduled_send_time' => 'scheduledSendTime'
+        'scheduled_send_time' => 'scheduledSendTime',
+        'allowed_signature_types' => 'allowedSignatureTypes'
     ];
 
     /**
@@ -370,7 +374,8 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'recipient_notification_settings' => 'setRecipientNotificationSettings',
         'enable_audit_trail_localization' => 'setEnableAuditTrailLocalization',
         'download_file_name' => 'setDownloadFileName',
-        'scheduled_send_time' => 'setScheduledSendTime'
+        'scheduled_send_time' => 'setScheduledSendTime',
+        'allowed_signature_types' => 'setAllowedSignatureTypes'
     ];
 
     /**
@@ -418,7 +423,8 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         'recipient_notification_settings' => 'getRecipientNotificationSettings',
         'enable_audit_trail_localization' => 'getEnableAuditTrailLocalization',
         'download_file_name' => 'getDownloadFileName',
-        'scheduled_send_time' => 'getScheduledSendTime'
+        'scheduled_send_time' => 'getScheduledSendTime',
+        'allowed_signature_types' => 'getAllowedSignatureTypes'
     ];
 
     /**
@@ -492,6 +498,9 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
     public const EXPIRY_DATE_TYPE_SPECIFIC_DATE_TIME = 'SpecificDateTime';
     public const DOCUMENT_DOWNLOAD_OPTION_COMBINED = 'Combined';
     public const DOCUMENT_DOWNLOAD_OPTION_INDIVIDUALLY = 'Individually';
+    public const ALLOWED_SIGNATURE_TYPES_TEXT = 'Text';
+    public const ALLOWED_SIGNATURE_TYPES_DRAW = 'Draw';
+    public const ALLOWED_SIGNATURE_TYPES_IMAGE = 'Image';
 
     /**
      * Gets allowable values of the enum
@@ -568,6 +577,20 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAllowedSignatureTypesAllowableValues()
+    {
+        return [
+            self::ALLOWED_SIGNATURE_TYPES_TEXT,
+            self::ALLOWED_SIGNATURE_TYPES_DRAW,
+            self::ALLOWED_SIGNATURE_TYPES_IMAGE,
+        ];
+    }
+
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -622,6 +645,7 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('enable_audit_trail_localization', $data ?? [], null);
         $this->setIfExists('download_file_name', $data ?? [], null);
         $this->setIfExists('scheduled_send_time', $data ?? [], null);
+        $this->setIfExists('allowed_signature_types', $data ?? [], null);
     }
 
     /**
@@ -1958,6 +1982,49 @@ class DocumentProperties implements ModelInterface, ArrayAccess, \JsonSerializab
             }
         }
         $this->container['scheduled_send_time'] = $scheduled_send_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets allowed_signature_types
+     *
+     * @return string[]|null
+     */
+    public function getAllowedSignatureTypes()
+    {
+        return $this->container['allowed_signature_types'];
+    }
+
+    /**
+     * Sets allowed_signature_types
+     *
+     * @param string[]|null $allowed_signature_types allowed_signature_types
+     *
+     * @return self
+     */
+    public function setAllowedSignatureTypes($allowed_signature_types)
+    {
+        if (is_null($allowed_signature_types)) {
+            array_push($this->openAPINullablesSetToNull, 'allowed_signature_types');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('allowed_signature_types', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getAllowedSignatureTypesAllowableValues();
+        if (!is_null($allowed_signature_types) && array_diff($allowed_signature_types, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'allowed_signature_types', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['allowed_signature_types'] = $allowed_signature_types;
 
         return $this;
     }

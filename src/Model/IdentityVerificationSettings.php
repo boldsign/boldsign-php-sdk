@@ -62,7 +62,8 @@ class IdentityVerificationSettings implements ModelInterface, ArrayAccess, \Json
         'require_live_capture' => 'bool',
         'require_matching_selfie' => 'bool',
         'name_matcher' => 'string',
-        'hold_for_prefill' => 'bool'
+        'hold_for_prefill' => 'bool',
+        'allowed_document_types' => 'string[]'
     ];
 
     /**
@@ -78,7 +79,8 @@ class IdentityVerificationSettings implements ModelInterface, ArrayAccess, \Json
         'require_live_capture' => null,
         'require_matching_selfie' => null,
         'name_matcher' => null,
-        'hold_for_prefill' => null
+        'hold_for_prefill' => null,
+        'allowed_document_types' => null
     ];
 
     /**
@@ -92,7 +94,8 @@ class IdentityVerificationSettings implements ModelInterface, ArrayAccess, \Json
         'require_live_capture' => true,
         'require_matching_selfie' => true,
         'name_matcher' => true,
-        'hold_for_prefill' => true
+        'hold_for_prefill' => true,
+        'allowed_document_types' => true
     ];
 
     /**
@@ -186,7 +189,8 @@ class IdentityVerificationSettings implements ModelInterface, ArrayAccess, \Json
         'require_live_capture' => 'requireLiveCapture',
         'require_matching_selfie' => 'requireMatchingSelfie',
         'name_matcher' => 'nameMatcher',
-        'hold_for_prefill' => 'holdForPrefill'
+        'hold_for_prefill' => 'holdForPrefill',
+        'allowed_document_types' => 'allowedDocumentTypes'
     ];
 
     /**
@@ -200,7 +204,8 @@ class IdentityVerificationSettings implements ModelInterface, ArrayAccess, \Json
         'require_live_capture' => 'setRequireLiveCapture',
         'require_matching_selfie' => 'setRequireMatchingSelfie',
         'name_matcher' => 'setNameMatcher',
-        'hold_for_prefill' => 'setHoldForPrefill'
+        'hold_for_prefill' => 'setHoldForPrefill',
+        'allowed_document_types' => 'setAllowedDocumentTypes'
     ];
 
     /**
@@ -214,7 +219,8 @@ class IdentityVerificationSettings implements ModelInterface, ArrayAccess, \Json
         'require_live_capture' => 'getRequireLiveCapture',
         'require_matching_selfie' => 'getRequireMatchingSelfie',
         'name_matcher' => 'getNameMatcher',
-        'hold_for_prefill' => 'getHoldForPrefill'
+        'hold_for_prefill' => 'getHoldForPrefill',
+        'allowed_document_types' => 'getAllowedDocumentTypes'
     ];
 
     /**
@@ -264,6 +270,9 @@ class IdentityVerificationSettings implements ModelInterface, ArrayAccess, \Json
     public const NAME_MATCHER_STRICT = 'Strict';
     public const NAME_MATCHER_MODERATE = 'Moderate';
     public const NAME_MATCHER_LENIENT = 'Lenient';
+    public const ALLOWED_DOCUMENT_TYPES_PASSPORT = 'Passport';
+    public const ALLOWED_DOCUMENT_TYPES_ID_CARD = 'IDCard';
+    public const ALLOWED_DOCUMENT_TYPES_DRIVER_LICENSE = 'DriverLicense';
 
     /**
      * Gets allowable values of the enum
@@ -294,6 +303,20 @@ class IdentityVerificationSettings implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAllowedDocumentTypesAllowableValues()
+    {
+        return [
+            self::ALLOWED_DOCUMENT_TYPES_PASSPORT,
+            self::ALLOWED_DOCUMENT_TYPES_ID_CARD,
+            self::ALLOWED_DOCUMENT_TYPES_DRIVER_LICENSE,
+        ];
+    }
+
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -314,6 +337,7 @@ class IdentityVerificationSettings implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('require_matching_selfie', $data ?? [], null);
         $this->setIfExists('name_matcher', $data ?? [], null);
         $this->setIfExists('hold_for_prefill', $data ?? [], null);
+        $this->setIfExists('allowed_document_types', $data ?? [], null);
     }
 
     /**
@@ -612,6 +636,49 @@ class IdentityVerificationSettings implements ModelInterface, ArrayAccess, \Json
             }
         }
         $this->container['hold_for_prefill'] = $hold_for_prefill;
+
+        return $this;
+    }
+
+    /**
+     * Gets allowed_document_types
+     *
+     * @return string[]|null
+     */
+    public function getAllowedDocumentTypes()
+    {
+        return $this->container['allowed_document_types'];
+    }
+
+    /**
+     * Sets allowed_document_types
+     *
+     * @param string[]|null $allowed_document_types allowed_document_types
+     *
+     * @return self
+     */
+    public function setAllowedDocumentTypes($allowed_document_types)
+    {
+        if (is_null($allowed_document_types)) {
+            array_push($this->openAPINullablesSetToNull, 'allowed_document_types');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('allowed_document_types', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getAllowedDocumentTypesAllowableValues();
+        if (!is_null($allowed_document_types) && array_diff($allowed_document_types, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'allowed_document_types', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['allowed_document_types'] = $allowed_document_types;
 
         return $this;
     }

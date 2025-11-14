@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **require_matching_selfie** | **bool** |  | [optional]
 **name_matcher** | **string** |  | [optional]
 **hold_for_prefill** | **bool** |  | [optional]
+**allowed_document_types** | **string[]** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

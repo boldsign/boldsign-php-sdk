@@ -1,6 +1,6 @@
 <?php
 /**
- * IdVerification
+ * IdVerificationDetails
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \BoldSign\ObjectSerializer;
 
 /**
- * IdVerification Class Doc Comment
+ * IdVerificationDetails Class Doc Comment
  *
  * @category Class
  * @package  BoldSign
@@ -40,7 +40,7 @@ use \BoldSign\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class IdVerification implements ModelInterface, ArrayAccess, \JsonSerializable
+class IdVerificationDetails implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class IdVerification implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'IdVerification';
+    protected static $openAPIModelName = 'IdVerificationDetails';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -65,7 +65,8 @@ class IdVerification implements ModelInterface, ArrayAccess, \JsonSerializable
         'require_matching_selfie' => 'bool',
         'hold_for_prefill' => 'bool',
         'prefill_completed' => 'bool',
-        'allowed_document_types' => 'string[]'
+        'allowed_document_types' => 'string[]',
+        'allowed_countries' => 'string[]'
     ];
 
     /**
@@ -84,7 +85,8 @@ class IdVerification implements ModelInterface, ArrayAccess, \JsonSerializable
         'require_matching_selfie' => null,
         'hold_for_prefill' => null,
         'prefill_completed' => null,
-        'allowed_document_types' => null
+        'allowed_document_types' => null,
+        'allowed_countries' => null
     ];
 
     /**
@@ -101,7 +103,8 @@ class IdVerification implements ModelInterface, ArrayAccess, \JsonSerializable
         'require_matching_selfie' => true,
         'hold_for_prefill' => true,
         'prefill_completed' => true,
-        'allowed_document_types' => true
+        'allowed_document_types' => true,
+        'allowed_countries' => true
     ];
 
     /**
@@ -198,7 +201,8 @@ class IdVerification implements ModelInterface, ArrayAccess, \JsonSerializable
         'require_matching_selfie' => 'requireMatchingSelfie',
         'hold_for_prefill' => 'holdForPrefill',
         'prefill_completed' => 'prefillCompleted',
-        'allowed_document_types' => 'allowedDocumentTypes'
+        'allowed_document_types' => 'allowedDocumentTypes',
+        'allowed_countries' => 'allowedCountries'
     ];
 
     /**
@@ -215,7 +219,8 @@ class IdVerification implements ModelInterface, ArrayAccess, \JsonSerializable
         'require_matching_selfie' => 'setRequireMatchingSelfie',
         'hold_for_prefill' => 'setHoldForPrefill',
         'prefill_completed' => 'setPrefillCompleted',
-        'allowed_document_types' => 'setAllowedDocumentTypes'
+        'allowed_document_types' => 'setAllowedDocumentTypes',
+        'allowed_countries' => 'setAllowedCountries'
     ];
 
     /**
@@ -232,7 +237,8 @@ class IdVerification implements ModelInterface, ArrayAccess, \JsonSerializable
         'require_matching_selfie' => 'getRequireMatchingSelfie',
         'hold_for_prefill' => 'getHoldForPrefill',
         'prefill_completed' => 'getPrefillCompleted',
-        'allowed_document_types' => 'getAllowedDocumentTypes'
+        'allowed_document_types' => 'getAllowedDocumentTypes',
+        'allowed_countries' => 'getAllowedCountries'
     ];
 
     /**
@@ -301,6 +307,7 @@ class IdVerification implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('hold_for_prefill', $data ?? [], null);
         $this->setIfExists('prefill_completed', $data ?? [], null);
         $this->setIfExists('allowed_document_types', $data ?? [], null);
+        $this->setIfExists('allowed_countries', $data ?? [], null);
     }
 
     /**
@@ -647,6 +654,40 @@ class IdVerification implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['allowed_document_types'] = $allowed_document_types;
+
+        return $this;
+    }
+
+    /**
+     * Gets allowed_countries
+     *
+     * @return string[]|null
+     */
+    public function getAllowedCountries()
+    {
+        return $this->container['allowed_countries'];
+    }
+
+    /**
+     * Sets allowed_countries
+     *
+     * @param string[]|null $allowed_countries allowed_countries
+     *
+     * @return self
+     */
+    public function setAllowedCountries($allowed_countries)
+    {
+        if (is_null($allowed_countries)) {
+            array_push($this->openAPINullablesSetToNull, 'allowed_countries');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('allowed_countries', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['allowed_countries'] = $allowed_countries;
 
         return $this;
     }

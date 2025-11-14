@@ -92,6 +92,7 @@ docs/Model/FormulaFieldSettings.md
 docs/Model/IdDocument.md
 docs/Model/IdReport.md
 docs/Model/IdVerification.md
+docs/Model/IdVerificationDetails.md
 docs/Model/IdentityVerificationSettings.md
 docs/Model/ImageInfo.md
 docs/Model/MergeAndSendForSignForm.md
@@ -245,6 +246,7 @@ src/Model/FormulaFieldSettings.php
 src/Model/IdDocument.php
 src/Model/IdReport.php
 src/Model/IdVerification.php
+src/Model/IdVerificationDetails.php
 src/Model/IdentityVerificationSettings.php
 src/Model/ImageInfo.php
 src/Model/MergeAndSendForSignForm.php

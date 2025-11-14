@@ -92,7 +92,8 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         'enable_audit_trail_localization' => 'bool',
         'download_file_name' => 'string',
         'scheduled_send_time' => 'int',
-        'allow_scheduled_send' => 'bool'
+        'allow_scheduled_send' => 'bool',
+        'allowed_signature_types' => 'string[]'
     ];
 
     /**
@@ -138,7 +139,8 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         'enable_audit_trail_localization' => null,
         'download_file_name' => null,
         'scheduled_send_time' => 'int64',
-        'allow_scheduled_send' => null
+        'allow_scheduled_send' => null,
+        'allowed_signature_types' => null
     ];
 
     /**
@@ -182,7 +184,8 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         'enable_audit_trail_localization' => true,
         'download_file_name' => true,
         'scheduled_send_time' => true,
-        'allow_scheduled_send' => false
+        'allow_scheduled_send' => false,
+        'allowed_signature_types' => true
     ];
 
     /**
@@ -306,7 +309,8 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         'enable_audit_trail_localization' => 'enableAuditTrailLocalization',
         'download_file_name' => 'downloadFileName',
         'scheduled_send_time' => 'scheduledSendTime',
-        'allow_scheduled_send' => 'allowScheduledSend'
+        'allow_scheduled_send' => 'allowScheduledSend',
+        'allowed_signature_types' => 'allowedSignatureTypes'
     ];
 
     /**
@@ -350,7 +354,8 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         'enable_audit_trail_localization' => 'setEnableAuditTrailLocalization',
         'download_file_name' => 'setDownloadFileName',
         'scheduled_send_time' => 'setScheduledSendTime',
-        'allow_scheduled_send' => 'setAllowScheduledSend'
+        'allow_scheduled_send' => 'setAllowScheduledSend',
+        'allowed_signature_types' => 'setAllowedSignatureTypes'
     ];
 
     /**
@@ -394,7 +399,8 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         'enable_audit_trail_localization' => 'getEnableAuditTrailLocalization',
         'download_file_name' => 'getDownloadFileName',
         'scheduled_send_time' => 'getScheduledSendTime',
-        'allow_scheduled_send' => 'getAllowScheduledSend'
+        'allow_scheduled_send' => 'getAllowScheduledSend',
+        'allowed_signature_types' => 'getAllowedSignatureTypes'
     ];
 
     /**
@@ -443,6 +449,9 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
     public const EXPIRY_DATE_TYPE_SPECIFIC_DATE_TIME = 'SpecificDateTime';
     public const DOCUMENT_DOWNLOAD_OPTION_COMBINED = 'Combined';
     public const DOCUMENT_DOWNLOAD_OPTION_INDIVIDUALLY = 'Individually';
+    public const ALLOWED_SIGNATURE_TYPES_TEXT = 'Text';
+    public const ALLOWED_SIGNATURE_TYPES_DRAW = 'Draw';
+    public const ALLOWED_SIGNATURE_TYPES_IMAGE = 'Image';
 
     /**
      * Gets allowable values of the enum
@@ -468,6 +477,20 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         return [
             self::DOCUMENT_DOWNLOAD_OPTION_COMBINED,
             self::DOCUMENT_DOWNLOAD_OPTION_INDIVIDUALLY,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAllowedSignatureTypesAllowableValues()
+    {
+        return [
+            self::ALLOWED_SIGNATURE_TYPES_TEXT,
+            self::ALLOWED_SIGNATURE_TYPES_DRAW,
+            self::ALLOWED_SIGNATURE_TYPES_IMAGE,
         ];
     }
 
@@ -522,6 +545,7 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
         $this->setIfExists('download_file_name', $data ?? [], null);
         $this->setIfExists('scheduled_send_time', $data ?? [], null);
         $this->setIfExists('allow_scheduled_send', $data ?? [], false);
+        $this->setIfExists('allowed_signature_types', $data ?? [], null);
     }
 
     /**
@@ -1810,6 +1834,49 @@ class MergeAndSendForSignForm implements ModelInterface, ArrayAccess, \JsonSeria
             throw new \InvalidArgumentException('non-nullable allow_scheduled_send cannot be null');
         }
         $this->container['allow_scheduled_send'] = $allow_scheduled_send;
+
+        return $this;
+    }
+
+    /**
+     * Gets allowed_signature_types
+     *
+     * @return string[]|null
+     */
+    public function getAllowedSignatureTypes()
+    {
+        return $this->container['allowed_signature_types'];
+    }
+
+    /**
+     * Sets allowed_signature_types
+     *
+     * @param string[]|null $allowed_signature_types allowed_signature_types
+     *
+     * @return self
+     */
+    public function setAllowedSignatureTypes($allowed_signature_types)
+    {
+        if (is_null($allowed_signature_types)) {
+            array_push($this->openAPINullablesSetToNull, 'allowed_signature_types');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('allowed_signature_types', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getAllowedSignatureTypesAllowableValues();
+        if (!is_null($allowed_signature_types) && array_diff($allowed_signature_types, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'allowed_signature_types', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['allowed_signature_types'] = $allowed_signature_types;
 
         return $this;
     }

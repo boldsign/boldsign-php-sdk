@@ -76,6 +76,7 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'template_labels' => 'string[]',
         'form_groups' => '\BoldSign\Model\FormGroup[]',
         'recipient_notification_settings' => '\BoldSign\Model\RecipientNotificationSettings',
+        'allowed_signature_types' => 'string[]',
         'form_field_permission' => '\BoldSign\Model\FormFieldPermission'
     ];
 
@@ -106,6 +107,7 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'template_labels' => null,
         'form_groups' => null,
         'recipient_notification_settings' => null,
+        'allowed_signature_types' => null,
         'form_field_permission' => null
     ];
 
@@ -134,6 +136,7 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'template_labels' => true,
         'form_groups' => true,
         'recipient_notification_settings' => false,
+        'allowed_signature_types' => true,
         'form_field_permission' => false
     ];
 
@@ -242,6 +245,7 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'template_labels' => 'templateLabels',
         'form_groups' => 'formGroups',
         'recipient_notification_settings' => 'recipientNotificationSettings',
+        'allowed_signature_types' => 'allowedSignatureTypes',
         'form_field_permission' => 'formFieldPermission'
     ];
 
@@ -270,6 +274,7 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'template_labels' => 'setTemplateLabels',
         'form_groups' => 'setFormGroups',
         'recipient_notification_settings' => 'setRecipientNotificationSettings',
+        'allowed_signature_types' => 'setAllowedSignatureTypes',
         'form_field_permission' => 'setFormFieldPermission'
     ];
 
@@ -298,6 +303,7 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'template_labels' => 'getTemplateLabels',
         'form_groups' => 'getFormGroups',
         'recipient_notification_settings' => 'getRecipientNotificationSettings',
+        'allowed_signature_types' => 'getAllowedSignatureTypes',
         'form_field_permission' => 'getFormFieldPermission'
     ];
 
@@ -342,6 +348,23 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
+    public const ALLOWED_SIGNATURE_TYPES_TEXT = 'Text';
+    public const ALLOWED_SIGNATURE_TYPES_DRAW = 'Draw';
+    public const ALLOWED_SIGNATURE_TYPES_IMAGE = 'Image';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAllowedSignatureTypesAllowableValues()
+    {
+        return [
+            self::ALLOWED_SIGNATURE_TYPES_TEXT,
+            self::ALLOWED_SIGNATURE_TYPES_DRAW,
+            self::ALLOWED_SIGNATURE_TYPES_IMAGE,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -377,6 +400,7 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('template_labels', $data ?? [], null);
         $this->setIfExists('form_groups', $data ?? [], null);
         $this->setIfExists('recipient_notification_settings', $data ?? [], null);
+        $this->setIfExists('allowed_signature_types', $data ?? [], null);
         $this->setIfExists('form_field_permission', $data ?? [], null);
     }
 
@@ -1117,6 +1141,49 @@ class EditTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializa
             throw new \InvalidArgumentException('non-nullable recipient_notification_settings cannot be null');
         }
         $this->container['recipient_notification_settings'] = $recipient_notification_settings;
+
+        return $this;
+    }
+
+    /**
+     * Gets allowed_signature_types
+     *
+     * @return string[]|null
+     */
+    public function getAllowedSignatureTypes()
+    {
+        return $this->container['allowed_signature_types'];
+    }
+
+    /**
+     * Sets allowed_signature_types
+     *
+     * @param string[]|null $allowed_signature_types allowed_signature_types
+     *
+     * @return self
+     */
+    public function setAllowedSignatureTypes($allowed_signature_types)
+    {
+        if (is_null($allowed_signature_types)) {
+            array_push($this->openAPINullablesSetToNull, 'allowed_signature_types');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('allowed_signature_types', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getAllowedSignatureTypesAllowableValues();
+        if (!is_null($allowed_signature_types) && array_diff($allowed_signature_types, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'allowed_signature_types', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['allowed_signature_types'] = $allowed_signature_types;
 
         return $this;
     }

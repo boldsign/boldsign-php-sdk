@@ -167,7 +167,7 @@ try {
 ## `listUsers()`
 
 ```php
-listUsers($page, $page_size, $search): \BoldSign\Model\UserRecords
+listUsers($page, $page_size, $search, $user_id): \BoldSign\Model\UserRecords
 ```
 
 List user documents.
@@ -185,9 +185,10 @@ $apiInstance = new BoldSign\Api\UserApi($config);
 $page = 1; // int | Page index specified in get user list request.
 $page_size = 10; // int | Page size specified in get user list request.
 $search = 'search_example'; // string | Users can be listed by the search  based on the user ID
+$user_id = array('user_id_example'); // string[] | Users can be listed by the search based on the user IDs
 
 try {
-    $result = $apiInstance->listUsers($page, $page_size, $search);
+    $result = $apiInstance->listUsers($page, $page_size, $search, $user_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->listUsers: ', $e->getMessage(), PHP_EOL;
@@ -201,6 +202,7 @@ try {
 | **page** | **int**| Page index specified in get user list request. | [default to 1] |
 | **page_size** | **int**| Page size specified in get user list request. | [optional] [default to 10] |
 | **search** | **string**| Users can be listed by the search  based on the user ID | [optional] |
+| **user_id** | [**string[]**](../Model/string.md)| Users can be listed by the search based on the user IDs | [optional] |
 
 ### Return type
 

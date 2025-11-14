@@ -1,4 +1,4 @@
-# # IdVerification
+# # IdVerificationDetails
 
 ## Properties
 
@@ -13,5 +13,6 @@ Name | Type | Description | Notes
 **hold_for_prefill** | **bool** |  | [optional]
 **prefill_completed** | **bool** |  | [optional]
 **allowed_document_types** | **string[]** |  | [optional]
+**allowed_countries** | **string[]** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -30,6 +30,7 @@ docs/Model/BrandCustomFieldDetails.md
 docs/Model/BrandingMessage.md
 docs/Model/BrandingRecords.md
 docs/Model/ChangeRecipient.md
+docs/Model/ChangeTeamRequest.md
 docs/Model/CollaborationSettings.md
 docs/Model/ConditionalRule.md
 docs/Model/ContactCreated.md
@@ -184,6 +185,7 @@ src/Model/BrandCustomFieldDetails.php
 src/Model/BrandingMessage.php
 src/Model/BrandingRecords.php
 src/Model/ChangeRecipient.php
+src/Model/ChangeTeamRequest.php
 src/Model/CollaborationSettings.php
 src/Model/ConditionalRule.php
 src/Model/ContactCreated.php

@@ -508,6 +508,7 @@ class EmbeddedSendTemplateFormRequest implements ModelInterface, ArrayAccess, \J
     public const LOCALE_TH = 'TH';
     public const LOCALE_ZH_CN = 'ZH_CN';
     public const LOCALE_ZH_TW = 'ZH_TW';
+    public const LOCALE_KO = 'KO';
     public const EXPIRY_DATE_TYPE_DAYS = 'Days';
     public const EXPIRY_DATE_TYPE_HOURS = 'Hours';
     public const EXPIRY_DATE_TYPE_SPECIFIC_DATE_TIME = 'SpecificDateTime';
@@ -558,6 +559,7 @@ class EmbeddedSendTemplateFormRequest implements ModelInterface, ArrayAccess, \J
             self::LOCALE_TH,
             self::LOCALE_ZH_CN,
             self::LOCALE_ZH_TW,
+            self::LOCALE_KO,
         ];
     }
 

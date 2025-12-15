@@ -472,6 +472,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
     public const LOCALE_TH = 'TH';
     public const LOCALE_ZH_CN = 'ZH_CN';
     public const LOCALE_ZH_TW = 'ZH_TW';
+    public const LOCALE_KO = 'KO';
     public const ALLOWED_SIGNATURE_TYPES_TEXT = 'Text';
     public const ALLOWED_SIGNATURE_TYPES_DRAW = 'Draw';
     public const ALLOWED_SIGNATURE_TYPES_IMAGE = 'Image';
@@ -517,6 +518,7 @@ class EmbeddedCreateTemplateRequest implements ModelInterface, ArrayAccess, \Jso
             self::LOCALE_TH,
             self::LOCALE_ZH_CN,
             self::LOCALE_ZH_TW,
+            self::LOCALE_KO,
         ];
     }
 

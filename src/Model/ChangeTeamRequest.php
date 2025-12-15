@@ -1,6 +1,6 @@
 <?php
 /**
- * DocumentInfo
+ * ChangeTeamRequest
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \BoldSign\ObjectSerializer;
 
 /**
- * DocumentInfo Class Doc Comment
+ * ChangeTeamRequest Class Doc Comment
  *
  * @category Class
  * @package  BoldSign
@@ -40,7 +40,7 @@ use \BoldSign\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DocumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
+class ChangeTeamRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DocumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DocumentInfo';
+    protected static $openAPIModelName = 'ChangeTeamRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,8 @@ class DocumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'locale' => 'string',
-        'title' => 'string',
-        'language' => 'int',
-        'description' => 'string'
+        'to_team_id' => 'string',
+        'transfer_documents_to_user_id' => 'string'
     ];
 
     /**
@@ -71,10 +69,8 @@ class DocumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'locale' => null,
-        'title' => null,
-        'language' => 'int32',
-        'description' => null
+        'to_team_id' => null,
+        'transfer_documents_to_user_id' => null
     ];
 
     /**
@@ -83,10 +79,8 @@ class DocumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'locale' => false,
-        'title' => false,
-        'language' => false,
-        'description' => true
+        'to_team_id' => false,
+        'transfer_documents_to_user_id' => true
     ];
 
     /**
@@ -175,10 +169,8 @@ class DocumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'locale' => 'locale',
-        'title' => 'title',
-        'language' => 'language',
-        'description' => 'description'
+        'to_team_id' => 'toTeamId',
+        'transfer_documents_to_user_id' => 'transferDocumentsToUserId'
     ];
 
     /**
@@ -187,10 +179,8 @@ class DocumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'locale' => 'setLocale',
-        'title' => 'setTitle',
-        'language' => 'setLanguage',
-        'description' => 'setDescription'
+        'to_team_id' => 'setToTeamId',
+        'transfer_documents_to_user_id' => 'setTransferDocumentsToUserId'
     ];
 
     /**
@@ -199,10 +189,8 @@ class DocumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'locale' => 'getLocale',
-        'title' => 'getTitle',
-        'language' => 'getLanguage',
-        'description' => 'getDescription'
+        'to_team_id' => 'getToTeamId',
+        'transfer_documents_to_user_id' => 'getTransferDocumentsToUserId'
     ];
 
     /**
@@ -246,112 +234,6 @@ class DocumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const LOCALE_EN = 'EN';
-    public const LOCALE_NO = 'NO';
-    public const LOCALE_FR = 'FR';
-    public const LOCALE_DE = 'DE';
-    public const LOCALE_ES = 'ES';
-    public const LOCALE_BG = 'BG';
-    public const LOCALE_CS = 'CS';
-    public const LOCALE_DA = 'DA';
-    public const LOCALE_IT = 'IT';
-    public const LOCALE_NL = 'NL';
-    public const LOCALE_PL = 'PL';
-    public const LOCALE_PT = 'PT';
-    public const LOCALE_RO = 'RO';
-    public const LOCALE_RU = 'RU';
-    public const LOCALE_SV = 'SV';
-    public const LOCALE__DEFAULT = 'Default';
-    public const LOCALE_JA = 'JA';
-    public const LOCALE_TH = 'TH';
-    public const LOCALE_ZH_CN = 'ZH_CN';
-    public const LOCALE_ZH_TW = 'ZH_TW';
-    public const LOCALE_KO = 'KO';
-    public const LANGUAGE_0 = 0;
-    public const LANGUAGE_1 = 1;
-    public const LANGUAGE_2 = 2;
-    public const LANGUAGE_3 = 3;
-    public const LANGUAGE_4 = 4;
-    public const LANGUAGE_5 = 5;
-    public const LANGUAGE_6 = 6;
-    public const LANGUAGE_7 = 7;
-    public const LANGUAGE_8 = 8;
-    public const LANGUAGE_9 = 9;
-    public const LANGUAGE_10 = 10;
-    public const LANGUAGE_11 = 11;
-    public const LANGUAGE_12 = 12;
-    public const LANGUAGE_13 = 13;
-    public const LANGUAGE_14 = 14;
-    public const LANGUAGE_15 = 15;
-    public const LANGUAGE_16 = 16;
-    public const LANGUAGE_17 = 17;
-    public const LANGUAGE_18 = 18;
-    public const LANGUAGE_19 = 19;
-    public const LANGUAGE_20 = 20;
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getLocaleAllowableValues()
-    {
-        return [
-            self::LOCALE_EN,
-            self::LOCALE_NO,
-            self::LOCALE_FR,
-            self::LOCALE_DE,
-            self::LOCALE_ES,
-            self::LOCALE_BG,
-            self::LOCALE_CS,
-            self::LOCALE_DA,
-            self::LOCALE_IT,
-            self::LOCALE_NL,
-            self::LOCALE_PL,
-            self::LOCALE_PT,
-            self::LOCALE_RO,
-            self::LOCALE_RU,
-            self::LOCALE_SV,
-            self::LOCALE__DEFAULT,
-            self::LOCALE_JA,
-            self::LOCALE_TH,
-            self::LOCALE_ZH_CN,
-            self::LOCALE_ZH_TW,
-            self::LOCALE_KO,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getLanguageAllowableValues()
-    {
-        return [
-            self::LANGUAGE_0,
-            self::LANGUAGE_1,
-            self::LANGUAGE_2,
-            self::LANGUAGE_3,
-            self::LANGUAGE_4,
-            self::LANGUAGE_5,
-            self::LANGUAGE_6,
-            self::LANGUAGE_7,
-            self::LANGUAGE_8,
-            self::LANGUAGE_9,
-            self::LANGUAGE_10,
-            self::LANGUAGE_11,
-            self::LANGUAGE_12,
-            self::LANGUAGE_13,
-            self::LANGUAGE_14,
-            self::LANGUAGE_15,
-            self::LANGUAGE_16,
-            self::LANGUAGE_17,
-            self::LANGUAGE_18,
-            self::LANGUAGE_19,
-            self::LANGUAGE_20,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -368,10 +250,8 @@ class DocumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('locale', $data ?? [], null);
-        $this->setIfExists('title', $data ?? [], null);
-        $this->setIfExists('language', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('to_team_id', $data ?? [], null);
+        $this->setIfExists('transfer_documents_to_user_id', $data ?? [], null);
     }
 
     /**
@@ -401,32 +281,11 @@ class DocumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['locale'] === null) {
-            $invalidProperties[] = "'locale' can't be null";
+        if ($this->container['to_team_id'] === null) {
+            $invalidProperties[] = "'to_team_id' can't be null";
         }
-        $allowedValues = $this->getLocaleAllowableValues();
-        if (!is_null($this->container['locale']) && !in_array($this->container['locale'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'locale', must be one of '%s'",
-                $this->container['locale'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['title'] === null) {
-            $invalidProperties[] = "'title' can't be null";
-        }
-        if ((mb_strlen($this->container['title']) < 1)) {
-            $invalidProperties[] = "invalid value for 'title', the character length must be bigger than or equal to 1.";
-        }
-
-        $allowedValues = $this->getLanguageAllowableValues();
-        if (!is_null($this->container['language']) && !in_array($this->container['language'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'language', must be one of '%s'",
-                $this->container['language'],
-                implode("', '", $allowedValues)
-            );
+        if ((mb_strlen($this->container['to_team_id']) < 1)) {
+            $invalidProperties[] = "invalid value for 'to_team_id', the character length must be bigger than or equal to 1.";
         }
 
         return $invalidProperties;
@@ -445,141 +304,67 @@ class DocumentInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets locale
+     * Gets to_team_id
      *
      * @return string
      */
-    public function getLocale()
+    public function getToTeamId()
     {
-        return $this->container['locale'];
+        return $this->container['to_team_id'];
     }
 
     /**
-     * Sets locale
+     * Sets to_team_id
      *
-     * @param string $locale locale
+     * @param string $to_team_id to_team_id
      *
      * @return self
      */
-    public function setLocale($locale)
+    public function setToTeamId($to_team_id)
     {
-        if (is_null($locale)) {
-            throw new \InvalidArgumentException('non-nullable locale cannot be null');
+        if (is_null($to_team_id)) {
+            throw new \InvalidArgumentException('non-nullable to_team_id cannot be null');
         }
-        $allowedValues = $this->getLocaleAllowableValues();
-        if (!in_array($locale, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'locale', must be one of '%s'",
-                    $locale,
-                    implode("', '", $allowedValues)
-                )
-            );
+
+        if ((mb_strlen($to_team_id) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $to_team_id when calling ChangeTeamRequest., must be bigger than or equal to 1.');
         }
-        $this->container['locale'] = $locale;
+
+        $this->container['to_team_id'] = $to_team_id;
 
         return $this;
     }
 
     /**
-     * Gets title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->container['title'];
-    }
-
-    /**
-     * Sets title
-     *
-     * @param string $title title
-     *
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
-        }
-
-        if ((mb_strlen($title) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $title when calling DocumentInfo., must be bigger than or equal to 1.');
-        }
-
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-
-    /**
-     * Gets language
-     *
-     * @return int|null
-     */
-    public function getLanguage()
-    {
-        return $this->container['language'];
-    }
-
-    /**
-     * Sets language
-     *
-     * @param int|null $language <p>Description:</p><ul><li><i>0</i> - None</li><li><i>1</i> - English</li><li><i>2</i> - Spanish</li><li><i>3</i> - German</li><li><i>4</i> - French</li><li><i>5</i> - Romanian</li><li><i>6</i> - Norwegian</li><li><i>7</i> - Bulgarian</li><li><i>8</i> - Italian</li><li><i>9</i> - Danish</li><li><i>10</i> - Polish</li><li><i>11</i> - Portuguese</li><li><i>12</i> - Czech</li><li><i>13</i> - Dutch</li><li><i>14</i> - Swedish</li><li><i>15</i> - Russian</li><li><i>16</i> - Japanese</li><li><i>17</i> - Thai</li><li><i>18</i> - SimplifiedChinese</li><li><i>19</i> - TraditionalChinese</li><li><i>20</i> - Korean</li></ul>
-     *
-     * @return self
-     */
-    public function setLanguage($language)
-    {
-        if (is_null($language)) {
-            throw new \InvalidArgumentException('non-nullable language cannot be null');
-        }
-        $allowedValues = $this->getLanguageAllowableValues();
-        if (!in_array($language, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'language', must be one of '%s'",
-                    $language,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['language'] = $language;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
+     * Gets transfer_documents_to_user_id
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getTransferDocumentsToUserId()
     {
-        return $this->container['description'];
+        return $this->container['transfer_documents_to_user_id'];
     }
 
     /**
-     * Sets description
+     * Sets transfer_documents_to_user_id
      *
-     * @param string|null $description description
+     * @param string|null $transfer_documents_to_user_id transfer_documents_to_user_id
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setTransferDocumentsToUserId($transfer_documents_to_user_id)
     {
-        if (is_null($description)) {
-            array_push($this->openAPINullablesSetToNull, 'description');
+        if (is_null($transfer_documents_to_user_id)) {
+            array_push($this->openAPINullablesSetToNull, 'transfer_documents_to_user_id');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('description', $nullablesSetToNull);
+            $index = array_search('transfer_documents_to_user_id', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['description'] = $description;
+        $this->container['transfer_documents_to_user_id'] = $transfer_documents_to_user_id;
 
         return $this;
     }

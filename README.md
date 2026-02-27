@@ -16,7 +16,7 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 ```json
 {
     "require": {
-        "boldsign/boldsign-php": "3.1.0"
+        "boldsign/boldsign-php": "3.1.1"
     },
     "minimum-stability": "dev"
 }
@@ -27,7 +27,7 @@ Then run `composer install`
 Alternatively, install directly with
 
 ```
-composer require boldsign/boldsign-php:3.1.0
+composer require boldsign/boldsign-php:3.1.1
 ```
 
 ## Getting Started
@@ -94,6 +94,7 @@ All URIs are relative to *https://api.boldsign.com*
 | *DocumentApi* | [**behalfDocuments**](docs/Api/DocumentApi.md#behalfdocuments) | **GET** /v1/document/behalfList | Gets the behalf documents. |
 | *DocumentApi* | [**changeAccessCode**](docs/Api/DocumentApi.md#changeaccesscode) | **PATCH** /v1/document/changeAccessCode | Changes the access code for the given document signer. |
 | *DocumentApi* | [**changeRecipient**](docs/Api/DocumentApi.md#changerecipient) | **PATCH** /v1/document/changeRecipient | Change recipient details of a document. |
+| *DocumentApi* | [**createEmbeddedEditUrl**](docs/Api/DocumentApi.md#createembeddedediturl) | **POST** /v1/document/createEmbeddedEditUrl | Generates an embedded edit URL that allows the document editing process to be integrated into your application. |
 | *DocumentApi* | [**createEmbeddedRequestUrlDocument**](docs/Api/DocumentApi.md#createembeddedrequesturldocument) | **POST** /v1/document/createEmbeddedRequestUrl | Generates a send URL which embeds document sending process into your application. |
 | *DocumentApi* | [**deleteDocument**](docs/Api/DocumentApi.md#deletedocument) | **DELETE** /v1/document/delete | Delete the document. |
 | *DocumentApi* | [**deleteTag**](docs/Api/DocumentApi.md#deletetag) | **DELETE** /v1/document/deleteTags | Delete the Tags in Documents. |
@@ -112,6 +113,11 @@ All URIs are relative to *https://api.boldsign.com*
 | *DocumentApi* | [**revokeDocument**](docs/Api/DocumentApi.md#revokedocument) | **POST** /v1/document/revoke | Revoke the document. |
 | *DocumentApi* | [**sendDocument**](docs/Api/DocumentApi.md#senddocument) | **POST** /v1/document/send | Sends the document for sign. |
 | *DocumentApi* | [**teamDocuments**](docs/Api/DocumentApi.md#teamdocuments) | **GET** /v1/document/teamlist | Get user Team documents. |
+| *GroupContactsApi* | [**createGroupContact**](docs/Api/GroupContactsApi.md#creategroupcontact) | **POST** /v1/contactGroups/create | Create a new Group Contact. |
+| *GroupContactsApi* | [**deleteGroupContact**](docs/Api/GroupContactsApi.md#deletegroupcontact) | **DELETE** /v1/contactGroups/delete | Deletes a Group Contact. |
+| *GroupContactsApi* | [**getGroupContact**](docs/Api/GroupContactsApi.md#getgroupcontact) | **GET** /v1/contactGroups/get | Get Summary of the Group Contact. |
+| *GroupContactsApi* | [**groupContactList**](docs/Api/GroupContactsApi.md#groupcontactlist) | **GET** /v1/contactGroups/list | List Group Contacts. |
+| *GroupContactsApi* | [**updateGroupContact**](docs/Api/GroupContactsApi.md#updategroupcontact) | **PUT** /v1/contactGroups/update | Update the Group Contact. |
 | *IdentityVerificationApi* | [**createEmbeddedVerificationUrl**](docs/Api/IdentityVerificationApi.md#createembeddedverificationurl) | **POST** /v1/identityVerification/createEmbeddedVerificationUrl | Generate a URL that embeds manual ID verification for the specified document signer into your application. |
 | *IdentityVerificationApi* | [**image**](docs/Api/IdentityVerificationApi.md#image) | **POST** /v1/identityVerification/image | Retrieve the uploaded ID verification document or selfie image for the specified document signer using the file ID. |
 | *IdentityVerificationApi* | [**report**](docs/Api/IdentityVerificationApi.md#report) | **POST** /v1/identityVerification/report | Retrieve the ID verification report for the specified document signer. |
@@ -180,10 +186,12 @@ All URIs are relative to *https://api.boldsign.com*
 - [ContactsDetails](docs/Model/ContactsDetails.md)
 - [ContactsList](docs/Model/ContactsList.md)
 - [CreateContactResponse](docs/Model/CreateContactResponse.md)
+- [CreateGroupContactResponse](docs/Model/CreateGroupContactResponse.md)
 - [CreateSenderIdentityRequest](docs/Model/CreateSenderIdentityRequest.md)
 - [CreateTeamRequest](docs/Model/CreateTeamRequest.md)
 - [CreateTemplateRequest](docs/Model/CreateTemplateRequest.md)
 - [CreateUser](docs/Model/CreateUser.md)
+- [Creators](docs/Model/Creators.md)
 - [CustomDomainSettings](docs/Model/CustomDomainSettings.md)
 - [CustomFieldCollection](docs/Model/CustomFieldCollection.md)
 - [CustomFieldMessage](docs/Model/CustomFieldMessage.md)
@@ -216,6 +224,8 @@ All URIs are relative to *https://api.boldsign.com*
 - [EditableDateFieldSettings](docs/Model/EditableDateFieldSettings.md)
 - [EmbeddedCreateTemplateRequest](docs/Model/EmbeddedCreateTemplateRequest.md)
 - [EmbeddedCustomFieldCreated](docs/Model/EmbeddedCustomFieldCreated.md)
+- [EmbeddedDocumentEditJsonRequest](docs/Model/EmbeddedDocumentEditJsonRequest.md)
+- [EmbeddedDocumentEdited](docs/Model/EmbeddedDocumentEdited.md)
 - [EmbeddedDocumentRequest](docs/Model/EmbeddedDocumentRequest.md)
 - [EmbeddedFileDetails](docs/Model/EmbeddedFileDetails.md)
 - [EmbeddedFileLink](docs/Model/EmbeddedFileLink.md)
@@ -238,8 +248,13 @@ All URIs are relative to *https://api.boldsign.com*
 - [FormFieldPermission](docs/Model/FormFieldPermission.md)
 - [FormGroup](docs/Model/FormGroup.md)
 - [FormulaFieldSettings](docs/Model/FormulaFieldSettings.md)
+- [GetGroupContactDetails](docs/Model/GetGroupContactDetails.md)
+- [GroupContact](docs/Model/GroupContact.md)
+- [GroupContactDetails](docs/Model/GroupContactDetails.md)
+- [GroupContactsList](docs/Model/GroupContactsList.md)
 - [GroupSigner](docs/Model/GroupSigner.md)
 - [GroupSignerSettings](docs/Model/GroupSignerSettings.md)
+- [GroupUser](docs/Model/GroupUser.md)
 - [IdDocument](docs/Model/IdDocument.md)
 - [IdReport](docs/Model/IdReport.md)
 - [IdVerificationDetails](docs/Model/IdVerificationDetails.md)
@@ -296,6 +311,7 @@ All URIs are relative to *https://api.boldsign.com*
 - [TemplateTeamShare](docs/Model/TemplateTeamShare.md)
 - [TextTagDefinition](docs/Model/TextTagDefinition.md)
 - [TextTagOffset](docs/Model/TextTagOffset.md)
+- [UpdateGroupContact](docs/Model/UpdateGroupContact.md)
 - [UpdateUser](docs/Model/UpdateUser.md)
 - [UpdateUserMetaData](docs/Model/UpdateUserMetaData.md)
 - [UserPageDetails](docs/Model/UserPageDetails.md)
@@ -343,6 +359,6 @@ vendor/bin/phpunit
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `1`
-    - Package version: `3.1.0`
+    - Package version: `3.1.1`
     - Generator version: `7.8.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

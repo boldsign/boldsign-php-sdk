@@ -7,6 +7,7 @@ docs/Api/BrandingApi.md
 docs/Api/ContactsApi.md
 docs/Api/CustomFieldApi.md
 docs/Api/DocumentApi.md
+docs/Api/GroupContactsApi.md
 docs/Api/IdentityVerificationApi.md
 docs/Api/PlanApi.md
 docs/Api/SenderIdentitiesApi.md
@@ -39,10 +40,12 @@ docs/Model/ContactPageDetails.md
 docs/Model/ContactsDetails.md
 docs/Model/ContactsList.md
 docs/Model/CreateContactResponse.md
+docs/Model/CreateGroupContactResponse.md
 docs/Model/CreateSenderIdentityRequest.md
 docs/Model/CreateTeamRequest.md
 docs/Model/CreateTemplateRequest.md
 docs/Model/CreateUser.md
+docs/Model/Creators.md
 docs/Model/CustomDomainSettings.md
 docs/Model/CustomFieldCollection.md
 docs/Model/CustomFieldMessage.md
@@ -75,6 +78,8 @@ docs/Model/EditTemplateRequest.md
 docs/Model/EditableDateFieldSettings.md
 docs/Model/EmbeddedCreateTemplateRequest.md
 docs/Model/EmbeddedCustomFieldCreated.md
+docs/Model/EmbeddedDocumentEditJsonRequest.md
+docs/Model/EmbeddedDocumentEdited.md
 docs/Model/EmbeddedDocumentRequest.md
 docs/Model/EmbeddedFileDetails.md
 docs/Model/EmbeddedFileLink.md
@@ -97,8 +102,13 @@ docs/Model/FormField.md
 docs/Model/FormFieldPermission.md
 docs/Model/FormGroup.md
 docs/Model/FormulaFieldSettings.md
+docs/Model/GetGroupContactDetails.md
+docs/Model/GroupContact.md
+docs/Model/GroupContactDetails.md
+docs/Model/GroupContactsList.md
 docs/Model/GroupSigner.md
 docs/Model/GroupSignerSettings.md
+docs/Model/GroupUser.md
 docs/Model/IdDocument.md
 docs/Model/IdReport.md
 docs/Model/IdVerificationDetails.md
@@ -155,6 +165,7 @@ docs/Model/TemplateTag.md
 docs/Model/TemplateTeamShare.md
 docs/Model/TextTagDefinition.md
 docs/Model/TextTagOffset.md
+docs/Model/UpdateGroupContact.md
 docs/Model/UpdateUser.md
 docs/Model/UpdateUserMetaData.md
 docs/Model/UserPageDetails.md
@@ -172,6 +183,7 @@ src/Api/BrandingApi.php
 src/Api/ContactsApi.php
 src/Api/CustomFieldApi.php
 src/Api/DocumentApi.php
+src/Api/GroupContactsApi.php
 src/Api/IdentityVerificationApi.php
 src/Api/PlanApi.php
 src/Api/SenderIdentitiesApi.php
@@ -206,10 +218,12 @@ src/Model/ContactPageDetails.php
 src/Model/ContactsDetails.php
 src/Model/ContactsList.php
 src/Model/CreateContactResponse.php
+src/Model/CreateGroupContactResponse.php
 src/Model/CreateSenderIdentityRequest.php
 src/Model/CreateTeamRequest.php
 src/Model/CreateTemplateRequest.php
 src/Model/CreateUser.php
+src/Model/Creators.php
 src/Model/CustomDomainSettings.php
 src/Model/CustomFieldCollection.php
 src/Model/CustomFieldMessage.php
@@ -242,6 +256,8 @@ src/Model/EditTemplateRequest.php
 src/Model/EditableDateFieldSettings.php
 src/Model/EmbeddedCreateTemplateRequest.php
 src/Model/EmbeddedCustomFieldCreated.php
+src/Model/EmbeddedDocumentEditJsonRequest.php
+src/Model/EmbeddedDocumentEdited.php
 src/Model/EmbeddedDocumentRequest.php
 src/Model/EmbeddedFileDetails.php
 src/Model/EmbeddedFileLink.php
@@ -264,8 +280,13 @@ src/Model/FormField.php
 src/Model/FormFieldPermission.php
 src/Model/FormGroup.php
 src/Model/FormulaFieldSettings.php
+src/Model/GetGroupContactDetails.php
+src/Model/GroupContact.php
+src/Model/GroupContactDetails.php
+src/Model/GroupContactsList.php
 src/Model/GroupSigner.php
 src/Model/GroupSignerSettings.php
+src/Model/GroupUser.php
 src/Model/IdDocument.php
 src/Model/IdReport.php
 src/Model/IdVerificationDetails.php
@@ -323,6 +344,7 @@ src/Model/TemplateTag.php
 src/Model/TemplateTeamShare.php
 src/Model/TextTagDefinition.php
 src/Model/TextTagOffset.php
+src/Model/UpdateGroupContact.php
 src/Model/UpdateUser.php
 src/Model/UpdateUserMetaData.php
 src/Model/UserPageDetails.php

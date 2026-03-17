@@ -390,6 +390,7 @@ class PlanApi
 
 
 
+        $multipart = !empty($formParams);
 
         $headers = $this->headerSelector->selectHeaders(
             $multipart ? ['multipart/form-data'] : ['application/json', ],

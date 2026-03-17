@@ -7,6 +7,7 @@ All URIs are relative to https://api.boldsign.com, except if the operation defin
 | [**addAuthentication()**](DocumentApi.md#addAuthentication) | **PATCH** /v1/document/addAuthentication | The add authentication to recipient. |
 | [**addTag()**](DocumentApi.md#addTag) | **PATCH** /v1/document/addTags | Add the Tags in Documents. |
 | [**behalfDocuments()**](DocumentApi.md#behalfDocuments) | **GET** /v1/document/behalfList | Gets the behalf documents. |
+| [**cancelEditing()**](DocumentApi.md#cancelEditing) | **POST** /v1/document/cancelEditing | Cancels editing for a document that is currently in edit-mode. |
 | [**changeAccessCode()**](DocumentApi.md#changeAccessCode) | **PATCH** /v1/document/changeAccessCode | Changes the access code for the given document signer. |
 | [**changeRecipient()**](DocumentApi.md#changeRecipient) | **PATCH** /v1/document/changeRecipient | Change recipient details of a document. |
 | [**createEmbeddedEditUrl()**](DocumentApi.md#createEmbeddedEditUrl) | **POST** /v1/document/createEmbeddedEditUrl | Generates an embedded edit URL that allows the document editing process to be integrated into your application. |
@@ -191,6 +192,58 @@ try {
 ### Return type
 
 [**\BoldSign\Model\BehalfDocumentRecords**](../Model/BehalfDocumentRecords.md)
+
+### Authorization
+
+[X-API-KEY](../../README.md#X-API-KEY), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `cancelEditing()`
+
+```php
+cancelEditing($document_id, $on_behalf_of)
+```
+
+Cancels editing for a document that is currently in edit-mode.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$config = new BoldSign\Configuration();
+$config->setApiKey('YOUR_API_KEY');
+
+$apiInstance = new BoldSign\Api\DocumentApi($config);
+$document_id = 'document_id_example'; // string | The document id.
+$on_behalf_of = 'on_behalf_of_example'; // string | The onbehalfof email id.
+
+try {
+    $apiInstance->cancelEditing($document_id, $on_behalf_of);
+} catch (Exception $e) {
+    echo 'Exception when calling DocumentApi->cancelEditing: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **document_id** | **string**| The document id. | |
+| **on_behalf_of** | **string**| The onbehalfof email id. | [optional] |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 

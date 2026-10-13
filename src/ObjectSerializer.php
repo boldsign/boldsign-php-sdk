@@ -589,6 +589,9 @@ class ObjectSerializer
             $k = $encoder((string) $k);
             if (!is_array($v)) {
                 $qs .= $k;
+                if ($v instanceof \DateTime) {
+                    $v = $v->format(DATE_ATOM);
+                }
                 $v = is_bool($v) ? $castBool($v) : $v;
                 if ($v !== null) {
                     $qs .= '='.$encoder((string) $v);
@@ -686,7 +689,7 @@ class ObjectSerializer
                 }
                 continue;
             }
-            
+
             // Handle generic array cases
             if (strpos($apiTypes[$key], 'array') !== false || is_array($value)) {
                 if (!array_key_exists($key, $keyCount)) {
@@ -704,7 +707,7 @@ class ObjectSerializer
                 if ($isAssociativeArray) {
                     // For associative arrays, flatten them into form parameters
                     foreach ($value as $assocKey => $assocValue) {
-                        $formParams[$true_key . '[' . $assocKey . ']'] = is_scalar($assocValue)
+                        $formParams[$true_key . '[' . $assocKey . ']'] = is_scalar($assocValue) || $assocValue instanceof \DateTime
                             ? ObjectSerializer::toFormValue($assocValue)
                             : GuzzleHttp\Utils::jsonEncode(
                                 ObjectSerializer::sanitizeForSerialization($assocValue)
@@ -716,7 +719,7 @@ class ObjectSerializer
                 $listValues = [];  // Initialize an array to store list values for indexed arrays.
 
                 foreach ($value as $arrayValue) {
-                    $listValues[] = is_scalar($arrayValue)
+                    $listValues[] = is_scalar($arrayValue) || $arrayValue instanceof \DateTime
                         ? ObjectSerializer::toFormValue($arrayValue)
                         : GuzzleHttp\Utils::jsonEncode(
                             ObjectSerializer::sanitizeForSerialization($arrayValue)
@@ -727,7 +730,7 @@ class ObjectSerializer
                 continue;
             }
 
-            $formParams[$true_key] = is_scalar($value)
+            $formParams[$true_key] = is_scalar($value) || $value instanceof \DateTime
                 ? ObjectSerializer::toFormValue($value)
                 : GuzzleHttp\Utils::jsonEncode(
                     ObjectSerializer::sanitizeForSerialization(
